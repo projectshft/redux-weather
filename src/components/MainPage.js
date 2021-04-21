@@ -1,7 +1,10 @@
+import CitySearch from './CitySearch';
+
 const MainPage = () => {
   return (
-    <div>
+    <div className="container">
       <h1>Test</h1>
+      <CitySearch />
     </div>
   )
 }
