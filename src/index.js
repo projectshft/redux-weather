@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import Header from "./components/header";
+import CitiesIndex from "./components/cities-index";
+import reducers from "./reducers";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={createStore(reducers)}>
+    <BrowserRouter>
+      <Header>
+        <Switch>
+          <Route path="/" component={CitiesIndex} />
+        </Switch>
+      </Header>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
