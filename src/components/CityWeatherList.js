@@ -1,4 +1,10 @@
+import CityWeatherListItem from './CityWeatherListItem';
+
 const CityWeatherList = () => {
+  const renderWeatherList = () => {
+    return <CityWeatherListItem />
+  }
+  
   return (
     <div className="row">
       <div className="col-md-10 offset-md-1">
@@ -11,6 +17,9 @@ const CityWeatherList = () => {
               <th scope="col">Humidity (%)</th>
             </tr>
           </thead>
+          <tbody>
+            {renderWeatherList()}
+          </tbody>
         </table>
       </div>
     </div>
