@@ -1,21 +1,23 @@
-import { TABLE_ROW } from '../actions';
+import { ACCESS_LOCATION } from '../actions';
 
-const TableReducer = (state = [], action) =>{
+const LocationReducer = (state = {}, action) =>{
   switch (action.type){
-    case TABLE_ROW:
+    case ACCESS_LOCATION:
       const data = action.payload.data
-      const newRow = {
+      const newLocation = {
         name: data.city.name,
         temp: data.list.map((time)=> time.main.temp),
         humidity: data.list.map((time)=> time.main.humidity),
         pressure: data.list.map((time)=> time.main.pressure)
       }
+
+      console.log(newLocation);
       
-      return [newRow, ...state];
+      return newLocation;
     default:
       return state;
   }
     
 };
 
-export default TableReducer;
+export default LocationReducer;
