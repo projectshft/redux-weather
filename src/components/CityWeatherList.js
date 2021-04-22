@@ -8,7 +8,7 @@ const CityWeatherList = () => {
   return (
     <div className="row">
       <div className="col-md-10 offset-md-1">
-        <table class="table table-striped table-hover">
+        <table className="table table-striped table-hover text-center">
           <thead>
             <tr>
               <th scope="col">City</th>
