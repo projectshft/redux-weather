@@ -1,23 +1,54 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNewTableRow } from '../actions';
+import _ from 'lodash';
+
 
 
 function App() {
 
   const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
+  const appData = useSelector(state => state)
 
-  const trackQuery = () => {
-    setQuery()
+
+  const trackQuery = (e) => {
+    setQuery(e.target.value);
   }
+
+  const submitQuery = () => {
+    dispatch(fetchNewTableRow(query))
+  }
+
+  const rowShow = () => {
+    console.log(appData);
+  }
+
+  const renderRows = () =>{
+    if (!_.isEmpty(appData)){
+      return appData.table.map((row) =>{
+        return(
+          <tr key={row.name}>
+            <td>{row.name}</td>
+            <td>{row.temp}</td>
+            <td>{row.pressure}</td>
+            <td>{row.humidity}</td>
+          </tr>
+        )
+      })
+    }
+  }
+
 
 
   return (
     
     <div className="App">
-      <h1>BetterWeather 2</h1>
+      <h1 onClick={rowShow}>BetterWeather 2</h1>
       <div className="row">
         <div className="col-sm-6 offset-md-3">
-          <input placeholder="get a five-day forecast in your favorite cities"></input>
-          <button className="btn btn-success btn-sm" onChange={trackQuery}>Submit</button>
+          <input placeholder="get a five-day forecast in your favorite cities" onChange={trackQuery}></input>
+          <button className="btn btn-success btn-sm" onClick={submitQuery}>Submit</button>
         </div>
       </div>
       <div className="row">
@@ -32,6 +63,7 @@ function App() {
               </tr>
             </thead>
             <tbody>
+              {renderRows()}
               <tr>
                 <td>City Name</td>
                 <td>TempGraph</td>
