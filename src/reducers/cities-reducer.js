@@ -1,8 +1,10 @@
+import { FETCH_FORECAST } from "../actions/index";
+
 const defaultState = [];
 
 const citiesReducer = (state=defaultState, action) => {
   switch (action.type) {
-    case "FETCH_FORECAST":
+    case FETCH_FORECAST:
       return state;
   
     default:
