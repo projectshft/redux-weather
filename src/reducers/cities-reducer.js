@@ -5,7 +5,7 @@ const defaultState = [];
 const citiesReducer = (state=defaultState, action) => {
   switch (action.type) {
     case FETCH_FORECAST:
-      return state;
+      return [...state, action.payload];
   
     default:
       return state;

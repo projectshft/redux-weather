@@ -1,8 +1,10 @@
+import { useSelector } from 'react-redux';
 import CityWeatherListItem from './CityWeatherListItem';
 
 const CityWeatherList = () => {
-  const renderWeatherList = () => {
-    return <CityWeatherListItem />
+  const cities = useSelector(({cities}) => cities)
+  const renderWeatherList = (citiesData) => {
+    return citiesData.map((city, index) => <CityWeatherListItem key={index} city={city}/>)
   }
   
   return (
@@ -18,7 +20,7 @@ const CityWeatherList = () => {
             </tr>
           </thead>
           <tbody>
-            {renderWeatherList()}
+            {renderWeatherList(cities)}
           </tbody>
         </table>
       </div>
