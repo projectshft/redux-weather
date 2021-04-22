@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNewTableRow } from '../actions';
 import _ from 'lodash';
+import {Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+
 
 
 
@@ -30,9 +32,24 @@ function App() {
         return(
           <tr key={row.name}>
             <td>{row.name}</td>
-            <td>{row.temp}</td>
-            <td>{row.pressure}</td>
-            <td>{row.humidity}</td>
+            <td>
+              <Sparklines data={row.temp}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="mean" />
+              </Sparklines>
+            </td>
+            <td>
+              <Sparklines data={row.pressure}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="mean" />
+              </Sparklines>
+            </td>
+            <td>
+              <Sparklines data={row.humidity}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="mean" />
+              </Sparklines>
+            </td>
           </tr>
         )
       })
@@ -49,6 +66,7 @@ function App() {
         <div className="col-sm-6 offset-md-3">
           <input placeholder="get a five-day forecast in your favorite cities" onChange={trackQuery}></input>
           <button className="btn btn-success btn-sm" onClick={submitQuery}>Submit</button>
+          <button className="btn btn-success btn-sm" onClick={submitQuery}>Current Location</button>
         </div>
       </div>
       <div className="row">
@@ -64,24 +82,6 @@ function App() {
             </thead>
             <tbody>
               {renderRows()}
-              <tr>
-                <td>City Name</td>
-                <td>TempGraph</td>
-                <td>PressureGraph</td>
-                <td>HumidityGraph</td>
-              </tr>
-              <tr>
-                <td>City Name</td>
-                <td>TempGraph</td>
-                <td>PressureGraph</td>
-                <td>HumidityGraph</td>
-              </tr>
-              <tr>
-                <td>City Name</td>
-                <td>TempGraph</td>
-                <td>PressureGraph</td>
-                <td>HumidityGraph</td>
-              </tr>
             </tbody>
           </table>
         </div>
