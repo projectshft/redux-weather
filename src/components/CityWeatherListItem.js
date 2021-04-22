@@ -10,7 +10,7 @@ const CityWeatherListItem = ({city}) => {
     <tr>
       <th scope="row">{city.name}</th>
       <td>
-        <Sparklines data={city.temperatures} width={100} height={50}>
+        <Sparklines data={city.temperatures} width={100} height={68}>
           <SparklinesLine color="brown" />
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
@@ -24,7 +24,7 @@ const CityWeatherListItem = ({city}) => {
         Average Pressure: {findAverage(city.pressures)} hPa
       </td>
       <td>
-        <Sparklines data={city.humidityPoints} width={100} height={50}>
+        <Sparklines data={city.humidityPoints} width={100} height={56}>
           <SparklinesLine color="black" />
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
