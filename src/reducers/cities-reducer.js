@@ -20,7 +20,7 @@ const citiesReducer = (state=defaultState, action) => {
       };
 
       //Checks to see if weather information for the new city is already in the cities store and filters out the old information if so.
-      const stateWithoutRepeatedCity = state.filter((city) => city.id !== newCity.id);
+      const stateWithoutRepeatedCity = state.filter((city) => city.name !== newCity.name);
 
       return [newCity, ...stateWithoutRepeatedCity];
   

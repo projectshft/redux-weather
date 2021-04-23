@@ -11,19 +11,20 @@ const DefaultCityUI = () => {
     dispatch(changeDefaultCity(mostRecentCitySearch.name))
   }
 
-  let ui;
- 
-  if (mostRecentCitySearch) {
-    if (defaultCity === mostRecentCitySearch.name) {
-      ui = <p>{defaultCity} is your default city</p>
-    } else {
-      ui = <button className="btn btn-primary mt-3" onClick={handleDefaultCityButtonClick}>Set {mostRecentCitySearch.name} as default City</button>
+  const displayMessageOrButton = (currentCity, defaultCity) => {
+    if (currentCity) {
+      if (defaultCity === currentCity.name) {
+        return <p>{currentCity.name} is your default city</p>
+      } else {
+        return <button className="btn btn-primary mt-3" onClick={handleDefaultCityButtonClick}>Set {currentCity.name} as default City</button>
+      }
     }
   }
+ 
   return (
     <div className="row mb-3">
       <div className="col-md-10 offset-md-1">
-        {ui}
+        {displayMessageOrButton(mostRecentCitySearch, defaultCity)}
       </div>
     </div>
   );
