@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 const CityWeatherListItem = ({city}) => {

@@ -1,5 +1,7 @@
 import axios from "axios";
 export const FETCH_FORECAST = "FETCH_FORECAST";
+export const DISPLAY_BUTTON = "DISPLAY_BUTTON";
+export const HIDE_BUTTON = "HIDE_BUTTON";
 
 const sampleData = {
   name: "Durham",
@@ -15,5 +17,12 @@ export const fetchForecast = (city) => {
   return {
     type: FETCH_FORECAST,
     payload: request
+  }
+}
+
+export const changeDefaultCity = (display) => {
+  const type = display ? DISPLAY_BUTTON : HIDE_BUTTON;
+  return {
+    type 
   }
 }

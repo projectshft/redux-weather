@@ -5,7 +5,6 @@ const defaultState = [];
 const citiesReducer = (state=defaultState, action) => {
   // (temperature in Kelvin − 273.15) × 9/5 + 32 = temperature in Fahrenheit
   const convertKelvinToFahrenheit = (temperatureArr) => temperatureArr.map((t) => Math.round((t - 273.15) * (9/5) + 32)); 
-
   switch (action.type) {
     case FETCH_FORECAST:
       const getWeatherDataFromFetch = (openWeatherData, type) => {
@@ -18,7 +17,8 @@ const citiesReducer = (state=defaultState, action) => {
         pressures: getWeatherDataFromFetch(action.payload, "pressure"),
         humidityPoints: getWeatherDataFromFetch(action.payload, "humidity"),
       };
-      return [...state, newCity];
+
+      return [newCity, ...state];
   
     default:
       return state;
