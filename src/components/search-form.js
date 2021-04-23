@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
 import { fetchCities } from '../actions';
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 
 const SearchValue = () => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchCities(value));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [value]);
-
-  // const handleSearch = (event) => {
-  //   event.preventDefault();
 
   return (
     <div className="col text-center">
@@ -31,7 +22,6 @@ const SearchValue = () => {
             dispatch(fetchCities(value))
           }}>Search</button>
       </div>
-
     </div>
   )
 }
