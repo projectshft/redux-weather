@@ -1,12 +1,9 @@
-import { DISPLAY_BUTTON } from "../actions/index"
-import { HIDE_BUTTON } from "../actions/index"
+import { UPDATE_DEFAULT_CITY } from "../actions/index"
 
 const defaultCityReducer = (state=null, action) => {
   switch (action.type) {
-    case DISPLAY_BUTTON:
-      return true;
-    case HIDE_BUTTON:
-      return false
+    case UPDATE_DEFAULT_CITY:
+      return action.payload;
     default:
       return state;
   }
