@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { fetchCities } from '../actions';
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
-const SearchValue = ({ citySearch }) => {
-  debugger;
+const SearchValue = () => {
   const [value, setValue] = useState('');
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchCities(value));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [value]);
 
   // const handleSearch = (event) => {
   //   event.preventDefault();
@@ -16,13 +22,16 @@ const SearchValue = ({ citySearch }) => {
           value={value}
           onChange={event => {
             setValue(event.target.value)
-            citySearch(value)
           }}
           type="text center" id="search-query" className="text-center input-group input-group-sm mb-3" placeholder="Type in city name"></input>
         <br />
-        <button className="btn btn-outline-info">Search</button>
+        <button
+          className="btn btn-outline-info"
+          onClick={() => {
+            dispatch(fetchCities(value))
+          }}>Search</button>
       </div>
-      <hr />
+
     </div>
   )
 }
