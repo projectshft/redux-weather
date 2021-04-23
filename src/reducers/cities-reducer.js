@@ -7,6 +7,7 @@ const citiesReducer = (state=defaultState, action) => {
   const convertKelvinToFahrenheit = (temperatureArr) => temperatureArr.map((t) => Math.round((t - 273.15) * (9/5) + 32)); 
   switch (action.type) {
     case FETCH_FORECAST:
+      debugger;
       const getWeatherDataFromFetch = (openWeatherData, type) => {
         return openWeatherData.data.list.map((forecastPoint) => forecastPoint.main[type])
       };
