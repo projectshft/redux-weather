@@ -18,7 +18,10 @@ const citiesReducer = (state=defaultState, action) => {
         humidityPoints: getWeatherDataFromFetch(action.payload, "humidity"),
       };
 
-      return [newCity, ...state];
+      //Checks to see if weather information for the new city is already in the cities store and filters out the old information if so.
+      const stateWithoutRepeatedCity = state.filter((city) => city.id !== newCity.id);
+
+      return [newCity, ...stateWithoutRepeatedCity];
   
     default:
       return state;
