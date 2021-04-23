@@ -3,11 +3,16 @@ import { FETCH_FORECAST } from "../actions/index";
 const defaultState = [];
 
 const citiesReducer = (state=defaultState, action) => {
+  //Checks to see the fetch request failed and returns the current state if so
+  if(action.error) {
+    alert('Could not find results for search')
+    return state;
+  }
   // (temperature in Kelvin − 273.15) × 9/5 + 32 = temperature in Fahrenheit
   const convertKelvinToFahrenheit = (temperatureArr) => temperatureArr.map((t) => Math.round((t - 273.15) * (9/5) + 32)); 
+  
   switch (action.type) {
     case FETCH_FORECAST:
-      debugger;
       const getWeatherDataFromFetch = (openWeatherData, type) => {
         return openWeatherData.data.list.map((forecastPoint) => forecastPoint.main[type])
       };

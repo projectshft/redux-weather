@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CityWeatherListItem from './CityWeatherListItem';
 
 const CityWeatherList = () => {
@@ -14,7 +15,9 @@ const CityWeatherList = () => {
           <thead>
             <tr>
               <th scope="col">City</th>
-              <th scope="col">Temperature (F)</th>
+              <th scope="col">
+                <Link to="/temperature">Temperature (F)</Link>
+              </th>
               <th scope="col">Pressure (hPa)</th>
               <th scope="col">Humidity (%)</th>
             </tr>

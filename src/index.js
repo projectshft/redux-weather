@@ -8,6 +8,7 @@ import { createStore, applyMiddleware} from 'redux';
 import promise from 'redux-promise';
 import MainPage from './components/MainPage';
 import reducers from './reducers';
+import TemperatureComparisonPage from "./components/TemperatureComparisonPage";
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -16,6 +17,7 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
       <BrowserRouter>
         <Switch>
+          <Route path="/temperature" component={TemperatureComparisonPage} />
           <Route path="/" component={MainPage}/>
         </Switch>
       </BrowserRouter>
