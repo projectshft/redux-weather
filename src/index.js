@@ -9,12 +9,23 @@ import promise from 'redux-promise';
 import MainPage from './components/MainPage';
 import reducers from './reducers';
 import TemperatureComparisonPage from "./components/TemperatureComparisonPage";
+import {fetchForecast} from './actions/index';
+import {changeDefaultCity} from './actions/index';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const loadDefaultCityInfo = () => {
+  if(localStorage.getItem('defaultCity')) {
+    store.dispatch(fetchForecast(localStorage.getItem('defaultCity')))
+    store.dispatch(changeDefaultCity(localStorage.getItem('defaultCity')))
+  }
+}
+
+const store = createStoreWithMiddleware(reducers);
+loadDefaultCityInfo();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route path="/temperature" component={TemperatureComparisonPage} />
