@@ -12,6 +12,8 @@ import promise from 'redux-promise';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
 
+//Render with promise middleware and Redux Chrome tools extension
+
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <App />

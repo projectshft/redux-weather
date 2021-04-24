@@ -4,10 +4,10 @@ const TableReducer = (state = [], action) =>{
   switch (action.type){
     case TABLE_ROW:
       const data = action.payload.data
-      console.log(action.payload);
       if(data){
         const newRow = {
-          currentLocation: action.payload.config.url.includes('?lat='),
+          currentLocation: action.payload.config.url.includes('?lat='), 
+          //is query from geolocation or not?
           name: data.city.name,
           temp: data.list.map((time)=> time.main.temp),
           humidity: data.list.map((time)=> time.main.humidity),

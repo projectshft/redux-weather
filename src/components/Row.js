@@ -1,4 +1,4 @@
-import { fetchNewTableRow, accessLocation, setDefault } from '../actions';
+import { setDefault } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from '../components/Chart'
 

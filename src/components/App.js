@@ -6,10 +6,8 @@ import SearchBar from '../components/SearchBar'
 import Row from '../components/Row'
 
 export default function App() {
-
   const dispatch = useDispatch();
   const tableData = useSelector(state => state.table)
-  const defaultData = useSelector(state => state.default)
 
   useEffect(() => {
     const city = localStorage.getItem('city');
