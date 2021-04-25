@@ -9,16 +9,19 @@ const WeatherIndex = () => {
   const { register, handleSubmit } = useForm();
   const posts = useSelector(state => state.posts);
   const dispatch = useDispatch();
-
-  const onSubmit = (data) => {
+  
+  //click handler on search
+  const onSubmit = (data) => { 
     dispatch(fetchWeather(data.cityName))
   };
 
+  //gets average of 40 values returned from api fetch for specified target (temp/humid/pressure)
   const getAverage = (values, target) => {
     const valuesArray = values.map(item => item.main[target]);
     return parseInt(valuesArray.reduce((acc, v) => acc + v) / valuesArray.length);
   };
 
+  //renders sparkline graph
   const renderGraph = (values, target, color, symbol) => {
     const valuesArray = values.map(item => item.main[target]);
     const avgValue = getAverage(values, target);
@@ -33,6 +36,7 @@ const WeatherIndex = () => {
     )
   };
 
+  //renders table rows reflecting api return data for each succesful search
   function renderWeatherRows() {
     if (!_.isEmpty(posts.weather)) {
       const renderedRows = posts.weather.map(item => 
