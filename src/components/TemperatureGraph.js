@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 
 const TemperatureGraph = () => {
@@ -16,30 +16,30 @@ const TemperatureGraph = () => {
       return acc;
     }, {index});
   }
-
+  debugger;
   const createGraphData = (citiesStore) => {
     return cities[0].temperatures.map((t, index) => createDataPointforSelectedIndex(citiesStore, index))
   }
 
-  const renderLines = (citiesStore) => citiesStore.map((city) => <Line type="monotone" dataKey={city.name} stroke="#8884d8" />)
+  const chooseLineColor = (number) => {
+    const colorOptions = ['blue', 'green', 'brown', 'purple', 'black'];
+    while(number >= colorOptions.length) {
+      number -= colorOptions.length;
+    }
+    return colorOptions[number];
+  }
 
-  // const createGraphData = (city) => {
-  //   return city.temperatures.map((temperature, index) => {
-  //     return {
-  //       time: index,
-  //       [city.name]: temperature
-  //     }
-  //   })
-  // }
-  // <Line type="monotone" dataKey={cities[0].name} stroke="#8884d8" />
+  const renderLines = (citiesStore) => citiesStore.map((city, index) => <Line type="monotone" dataKey={city.name} stroke={chooseLineColor(index)} />)
+
   const data = createGraphData(cities);
   const renderLineChart = (
-    <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+    <LineChart width={700} height={400} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
       {renderLines(cities)}
       <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-      <XAxis dataKey="index" />
-      <YAxis type="number" domain={['dataMin - 10', 'dataMax + 10']} />
+      <XAxis dataKey="index" label={{ value: "Time", position: "insideBottomRight", offset: 0}}/>
+      <YAxis type="number" label={{ value: "Temperature (F)", angle: -90, position: "insideLeft"}} domain={['dataMin - 10', 'dataMax + 10']} />
       <Tooltip />
+      <Legend />
     </LineChart>
   );
 
