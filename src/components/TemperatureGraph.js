@@ -4,6 +4,12 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 
 const TemperatureGraph = () => {
   const cities = useSelector(({cities}) => cities)
+
+  //Check to see if there are no cities yet
+  if (!cities.length) {
+    return <h3>No Cities have been searched yet.</h3>
+  }
+
   const createDataPointforSelectedIndex = (cities, index) => {
     return cities.reduce((acc, city) => {
       acc[city.name] = city.temperatures[index];
