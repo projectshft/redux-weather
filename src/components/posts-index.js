@@ -23,9 +23,11 @@ const WeatherIndex = () => {
   const onSubmit = (data) => dispatch(fetchWeather(data.cityName));
 
   //set default click handler
-  const handleSetDefault = (data) => {
-    dispatch(setDefault(data.city.name))
-    alert(`You set ${data.city.name} as the default.`)
+  const handleSetDefault = (data, e) => {
+    e.target.className = "btn btn-outline-secondary btn-sm"
+    e.target.disabled = true;
+    e.target.firstChild.data = 'Default set!'
+    dispatch(setDefault(data.city.name));
   };
 
   //gets average of values returned from weather api where target = temp, humiditiy, or pressure
@@ -54,7 +56,10 @@ const WeatherIndex = () => {
     if (!_.isEmpty(posts.weather)) {
       const renderedRows = posts.weather.map(item => 
         <tr key={item.city.name}>
-        <th scope="row">{item.city.name}<button onClick={() => {handleSetDefault(item)}} type="button" className="btn btn-outline-secondary btn-sm">Set default</button></th>
+        <th scope="row">
+          {item.city.name}
+          <button onClick={(e) => {handleSetDefault(item, e)}} type="button" className="btn btn-secondary btn-sm">Set default</button>
+        </th>
         <td>{renderGraph(item.list, 'temp', 'orange', 'F')}</td>
         <td>{renderGraph(item.list, 'pressure', 'green', 'hPa')}</td>
         <td>{renderGraph(item.list, 'humidity', 'grey', '%')}</td>
