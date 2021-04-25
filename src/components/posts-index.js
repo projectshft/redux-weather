@@ -1,21 +1,34 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchWeather } from '../actions';
+import { fetchWeather, setDefault } from '../actions';
 import { useForm } from "react-hook-form";
 import _ from 'lodash';
+import { useEffect } from 'react';
 import { Sparklines, SparklinesReferenceLine, SparklinesLine } from 'react-sparklines';
 
 const WeatherIndex = () => {
   const { register, handleSubmit } = useForm();
   const posts = useSelector(state => state.posts);
   const dispatch = useDispatch();
-  
-  //click handler on search
-  const onSubmit = (data) => { 
-    dispatch(fetchWeather(data.cityName))
+
+  //checks if default is set and if so fetch default weather
+  useEffect(() => {
+    if (sessionStorage.getItem('default') !== null) {
+      dispatch(fetchWeather(sessionStorage.getItem('default')))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchWeather]);
+
+  //on search click handler, fetches weather
+  const onSubmit = (data) => dispatch(fetchWeather(data.cityName));
+
+  //set default click handler
+  const handleSetDefault = (data) => {
+    dispatch(setDefault(data.city.name))
+    alert(`You set ${data.city.name} as the default.`)
   };
 
-  //gets average of 40 values returned from api fetch for specified target (temp/humid/pressure)
+  //gets average of values returned from weather api where target = temp, humiditiy, or pressure
   const getAverage = (values, target) => {
     const valuesArray = values.map(item => item.main[target]);
     return parseInt(valuesArray.reduce((acc, v) => acc + v) / valuesArray.length);
@@ -33,53 +46,46 @@ const WeatherIndex = () => {
         </Sparklines>
         <p className="text-center">{avgValue} {symbol}</p>
       </div>
-    )
+    );
   };
 
-  //renders table rows reflecting api return data for each succesful search
+  //renders table rows reflecting api return data for each row
   function renderWeatherRows() {
     if (!_.isEmpty(posts.weather)) {
       const renderedRows = posts.weather.map(item => 
         <tr key={item.city.name}>
-        <th scope="row">{item.city.name}</th>
+        <th scope="row">{item.city.name}<button onClick={() => {handleSetDefault(item)}} type="button" className="btn btn-outline-secondary btn-sm">Set default</button></th>
         <td>{renderGraph(item.list, 'temp', 'orange', 'F')}</td>
         <td>{renderGraph(item.list, 'pressure', 'green', 'hPa')}</td>
         <td>{renderGraph(item.list, 'humidity', 'grey', '%')}</td>
      </tr>
-      )         
-      return (
-           renderedRows
-      );
-    }
+     );
+     return renderedRows;
+    };
     return <tr><td>No weather to show</td></tr>;
   };
 
   return (
     <div>
-       <form onSubmit={handleSubmit(onSubmit)} className="mt-5 mb-4">
-        <div className="input-group">
-          <input {...register("cityName")} className="form-control" placeholder="Get a five-day forecast in your favorite city"/>
-          <div>
-          <button className="btn btn-secondary" type="submit">Submit</button>
-          </div>   
-        </div>
-        </form>
-   
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">City</th>
-              <th scope="col">Temperatue (F)</th>
-              <th scope="col">Pressure (hPa)</th>
-              <th scope="col">Humidity (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {renderWeatherRows()}
-          </tbody>
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-5 mb-4">
+          <div className="input-group">
+            <input {...register("cityName")} className="form-control" placeholder="Get a five-day forecast in your favorite city"/>
+              <div>
+                <button className="btn btn-secondary" type="submit">Submit</button>
+              </div>   
+           </div>
+      </form>
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">City</th>
+            <th scope="col">Temperatue (F)</th>
+            <th scope="col">Pressure (hPa)</th>
+            <th scope="col">Humidity (%)</th>
+          </tr>
+        </thead>
+          <tbody>{renderWeatherRows()}</tbody>
         </table>
-     <div></div>
-    
     </div>
   );
 };
