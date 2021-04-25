@@ -11,9 +11,12 @@ const citiesReducer = (state=defaultState, action) => {
   // (temperature in Kelvin − 273.15) × 9/5 + 32 = temperature in Fahrenheit
   const convertKelvinToFahrenheit = (temperatureArr) => temperatureArr.map((t) => Math.round((t - 273.15) * (9/5) + 32)); 
 
+  // Grabs the specified weather data type froom the openweather API results
   const getWeatherDataFromFetch = (openWeatherData, type) => {
     return openWeatherData.data.list.map((forecastPoint) => forecastPoint.main[type])
   };
+
+  //Grabs the times of the forecast points
   const getTimesOfForecastPoints = (openWeatherData) => {
     return openWeatherData.data.list.map((forecastPoint) => forecastPoint.dt_txt)
   }
@@ -28,7 +31,6 @@ const citiesReducer = (state=defaultState, action) => {
         humidityPoints: getWeatherDataFromFetch(action.payload, "humidity"),
         times: getTimesOfForecastPoints(action.payload),
       };
-      debugger;
       //Checks to see if weather information for the new city is already in the cities store and filters out the old information if so.
       const stateWithoutRepeatedCity = state.filter((city) => city.name !== newCity.name);
 

@@ -11,12 +11,14 @@ const CitySearch = () => {
     setInputValue('');
   }
 
+  // Check to see if the user pressed enter while typing in the search bar and submits their search if so.
   const handleInputChange = (e) => {
     if (e.keyCode === 13) {
       onSubmitClick();
     }
   }
 
+  // Finds the coordinates of the user's current location and submits a search for the forecast at those coordinates
   const onCurrentLocationClick = () => {
     navigator.geolocation.getCurrentPosition(({coords})=> dispatch(fetchForecastByLatLongCoordinates({latitude: coords.latitude, longitude: coords.longitude})))
   }

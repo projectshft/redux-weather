@@ -1,8 +1,7 @@
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 const CityWeatherListItem = ({city}) => {
-  // const city = useSelector(({cities}) => cities);
-
+  // Finds the average in an array of numbers
   const findAverage = (arr) => Math.round(arr.reduce((acc, e) => e+acc, 0)/arr.length);
 
   return(

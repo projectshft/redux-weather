@@ -13,6 +13,8 @@ import {fetchForecast} from './actions/index';
 import {changeDefaultCity} from './actions/index';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
+//Checks to see if there is any default city and fetches the weather forecast for that city if so
 const loadDefaultCityInfo = () => {
   if(localStorage.getItem('defaultCity')) {
     store.dispatch(fetchForecast(localStorage.getItem('defaultCity')))
