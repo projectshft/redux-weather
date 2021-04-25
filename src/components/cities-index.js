@@ -4,7 +4,6 @@ import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-spark
 import SearchValue from "./search-form.js";
 import _ from 'lodash';
 
-
 const CitiesIndex = () => {
   const cities = useSelector((state) => state.cities);
 
@@ -57,8 +56,7 @@ const CitiesIndex = () => {
       </table>
     </div>
   )
-}
-
+};
 
 export default CitiesIndex;
 

@@ -10,6 +10,5 @@ export function fetchCities(value) {
   return {
     type: FETCH_CITY,
     payload: request
-
   }
-}
+};

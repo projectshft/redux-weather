@@ -24,6 +24,6 @@ const SearchValue = () => {
       </div>
     </div>
   )
-}
+};
 
 export default SearchValue;
