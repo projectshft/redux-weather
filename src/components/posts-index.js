@@ -20,7 +20,9 @@ const WeatherIndex = () => {
   }, [fetchWeather]);
 
   //on search click handler, fetches weather
-  const onSubmit = (data) => dispatch(fetchWeather(data.cityName));
+  const onSubmit = (data) => {
+    dispatch(fetchWeather(data.cityName))
+  };
 
   //set default click handler
   const handleSetDefault = (data, e) => {

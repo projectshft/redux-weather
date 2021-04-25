@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 export const SET_DEFAULT = "SET_DEFAULT";
-export const FETCH_DEFAULT = "FETCH_DEFAULT";
 
 export function fetchWeather(city) {
   return axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=1fc1127bc926b88b171314897133dde9`)

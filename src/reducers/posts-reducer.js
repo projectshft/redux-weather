@@ -1,4 +1,4 @@
-import { FETCH_WEATHER, SET_DEFAULT} from "../actions";
+import { FETCH_WEATHER, SET_DEFAULT } from "../actions";
 
 const setDefaultState = () => {
   if (sessionStorage.getItem('default') != null) {
