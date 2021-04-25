@@ -22,7 +22,6 @@ const WeatherIndex = () => {
   const renderGraph = (values, target, color, symbol) => {
     const valuesArray = values.map(item => item.main[target]);
     const avgValue = getAverage(values, target);
-    
     return (
       <div style={{width: '300px'}}>
         <Sparklines data={valuesArray} width={300} height={200} margin={5}>
@@ -36,7 +35,6 @@ const WeatherIndex = () => {
 
   function renderWeatherRows() {
     if (!_.isEmpty(posts.weather)) {
-      console.log(posts.weather)
       const renderedRows = posts.weather.map(item => 
         <tr key={item.city.name}>
         <th scope="row">{item.city.name}</th>
