@@ -10,20 +10,25 @@ const citiesReducer = (state=defaultState, action) => {
   }
   // (temperature in Kelvin − 273.15) × 9/5 + 32 = temperature in Fahrenheit
   const convertKelvinToFahrenheit = (temperatureArr) => temperatureArr.map((t) => Math.round((t - 273.15) * (9/5) + 32)); 
+
+  const getWeatherDataFromFetch = (openWeatherData, type) => {
+    return openWeatherData.data.list.map((forecastPoint) => forecastPoint.main[type])
+  };
+  const getTimesOfForecastPoints = (openWeatherData) => {
+    return openWeatherData.data.list.map((forecastPoint) => forecastPoint.dt_txt)
+  }
   
   switch (action.type) {
     case FETCH_FORECAST:
-      const getWeatherDataFromFetch = (openWeatherData, type) => {
-        return openWeatherData.data.list.map((forecastPoint) => forecastPoint.main[type])
-      };
       const newCity = {
         name: action.payload.data.city.name,
         id: action.payload.data.city.id,
         temperatures: convertKelvinToFahrenheit(getWeatherDataFromFetch(action.payload, "temp")),
         pressures: getWeatherDataFromFetch(action.payload, "pressure"),
         humidityPoints: getWeatherDataFromFetch(action.payload, "humidity"),
+        times: getTimesOfForecastPoints(action.payload),
       };
-
+      debugger;
       //Checks to see if weather information for the new city is already in the cities store and filters out the old information if so.
       const stateWithoutRepeatedCity = state.filter((city) => city.name !== newCity.name);
 
