@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.css"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore, compose} from "redux";
+import { Provider } from "react-redux"
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import reducers from "./reducers"
+import Heading from "./components/heading"
+import SearchComponent from "./components/search"
+import {CityRow} from "./components/city-row"
+
+
+// sets up redux dev tools in chrome
+const composeEnhancers = compose(
+  typeof window === 'object' &&
+    typeof window.devToolsExtension !== 'undefined'
+    ? window.devToolsExtension()
+    : f => f,
+)
+
+// creates the store
+const store = createStore(reducers, composeEnhancers)
+
+ReactDOM.render (
+   <Provider store={store}>
+     <Heading/>
+     <SearchComponent/>
+     <CityRow />
+   </Provider>,
+   document.getElementById("root")
+)
