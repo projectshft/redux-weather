@@ -21,3 +21,5 @@ export const weatherApi = async (query) => {
 
 
 
+
+

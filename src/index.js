@@ -19,7 +19,7 @@ const composeEnhancers = compose(
     : f => f,
 )
 
-// creates the store
+// creates the store with redux dev tools in the browser
 const store = createStore(reducers, composeEnhancers)
 
 ReactDOM.render (
