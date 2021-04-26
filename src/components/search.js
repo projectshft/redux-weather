@@ -1,7 +1,5 @@
 import { reduxForm, Field} from "redux-form"
 import {weatherApi, FETCH_CITY, CITY_NAME} from '../actions'
-import {useDispatch} from 'react-redux'
-
 
 // renders for the form
 const renderInput = (props) => (
@@ -10,10 +8,10 @@ const renderInput = (props) => (
 // on submit of form 
 const onSubmit = (values, dispatch) => {
   
-  // imported async function from actions and the inputed value passed as an argument
+  // imported async function from actions and the inputed value passed as a parameter
   const request = weatherApi(values['city-search'])
 
-  // after the data comes back dispatches the actions
+  // after the promise is complete dispatch the actions
   request.then(res => { 
     dispatch({
     type: FETCH_CITY,
@@ -25,10 +23,11 @@ const onSubmit = (values, dispatch) => {
   })
 }
 
+// component for the search fields
 let SearchBar = ({handleSubmit}) => {
 
+  // using redux-form to get the values
   return (
-  
   <form onSubmit={handleSubmit}>
     <div className="container d-flex justify-content-center mb-5">
       <div className="card mt-1 p-3">
