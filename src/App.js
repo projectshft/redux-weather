@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { fetchWeather } from "./actions";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-function App() {
+import "./App.css";
+
+function App(props) {
+  const [currentCity, setCity] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleSearchTermSubmit = (e) => {
+    console.log(currentCity);
+    e.preventDefault();
+    dispatch(fetchWeather(currentCity));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Weather Forecast</h1>
+      <form onSubmit={(e) => handleSearchTermSubmit(e)}>
+        <div className="form-group">
+          <input
+            className="form-control"
+            placeholder="Get a five-day forecast in your favorite cities"
+            onChange={(e) => setCity(e.target.value)}
+          ></input>
+        </div>
+
+        <button className="btn btn-primary" type="submit">
+          Submit
+        </button>
+      </form>
+      <div className="container">{props.children}</div>
     </div>
   );
 }
