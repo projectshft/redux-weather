@@ -9,10 +9,10 @@ import _ from "lodash";
 
 const CityWeatherIndex = () => {
   const cityWeather = useSelector((state) => state.cityWeather);
-  console.log(cityWeather);
+  console.log(cityWeather.cities.length);
 
   function renderWeatherData() {
-    if (!_.isEmpty(cityWeather)) {
+    if (!_.isEmpty(cityWeather.cities)) {
       return cityWeather.cities.map((city) => (
         <tr key={city.id}>
           <td>{city.city_name}</td>

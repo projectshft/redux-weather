@@ -8,9 +8,11 @@ const DEFAULT_STATE = {
 const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_WEATHER:
+      if (!action.payload.data) {
+        return state;
+      }
       return {
         cities: [
-          ...state.cities,
           {
             id: uuidv4(),
             city_name: action.payload.data.city.name,
@@ -24,6 +26,7 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
               return hour.main.humidity;
             }),
           },
+          ...state.cities,
         ],
       };
     default:

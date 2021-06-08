@@ -1,7 +1,6 @@
 import { fetchWeather } from "./actions";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import "./App.css";
 
 function App(props) {
@@ -25,7 +24,6 @@ function App(props) {
             onChange={(e) => setCity(e.target.value)}
           ></input>
         </div>
-
         <button className="btn btn-primary" type="submit">
           Submit
         </button>
