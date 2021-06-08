@@ -14,7 +14,7 @@ const CityWeatherIndex = () => {
   function renderWeatherData() {
     if (!_.isEmpty(cityWeather)) {
       return cityWeather.cities.map((city) => (
-        <tr>
+        <tr key={city.id}>
           <td>{city.city_name}</td>
           <td>
             <Sparklines data={city.temperature}>

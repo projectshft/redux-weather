@@ -1,4 +1,5 @@
 import { FETCH_WEATHER } from "../actions";
+import { v4 as uuidv4 } from "uuid";
 
 const DEFAULT_STATE = {
   cities: [],
@@ -11,7 +12,7 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
         cities: [
           ...state.cities,
           {
-            id: action.payload.data.city.id,
+            id: uuidv4(),
             city_name: action.payload.data.city.name,
             temperature: action.payload.data.list.map((hour) => {
               return hour.main.temp;
