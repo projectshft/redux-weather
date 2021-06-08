@@ -10,7 +10,6 @@ function App(props) {
   const dispatch = useDispatch();
 
   const handleSearchTermSubmit = (e) => {
-    console.log(currentCity);
     e.preventDefault();
     dispatch(fetchWeather(currentCity));
   };

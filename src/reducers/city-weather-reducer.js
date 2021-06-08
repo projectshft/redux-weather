@@ -1,18 +1,10 @@
 import { FETCH_WEATHER } from "../actions";
 
 const DEFAULT_STATE = {
-  // currentCity: "",
-  // cityData: {
-  //   id: null,
-  //   city_name: "",
-  //   temperature: [],
-  //   pressure: [],
-  //   humidity: [],
-  // },
   cities: [],
 };
 
-const weatherReducer = function (state = DEFAULT_STATE, action) {
+const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_WEATHER:
       return {
@@ -38,4 +30,4 @@ const weatherReducer = function (state = DEFAULT_STATE, action) {
   }
 };
 
-export default weatherReducer;
+export default CityWeatherReducer;
