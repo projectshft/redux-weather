@@ -1,4 +1,4 @@
-import { fetchWeather } from "./actions";
+import { fetchWeather, changeCityFoundDisplay } from "./actions";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
@@ -16,6 +16,11 @@ function App(props) {
     dispatch(fetchWeather(currentCity));
   };
 
+  const handleCityFoundDisplay = (e) => {
+    e.preventDefault();
+    dispatch(changeCityFoundDisplay());
+  };
+
   return (
     <div>
       <h1 className="text-muted display-1">Weather Forecast</h1>
@@ -27,6 +32,7 @@ function App(props) {
               placeholder="Get a five-day forecast in your favorite cities"
               onChange={(e) => {
                 setCity(e.target.value);
+                handleCityFoundDisplay(e);
               }}
             ></input>
           </div>

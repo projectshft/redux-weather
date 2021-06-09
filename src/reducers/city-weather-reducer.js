@@ -1,4 +1,4 @@
-import { FETCH_WEATHER } from "../actions";
+import { CHANGE_CITY_FOUND_DISPLAY, FETCH_WEATHER } from "../actions";
 import { v4 as uuidv4 } from "uuid";
 
 const DEFAULT_STATE = {
@@ -32,6 +32,11 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
           },
           ...state.cities,
         ],
+        cityFoundDisplay: { display: "none" },
+      };
+    case CHANGE_CITY_FOUND_DISPLAY:
+      return {
+        cities: [...state.cities],
         cityFoundDisplay: { display: "none" },
       };
     default:
