@@ -15,18 +15,20 @@ function App(props) {
 
   return (
     <div>
-      <h1>Weather Forecast</h1>
+      <h1 className="text-muted display-1">Weather Forecast</h1>
       <form onSubmit={(e) => handleSearchTermSubmit(e)}>
-        <div className="form-group">
-          <input
-            className="form-control"
-            placeholder="Get a five-day forecast in your favorite cities"
-            onChange={(e) => setCity(e.target.value)}
-          ></input>
+        <div className="input row g-3 align-items-center">
+          <div className="form-group col-7">
+            <input
+              className="form-control"
+              placeholder="Get a five-day forecast in your favorite cities"
+              onChange={(e) => setCity(e.target.value)}
+            ></input>
+          </div>
+          <button className="btn btn-primary col-auto" type="submit">
+            Submit
+          </button>
         </div>
-        <button className="btn btn-primary" type="submit">
-          Submit
-        </button>
       </form>
       <div className="container">{props.children}</div>
     </div>

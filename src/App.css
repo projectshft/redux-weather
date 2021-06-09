@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  padding-top: 25px;
+  text-align: center;
+}
+
+.input {
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
