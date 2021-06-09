@@ -6,7 +6,6 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 export function fetchWeather(city) {
-  // need to hide API key
   const request = axios.get(
     `${ROOT_URL}${city}&units=imperial&appid=${API_KEY}`
   );

@@ -3,13 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 
 const DEFAULT_STATE = {
   cities: [],
+  cityFoundDisplay: { display: "none" },
 };
 
 const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_WEATHER:
       if (!action.payload.data) {
-        return state;
+        return {
+          cities: [...state.cities],
+          cityFoundDisplay: { display: "inline" },
+        };
       }
       return {
         cities: [
@@ -28,6 +32,7 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
           },
           ...state.cities,
         ],
+        cityFoundDisplay: { display: "none" },
       };
     default:
       return state;

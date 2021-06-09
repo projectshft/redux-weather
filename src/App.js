@@ -1,10 +1,13 @@
 import { fetchWeather } from "./actions";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 
 function App(props) {
   const [currentCity, setCity] = useState("");
+  const cityFoundDisplay = useSelector(
+    (state) => state.cityWeather.cityFoundDisplay
+  );
 
   const dispatch = useDispatch();
 
@@ -22,12 +25,17 @@ function App(props) {
             <input
               className="form-control"
               placeholder="Get a five-day forecast in your favorite cities"
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => {
+                setCity(e.target.value);
+              }}
             ></input>
           </div>
           <button className="btn btn-primary col-auto" type="submit">
             Submit
           </button>
+        </div>
+        <div className="cityFound text-danger" style={cityFoundDisplay}>
+          City Not Found
         </div>
       </form>
       <div className="container">{props.children}</div>
