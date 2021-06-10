@@ -13,8 +13,9 @@ const CityWeatherData = () => {
   const cityWeather = useSelector((state) => state.cityWeather);
   const dispatch = useDispatch();
 
-  const handleSetDefault = () => {
+  const handleSetDefault = (e) => {
     const defaultCity = cityWeather.cities[0].city_name;
+    e.preventDefault();
     dispatch(setDefaultCity(defaultCity));
     alert(defaultCity + " is now your default city.");
   };
@@ -56,7 +57,7 @@ const CityWeatherData = () => {
             <button
               type="button"
               className="btn btn-success"
-              onClick={handleSetDefault}
+              onClick={(e) => handleSetDefault(e)}
             >
               Set as Default
             </button>
