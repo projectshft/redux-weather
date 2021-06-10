@@ -1,4 +1,4 @@
-import { fetchWeather } from "./actions";
+import { fetchWeather, getLocation } from "./actions";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
@@ -14,6 +14,20 @@ function App(props) {
   const handleSearchTermSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchWeather(currentCity));
+  };
+
+  const findByGeolocation = (e) => {
+    e.preventDefault();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+
+        dispatch(getLocation(latitude, longitude));
+      });
+    } else {
+      alert("Sorry, your location was not found.");
+    }
   };
 
   return (
@@ -33,7 +47,11 @@ function App(props) {
           <button className="btn btn-primary col-auto" type="submit">
             Submit
           </button>
-          <button className="btn btn-primary col-auto" type="submit">
+          <button
+            className="btn btn-primary col-auto"
+            type="submit"
+            onClick={(e) => findByGeolocation(e)}
+          >
             Find Me
           </button>
         </div>
