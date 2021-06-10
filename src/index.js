@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import promise from "redux-promise";
 
-import CityWeatherIndex from "./components";
+import CityWeatherData from "./components";
 import App from "./App";
 import reducers from "./reducers";
 
@@ -20,7 +20,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <App>
-      <CityWeatherIndex />
+      <CityWeatherData />
     </App>
   </Provider>,
   document.getElementById("root")

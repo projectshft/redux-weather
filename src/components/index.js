@@ -9,9 +9,8 @@ import {
 import _ from "lodash";
 import { loadState } from "../localStorage";
 
-const CityWeatherIndex = () => {
+const CityWeatherData = () => {
   const cityWeather = useSelector((state) => state.cityWeather);
-
   const dispatch = useDispatch();
 
   const handleSetDefault = () => {
@@ -96,8 +95,18 @@ const CityWeatherIndex = () => {
         </thead>
         <tbody>{renderWeatherData()}</tbody>
       </table>
+      <div className="text-center">
+        <iframe
+          title={cityWeather.city_name}
+          width="550"
+          height="400"
+          loading="lazy"
+          allowFullScreen
+          src={cityWeather.mapURL}
+        ></iframe>
+      </div>
     </div>
   );
 };
 
-export default CityWeatherIndex;
+export default CityWeatherData;

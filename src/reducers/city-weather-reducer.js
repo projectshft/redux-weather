@@ -4,7 +4,11 @@ import { v4 as uuidv4 } from "uuid";
 const DEFAULT_STATE = {
   cities: [],
   cityFoundDisplay: { display: "none" },
+  mapURL: "",
 };
+
+const URL = "https://www.google.com/maps/embed/v1/place?key=";
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
   switch (action.type) {
@@ -13,6 +17,7 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
         return {
           cities: [...state.cities],
           cityFoundDisplay: { display: "inline" },
+          mapURL: [...state.mapURL],
         };
       }
       return {
@@ -32,11 +37,13 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
           },
         ],
         cityFoundDisplay: { display: "none" },
+        mapURL: `${URL}${API_KEY}&q=${action.payload.data.city.name}`,
       };
     case CHANGE_CITY_FOUND_DISPLAY:
       return {
         cities: [...state.cities],
         cityFoundDisplay: { display: "none" },
+        mapURL: [...state.mapURL],
       };
     default:
       return state;
