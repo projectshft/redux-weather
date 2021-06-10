@@ -14,6 +14,7 @@ function App(props) {
   const handleSearchTermSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchWeather(currentCity));
+    setCity("");
   };
 
   const findByGeolocation = (e) => {
@@ -38,6 +39,7 @@ function App(props) {
           <div className="form-group col-7">
             <input
               className="form-control"
+              value={currentCity}
               placeholder="Get a five-day forecast in your favorite cities"
               onChange={(e) => {
                 setCity(e.target.value);
