@@ -30,7 +30,6 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
               return hour.main.humidity;
             }),
           },
-          ...state.cities,
         ],
         cityFoundDisplay: { display: "none" },
       };

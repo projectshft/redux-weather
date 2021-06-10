@@ -1,14 +1,31 @@
-import { useSelector } from "react-redux";
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWeather, setDefaultCity } from "../actions";
+import React, { useEffect } from "react";
 import {
   Sparklines,
   SparklinesLine,
   SparklinesReferenceLine,
 } from "react-sparklines";
 import _ from "lodash";
+import { loadState } from "../localStorage";
 
 const CityWeatherIndex = () => {
   const cityWeather = useSelector((state) => state.cityWeather);
+
+  const dispatch = useDispatch();
+
+  const handleSetDefault = () => {
+    const defaultCity = cityWeather.cities[0].city_name;
+    dispatch(setDefaultCity(defaultCity));
+    alert(defaultCity + " is now your default city.");
+  };
+
+  useEffect(() => {
+    const defaultCity = loadState();
+    if (defaultCity !== null) {
+      dispatch(fetchWeather(defaultCity));
+    }
+  }, []);
 
   function renderWeatherData() {
     if (!_.isEmpty(cityWeather.cities)) {
@@ -36,12 +53,22 @@ const CityWeatherIndex = () => {
             </Sparklines>
             Avg. {_.round(_.mean(city.humidity), 0)} %
           </td>
+          <td className="text-center">
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={handleSetDefault}
+            >
+              Set as Default
+            </button>
+          </td>
         </tr>
       ));
     }
     return (
       <tr>
         <td>No city to show</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -64,6 +91,7 @@ const CityWeatherIndex = () => {
             <th scope="col" className="text-center">
               Humidity (%)
             </th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>{renderWeatherData()}</tbody>
