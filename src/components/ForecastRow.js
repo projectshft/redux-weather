@@ -6,7 +6,6 @@ import {
 } from "react-sparklines";
 
 export default function ForecastRow({ cityData }) {
-  console.log(cityData);
   const average = (values) => {
     return Math.round(values.reduce((a, b) => a + b) / values.length);
   };
@@ -28,7 +27,7 @@ export default function ForecastRow({ cityData }) {
       return time.main.humidity;
     });
   };
-  console.log(temperatureForecast());
+
   return (
     <>
       <tr>
