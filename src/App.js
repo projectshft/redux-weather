@@ -1,19 +1,22 @@
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container app">
+      <div className="row">
+        <div className="column col-md-8 offset-md-2">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Get a five-day forecast in your favorite cities"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
