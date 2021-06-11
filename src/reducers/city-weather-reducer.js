@@ -35,6 +35,7 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
               return hour.main.humidity;
             }),
           },
+          ...state.cities,
         ],
         cityFoundDisplay: { display: "none" },
         mapURL: `${URL}${API_KEY}&q=${action.payload.data.city.name}`,
@@ -62,6 +63,7 @@ const CityWeatherReducer = function (state = DEFAULT_STATE, action) {
               return hour.main.humidity;
             }),
           },
+          ...state.cities,
         ],
         cityFoundDisplay: { display: "none" },
         mapURL: `${URL}${API_KEY}&q=${action.payload.data.city.name}`,
