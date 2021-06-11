@@ -1,3 +1,5 @@
+import ForecastTable from "./components/ForecastTable";
+
 function App() {
   return (
     <div className="container app">
@@ -9,12 +11,13 @@ function App() {
               className="form-control"
               placeholder="Get a five-day forecast in your favorite cities"
             />
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="button">
+            <div className="input-group-append">
+              <button className="btn btn-primary" type="button">
                 Submit
               </button>
             </div>
           </div>
+          <ForecastTable />
         </div>
       </div>
     </div>
