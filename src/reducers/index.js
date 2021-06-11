@@ -3,7 +3,11 @@ import { FETCH_FORECAST } from "../actions";
 export const forecastReducer = function (state = [], action) {
   switch (action.type) {
     case FETCH_FORECAST:
-      if (action.payload.data) {
+      console.log(action.payload.data);
+      if (
+        action.payload.data &&
+        !state.some((forecast) => forecast.id === action.payload.data.city.id)
+      ) {
         return [
           ...state,
           {
