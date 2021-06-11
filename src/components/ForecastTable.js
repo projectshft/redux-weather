@@ -1,7 +1,9 @@
 import React from "react";
 import ForecastRow from "./ForecastRow";
+import { useSelector } from "react-redux";
 
 export default function ForecastTable() {
+  const forecast = useSelector((state) => state);
   return (
     <table className="table">
       <thead>
@@ -21,7 +23,11 @@ export default function ForecastTable() {
         </tr>
       </thead>
       <tbody>
-        <ForecastRow />
+        {forecast
+          .map((forecastData) => (
+            <ForecastRow key={forecastData.id} cityData={forecastData} />
+          ))
+          .reverse()}
       </tbody>
     </table>
   );
