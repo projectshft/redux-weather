@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 //redux
 import { useDispatch } from "react-redux";
+import { loadWeatherData } from "../actions/weatherAction";
 
 const Search = () => {
   const [input, setInput] = useState("");
@@ -12,7 +13,9 @@ const Search = () => {
     setInput(e.target.value);
   };
 
-  const handleSearchButton = () => {};
+  const handleSearchButton = () => {
+    dispatch(loadWeatherData(input));
+  };
 
   return (
     <div>

@@ -3,21 +3,25 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 //redux
-import { createStore, applyMiddleware, compose } from "redux";
-//import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
 import rootReducer from "./reducers/index";
-import promise from "promise";
+import promise from "redux-promise";
 
-//const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-/*const store = createStore(
+const store = createStore(
   rootReducer,
-  composeEnhancer(applyMiddleware(promise))
-);*/
+  composeWithDevTools(
+    applyMiddleware(promise)
+    // other store enhancers if any
+  )
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
