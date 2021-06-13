@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 
+function selectCityFoundDisplay(state) {
+  return state.cityWeather.cityFoundDisplay;
+}
+
 function App(props) {
   const [currentCity, setCity] = useState("");
-  const cityFoundDisplay = useSelector(
-    (state) => state.cityWeather.cityFoundDisplay
-  );
+  const cityFoundDisplay = useSelector(selectCityFoundDisplay);
 
   const dispatch = useDispatch();
 
@@ -21,8 +23,8 @@ function App(props) {
     e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        let latitude = position.coords.latitude;
-        let longitude = position.coords.longitude;
+        const { latitude } = position.coords;
+        const { longitude } = position.coords;
 
         dispatch(getLocation(latitude, longitude));
       });
