@@ -1,12 +1,16 @@
 import ForecastTable from "./components/ForecastTable";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchForecast } from "./actions";
 import { useState } from "react";
 
 function App() {
   const [cityName, setCityName] = useState("");
-
   const dispatch = useDispatch();
+  const defaultCity = useSelector((state) => state.defaultCity);
+
+  if (defaultCity) {
+    dispatch(fetchForecast(defaultCity));
+  }
 
   const handleSubmit = (e) => {
     if (cityName) {

@@ -5,6 +5,8 @@ import {
   SparklinesReferenceLine,
 } from "react-sparklines";
 
+import SetAsDefaultBtn from "./SetAsDefaultBtn";
+
 export default function ForecastRow({ cityData }) {
   const average = (values) => {
     return Math.round(values.reduce((a, b) => a + b) / values.length);
@@ -31,7 +33,10 @@ export default function ForecastRow({ cityData }) {
   return (
     <>
       <tr>
-        <td>{cityData.cityName}</td>
+        <td>
+          {cityData.cityName}
+          <SetAsDefaultBtn cityName={cityData.cityName} />
+        </td>
         <td>
           <Sparklines data={temperatureForecast()} height={150}>
             <SparklinesLine color="#FB5431" />

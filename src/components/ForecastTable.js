@@ -3,7 +3,7 @@ import ForecastRow from "./ForecastRow";
 import { useSelector } from "react-redux";
 
 export default function ForecastTable() {
-  const forecast = useSelector((state) => state);
+  const forecast = useSelector((state) => state.forecast);
 
   return (
     <table className="table">

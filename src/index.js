@@ -7,14 +7,14 @@ import App from "./App";
 import { createStore, applyMiddleware } from "redux";
 import promise from "redux-promise";
 import { Provider } from "react-redux";
-import { forecastReducer } from "./reducers/index";
+import { allReducers } from "./reducers/index";
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <Provider
     store={createStoreWithMiddleware(
-      forecastReducer,
+      allReducers,
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__()
     )}
