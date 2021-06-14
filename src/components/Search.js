@@ -15,6 +15,7 @@ const Search = () => {
 
   const handleSearchButton = () => {
     dispatch(loadWeatherData(input));
+    setInput("");
   };
 
   return (
@@ -46,8 +47,9 @@ const StyledSearch = styled.div`
   input {
     width: 30%;
     margin-right: 1rem;
-    height: 1.2rem;
+    height: 1.5rem;
     font-family: "Roboto", sans-serif;
+    font-size: 1rem;
   }
   button {
     font-family: "Roboto", sans-serif;

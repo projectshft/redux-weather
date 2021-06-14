@@ -1,5 +1,9 @@
 import React from "react";
-import { Sparklines, SparklinesLine } from "react-sparklines";
+import {
+  Sparklines,
+  SparklinesLine,
+  SparklinesReferenceLine,
+} from "react-sparklines";
 import styled from "styled-components";
 
 const Charts = ({ name, temp, pressure, humidity }) => {
@@ -9,20 +13,26 @@ const Charts = ({ name, temp, pressure, humidity }) => {
 
       <StyledCharts>
         <Sparklines data={temp} width={100} height={60}>
-          <SparklinesLine color="blue" />
+          <SparklinesLine color="#48484A" />
+          <SparklinesReferenceLine type="median" />
         </Sparklines>
+        <p>{Math.round(temp[20])}F</p>
       </StyledCharts>
 
       <StyledCharts>
         <Sparklines data={pressure} width={100} height={60}>
-          <SparklinesLine color="green" />
+          <SparklinesLine color="#48484A" />
+          <SparklinesReferenceLine type="median" />
         </Sparklines>
+        <p>{pressure[20]}hPa</p>
       </StyledCharts>
 
       <StyledCharts>
         <Sparklines data={humidity} width={100} height={60}>
-          <SparklinesLine color="gray" />
+          <SparklinesLine color="#48484A" />
+          <SparklinesReferenceLine type="median" />
         </Sparklines>
+        <p>{humidity[20]}%</p>
       </StyledCharts>
     </StyledRow>
   );
@@ -41,6 +51,9 @@ const StyledRow = styled.div`
 const StyledCharts = styled.div`
   width: 20%;
   height: 40%;
+  p {
+    text-align: center;
+  }
 `;
 
 export default Charts;
