@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import styled from "styled-components";
 
@@ -30,6 +29,7 @@ const Charts = ({ name, temp, pressure, humidity }) => {
 };
 
 const StyledRow = styled.div`
+  padding-left: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,7 +40,7 @@ const StyledRow = styled.div`
 
 const StyledCharts = styled.div`
   width: 20%;
-  height: 50%;
+  height: 40%;
 `;
 
 export default Charts;

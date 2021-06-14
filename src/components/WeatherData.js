@@ -48,6 +48,7 @@ const StyledHeaderText = styled.div`
   align-items: center;
   justify-content: space-between;
   list-style: none;
+  padding: 0rem 2rem;
 `;
 
 const StyledLine = styled.hr`
@@ -55,7 +56,7 @@ const StyledLine = styled.hr`
   background: #ec6e4c;
   width: 100%;
   margin-top: 0.2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   border: none;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
 `;
