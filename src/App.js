@@ -1,4 +1,5 @@
 import ForecastTable from "./components/ForecastTable";
+import CurrentLocationForecastBtn from "./components/CurrentLocationForecastBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchForecast } from "./actions";
 import { useState } from "react";
@@ -15,6 +16,7 @@ function App() {
   const handleSubmit = (e) => {
     if (cityName) {
       dispatch(fetchForecast(cityName));
+      setCityName("");
     }
 
     e.preventDefault();
@@ -23,7 +25,7 @@ function App() {
   return (
     <div className="container app">
       <div className="row">
-        <div className="column col-md-8 offset-md-2">
+        <div className="text-center column col-md-8 offset-md-2">
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="input-group mb-3">
               <input
@@ -44,6 +46,7 @@ function App() {
               </div>
             </div>
           </form>
+          <CurrentLocationForecastBtn />
           <ForecastTable />
         </div>
       </div>

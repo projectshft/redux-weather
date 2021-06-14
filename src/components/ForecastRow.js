@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   Sparklines,
   SparklinesLine,
@@ -8,9 +9,7 @@ import {
 import SetAsDefaultBtn from "./SetAsDefaultBtn";
 
 export default function ForecastRow({ cityData }) {
-  const average = (values) => {
-    return Math.round(values.reduce((a, b) => a + b) / values.length);
-  };
+  const defaultCity = useSelector((state) => state.defaultCity);
 
   const temperatureForecast = () => {
     return cityData.forecast.map((time) => {
@@ -30,12 +29,18 @@ export default function ForecastRow({ cityData }) {
     });
   };
 
+  const average = (values) => {
+    return Math.round(values.reduce((a, b) => a + b) / values.length);
+  };
+
   return (
     <>
       <tr>
         <td>
           {cityData.cityName}
-          <SetAsDefaultBtn cityName={cityData.cityName} />
+          {defaultCity !== cityData.cityName && (
+            <SetAsDefaultBtn cityName={cityData.cityName} />
+          )}
         </td>
         <td>
           <Sparklines data={temperatureForecast()} height={150}>

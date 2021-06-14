@@ -7,7 +7,6 @@ export const defaultCityReducer = function (
   switch (action.type) {
     case SET_DEFAULT_CITY:
       localStorage.setItem("defaultCity", action.payload);
-      console.log(action.payload);
       return action.payload;
     default:
       return state;

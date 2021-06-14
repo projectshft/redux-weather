@@ -3,9 +3,20 @@ import config from "../config";
 
 export const FETCH_FORECAST = "FETCH_FORECAST";
 
-export function fetchForecast(cityName) {
+export function fetchForecast(cityName, lat, lon) {
+  if (cityName) {
+    const request = axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${config.weatherApiKey}`
+    );
+
+    return {
+      type: FETCH_FORECAST,
+      payload: request,
+    };
+  }
+
   const request = axios.get(
-    `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${config.weatherApiKey}`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${config.weatherApiKey}`
   );
 
   return {
