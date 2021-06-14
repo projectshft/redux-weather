@@ -1,9 +1,16 @@
 import { FETCH_WEATHER } from "../actions/weatherAction";
 
-const weatherReducer = (state = [], action) => {
+const initialState = {
+  weatherData: [],
+};
+
+const weatherReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_WEATHER:
-      return [action.payload.data.list, ...state];
+      return {
+        ...state,
+        weatherData: [action.payload.data, ...state.weatherData],
+      };
     default:
       return state;
   }
