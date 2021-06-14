@@ -49,6 +49,7 @@ const StyledHeaderText = styled.div`
   justify-content: space-between;
   list-style: none;
   padding: 0rem 2rem;
+  font-weight: bold;
 `;
 
 const StyledLine = styled.hr`

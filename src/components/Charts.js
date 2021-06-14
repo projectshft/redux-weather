@@ -45,6 +45,7 @@ const StyledRow = styled.div`
   justify-content: space-between;
   h3 {
     font-weight: lighter;
+    padding-top: 5rem;
   }
 `;
 
