@@ -36,11 +36,7 @@ function App() {
                 onChange={(e) => setCityName(e.target.value)}
               />
               <div className="input-group-append">
-                <button
-                  onClick={(e) => handleSubmit(e)}
-                  className="btn btn-primary"
-                  type="button"
-                >
+                <button className="btn btn-primary" type="submit">
                   Submit
                 </button>
               </div>

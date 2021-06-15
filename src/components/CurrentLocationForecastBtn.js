@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchForecast } from "../actions";
+import { fetchForecastLatandLong } from "../actions";
 
 export default function CurrentLocationForecastBtn() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export default function CurrentLocationForecastBtn() {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      dispatch(fetchForecast(null, latitude, longitude));
+      dispatch(fetchForecastLatandLong(latitude, longitude));
     });
   };
   return (

@@ -3,18 +3,18 @@ import config from "../config";
 
 export const FETCH_FORECAST = "FETCH_FORECAST";
 
-export function fetchForecast(cityName, lat, lon) {
-  if (cityName) {
-    const request = axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${config.weatherApiKey}`
-    );
+export function fetchForecast(cityName) {
+  const request = axios.get(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${config.weatherApiKey}`
+  );
 
-    return {
-      type: FETCH_FORECAST,
-      payload: request,
-    };
-  }
+  return {
+    type: FETCH_FORECAST,
+    payload: request,
+  };
+}
 
+export function fetchForecastLatandLong(lat, lon) {
   const request = axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${config.weatherApiKey}`
   );
