@@ -30,7 +30,7 @@ const WeatherData = () => {
             humidity={c.list.map((h) => {
               return h.main.humidity;
             })}
-            key={c.city.name}
+            key={c.city.name} //need an actual key
           />
         ))}
       </StyledWeatherInfo>

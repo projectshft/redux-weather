@@ -5,11 +5,29 @@ import {
   SparklinesReferenceLine,
 } from "react-sparklines";
 import styled from "styled-components";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { defaultCity } from "../actions/makeDefaultAction";
 
 const Charts = ({ name, temp, pressure, humidity }) => {
+  const dispatch = useDispatch();
+
+  const { defaultCity } = useSelector((state) => state.default);
+
+  const handleDefaultButton = () => {
+    localStorage.setItem("city", name);
+
+    dispatch(defaultCity());
+  };
+
   return (
     <StyledRow>
-      <h3>{name}</h3>
+      <div>
+        <h3>{name}</h3>
+        <div className="default-button">
+          <button onClick={handleDefaultButton}>Set as Default</button>
+        </div>
+      </div>
 
       <StyledCharts>
         <Sparklines data={temp} width={100} height={60}>
