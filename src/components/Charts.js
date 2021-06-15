@@ -7,7 +7,7 @@ import {
 import styled from "styled-components";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { defaultCity } from "../actions/makeDefaultAction";
+import { makeDefaultCity } from "../actions/makeDefaultAction";
 
 const Charts = ({ name, temp, pressure, humidity }) => {
   const dispatch = useDispatch();
@@ -17,16 +17,19 @@ const Charts = ({ name, temp, pressure, humidity }) => {
   const handleDefaultButton = () => {
     localStorage.setItem("city", name);
 
-    dispatch(defaultCity());
+    dispatch(makeDefaultCity());
   };
 
   return (
     <StyledRow>
-      <div>
-        <h3>{name}</h3>
-        <div className="default-button">
-          <button onClick={handleDefaultButton}>Set as Default</button>
-        </div>
+      <h3 className="city-name">{name}</h3>
+      <div className="default-button">
+        <button
+          onClick={handleDefaultButton}
+          style={defaultCity ? { display: "none" } : { display: "block" }}
+        >
+          Set as Default
+        </button>
       </div>
 
       <StyledCharts>

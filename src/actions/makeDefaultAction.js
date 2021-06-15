@@ -2,7 +2,7 @@
 export const MAKE_DEFAULT = "MAKE_DEFAULT";
 
 //action creators
-export const defaultCity = () => {
+export const makeDefaultCity = () => {
   return {
     type: MAKE_DEFAULT,
     payload: localStorage.getItem("city"),
