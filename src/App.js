@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 //components
 import Search from "./components/Search";
 import WeatherData from "./components/WeatherData";
 //style
 import GlobalStyle from "./gloablStyle";
 
+//redux
+import { useDispatch } from "react-redux";
+import { loadDefaultCity, makeDefaultCity } from "./actions/makeDefaultAction";
+
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage) {
+      dispatch(makeDefaultCity(localStorage.getItem("city")));
+      dispatch(loadDefaultCity(localStorage.getItem("city")));
+    }
+  }, [dispatch]);
+
   return (
     <div className="App">
       <GlobalStyle />

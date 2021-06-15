@@ -12,7 +12,9 @@ import { makeDefaultCity } from "../actions/makeDefaultAction";
 const Charts = ({ name, temp, pressure, humidity }) => {
   const dispatch = useDispatch();
 
-  const { defaultCity } = useSelector((state) => state.default);
+  const { defaultCity, defaultCityData } = useSelector(
+    (state) => state.default
+  );
 
   const handleDefaultButton = () => {
     localStorage.setItem("city", name);
@@ -23,14 +25,12 @@ const Charts = ({ name, temp, pressure, humidity }) => {
   return (
     <StyledRow>
       <h3 className="city-name">{name}</h3>
-      <div className="default-button">
-        <button
-          onClick={handleDefaultButton}
-          style={defaultCity ? { display: "none" } : { display: "block" }}
-        >
-          Set as Default
-        </button>
-      </div>
+      <button
+        onClick={handleDefaultButton}
+        style={defaultCity ? { display: "none" } : { display: "block" }}
+      >
+        Set as Default
+      </button>
 
       <StyledCharts>
         <Sparklines data={temp} width={100} height={60}>

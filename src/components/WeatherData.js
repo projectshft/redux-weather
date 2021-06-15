@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Charts from "./Charts";
 //redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //style
 import styled from "styled-components";
 
 const WeatherData = () => {
   const { weatherData } = useSelector((state) => state.weather);
+
+  const {
+    defaultCityTemp,
+    defaultCityPressure,
+    defaultCityHumidity,
+    defaultCity,
+  } = useSelector((state) => state.default);
 
   return (
     <StyledWeatherData>
@@ -17,6 +24,17 @@ const WeatherData = () => {
         <li>Hummidity (%)</li>
       </StyledHeaderText>
       <StyledLine />
+      <StyledWeatherInfo>
+        <Charts
+          name={defaultCity}
+          temp={defaultCityTemp}
+          pressure={defaultCityPressure}
+          humidity={defaultCityHumidity}
+        />
+      </StyledWeatherInfo>
+
+      <StyledLine />
+
       <StyledWeatherInfo>
         {weatherData.map((c) => (
           <Charts
