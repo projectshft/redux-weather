@@ -7,7 +7,12 @@ import GlobalStyle from "./gloablStyle";
 
 //redux
 import { useDispatch } from "react-redux";
-import { loadDefaultCity, makeDefaultCity } from "./actions/makeDefaultAction";
+import {
+  makeDefaultCity,
+  loadDefaultCityForecast,
+  loadDefaultCityCurrent,
+  loadIsLoading,
+} from "./actions/makeDefaultAction";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,7 +20,9 @@ const App = () => {
   useEffect(() => {
     if (localStorage) {
       dispatch(makeDefaultCity(localStorage.getItem("city")));
-      dispatch(loadDefaultCity(localStorage.getItem("city")));
+      dispatch(loadDefaultCityForecast(localStorage.getItem("city")));
+      dispatch(loadDefaultCityCurrent(localStorage.getItem("city")));
+      dispatch(loadIsLoading());
     }
   }, [dispatch]);
 

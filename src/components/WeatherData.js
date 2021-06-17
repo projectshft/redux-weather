@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Charts from "./Charts";
 //redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 //style
 import styled from "styled-components";
 
 const WeatherData = () => {
   const { weatherData } = useSelector((state) => state.weather);
+  const { currentWeather, isLoading } = useSelector((state) => state.default);
 
   const {
     defaultCityTemp,
@@ -15,16 +16,16 @@ const WeatherData = () => {
     defaultCity,
   } = useSelector((state) => state.default);
 
-  return (
-    <StyledWeatherData>
-      <StyledHeaderText>
-        <li>City</li>
-        <li>Temperature (F)</li>
-        <li>Pressure (hPa)</li>
-        <li>Hummidity (%)</li>
-      </StyledHeaderText>
-      <StyledLine />
-      <StyledWeatherInfo>
+  const icon = () => {
+    let iconURL;
+    if (!isLoading) {
+      iconURL = `http://openweathermap.org/img/wn/${currentWeather.data.weather[0].icon}.png`;
+    }
+    return iconURL;
+  };
+
+  /*
+    <StyledWeatherInfo>
         <Charts
           name={defaultCity}
           temp={defaultCityTemp}
@@ -32,7 +33,29 @@ const WeatherData = () => {
           humidity={defaultCityHumidity}
         />
       </StyledWeatherInfo>
+*/
 
+  return (
+    <StyledWeatherData>
+      <>
+        {!isLoading && (
+          <div
+            className="current-default-weather"
+            style={defaultCity ? { display: "block" } : { display: "none" }}
+          >
+            <h3>{defaultCity}</h3>
+            <p>{Math.round(currentWeather.data.main.temp)}F</p>
+            <img src={icon()} alt="icon"></img>
+            <div className="icon"></div>
+          </div>
+        )}
+      </>
+      <StyledHeaderText>
+        <li>City</li>
+        <li>Temperature (F)</li>
+        <li>Pressure (hPa)</li>
+        <li>Hummidity (%)</li>
+      </StyledHeaderText>
       <StyledLine />
 
       <StyledWeatherInfo>
@@ -59,6 +82,9 @@ const WeatherData = () => {
 const StyledWeatherData = styled.div`
   margin-top: 3rem;
   padding: 0rem 15rem;
+  .current-default-weather {
+    text-align: center;
+  }
 `;
 
 const StyledHeaderText = styled.div`

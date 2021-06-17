@@ -7,24 +7,29 @@ import {
 import styled from "styled-components";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { makeDefaultCity } from "../actions/makeDefaultAction";
+import {
+  makeDefaultCity,
+  loadDefaultCityForecast,
+  loadDefaultCityCurrent,
+} from "../actions/makeDefaultAction";
 
 const Charts = ({ name, temp, pressure, humidity }) => {
   const dispatch = useDispatch();
 
-  const { defaultCity, defaultCityData } = useSelector(
-    (state) => state.default
-  );
+  const { defaultCity } = useSelector((state) => state.default);
 
   const handleDefaultButton = () => {
     localStorage.setItem("city", name);
 
     dispatch(makeDefaultCity());
+    dispatch(loadDefaultCityForecast(localStorage.getItem("city")));
+    dispatch(loadDefaultCityCurrent(localStorage.getItem("city")));
   };
 
   return (
     <StyledRow>
       <h3 className="city-name">{name}</h3>
+
       <button
         onClick={handleDefaultButton}
         style={defaultCity ? { display: "none" } : { display: "block" }}

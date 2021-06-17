@@ -4,10 +4,10 @@ import axios from "axios";
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 //action creators
-export const loadWeatherData = (query) => {
+export const loadWeatherData = async (query) => {
   const ROOT_URL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
-  const request = axios.get(
+  const request = await axios.get(
     `${ROOT_URL}${query}&units=imperial&appid=${process.env.REACT_APP_OPENWEATHER_API}`
   );
 
