@@ -26,23 +26,37 @@ const Charts = ({ name, temp, pressure, humidity }) => {
     dispatch(loadDefaultCityCurrent(localStorage.getItem("city")));
   };
 
+  //function to find average forecast values
+  const findAverage = (arr) => {
+    let avg;
+    const arrayCount = arr.length;
+
+    let sum = arr.reduce(function (accumulator, currentValue) {
+      return accumulator + currentValue;
+    }, 0);
+
+    avg = sum / arrayCount;
+
+    return Math.round(avg);
+  };
+
   return (
     <StyledRow>
-      <h3 className="city-name">{name}</h3>
-
       <button
         onClick={handleDefaultButton}
         style={defaultCity ? { display: "none" } : { display: "block" }}
       >
-        Set as Default
+        Default
       </button>
+
+      <h3 className="city-name">{name}</h3>
 
       <StyledCharts>
         <Sparklines data={temp} width={100} height={60}>
           <SparklinesLine color="#48484A" />
           <SparklinesReferenceLine type="median" />
         </Sparklines>
-        <p>{Math.round(temp[20])}F</p>
+        <p>{findAverage(temp)}F</p>
       </StyledCharts>
 
       <StyledCharts>
@@ -50,7 +64,7 @@ const Charts = ({ name, temp, pressure, humidity }) => {
           <SparklinesLine color="#48484A" />
           <SparklinesReferenceLine type="median" />
         </Sparklines>
-        <p>{pressure[20]}hPa</p>
+        <p>{findAverage(pressure)}hPa</p>
       </StyledCharts>
 
       <StyledCharts>
@@ -58,7 +72,7 @@ const Charts = ({ name, temp, pressure, humidity }) => {
           <SparklinesLine color="#48484A" />
           <SparklinesReferenceLine type="median" />
         </Sparklines>
-        <p>{humidity[20]}%</p>
+        <p>{findAverage(humidity)}%</p>
       </StyledCharts>
     </StyledRow>
   );
@@ -72,6 +86,22 @@ const StyledRow = styled.div`
   h3 {
     font-weight: lighter;
     padding-top: 5rem;
+  }
+  button {
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    margin-top: 5rem;
+    border: 2px solid #48484a;
+    background: transparent;
+    color: white;
+    background-color: #48484a;
+    transition: all 0.5s ease;
+    &:hover {
+      background-color: #ec6e4c;
+      color: white;
+    }
   }
 `;
 

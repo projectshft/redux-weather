@@ -19,10 +19,10 @@ const App = () => {
 
   useEffect(() => {
     if (localStorage) {
+      dispatch(loadIsLoading());
       dispatch(makeDefaultCity(localStorage.getItem("city")));
       dispatch(loadDefaultCityForecast(localStorage.getItem("city")));
       dispatch(loadDefaultCityCurrent(localStorage.getItem("city")));
-      dispatch(loadIsLoading());
     }
   }, [dispatch]);
 

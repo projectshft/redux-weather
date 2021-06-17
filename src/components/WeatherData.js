@@ -39,19 +39,21 @@ const WeatherData = () => {
     <StyledWeatherData>
       <>
         {!isLoading && (
-          <div
-            className="current-default-weather"
-            style={defaultCity ? { display: "block" } : { display: "none" }}
-          >
-            <h3>{defaultCity}</h3>
-            <p>{Math.round(currentWeather.data.main.temp)}F</p>
-            <img src={icon()} alt="icon"></img>
-            <div className="icon"></div>
-          </div>
+          <StyledCurrentWeather>
+            <div className="weather-details">
+              <h3>{defaultCity}</h3>
+              <p>{Math.round(currentWeather.data.main.temp)}F</p>
+              <p>{currentWeather.data.main.pressure}hPa</p>
+              <p>{currentWeather.data.main.humidity}%</p>
+            </div>
+            <div className="weather-icon">
+              <img src={icon()} alt="icon"></img>
+            </div>
+          </StyledCurrentWeather>
         )}
       </>
       <StyledHeaderText>
-        <li>City</li>
+        <li className="city-name">City</li>
         <li>Temperature (F)</li>
         <li>Pressure (hPa)</li>
         <li>Hummidity (%)</li>
@@ -71,7 +73,7 @@ const WeatherData = () => {
             humidity={c.list.map((h) => {
               return h.main.humidity;
             })}
-            key={c.city.name} //need an actual key
+            key={c.city.id}
           />
         ))}
       </StyledWeatherInfo>
@@ -82,8 +84,20 @@ const WeatherData = () => {
 const StyledWeatherData = styled.div`
   margin-top: 3rem;
   padding: 0rem 15rem;
-  .current-default-weather {
-    text-align: center;
+`;
+
+const StyledCurrentWeather = styled.div`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 2rem;
+  h3 {
+    padding-bottom: 0.5rem;
+  }
+  p {
+    font-size: 0.9rem;
   }
 `;
 
