@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+//components
+import Search from "./components/Search";
+import DefaultCity from "./components/DefaultCity";
+import Weather from "./components/Weather";
+import WeatherData from "./components/WeatherData";
+//style
+import GlobalStyle from "./gloablStyle";
+//redux
+import { useDispatch } from "react-redux";
+import {
+  makeDefaultCity,
+  loadDefaultCityForecast,
+  loadDefaultCityCurrent,
+  loadIsLoading,
+} from "./actions/makeDefaultAction";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("city")) {
+      dispatch(loadIsLoading());
+      dispatch(makeDefaultCity(localStorage.getItem("city")));
+      dispatch(loadDefaultCityForecast(localStorage.getItem("city")));
+      dispatch(loadDefaultCityCurrent(localStorage.getItem("city")));
+    }
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle />
+      <Search />
+      <DefaultCity />
+      <Weather>
+        <WeatherData />
+      </Weather>
     </div>
   );
-}
+};
 
 export default App;
