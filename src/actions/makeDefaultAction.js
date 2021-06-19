@@ -1,10 +1,9 @@
 import axios from "axios";
-
 //variables
 export const MAKE_DEFAULT = "MAKE_DEFAULT";
-export const FETCH_DEFAULT = "FETCH_DEFAULT";
+export const FETCH_DEFAULT_FORECAST = "FETCH_DEFAULT_FORECAST";
 export const FETCH_CURRENT_WEATHER = "FETCH_CURRENT_WEATHER";
-export const LOADING_CURRENT = "LOADING_CURRENT";
+export const LOADING_DEFAULT = "LOADING_DEFAULT";
 
 //action creators
 export const makeDefaultCity = () => {
@@ -22,7 +21,7 @@ export const loadDefaultCityForecast = async (city) => {
   );
 
   return {
-    type: FETCH_DEFAULT,
+    type: FETCH_DEFAULT_FORECAST,
     payload: request,
   };
 };
@@ -42,6 +41,6 @@ export const loadDefaultCityCurrent = async (city) => {
 
 export const loadIsLoading = () => {
   return {
-    type: LOADING_CURRENT,
+    type: LOADING_DEFAULT,
   };
 };

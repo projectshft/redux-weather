@@ -2,6 +2,7 @@ import { FETCH_WEATHER } from "../actions/weatherAction";
 
 const initialState = {
   weatherData: [],
+  isLoading: true,
 };
 
 const weatherReducer = (state = initialState, action) => {
@@ -10,6 +11,7 @@ const weatherReducer = (state = initialState, action) => {
       return {
         ...state,
         weatherData: [action.payload.data, ...state.weatherData],
+        isLoading: false,
       };
     default:
       return state;

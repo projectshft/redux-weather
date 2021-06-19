@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 //components
 import Search from "./components/Search";
+import DefaultCity from "./components/DefaultCity";
+import Weather from "./components/Weather";
 import WeatherData from "./components/WeatherData";
 //style
 import GlobalStyle from "./gloablStyle";
@@ -18,7 +20,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage) {
+    if (localStorage.getItem("city")) {
       dispatch(loadIsLoading());
       dispatch(makeDefaultCity(localStorage.getItem("city")));
       dispatch(loadDefaultCityForecast(localStorage.getItem("city")));
@@ -30,7 +32,10 @@ const App = () => {
     <div className="App">
       <GlobalStyle />
       <Search />
-      <WeatherData />
+      <DefaultCity />
+      <Weather>
+        <WeatherData />
+      </Weather>
     </div>
   );
 };

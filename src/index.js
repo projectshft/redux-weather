@@ -11,10 +11,7 @@ import promise from "redux-promise";
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(
-    applyMiddleware(promise)
-    // other store enhancers if any
-  )
+  composeWithDevTools(applyMiddleware(promise))
 );
 
 ReactDOM.render(

@@ -14,8 +14,12 @@ const Search = () => {
   };
 
   const handleSearchButton = () => {
-    dispatch(loadWeatherData(input));
-    setInput("");
+    if (!input) {
+      alert("This field is required. Please enter city.");
+    } else {
+      dispatch(loadWeatherData(input));
+      setInput("");
+    }
   };
 
   return (
@@ -38,8 +42,14 @@ const Search = () => {
 
 const StyledHeader = styled.div`
   min-height: 10vh;
+  background-color: #f2f2f1;
   text-align: center;
-  margin-top: 2rem;
+  padding-top: 2rem;
+  font-family: "Lobster", cursive;
+  margin-bottom: 2rem;
+  h1 {
+    color: #ec6e4c;
+  }
 `;
 
 const StyledSearch = styled.div`
@@ -60,7 +70,7 @@ const StyledSearch = styled.div`
     background: transparent;
     color: white;
     background-color: #48484a;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     &:hover {
       background-color: #ec6e4c;
       color: white;

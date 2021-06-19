@@ -1,4 +1,5 @@
 import React from "react";
+//sparklines
 import {
   Sparklines,
   SparklinesLine,
@@ -12,32 +13,20 @@ import {
   loadDefaultCityForecast,
   loadDefaultCityCurrent,
 } from "../actions/makeDefaultAction";
+import { findAverage } from "../util";
 
 const Charts = ({ name, temp, pressure, humidity }) => {
+  //redux
   const dispatch = useDispatch();
-
   const { defaultCity } = useSelector((state) => state.default);
 
+  //event handlers
   const handleDefaultButton = () => {
     localStorage.setItem("city", name);
 
     dispatch(makeDefaultCity());
     dispatch(loadDefaultCityForecast(localStorage.getItem("city")));
     dispatch(loadDefaultCityCurrent(localStorage.getItem("city")));
-  };
-
-  //function to find average forecast values
-  const findAverage = (arr) => {
-    let avg;
-    const arrayCount = arr.length;
-
-    let sum = arr.reduce(function (accumulator, currentValue) {
-      return accumulator + currentValue;
-    }, 0);
-
-    avg = sum / arrayCount;
-
-    return Math.round(avg);
   };
 
   return (
@@ -78,6 +67,7 @@ const Charts = ({ name, temp, pressure, humidity }) => {
   );
 };
 
+//styling
 const StyledRow = styled.div`
   padding-left: 1.5rem;
   display: flex;
@@ -97,7 +87,7 @@ const StyledRow = styled.div`
     background: transparent;
     color: white;
     background-color: #48484a;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     &:hover {
       background-color: #ec6e4c;
       color: white;

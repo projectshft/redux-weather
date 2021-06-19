@@ -1,13 +1,13 @@
 import { MAKE_DEFAULT } from "../actions/makeDefaultAction";
-import { FETCH_DEFAULT } from "../actions/makeDefaultAction";
+import { FETCH_DEFAULT_FORECAST } from "../actions/makeDefaultAction";
 import { FETCH_CURRENT_WEATHER } from "../actions/makeDefaultAction";
-import { LOADING_CURRENT } from "../actions/makeDefaultAction";
+import { LOADING_DEFAULT } from "../actions/makeDefaultAction";
 
 const initialState = {
-  defaultCity: "",
-  defaultCityTemp: [],
-  defaultCityPressure: [],
-  defaultCityHumidity: [],
+  defaultCity: null,
+  defaultForecastTemp: [],
+  defaultForecastPressure: [],
+  defaultForecastHumidity: [],
   currentWeather: [],
   isLoading: true,
 };
@@ -19,26 +19,26 @@ const defaultCityReducer = (state = initialState, action) => {
         ...state,
         defaultCity: action.payload,
       };
-    case FETCH_DEFAULT:
+    case FETCH_DEFAULT_FORECAST:
       return {
         ...state,
-        defaultCityTemp: action.payload.data.list.map((city) => {
+        defaultForecastTemp: action.payload.data.list.map((city) => {
           return city.main.temp;
         }),
-        defaultCityPressure: action.payload.data.list.map((city) => {
+        defaultForecastPressure: action.payload.data.list.map((city) => {
           return city.main.pressure;
         }),
-        defaultCityHumidity: action.payload.data.list.map((city) => {
+        defaultForecastHumidity: action.payload.data.list.map((city) => {
           return city.main.humidity;
         }),
       };
     case FETCH_CURRENT_WEATHER:
       return {
         ...state,
-        currentWeather: action.payload,
+        currentWeather: action.payload.data.weather[0].icon,
         isLoading: false,
       };
-    case LOADING_CURRENT:
+    case LOADING_DEFAULT:
       return {
         ...state,
         isLoading: true,
