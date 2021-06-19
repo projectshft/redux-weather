@@ -6,7 +6,6 @@ import Weather from "./components/Weather";
 import WeatherData from "./components/WeatherData";
 //style
 import GlobalStyle from "./gloablStyle";
-
 //redux
 import { useDispatch } from "react-redux";
 import {
