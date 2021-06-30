@@ -4,9 +4,8 @@ const ForecastReducer = function (state = [], action) {
 
   switch (action.type) {
     case FETCH_FORECAST:
-      console.log(action);
-      //console.log(action.payload);
-      return action.payload;
+      // need to return an array, not object
+      return [action.payload.data, ...state];
     default:
       return state;
   }
