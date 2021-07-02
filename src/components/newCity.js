@@ -1,30 +1,51 @@
-// import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { addForecast } from "../actions";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addForecast } from "../actions";
 
-// const NewCity () => {
+const NewCity = (props) => {
+  const [city, setCity] = useState("");
+  const [temps, setTemps] = useState("");
+  const [press, setPress] = useState("");
+  const [humid, setHumid] = useState("");
 
+  const dispatch = useDispatch();
 
-//   return (
-//     <div className="container">
-//         <div className="row align-items-end">
-//           <div className="form-group col-md-6 offset-md-3">
-//             <input
-//               className="form-control"
-//               type="text"
-//               id="input-city"
-//               placeholder="Enter a City"
-//             ></input>
-//           </div>
-//           <div class="form-group col-md">
-//             <button type="submit" class="btn btn-primary">
-//               Submit
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//       <br />
-//   )
-// }
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
 
-// export default NewCity;
+    dispatch(
+      addForecast({
+        city,
+        temps,
+        press,
+        humid,
+      })
+    );
+  };
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <div className="container">
+        <div className="row align-items-end">
+          <div className="form-group col-md-6 offset-md-3">
+            <input
+              className="form-control"
+              type="text"
+              id="input-city"
+              placeholder="Enter a City"
+              onChange={(e) => setCity(e.target.value)}
+            ></input>
+          </div>
+          <div class="form-group col-md">
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </div>
+        <br />
+      </div>
+    </form>
+  );
+}
+
+export default NewCity;

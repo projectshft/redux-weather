@@ -18,9 +18,12 @@ export function fetchForecast() {
   }
 }
 
-// export function addForecast() {
-//   return {
-//     type: ADD_FORECAST,
-//     payload: newForecast,
-//   }
-// }
+// takes in city from input (createPost ==> addForecast)
+export function addForecast(inputCity) {
+const newForecast = Object.assign({}, inputCity);
+
+  return {
+    type: ADD_FORECAST,
+    payload: newForecast,
+  }
+}
