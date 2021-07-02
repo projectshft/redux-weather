@@ -51,10 +51,16 @@ const Forecast = () => {
   const pressArr = [7, 5, 3, 8, 2]
   const humidArr = [100, 55, 75, 82, 12]
 
+  const averageFunc = (array) => array.reduce((a, b) => a + b) / array.length;
+
+  const tempsAvg = (averageFunc(tempsArr)).toString() + " F";
+  const pressAvg = (averageFunc(pressArr)).toString() + " hPa";
+  const humidAvg = (averageFunc(humidArr)).toString() + " %";
+
+
   return (
     <div>
       <div className="container">
-
         <div className="row">
           <div className="col-sm" align="center">
             Durham
@@ -88,6 +94,24 @@ const Forecast = () => {
           </div>
         </div>
       </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-sm" align="center">
+          </div>
+          <div className="col-sm" align="center">
+            {tempsAvg}
+          </div>
+          <div className="col-sm" align="center">
+            {pressAvg}
+          </div>
+          <div className="col-sm" align="center">
+            {humidAvg}
+          </div>
+        </div>
+        <br />
+      </div>
+
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const FETCH_FORECAST = "FETCH_FORECAST"
+export const ADD_FORECAST = "ADD_FORECAST"
 
 const ROOT_URL = "https://api.openweathermap.org/data/2.5/forecast?q="
 const API_KEY = "&units=imperial&appid=67dd541f698260dd8fa2d7b872c650a3";
@@ -9,10 +10,17 @@ const API_KEY = "&units=imperial&appid=67dd541f698260dd8fa2d7b872c650a3";
 // "https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&appid=67dd541f698260dd8fa2d7b872c650a3",
 
 export function fetchForecast() {
-  const request = axios.get(`${ROOT_URL} + Durham+ ${API_KEY}`);
+  const request = axios.get(`${ROOT_URL} + Durham + ${API_KEY}`);
 
   return {
     type: FETCH_FORECAST,
     payload: request,
   }
 }
+
+// export function addForecast() {
+//   return {
+//     type: ADD_FORECAST,
+//     payload: newForecast,
+//   }
+// }
