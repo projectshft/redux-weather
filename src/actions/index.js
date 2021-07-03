@@ -20,7 +20,8 @@ export function fetchForecast() {
 
 // takes in city from input (createPost ==> addForecast)
 export function addForecast(inputCity) {
-const newForecast = Object.assign({}, inputCity);
+  debugger;
+  const newForecast = Object.assign({}, inputCity);
 
   return {
     type: ADD_FORECAST,

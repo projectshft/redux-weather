@@ -1,26 +1,23 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addForecast } from "../actions";
+// import { useDispatch } from "react-redux";
+// import { addForecast } from "../actions";
 
 const NewCity = (props) => {
   const [city, setCity] = useState("");
-  const [temps, setTemps] = useState("");
-  const [press, setPress] = useState("");
-  const [humid, setHumid] = useState("");
+  // const [temps, setTemps] = useState("");
+  // const [press, setPress] = useState("");
+  // const [humid, setHumid] = useState("");
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    dispatch(
-      addForecast({
-        city,
-        temps,
-        press,
-        humid,
-      })
-    );
+    // dispatch(
+    //   addForecast({
+    //     city,
+    //   })
+    // );
   };
 
   return (
@@ -36,8 +33,8 @@ const NewCity = (props) => {
               onChange={(e) => setCity(e.target.value)}
             ></input>
           </div>
-          <div class="form-group col-md">
-            <button type="submit" class="btn btn-primary">
+          <div className="form-group col-md">
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </div>

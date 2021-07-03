@@ -1,4 +1,4 @@
-//import NewCity from "newCity.js";
+import NewCity from "../components/newCity.js";
 
 const header = (props) => {
   return (
@@ -11,7 +11,7 @@ const header = (props) => {
       </div>
       <br />
 
-      {/* <NewCity /> */}
+      <NewCity /> 
 
       <div className="container">
         <div className="row">

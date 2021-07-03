@@ -9,49 +9,25 @@ import {
 
 
 const Forecast = () => {
-  const forecastTemps = useSelector((state) => {
-    
-    console.log(state.posts[0])
-    
-    // the above is array but when I run any kind of array method on it I get "cant find property of undefined"
-
-    // const a = state.posts[0]._____ => state.posts[0][i].main.temp);
-
-    // console.log(a);
-    // return state.posts;
-  });
-
-  // const post = useSelector(({ posts }) => {
-  //   return posts.find((post) => {
-  //     return post.id === parseInt(props.match.params.id);
-  //   });
-  // });
-
+  const forecast = useSelector((state) => state.forecasts);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchForecast());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchForecast]);
 
-  // console.log(forecast[0]);
-  // // want array tempsArr of the 40 temps
-  // // these are forecast[i].main.temp
-  // const makeArr = (element) => {
-  //   tempArr = forecast.map((x) =>
-  //   )
-  // }
-  // want array pressArr of the 40 pressures
-  // these are forecast[i].main.pressure
-
-  // want array humidArr of the 40 humidities
-  // these are forecast[i].main.humidity
+  console.log(forecast);
+  // undefined - waiting on call
+  
   const city = 'Durham'
-  const tempsArr = [75, 77, 78, 92, 50]
+
+  const tempsArr = forecast[i]?.temps ? forecast.temps : [];
+
   const pressArr = [7, 5, 3, 8, 2]
   const humidArr = [100, 55, 75, 82, 12]
 
-  const averageFunc = (array) => array.reduce((a, b) => a + b) / array.length;
+  const averageFunc = (array) => array.reduce((a, b) => ( a + b) / array.length, []);
 
   const tempsAvg = (averageFunc(tempsArr)).toString() + " F";
   const pressAvg = (averageFunc(pressArr)).toString() + " hPa";

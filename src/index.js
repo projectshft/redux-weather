@@ -15,6 +15,8 @@ import promise from "redux-promise"
 // function createStoreWithMiddleware to dispatch the action FETCH_FORECAST when the promise completes
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
+// put the loop here as a seperate component
+
 ReactDOM.render(
   <Header>
     <Provider store={createStoreWithMiddleware(reducers)}>
