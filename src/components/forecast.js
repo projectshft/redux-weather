@@ -17,22 +17,22 @@ const Forecast = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchForecast]);
 
-  console.log(forecast);
-  // undefined - waiting on call
-  
-  const city = 'Durham'
+  // undefined - waiting on call, so do ternary and if not ready, use []  
+  const city = forecast?.city ? forecast.city : [];
+  const tempsArr = forecast?.temps ? forecast.temps : [];
+  const pressArr = forecast?.press ? forecast.press : [];
+  const humidArr = forecast?.humid ? forecast.humid : [];
 
-  const tempsArr = forecast[i]?.temps ? forecast.temps : [];
+  // const averageFunc = (array) => array.reduce((a, b) => ( a + b) / array.length, []);
 
-  const pressArr = [7, 5, 3, 8, 2]
-  const humidArr = [100, 55, 75, 82, 12]
+  const averageFunc = (array) => {
+    const total = array.reduce((acc, x) => acc + x, 0);
+    return (Math.round(total / array.length)).toString();
+  }
 
-  const averageFunc = (array) => array.reduce((a, b) => ( a + b) / array.length, []);
-
-  const tempsAvg = (averageFunc(tempsArr)).toString() + " F";
-  const pressAvg = (averageFunc(pressArr)).toString() + " hPa";
-  const humidAvg = (averageFunc(humidArr)).toString() + " %";
-
+  const tempsAvg = (averageFunc(tempsArr)) + " F";
+  const pressAvg = (averageFunc(pressArr)) + " hPa";
+  const humidAvg = (averageFunc(humidArr)) + " %";
 
   return (
     <div>
