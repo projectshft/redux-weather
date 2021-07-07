@@ -11,6 +11,9 @@ const Forecast = () => {
   const forecast = useSelector((state) => state.forecasts);
   const dispatch = useDispatch();
 
+  // not appending
+  console.log(forecast);
+
   useEffect(() => {
     dispatch(fetchForecast());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -19,8 +22,6 @@ const Forecast = () => {
   const tempsArr = forecast?.temps ? forecast.temps : [];
   const pressArr = forecast?.press ? forecast.press : [];
   const humidArr = forecast?.humid ? forecast.humid : [];
-
-  //console.log(forecast);
 
   const averageFunc = (array) => {
     let total = array.reduce(function (x, acc) {

@@ -15,8 +15,7 @@ import promise from "redux-promise";
 // function createStoreWithMiddleware to dispatch the action FETCH_FORECAST when the promise completes
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-// put the loop here as a seperate component
-
+// need NewCity wrapped in Provider, so included here
 ReactDOM.render(
   <div>
     <Provider store={createStoreWithMiddleware(reducers)}>
@@ -49,7 +48,9 @@ ReactDOM.render(
           <hr />
         </div>
       </div>
+
       <Forecast />
+
     </Provider>
   </div>
  ,

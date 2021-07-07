@@ -23,12 +23,13 @@ export function fetchForecast() {
 // takes in city from input (createPost ==> addForecast)
 export function addForecast(inputCity) {
 
+  //console.log(state);
   const newForecast = Object.assign({}, inputCity);
 
   const request = axios.get(`${ROOT_URL} + ${newForecast.newCity} + ${API_KEY}`);
 
   return {
-    type: FETCH_FORECAST,
+    type: ADD_FORECAST,
     payload: request,
   };
 }

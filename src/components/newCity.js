@@ -3,18 +3,21 @@ import { useDispatch } from "react-redux";
 import { addForecast } from "../actions";
 
 const NewCity = (props) => {
+  // have state outside of api state for newCity to pass to addForecast action
   const [newCity, setCity] = useState("");
 
   const dispatch = useDispatch();
 
+  // have stat
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
     dispatch(
       addForecast({
         newCity,
       })
-    );
+    );  
+    // clear form input after submission
+    setCity('');
   };
 
   return (
