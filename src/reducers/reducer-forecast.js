@@ -4,7 +4,6 @@ import { FETCH_FORECAST } from "../actions";
 const ForecastReducer = function (state = [], action) {
   switch (action.type) {
     case FETCH_FORECAST:
-      // forecast.js works when this is an object but not when it is an array
       return {
         index: action.payload.data.city.id,
         city: action.payload.data.city.name,

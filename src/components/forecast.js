@@ -7,7 +7,6 @@ import {
   SparklinesReferenceLine,
 } from "react-sparklines";
 
-
 const Forecast = () => {
   const forecast = useSelector((state) => state.forecasts);
   const dispatch = useDispatch();
@@ -17,29 +16,30 @@ const Forecast = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchForecast]);
 
-  // undefined - waiting on call, so do ternary and if not ready, use []  
-  const city = forecast?.city ? forecast.city : [];
   const tempsArr = forecast?.temps ? forecast.temps : [];
   const pressArr = forecast?.press ? forecast.press : [];
   const humidArr = forecast?.humid ? forecast.humid : [];
 
-  // const averageFunc = (array) => array.reduce((a, b) => ( a + b) / array.length, []);
+  //console.log(forecast);
 
   const averageFunc = (array) => {
-    const total = array.reduce((acc, x) => acc + x, 0);
-    return (Math.round(total / array.length)).toString();
-  }
+    let total = array.reduce(function (x, acc) {
+        return x + acc;
+      }, 0);
+    return Math.round(total / array.length);
+  };
 
-  const tempsAvg = (averageFunc(tempsArr)) + " F";
-  const pressAvg = (averageFunc(pressArr)) + " hPa";
-  const humidAvg = (averageFunc(humidArr)) + " %";
+  const tempsAvg = averageFunc(tempsArr) + " F";
+  const pressAvg = averageFunc(pressArr) + " hPa";
+  const humidAvg = averageFunc(humidArr) + " %";
+  const cityDisp = forecast?.city ? forecast.city : '';
 
   return (
     <div>
       <div className="container">
         <div className="row">
           <div className="col-sm" align="center">
-            Durham
+            {cityDisp}
           </div>
           <div className="col-sm">
             <Sparklines data={tempsArr}>
@@ -73,8 +73,7 @@ const Forecast = () => {
 
       <div className="container">
         <div className="row">
-          <div className="col-sm" align="center">
-          </div>
+          <div className="col-sm" align="center"></div>
           <div className="col-sm" align="center">
             {tempsAvg}
           </div>
@@ -87,7 +86,6 @@ const Forecast = () => {
         </div>
         <br />
       </div>
-
     </div>
   );
 };

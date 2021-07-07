@@ -1,24 +1,19 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { addForecast } from "../actions";
+import { useDispatch } from "react-redux";
+import { addForecast } from "../actions";
 
 const NewCity = (props) => {
-  const [city, setCity] = useState("");
-  // const [temps, setTemps] = useState("");
-  // const [press, setPress] = useState("");
-  // const [humid, setHumid] = useState("");
+  const [newCity, setCity] = useState("");
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(city);
-
-    // dispatch(
-    //   addForecast({
-    //     city,
-    //   })
-    // );
+    dispatch(
+      addForecast({
+        newCity,
+      })
+    );
   };
 
   return (
@@ -31,6 +26,7 @@ const NewCity = (props) => {
               type="text"
               id="input-city"
               placeholder="Enter a City"
+              value={newCity}
               onChange={(e) => setCity(e.target.value)}
             ></input>
           </div>
@@ -44,6 +40,6 @@ const NewCity = (props) => {
       </div>
     </form>
   );
-}
+};
 
 export default NewCity;
