@@ -9,6 +9,7 @@ const NewCity = (props) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     dispatch(
       addForecast({
         newCity,
