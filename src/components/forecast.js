@@ -8,6 +8,7 @@ import {
 } from "react-sparklines";
 
 const Forecast = () => {
+  // forecast will be array of all the objects in the state, one for each city
   const forecast = useSelector((state) => state.forecasts);
   const dispatch = useDispatch();
 
@@ -16,6 +17,7 @@ const Forecast = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchForecast]);
 
+  // helper function to calculate the average of the temp, humidity, and pressure arrays
   const averageFunc = (array) => {
     let total = array.reduce(function (x, acc) {
       return x + acc;
@@ -83,18 +85,6 @@ const Forecast = () => {
 
     return <div>Please enter a city</div>
   }
-  // console.log(singleForecast);
-
-  // let tempsArr = singleForecast?.temps ? singleForecast.temps : [];
-  // let pressArr = singleForecast?.press ? singleForecast.press : [];
-  // let humidArr = singleForecast?.humid ? singleForecast.humid : [];
-
-  
-
-  // const tempsAvg = averageFunc(tempsArr) + " F";
-  // const pressAvg = averageFunc(pressArr) + " hPa";
-  // const humidAvg = averageFunc(humidArr) + " %";
-  // const cityDisp = singleForecast?.city ? singleForecast.city : '';
 
   return (
     <div>

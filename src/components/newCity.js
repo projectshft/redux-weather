@@ -8,7 +8,6 @@ const NewCity = (props) => {
 
   const dispatch = useDispatch();
 
-  // have stat
   const handleFormSubmit = (e) => {
     e.preventDefault();
     dispatch(

@@ -17,8 +17,6 @@ const ForecastReducer = function (state = [], action) {
         }),
       }];
     case ADD_FORECAST:
-      // says action.payload.data is not iterable, it is an object, not an array
-      // may need separate state fore each
       return [
         {
           city: action.payload.data.city.name,
