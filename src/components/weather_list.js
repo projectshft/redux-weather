@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
 
 const WeatherList = () => {
   const city = useSelector((state) => state)
@@ -9,13 +10,33 @@ const WeatherList = () => {
   }
 
   function renderCity() {
-    console.log(city)
+    if () {
+      return 
+    }
     return (
       <tr>
         <td>{city.weather.city}</td>
-        <td>{dataAverage(city.weather.temp)}</td>
-        <td>{dataAverage(city.weather.pressure)}</td>
-        <td>{dataAverage(city.weather.humidity)}</td>
+        <td>
+          <Sparklines data={city.weather.temp}>
+            <SparklinesLine />
+            <SparklinesReferenceLine type="avg" />
+          </Sparklines> 
+          {dataAverage(city.weather.temp)}
+        </td>
+        <td>
+          <Sparklines data={city.weather.pressure}>
+            <SparklinesLine />
+            <SparklinesReferenceLine type="avg" />
+          </Sparklines> 
+          {dataAverage(city.weather.pressure)}
+        </td>
+        <td>
+          <Sparklines data={city.weather.humidity}>
+            <SparklinesLine />
+            <SparklinesReferenceLine type="avg" />
+          </Sparklines> 
+          {dataAverage(city.weather.humidity)}
+        </td>
       </tr>
     )
   }
