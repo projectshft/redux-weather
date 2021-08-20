@@ -29,6 +29,10 @@
           <button className="btn btn-primary search-btn" type="submit">
             Submit
           </button>
+
+          <button className="btn btn-primary search-btn" type="submit">
+            Current location
+          </button>
         </form>
         <hr></hr>
        </div>

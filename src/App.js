@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <Search/>
-      {/* <Results/> */}
+      <Results/>
     </div>
   );
 }
