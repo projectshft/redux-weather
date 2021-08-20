@@ -1,44 +1,26 @@
 import { useSelector } from "react-redux"
-import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
+import DetailCity from "./detail_city";
 
 const WeatherList = () => {
-  const city = useSelector((state) => state)
+  const city = useSelector((state) => state.weather)
 
-  const dataAverage = function (data) {
-    const total = data.reduce((acc, c) => acc + c, 0);
-    return Math.round(total / data.length);
+  const renderDetailCity = function (data) {
+    return data.map((city) => <DetailCity key={city.id} city={city} />)
   }
 
   function renderCity() {
-    if () {
-      return 
+    console.log(city)
+    if (city.length === 0) {
+      return (
+        <tr>
+          <td>Search a city!</td>
+          <td>Search a city!</td>
+          <td>Search a city!</td>
+          <td>Search a city!</td>
+        </tr>
+      )
     }
-    return (
-      <tr>
-        <td>{city.weather.city}</td>
-        <td>
-          <Sparklines data={city.weather.temp}>
-            <SparklinesLine />
-            <SparklinesReferenceLine type="avg" />
-          </Sparklines> 
-          {dataAverage(city.weather.temp)}
-        </td>
-        <td>
-          <Sparklines data={city.weather.pressure}>
-            <SparklinesLine />
-            <SparklinesReferenceLine type="avg" />
-          </Sparklines> 
-          {dataAverage(city.weather.pressure)}
-        </td>
-        <td>
-          <Sparklines data={city.weather.humidity}>
-            <SparklinesLine />
-            <SparklinesReferenceLine type="avg" />
-          </Sparklines> 
-          {dataAverage(city.weather.humidity)}
-        </td>
-      </tr>
-    )
+    {renderDetailCity(city)}
   }
   return (
     <div className='row'>
