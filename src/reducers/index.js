@@ -1,11 +1,8 @@
-const resultsReducer = (state = [], action) => {
-  switch (action.type) {
-    case 'FETCH_RESULT':
-      return [action.payload.data, ...state];
+import { combineReducers } from "redux";
+import resultsReducer from "./result-reducer";
 
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  results: resultsReducer,
+});
 
-export default resultsReducer;
+export default rootReducer;
