@@ -1,27 +1,7 @@
-import { useSelector } from "react-redux"
-import DetailCity from "./detail_city";
+import ListBody from "./list_body";
 
 const WeatherList = () => {
-  const city = useSelector((state) => state.weather)
-
-  const renderDetailCity = function (data) {
-    return data.map((city) => <DetailCity key={city.id} city={city} />)
-  }
-
-  function renderCity() {
-    console.log(city)
-    if (city.length === 0) {
-      return (
-        <tr>
-          <td>Search a city!</td>
-          <td>Search a city!</td>
-          <td>Search a city!</td>
-          <td>Search a city!</td>
-        </tr>
-      )
-    }
-    {renderDetailCity(city)}
-  }
+  
   return (
     <div className='row'>
       <table>
@@ -33,7 +13,7 @@ const WeatherList = () => {
             <th>Humidity (%)</th>
           </tr>
         </thead>
-        <tbody>{renderCity()}</tbody>
+        <ListBody />
       </table>
     </div>
     
