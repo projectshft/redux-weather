@@ -10,3 +10,15 @@ th,
 td {
   padding: 10px;
 }
+
+body {
+  background-color: lightslategray;
+}
+
+div {
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+}

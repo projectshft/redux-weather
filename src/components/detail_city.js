@@ -11,22 +11,22 @@ export default function DetailCity({city}) {
       <td>{city.city}</td>
       <td>
         <Sparklines data={city.temp}>
-          <SparklinesLine />
-          <SparklinesReferenceLine type="avg" />
+          <SparklinesLine style={{stroke: "#F39C6B", fill: "#F6B48E"}} />
+          <SparklinesReferenceLine type="avg" style={{stroke: "#2C2C34"}} />
         </Sparklines> 
         {dataAverage(city.temp)}
       </td>
       <td>
         <Sparklines data={city.pressure}>
-          <SparklinesLine />
-          <SparklinesReferenceLine type="avg" />
+          <SparklinesLine style={{stroke: "#FF3864", fill: "#FF5C7F"}} />
+          <SparklinesReferenceLine type="avg" style={{stroke: "#2C2C34"}} />
         </Sparklines> 
         {dataAverage(city.pressure)}
       </td>
       <td>
         <Sparklines data={city.humidity}>
-          <SparklinesLine />
-          <SparklinesReferenceLine type="avg" />
+          <SparklinesLine style={{stroke: "#261447", fill:"#4C288F"}} />
+          <SparklinesReferenceLine type="avg" style={{stroke: "#2C2C34"}} />
         </Sparklines> 
         {dataAverage(city.humidity)}
       </td>
