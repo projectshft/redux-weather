@@ -1,6 +1,13 @@
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDefaultResultId } from '../actions'
 
 const SingleResult = ({ result }) => {
+
+  const defaultResultId = useSelector(state => state.defaultResult);
+
+  const dispatch = useDispatch();
+
   const temperatures = result.data.map((curr) => {
     return curr.temperature;
   });
@@ -19,11 +26,16 @@ const SingleResult = ({ result }) => {
     return Math.floor(sum / array.length);
   }
 
+  const setDefault = () => {
+    dispatch(setDefaultResultId(result.id));
+  }
+
   return (
     <div className="row">
       <div className="col-md-3">
         <p><strong>{result.name}</strong></p>
-        <button className="btn btn-primary">Set default</button>
+        {defaultResultId !== result.id && <button className="btn btn-primary" onClick={setDefault}>Set default</button>}
+        {defaultResultId === result.id && <p>Current default</p>}
         
       </div>  
       <div className="col-md-3">

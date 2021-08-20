@@ -1,13 +1,16 @@
  import { React, useState } from 'react';
  import { useDispatch } from 'react-redux';
- import { fetchResult } from '../actions'
+ import { fetchResult } from '../actions';
  
  const Search = () => {
     const [query, setQuery] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
-      dispatch(fetchResult(query));
+      dispatch(fetchResult({
+        type: 'city',
+        values: [query]
+      }));
       e.preventDefault();
     }
 
