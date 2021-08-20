@@ -2,29 +2,49 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchResult } from "../actions";
 import _ from 'lodash';
+import SingleResult from './single-result';
 
 const Results = () => {
   const allResults = useSelector((state) => state.results);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchResult());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchResult])
+  const renderResults = () => {
+    if (!_.isEmpty(allResults)) {
+      return allResults.map((result) => (
+        <div className="row" key={result.id}>
+          <div className="col-md-3">
+            {/* <SingleResult result={result}/> */}
+            {console.log(result)}
+          </div>
+        </div>       
+      ));
+    }
+  }
 
-  // const renderResults = () => {
-  //   if (!_.isEmpty(allResults)) {
-  //     return allResults.map(() => (
-  //       <li className="list-group-item" key={postID}>
-  //         <Link to={`/posts/${postID}`}>{posts.entries[postID].title}</Link>
-  //       </li>
-  //     ));
-  //   }
-  //   return <div>No posts to show</div>;
-  // }
+  return (
+    <div className="results-section">
+      <div className="row">
+        <div className="col-md-3">
+          <h5><strong>City</strong></h5>
+        </div>
 
-  // return (
-    
-  // )
+        <div className="col-md-3">
+          <h5><strong>Temperature (F)</strong></h5>
+        </div>
 
+        <div className="col-md-3">
+          <h5><strong>Pressure (hPa)</strong></h5>
+        </div>
+
+        <div className="col-md-3">
+          <h5><strong>Humidity (%)</strong></h5>
+        </div>
+      </div>
+
+      <div className="results">
+        {renderResults()}
+      </div>
+    </div>
+  )
 }
+
+export default Results;

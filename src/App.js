@@ -1,8 +1,12 @@
 import Search from './components/search';
+import Results from './components/results';
 
 function App() {
   return (
-    <Search/>
+    <div>
+      <Search/>
+      <Results/>
+    </div>
   );
 }
 
