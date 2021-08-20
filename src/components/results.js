@@ -10,11 +10,9 @@ const Results = () => {
   const renderResults = () => {
     if (!_.isEmpty(allResults)) {
       return allResults.map((result) => (
-        <div className="row" key={result.id}>
-          <div className="col-md-3">
+        <div key={result.id}>
             {/* <SingleResult result={result}/> */}
             {console.log(result)}
-          </div>
         </div>       
       ));
     }
