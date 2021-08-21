@@ -35,6 +35,8 @@ const Results = () => {
           </div>      
       </div>
 
+      <hr></hr>
+
       <div className="results">
         {renderResults()}
       </div>

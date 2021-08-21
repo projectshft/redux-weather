@@ -62,6 +62,16 @@ const SingleResult = ({ result }) => {
         <p>{getAverage(humidities)}%</p>
       </div>
 
+      <iframe
+        title={result.name}
+        className="google-map-iframe"
+        width="300"
+        height="150"
+        loading="lazy"
+        allowfullscreen
+        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDdeWs0zgAsEoYfxAzXb9fQNrNaxhG-Ze0&q=${result.name}`}>
+      </iframe>
+
       <hr></hr>
     </div>   
   )
