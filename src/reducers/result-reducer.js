@@ -15,6 +15,11 @@ const resultsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FETCH_RESULT:
 
+      if (!action.payload.data) {
+        alert('city not found');
+        return state;
+      }
+
       const currentId = state.length + 1;
 
       const result = {

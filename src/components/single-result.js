@@ -68,7 +68,7 @@ const SingleResult = ({ result }) => {
         width="300"
         height="150"
         loading="lazy"
-        allowfullscreen
+        allowFullScreen
         src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDdeWs0zgAsEoYfxAzXb9fQNrNaxhG-Ze0&q=${result.name}`}>
       </iframe>
 
