@@ -2,7 +2,7 @@ const CityTable = () => {
   return (
 
 <table className="table">
-  <thead>
+  <thead className="table-light">
     <tr>
       <th scope="col">City</th>
       <th scope="col">Temperature (F)</th>
