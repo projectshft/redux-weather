@@ -17,7 +17,7 @@
     const handleLocationClick = () => {
       navigator.geolocation.getCurrentPosition((pos) => {
         const coords = pos.coords;
-        console.log(coords);
+
         dispatch(fetchResult ({
           type: 'geolocation',
           values: [coords.latitude, coords.longitude]
