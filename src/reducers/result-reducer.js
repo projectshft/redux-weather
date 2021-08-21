@@ -11,8 +11,6 @@ if (defaultState[0])
 localStorage.setItem(DEFAULT_RESULT_ID, JSON.stringify(1));
 localStorage.setItem(RESULT, JSON.stringify(defaultState));
 
-console.log(localStorage, defaultState);
-
 const resultsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case FETCH_RESULT:

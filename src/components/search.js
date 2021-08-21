@@ -14,6 +14,20 @@
       e.preventDefault();
     }
 
+    const handleLocationClick = () => {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const coords = pos.coords;
+        console.log(coords);
+        dispatch(fetchResult ({
+          type: 'geolocation',
+          values: [coords.latitude, coords.longitude]
+        }))
+
+      }, () => {
+        alert ('Location not found.');
+      })
+    }
+
    return (
      <div className="row">
        <div className="col-md-6 offset-md-3 search-bar">
@@ -31,12 +45,12 @@
 
           <button className="btn btn-primary search-btn" type="submit">
             Submit
-          </button>
-
-          <button className="btn btn-primary search-btn" type="submit">
-            Current location
-          </button>
+          </button>        
         </form>
+
+        <button className="btn btn-primary search-btn" onClick={handleLocationClick}>
+            Current location
+        </button>
         <hr></hr>
        </div>
      </div>      
