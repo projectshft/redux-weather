@@ -5,11 +5,11 @@ function App() {
   <div className="container">
     
     <div className="row">
-      <div className="col">
+      <div className="col-md-6 offset-md-3">
         <input type="text" className="form-control" id="city-input" placeholder="Get a five-day forecast in your favorite cities"></input>
       </div>
       <div className="col">
-        <button type="button" className="btn btn-dark">Search</button>
+        <button type="button" className="btn btn-primary">Search</button>
       </div>
       <hr></hr>
     </div>
