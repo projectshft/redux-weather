@@ -15,28 +15,28 @@ const CityTable = (props) => {
 
   return props.searches.map((search, i) => (
   
-    <table className="table" key={i}>
+    <table className="table table-hover" key={i}>
       <tbody>
       <tr className="align-middle">
           <td className="text-center">
             {search.data.city.name}
           </td>
           <td>
-          <Sparklines data={search.temp}>
+          <Sparklines data={search.data.list.map((block)=>{return block.main.temp;})}>
             <SparklinesLine color="orange" />
             <SparklinesReferenceLine type="avg" />
           </Sparklines>
           <div className="text-center">xxx F</div>
           </td>
           <td>
-          <Sparklines data={search.pressure}>
+          <Sparklines data={search.data.list.map((block)=>{return block.main.pressure;})}>
             <SparklinesLine color="green" />
             <SparklinesReferenceLine type="avg" />
           </Sparklines>
           <div className="text-center">xxx hPa</div>
           </td>
           <td>
-          <Sparklines data={search.humidity}>
+          <Sparklines data={search.data.list.map((block)=>{return block.main.humidity;})}>
             <SparklinesLine color="purple" />
             <SparklinesReferenceLine type="avg" />
           </Sparklines>

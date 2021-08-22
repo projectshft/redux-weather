@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import {addSearch, fetchSearches} from "../actions/actions"
+import {addSearch} from "../actions/actions"
 import CityTable from './city-table'
 
 function App() {
@@ -8,11 +8,6 @@ function App() {
 
   const searches = useSelector((state) => state.searches)
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchSearches());
-  //    // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const changeHandler = (e) => {
     setCity(e.target.value);
