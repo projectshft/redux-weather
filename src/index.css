@@ -19,3 +19,15 @@ button {
 input {
   margin: 10px;
 }
+
+td {
+  width: 150px;
+}
+
+.city-header {
+  width: 325px;
+}
+
+.temp-header {
+  width: 325px;
+}

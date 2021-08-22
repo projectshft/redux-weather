@@ -16,12 +16,19 @@
 // }
 
 
-export const CREATE_SEARCH = "CREATE_SEARCH";
+export const FETCH_SEARCHES = "FETCH_SEARCHES";
+export const ADD_SEARCH = "ADD_SEARCH";
 
-export function createSearch(values) {
-  const search = Object.assign({}, values);
+export function fetchSearches() {
   return {
-    type: CREATE_SEARCH,
-    payload: search
+    type: FETCH_SEARCHES,
+  };
+}
+
+export function addSearch(values) {
+  // const search = Object.assign({}, values);        //payload = search
+  return {
+    type: ADD_SEARCH,
+    payload: values
   };
 }
