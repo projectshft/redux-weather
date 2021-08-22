@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = '4c414375755226104f1bfab42745ecab';
+const API_KEY = '4c414375755226104f1bfab42745ecab'; 
 
 export const FETCH_CITY = "FETCH_CITY";
 
@@ -17,14 +17,6 @@ export function fetchCity(query) {
    
   return {
     type: FETCH_CITY,
-    payload: request
-    
+    payload: request    
   };
 }
-
-
-
-
-//fetch city needs to query the API then call a function that adds that info as an object to the state. Where to define that function? here?
-
-//the second function needs to load the data for each city. Just a fetch_posts action that returns the state?

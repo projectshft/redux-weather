@@ -55,7 +55,6 @@ const WeatherView = () => {
     dispatch(fetchCity(query));  
   }
 
-//add click function to trigger search and produce new city row
   return (
     <div className="container-fluid">
       <div className="col-md-6 offset-md-3">
