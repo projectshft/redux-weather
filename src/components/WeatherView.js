@@ -17,8 +17,7 @@ const WeatherView = () => {
   }, []);
 
   function renderReports() {
-    if (!_.isEmpty(reports)) {
-      
+    if (!_.isEmpty(reports)) {     
       
       return reports.map((report) => (
         
@@ -51,8 +50,10 @@ const WeatherView = () => {
     }
   }
 
-  function handleSearchClick() {    
-    dispatch(fetchCity(query));  
+  function handleSearchClick() {
+    if (query) {
+      dispatch(fetchCity(query));  
+    }   
   }
 
   return (

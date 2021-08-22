@@ -1,4 +1,5 @@
 import axios from "axios";
+import { findAllInRenderedTree } from "react-dom/test-utils";
 
 const API_KEY = '4c414375755226104f1bfab42745ecab'; 
 
@@ -14,6 +15,12 @@ export function fetchCity(query) {
       units: 'imperial'
     }
   })
+    .catch(function(error) {
+      if (error.response) {
+        console.log(error.response.data)
+      }
+    })//How to keep app from breaking if 404 response (city not found)??
+    
    
   return {
     type: FETCH_CITY,
