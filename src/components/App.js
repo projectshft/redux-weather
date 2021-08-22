@@ -4,6 +4,8 @@ import {addSearch, fetchSearches} from "../actions/actions"
 import CityTable from './city-table'
 
 function App() {
+  const [city, setCity] = useState("");
+
   const searches = useSelector((state) => state.searches)
   const dispatch = useDispatch();
 
@@ -11,12 +13,14 @@ function App() {
     dispatch(fetchSearches());
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchSearches]);
-  
+
+  const changeHandler = (e) => {
+    setCity(e.target.value);
+  }
 
   const clickHandler = () => {
-    console.log('click!');
     dispatch(addSearch({
-      city: 'Smithfield',
+      city: city,
       temp: [69, 234, 52, 52, 90],
       pressure: [100, 101, 96, 90, 81],
       humidity: [420, 500, 300, 660, 666]
@@ -29,7 +33,7 @@ function App() {
     
     <div className="row">
       <div className="col-md-6 offset-md-3">
-        <input type="text" className="form-control" id="city-input" placeholder="Get a five-day forecast in your favorite cities"></input>
+        <input type="text" className="form-control" id="city-input" placeholder="Get a five-day forecast for your favorite cities" onChange={changeHandler}></input>
       </div>
       <div className="col">
         <button type="button" className="btn btn-primary" onClick={clickHandler}>Search</button>

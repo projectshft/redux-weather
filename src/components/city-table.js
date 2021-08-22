@@ -13,8 +13,6 @@ const CityTable = (props) => {
   // const humiditySum = humidityData.reduce((a, b) => a + b, 0);
   // const humidityAvg = humiditySum/humidityData.length;
 
-  console.log(props.searches);
-
   return props.searches.map((search, i) => (
   
     <table className="table" key={i}>
