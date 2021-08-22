@@ -11,10 +11,11 @@ const CityTable = (props) => {
   
     <table className="table table-hover" key={i}>
       <tbody>
-      <tr className="align-middle">
+        <tr className="align-middle">
           <td className="text-center">
             {search.data.city.name}
           </td>
+
           <td>
           <Sparklines data={search.data.list.map((block)=>{return block.main.temp;})}>
             <SparklinesLine color="orange" />
@@ -22,6 +23,7 @@ const CityTable = (props) => {
           </Sparklines>
           <div className="text-center">{dataAvg(search.data.list.map((block)=>{return block.main.temp;}))} {'\xB0F'}</div>
           </td>
+
           <td>
           <Sparklines data={search.data.list.map((block)=>{return block.main.pressure;})}>
             <SparklinesLine color="green" />
@@ -29,6 +31,7 @@ const CityTable = (props) => {
           </Sparklines>
           <div className="text-center">{dataAvg(search.data.list.map((block)=>{return block.main.pressure;}))} hPa</div>
           </td>
+
           <td>
           <Sparklines data={search.data.list.map((block)=>{return block.main.humidity;})}>
             <SparklinesLine color="purple" />
