@@ -1,4 +1,5 @@
 import SearchBar from "./components/search-bar";
+import WeatherForecast from "./components/weather-forecast";
 
 const App = (props) => {
   return (
@@ -11,6 +12,7 @@ const App = (props) => {
           <SearchBar />
           <hr></hr>
           <br></br>
+          <WeatherForecast />
         </div>
       </div>
       <div className='container'>
