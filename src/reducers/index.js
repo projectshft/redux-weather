@@ -1,11 +1,7 @@
-import { FETCH_CITY, CREATE_CITY } from "../actions"
-
-const weatherReducer = (state = 0, action) => {
+const weatherReducer = (state = [], action) => {
   switch(action.type) {
     case 'FETCH_CITY':
-      return action.payload.data
-    case 'CREATE_CITY':
-      return [action.payload, ...state];
+      return [action.payload.data, ...state]
     default:
       return state
   }
@@ -14,5 +10,3 @@ const weatherReducer = (state = 0, action) => {
 export default weatherReducer;
 
 //do I need to combine reducers with only one? 
-
-//Refactor to have two reducers -- one to fetch and one to store new city data

@@ -5,14 +5,21 @@ import './index.css';
 import { Provider } from "react-redux"
 import { createStore, applyMiddleware } from "redux"
 import promise from "redux-promise"
+import { composeWithDevTools } from 'redux-devtools-extension'
+
 
 import WeatherView from './components/WeatherView';
 import weatherReducer from './reducers'
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
+// const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
+//store={createStoreWithMiddleware(weatherReducer)}
+
+const createStoreWithMiddleware = createStore(weatherReducer, composeWithDevTools(
+  applyMiddleware(promise)
+));
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(weatherReducer)}>
+  <Provider store={createStoreWithMiddleware}>
     <WeatherView />
   </Provider>,
   
