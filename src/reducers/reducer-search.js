@@ -21,11 +21,14 @@ const defaultState = [
   }
 ];
 
-const searchReducer = (state = defaultState, action) => {
+const searchReducer = (state = [], action) => {
   switch (action.type) {
     case FETCH_SEARCHES:
+      // return action.payload.data;
       return state;
     case ADD_SEARCH:
+      console.log(action.payload);
+      console.log(state);
       return [action.payload, ...state];
     default:
       return state;

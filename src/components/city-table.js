@@ -19,7 +19,7 @@ const CityTable = (props) => {
       <tbody>
       <tr className="align-middle">
           <td className="text-center">
-            {search.city}
+            {search.data.city.name}
           </td>
           <td>
           <Sparklines data={search.temp}>

@@ -9,23 +9,17 @@ function App() {
   const searches = useSelector((state) => state.searches)
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchSearches());
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchSearches]);
+  // useEffect(() => {
+  //   dispatch(fetchSearches());
+  //    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const changeHandler = (e) => {
     setCity(e.target.value);
   }
 
   const clickHandler = () => {
-    dispatch(addSearch({
-      city: city,
-      temp: [69, 234, 52, 52, 90],
-      pressure: [100, 101, 96, 90, 81],
-      humidity: [420, 500, 300, 660, 666]
-    })
-    );
+    dispatch(addSearch(city));
   }
 
   return (
