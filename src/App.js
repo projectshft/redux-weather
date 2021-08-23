@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import SearchBar from "./components/search-bar";
+import WeatherForecast from "./components/weather-forecast";
 
-function App() {
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className='jumbotron text-center'>
+        <div className="container">
+          <h1 className="jumbotron-heading">Weather App</h1>
+          <br></br>
+          <hr></hr>
+          <SearchBar />
+          <hr></hr>
+          <br></br>
+          <WeatherForecast />
+        </div>
+      </div>
+      <div className='container'>
+        
+      </div>
     </div>
-  );
-}
+  )
+};
 
 export default App;
