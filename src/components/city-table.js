@@ -1,11 +1,13 @@
-import {Sparklines, SparklinesLine, SparklinesReferenceLine} from 'react-sparklines';
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 const CityTable = (props) => {
- 
+
   const dataAvg = (array) => {
     const total = array.reduce((a, b) => a + b, 0);
     return Math.round(total/array.length);
   }
+
+  if (props.searches.length > 0) {
 
   return props.searches.map((search, i) => (
   
@@ -44,6 +46,9 @@ const CityTable = (props) => {
     </table>
   
   ));
-}
+  } else {
+    return <div></div>
+  };
+};
 
 export default CityTable;

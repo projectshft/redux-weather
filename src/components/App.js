@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import {addSearch} from "../actions/actions"
-import CityTable from './city-table'
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSearch } from '../actions/actions';
+import CityTable from './city-table';
 
 function App() {
   const [city, setCity] = useState("");
