@@ -2,10 +2,9 @@ import { addTemperature } from "./temperatureSlice"
 
 const initialState = {
   temperature: [],
-
+  humidity: [],
+  pressure: []
 }
-
-
 
 export const reducer = (state = initialState, action) => {
   // line 11 to 18 for pressure and humidity.  Add the other actions
