@@ -29,9 +29,9 @@ function App() {
   return (
   
     <div className="App">
-      {/* <Sparklines data={[5, 10, 5, 20]}>
+      <Sparklines data={[5, 10, 5, 20]}>
   <SparklinesLine color="blue" />
-</Sparklines> */}
+</Sparklines>
       {/* <Sparklines data={[5, 10, 5, 20, 8, 15]} limit={5} width={100} height={20} margin={5}>
 </Sparklines> */}
       <div className="searchBar">
