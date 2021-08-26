@@ -5,9 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { reducer as weatherReducer } from './reducers/weatherReducer';
+import allReducers from './reducers'
 
-const store = createStore(weatherReducer);
+const store = createStore(allReducers);
 
 
 ReactDOM.render(
