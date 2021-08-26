@@ -1,9 +1,8 @@
 import "./App.css";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addTemperature } from './actions';
+import { addPressure, addTemperature, addHumidity, addCityName } from './actions';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
-
 
 function App() {
   const [data, setData] = useState([]);
