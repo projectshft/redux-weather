@@ -18,9 +18,9 @@ const SingleResult = ({result}) => {
   const humidities = result.data.map((h) => {
     return h.humidity;
   })
-//
-  const getAverage = (array) => {
-    const sum = array.reduce((acc, curr) => {
+
+  const getAverage = (arr) => {
+    const sum = arr.reduce((acc, curr) => {
       return acc + curr;
     }, 0)
     return Math.floor(sum / array.length);
