@@ -9,6 +9,7 @@ import promise from "redux-promise";
 
 import CitiesIndex from "./components/cities-index";
 import Header from "./components/header";
+import CitiesTable from "./components/cities-table";
 import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
@@ -21,6 +22,7 @@ ReactDOM.render(
           <Route path="/" component={CitiesIndex} />
         </Switch>
       </Header>
+      <CitiesTable></CitiesTable>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
