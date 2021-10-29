@@ -1,5 +1,5 @@
 import { normalize, schema } from 'normalizr';
-import { FETCH_POSTS, FETCH_POST, DELETE_POST, CREATE_POST, FETCH_CITY } from "../actions";
+import { FETCH_CITY } from "../actions";
 import _ from 'lodash';
 
 const citiesSchema = new schema.Entity('cities', undefined, {

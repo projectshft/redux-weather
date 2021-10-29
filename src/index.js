@@ -7,8 +7,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import promise from "redux-promise";
 
-import CitiesIndex from "./components/cities-index";
 import Header from "./components/header";
+import CitiesIndex from "./components/cities-index";
 import CitiesTable from "./components/cities-table";
 import reducers from "./reducers";
 

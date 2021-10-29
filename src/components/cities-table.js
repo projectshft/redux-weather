@@ -12,10 +12,8 @@ return (
     <tr>
     <td>todo</td>  
     <td>
-        <Sparklines data={sampleData}>
-             <SparklinesLine />
-             <SparklinesReferenceLine type="avg" />
-        </Sparklines> 
+        
+        
     </td> 
     <td>todo</td> 
     <td>todo</td>     
@@ -29,3 +27,8 @@ return (
 
 export default CitiesTable;
 
+/*
+<Sparklines data={sampleData}>
+             <SparklinesLine />
+             <SparklinesReferenceLine type="avg" />
+        </Sparklines>  */
