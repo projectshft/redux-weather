@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -9,7 +10,6 @@ import promise from "redux-promise";
 
 import Header from "./components/header";
 import CitiesIndex from "./components/cities-index";
-import CitiesTable from "./components/cities-table";
 import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
@@ -21,8 +21,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/" component={CitiesIndex} />
         </Switch>
-      </Header>
-      <CitiesTable></CitiesTable>
+      </Header>      
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
