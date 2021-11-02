@@ -14,7 +14,7 @@ const DEFAULT_STATE = [{}];
 const citiesReducer = function(state = DEFAULT_STATE, action) {    
     switch (action.type) {
         case FETCH_CITY: 
-            return action.payload.data    
+            return action.payload.data  
         default:
             return state
     }

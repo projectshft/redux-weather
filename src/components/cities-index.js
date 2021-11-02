@@ -8,16 +8,20 @@ import { fetchCity } from '../actions';
 
 
 const CitiesIndex = (props) => {   
+    
     const [city, setCity] = useState("");
     const cities = useSelector(state => state.cities);
     const dispatch = useDispatch();     
     
         
-    function handleFormSubmit (data) {             
-        dispatch(            
-            fetchCity(data)
+    function handleFormSubmit (event) {
+        event.preventDefault();
+    }
+    
+    function handleButtonClick (data) { 
+        dispatch(fetchCity(data)
         );
-    }        
+    }
         
         
 
@@ -27,14 +31,14 @@ const CitiesIndex = (props) => {
     
     
     return (
-        <form>
+        <form onSubmit={handleFormSubmit}>
         <div>
         <div className="text-xs-right">
             <input
             onChange={event => setCity(event.target.value)}            
             className='form-control'
             name='city'></input>                     
-            <Button className="btn btn-primary" onClick={handleFormSubmit(city)} >
+            <Button type="button" className="btn btn-primary" onClick={handleButtonClick(city)} >
             Add a City
             </Button>
         </div>
