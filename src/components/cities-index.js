@@ -1,51 +1,31 @@
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import { React, useEffect, useState } from 'react';
 import _ from 'lodash';
 
-import { fetchCity, fetchCities } from '../actions';
+import { fetchCity } from '../actions';
 
 
 const CitiesIndex = (props) => {   
     const [city, setCity] = useState("");
     const cities = useSelector(state => state.cities);
-    const dispatch = useDispatch();   
-
-    useEffect(() => {
-        dispatch(fetchCities());
-    }, [fetchCities]);
+    const dispatch = useDispatch();     
     
-    const handleFormSubmit = (data) => {
-        console.log(fetchCities())
-        console.log(fetchCity(data))
         
+    function handleFormSubmit (data) {             
         dispatch(            
             fetchCity(data)
         );
-    }   
-    
-    function renderCities() {
-        if (!_.isEmpty(cities)) {
-            
-            return cities.map((dataID) => (                
-                <tr className="city-info-row" key={dataID}>
-                    <td className="city-name">{cities.city.name}</td>                    
-                    <td>{cities.list[dataID].main.temp}</td>
-                    <td>{cities.list[dataID].main.pressure}</td>
-                    <td>{cities.list[dataID].main.humidity}</td>
-                </tr>
-            ))
-        }
+    }        
         
         
-        return <div>No cities have been selected</div>
-            
-    }
 
+    console.log(cities);
+    
+    console.log(city);
+    
+    
     return (
         <form>
         <div>
@@ -54,9 +34,9 @@ const CitiesIndex = (props) => {
             onChange={event => setCity(event.target.value)}            
             className='form-control'
             name='city'></input>                     
-            <Link className="btn btn-primary" onClick={handleFormSubmit(city)} >
+            <Button className="btn btn-primary" onClick={handleFormSubmit(city)} >
             Add a City
-            </Link>
+            </Button>
         </div>
         <hr />        
         <Table striped bordered hover>
@@ -66,9 +46,9 @@ const CitiesIndex = (props) => {
                     <th>Temperature (F)</th>
                     <th>Pressure (hPa)</th>
                     <th>Humidity (%)</th> 
-                </tr>       
+                </tr>                   
             </thead>        
-            <tbody className="list-group">{renderCities()}        
+            <tbody className="list-group">{}        
             </tbody>
         </Table>
         </div>
@@ -77,3 +57,5 @@ const CitiesIndex = (props) => {
 }
 
 export default CitiesIndex;
+
+
