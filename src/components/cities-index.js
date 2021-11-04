@@ -5,6 +5,7 @@ import { React, useEffect, useState } from 'react';
 import _ from 'lodash';
 
 import { fetchCity } from '../actions';
+import { render } from '@testing-library/react';
 
 
 const CitiesIndex = (props) => {   
@@ -14,20 +15,37 @@ const CitiesIndex = (props) => {
     const dispatch = useDispatch();     
     
         
-    function handleFormSubmit (event) {
-        event.preventDefault();
-    }
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+    };
     
     function handleButtonClick (data) { 
+        console.log(cities)
         dispatch(fetchCity(data)
         );
     }
-        
-        
-
-    console.log(cities);
     
-    console.log(city);
+    
+    function renderCities() {        
+        if (!_.isEmpty(cities)) {  
+                        
+
+            return cities.list.splice(0, 5).map((dateID, i) => (                
+                <tr className="city-info-row" key={dateID}>
+                    <td className="city-name">{cities.city.name}</td>                    
+                    <td>{cities.list[i].main.temp}</td>
+                    <td>{cities.list[i].main.pressure}</td>
+                    <td>{cities.list[i].main.humidity}</td>
+                </tr>
+            ))
+        }
+    
+    
+    return <div>No cities have been selected</div>
+        
+} 
+    
+    
     
     
     return (
@@ -38,7 +56,7 @@ const CitiesIndex = (props) => {
             onChange={event => setCity(event.target.value)}            
             className='form-control'
             name='city'></input>                     
-            <Button type="button" className="btn btn-primary" onClick={handleButtonClick(city)} >
+            <Button type="submit" className="btn btn-primary" onClick={() => handleButtonClick(city)} >
             Add a City
             </Button>
         </div>
@@ -52,7 +70,7 @@ const CitiesIndex = (props) => {
                     <th>Humidity (%)</th> 
                 </tr>                   
             </thead>        
-            <tbody className="list-group">{}        
+            <tbody className="list-group">{renderCities()}        
             </tbody>
         </Table>
         </div>

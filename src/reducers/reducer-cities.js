@@ -8,7 +8,7 @@ const citiesSchema = new schema.Entity('cities', undefined, {
 });
 */
 
-const DEFAULT_STATE = [{}];
+const DEFAULT_STATE = [];
 
 
 const citiesReducer = function(state = DEFAULT_STATE, action) {    
