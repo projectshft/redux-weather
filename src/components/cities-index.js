@@ -1,67 +1,87 @@
 import { Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { React, useEffect, useState } from 'react';
 import _ from 'lodash';
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 import { fetchCity } from '../actions';
 import { render } from '@testing-library/react';
 
 
 const CitiesIndex = (props) => {   
+    const defaultCity = "Portland";
     
+    useEffect(() => {
+        dispatch(fetchCity(defaultCity));
+
+    }, []);    
+
     const [city, setCity] = useState("");
-    const cities = useSelector(state => state.cities);
-    const dispatch = useDispatch();     
-    
+    const [temperatures, setTemps] = useState([]);
+    const [pressures, setPressures] = useState([]);
+    const [humidities, setHumidity] = useState([]);
+    const dispatch = useDispatch();    
+
+    const cities = useSelector(state => state.cities)   
         
     const handleFormSubmit = (e) => {
         e.preventDefault();
     };
     
     function handleButtonClick (data) { 
-        console.log(cities)
-        dispatch(fetchCity(data)
-        );
+        dispatch(fetchCity(data));                        
+    };
+    
+    function getData () {
+        for (let i = 0; i < cities.length; i++) {
+            console.log(cities[i]);
+            setTemps(temperatures => [...temperatures, cities[i].main.temp])
+            setPressures(pressures => [...pressures, cities[i].main.pressure])
+            setHumidity(humidities => [...humidities, cities[i].main.humidity])
+        }        
+        
     }
     
-    
-    function renderCities() {        
-        if (!_.isEmpty(cities)) {  
+    function renderCities() {             
+        if (!_.isEmpty(cities)) {         
+            return  (                
+                <tr className="city-info-row" >
+                    <td className="city-name">{city}</td>                    
+                        <Sparklines data={temperatures}>
+                            <SparklinesLine />
+                            <SparklinesReferenceLine type="mean" />
+                        </Sparklines>
                         
-
-            return cities.list.splice(0, 5).map((dateID, i) => (                
-                <tr className="city-info-row" key={dateID}>
-                    <td className="city-name">{cities.city.name}</td>                    
-                    <td>{cities.list[i].main.temp}</td>
-                    <td>{cities.list[i].main.pressure}</td>
-                    <td>{cities.list[i].main.humidity}</td>
+                        <Sparklines data={pressures}>
+                            <SparklinesLine />
+                            <SparklinesReferenceLine type="mean" />
+                        </Sparklines>
+                    
+                        <Sparklines data={humidities}>
+                            <SparklinesLine />
+                            <SparklinesReferenceLine type="mean" />
+                        </Sparklines>                   
                 </tr>
-            ))
-        }
-    
-    
-    return <div>No cities have been selected</div>
-        
-} 
-    
-    
-    
+            )
+        }        
+         return <div>No cities have been selected</div>        
+}   
     
     return (
         <form onSubmit={handleFormSubmit}>
-        <div>
+        
         <div className="text-xs-right">
             <input
             onChange={event => setCity(event.target.value)}            
             className='form-control'
             name='city'></input>                     
-            <Button type="submit" className="btn btn-primary" onClick={() => handleButtonClick(city)} >
+            <Button type="submit" className="btn btn-primary" 
+            onClick={() => handleButtonClick(city), () => getData()} >
             Add a City
             </Button>
         </div>
         <hr />        
-        <Table striped bordered hover>
+        <Table responsive>
             <thead>
                 <tr>
                     <th>City</th>
@@ -70,10 +90,8 @@ const CitiesIndex = (props) => {
                     <th>Humidity (%)</th> 
                 </tr>                   
             </thead>        
-            <tbody className="list-group">{renderCities()}        
-            </tbody>
-        </Table>
-        </div>
+            <tbody className="list-group">{renderCities()}</tbody>           
+        </Table>        
         </form>
     )
 }

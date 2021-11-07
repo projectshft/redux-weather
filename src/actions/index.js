@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const FETCH_CITY = "FETCH_CITY";
+export const FETCH_TEMPS = "FETCH_TEMPS";
 
 
 export function fetchCity(cityName) {
@@ -12,6 +13,8 @@ export function fetchCity(cityName) {
         payload: request
     };
 }
+
+
 
 
 

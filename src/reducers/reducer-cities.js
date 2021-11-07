@@ -1,5 +1,5 @@
 import { normalize, schema } from 'normalizr';
-import { FETCH_CITY } from "../actions";
+import { FETCH_CITY, FETCH_TEMPS } from "../actions";
 import _ from 'lodash';
 
 /*
@@ -14,7 +14,7 @@ const DEFAULT_STATE = [];
 const citiesReducer = function(state = DEFAULT_STATE, action) {    
     switch (action.type) {
         case FETCH_CITY: 
-            return action.payload.data  
+            return action.payload.data.list.slice(0, 5)   
         default:
             return state
     }
