@@ -8,6 +8,7 @@ import promise from "redux-promise";
 
 import Header from "./components/header";
 import SearchBar from "./components/search-bar";
+import ChartIndex from "./components/chart-index";
 import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
@@ -17,6 +18,7 @@ ReactDOM.render(
     <React.StrictMode>
       <Header>
       <SearchBar />
+      <ChartIndex />
       </Header>
     </React.StrictMode>
    </Provider>,

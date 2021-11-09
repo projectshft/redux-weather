@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { createChart } from '../actions';
+import { createNewRow } from '../actions';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -13,7 +13,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (city) => {
-    dispatch(createChart(city));
+    dispatch(createNewRow(city));
   }
   
   const { register, handleSubmit, formState: {errors}} = useForm({
