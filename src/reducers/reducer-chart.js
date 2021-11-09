@@ -4,9 +4,11 @@ const chartReducer = function (state= [], action) {
   switch(action.type) {
     
     case CREATE_NEW_ROW:
-      // console.log(action.payload);
-      console.log(state);
-      return [action.payload, ...state];
+      if (action.payload){
+        return [action.payload, ...state];
+      } else {
+        return state;
+      }
 
     // case UPDATE_CHART:
     //   return state;

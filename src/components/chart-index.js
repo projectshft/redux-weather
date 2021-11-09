@@ -1,33 +1,44 @@
 import { useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { updateChart } from "../actions";
 
 const ChartIndex = () => {
   
   const chart = useSelector((state) => state.chart)
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(updateChart());
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [updateChart]);
 
   function renderChart() {
     return chart.map((row, i) => (
-      <li className="list-group-item" key={i}>
-        <h1>{row.data.city.name}</h1>
-      </li>
+      <tr key={i}>
+        <th scope="row">{row.data.city.name}</th>
+        <td>{row.data.list[0].main.temp}</td>
+        <td>{row.data.list[0].main.pressure}</td>
+        <td>{row.data.list[0].main.humidity}</td>
+      </tr>
+
     ));
 
   }
 
-  return (
-    <div>
-      <br />
-      <h3>Data</h3>
-      <ul className="list-group">{renderChart()}</ul>
-    </div>
-  );
+  if (chart.length > 0) {
+    return (
+      <>
+        <br />
+        <table className="table">
+          <thead className="table-light">
+            <tr>
+              <th scope="col">City</th>
+              <th scope="col">Temperature (F)</th>
+              <th scope="col">Pressure (hPa)</th>
+              <th scope="col">Humidity(%)</th>
+            </tr>
+          </thead>
+          <tbody>
+          {renderChart()}
+          </tbody>
+        </table>
+      </>
+    );
+  } else {
+    return('');
+  }
 }
 
 export default ChartIndex;

@@ -14,24 +14,28 @@ const SearchBar = () => {
 
   const handleSearch = (city) => {
     dispatch(createNewRow(city));
+    reset();
   }
   
-  const { register, handleSubmit, formState: {errors}} = useForm({
+  const { register, handleSubmit, formState: {errors}, reset} = useForm({
     resolver: yupResolver(citySchema)
   });
   
   return (
-    <form  className='col-6 offset-3' onSubmit={handleSubmit(handleSearch)} >
-      <div className='input-group'>  
-        <input
-          className='form-control' name='city'
-          {...register('city', {required:"required"})}></input>
-        <span className='input-group-btn'>
-          <button className="btn btn-primary" type="submit">Search</button>
-        </span>
-      </div>
-      {errors.city?.message}
-    </form>
+    <>
+      <br />
+      <form  className='col-6 offset-3' onSubmit={handleSubmit(handleSearch)} >
+        <div className='input-group'>  
+          <input
+            className='form-control' name='city' placeholder="Enter a city for a 5-day forecast"
+            {...register('city', {required:"required"})}></input>
+          <span className='input-group-btn'>
+            <button className="btn btn-primary" type="submit">Search</button>
+          </span>
+        </div>
+        {errors.city?.message}
+      </form>
+    </>
   )
 }
 
