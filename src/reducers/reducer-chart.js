@@ -10,9 +10,6 @@ const chartReducer = function (state= [], action) {
         return state;
       }
 
-    // case UPDATE_CHART:
-    //   return state;
-
     default:
       return state;
     };
