@@ -1,26 +1,39 @@
-import { normalize, schema } from 'normalizr';
-import { FETCH_CITY, FETCH_TEMPS } from "../actions";
+import { FETCH_CITY } from "../actions";
 import _ from 'lodash';
 
-/*
-const citiesSchema = new schema.Entity('cities', undefined, {
-    idAttribute: (value) => value._id
-});
-*/
-
-const DEFAULT_STATE = [];
-
-
-const citiesReducer = function(state = DEFAULT_STATE, action) {    
-    switch (action.type) {
-        case FETCH_CITY: 
-            return action.payload.data.list.slice(0, 5)   
-        default:
-            return state
-    }
-    
-}
+const citiesReducer = function(state = [], action) {  
+switch (action.type) {   
+    case FETCH_CITY:       
+        
+        return  action.payload.data.list; 
+        
+    default:
+        return state;
+} 
+}    
 
 export default citiesReducer;
 
-//const normalizedResults = normalize(action.payload.data, [citiesSchema])
+
+/*
+const DEFAULT_STATE = [];
+
+const citiesReducer = function(state = DEFAULT_STATE, action) {    
+    switch (action.type) {
+        case FETCH_CITY:       
+        
+        return action.payload.data   
+        // return action.payload.data.list.slice(0, 5) 
+            
+        default:
+            return state
+    }    
+}
+*/
+
+/*
+From Peter Elbaum to Everyone:  06:33 PM
+[…state, yourData]
+[[], [], [], []]
+Const cities = useState(state => state.cities)
+*/

@@ -5,48 +5,42 @@ import _ from 'lodash';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 import { fetchCity } from '../actions';
-import { render } from '@testing-library/react';
+
 
 
 const CitiesIndex = () => {   
     
-    const defaultCity = "Portland";
-    
-    useEffect(() => {
-        dispatch(fetchCity(defaultCity));
-
-    }, []);    
-      
-
     const [city, setCity] = useState("");
     const [temperatures, setTemps] = useState([]);
     const [pressures, setPressures] = useState([]);
-    const [humidities, setHumidity] = useState([]);
-    //create state variable for the collection of searched cities
-    const [cityCollection, setCityCollection] = useState([{
-        searchedCities: [{}]
-    }]);
-    const dispatch = useDispatch();    
+    const [humidities, setHumidity] = useState([]);    
+    const [cityCollection, setCityCollection] = useState([{}]); //create state variable for the collection of searched cities
 
+    const dispatch = useDispatch();    
     const cities = useSelector(state => state.cities)   //Names payload.data cities
         
     const handleFormSubmit = (e) => {
         e.preventDefault();
     };
     
-    function handleButtonClick (data) {     
-        dispatch(fetchCity(data));                        
+    async function handleButtonClick (data) {     
+        await dispatch(fetchCity(data));  
+        getData();                      
     };
     
     function getData () {  //iterates through api call (5 total) and creates arrays of needed values
-        for (let i = 0; i < cities.length; i++) {            
+        console.log(cities)
+        for (let i = 0; i < cities.length; i+=8) {   
+            console.log(cities[i].main.temp);      
             setTemps(temperatures => [...temperatures, cities[i].main.temp])
             setPressures(pressures => [...pressures, cities[i].main.pressure])
             setHumidity(humidities => [...humidities, cities[i].main.humidity])
+            console.log(temperatures)
         }
         
         const searchedCity = {temps: temperatures, pressure: pressures, humidity: humidities};  //Stores needed values in state array of objects
         setCityCollection(cityCollection => [...cityCollection, {searchedCity}])  //begins to work after the third button click.  Why?
+        console.log(searchedCity)
         console.log(cityCollection);
         
         
@@ -86,8 +80,8 @@ const CitiesIndex = () => {
             onChange={event => setCity(event.target.value)}            
             className='form-control'
             name='city'></input>                     
-            <Button type="submit" className="btn btn-primary" 
-            onClick={() => handleButtonClick(city), () => getData()} >
+            <Button type="primary" className="btn btn-primary" 
+            onClick={() => handleButtonClick(city)} >
             Add a City
             </Button>
         </div>
