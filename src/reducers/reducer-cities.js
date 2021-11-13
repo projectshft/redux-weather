@@ -15,25 +15,3 @@ switch (action.type) {
 export default citiesReducer;
 
 
-/*
-const DEFAULT_STATE = [];
-
-const citiesReducer = function(state = DEFAULT_STATE, action) {    
-    switch (action.type) {
-        case FETCH_CITY:       
-        
-        return action.payload.data   
-        // return action.payload.data.list.slice(0, 5) 
-            
-        default:
-            return state
-    }    
-}
-*/
-
-/*
-From Peter Elbaum to Everyone:  06:33 PM
-[…state, yourData]
-[[], [], [], []]
-Const cities = useState(state => state.cities)
-*/

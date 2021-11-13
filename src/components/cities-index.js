@@ -9,7 +9,8 @@ import { fetchCity } from '../actions';
 
 
 const CitiesIndex = () => {   
-    
+    const dummyData = [2, 8, 10, 19, 32]  //Values used to test sparklines
+
     useEffect(() => {
         getData();
     }, []);
@@ -19,74 +20,60 @@ const CitiesIndex = () => {
     const [pressures, setPressures] = useState([]);
     const [humidities, setHumidity] = useState([]);    
     
-    let searchedCity = [{cityName: null, temps: null, pressure: null, humidity: null}]
+    let searchedCity = [{}]
 
     const dispatch = useDispatch();    
-    const cities = useSelector(state => state.cities)   //Names payload.data cities
+    const cities = useSelector(state => state.cities)   //Names payload.data cities   
     
-     
-    console.log(cities)       
-    
-    
-    async function handleButtonClick (data) {     
+    async function handleButtonClick (data) {     //Error: Only stores values correctly after third button click
         await dispatch(fetchCity(data));  
         getData();                      
     };
     
     function getData () {  //iterates through api call (5 total) and creates arrays of needed values
-        if (!_.isEmpty(cities)) {
-            searchedCity = [{cityName: null, temps: null, pressure: null, humidity: null}]                           
+        if (!_.isEmpty(cities)) {                                      
         
             for (let i = 0; i < cities.length; i++) {  
-                for (let j = 0; j < cities[i].list.length; j += 8) {                        
-                    setTemps(temperatures => [...temperatures, cities[i].list[j].main.temp])
+                for (let j = 0; j < cities[i].list.length; j += 8) {                                          
+                    setTemps(temperatures => [...temperatures, cities[i].list[j].main.temp])                    
                     setPressures(pressures => [...pressures, cities[i].list[j].main.pressure])
                     setHumidity(humidities => [...humidities, cities[i].list[j].main.humidity])                
             }
-        }
-            console.log(temperatures)
+        } 
             
-            searchedCity = [...searchedCity, {cityName: city, temps: temperatures, pressure: pressures, humidity: humidities}]    // will be rebuilt each time and mapped through for render to DOM
-            console.log(searchedCity.temps)
-                
-            
-    
+        searchedCity = [...searchedCity, {cityName: city, temps: temperatures, pressure: pressures, humidity: humidities}]         
         }
     } 
-        
-        
-        
-        
     
-    
-    function renderCities() {             
-        if (!_.isEmpty(cities)) {         
-            return  searchedCity.map((cityRow, index) => {  //map/iterate through array of objects rendering them to the DOM
-                <span>                     
-                    <Sparklines data={cityRow.temps}>
+    function renderCities(rowData) {                  
+        if (!_.isEmpty(cities)) {                  
+            return rowData.map((row) => (    //map/iterate through array of objects rendering them to the DOM
+                <tr className="city-info-row" key={row}>                    
+                    <td className="city-name">{row.cityName}</td> 
+                                         
+                    <Sparklines data={temperatures}>       
                         <SparklinesLine />
                         <SparklinesReferenceLine type="mean" />
                     </Sparklines>
                     
-                    <Sparklines data={cityRow.pressure}>
+                    <Sparklines data={row.pressure}>
                         <SparklinesLine />
                         <SparklinesReferenceLine type="mean" />
                     </Sparklines>
                 
-                    <Sparklines data={cityRow.humidity}>
+                    <Sparklines data={row.humidity}>
                         <SparklinesLine />
                         <SparklinesReferenceLine type="mean" />
-                    </Sparklines>   </span>          
-                
+                    </Sparklines>
+                    </tr> //Error: Sparklines work with DummyData and component state values (see temperatures table).  Map function incorrect?             
              
-        })
+            ))
     }        
          return <div>No cities have been selected</div>        
-    }   
+    }  
     
     return (
-        <div>
-        
+        <div>        
         <div className="text-xs-right">
             <input
             onChange={event => setCity(event.target.value)}            
@@ -105,10 +92,10 @@ const CitiesIndex = () => {
                     <th>Temperature (F)</th>
                     <th>Pressure (hPa)</th>
                     <th>Humidity (%)</th> 
-                </tr>                   
-            </thead>                 
-        </Table>      
-        <div className="list-group">{renderCities()}</div>        
+                </tr>                                 
+            </thead> 
+            <tbody className="list-group">{renderCities(searchedCity)} </tbody>                
+        </Table>              
         </div>
     )
 }

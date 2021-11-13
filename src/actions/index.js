@@ -28,9 +28,7 @@ export async function fetchCity(cityName) {
 
 
 
-//api key de711069937febcebc42e40505ff223d
 
-// original api key af4517becabe6b999a8031c609577a9a
 
 
 
