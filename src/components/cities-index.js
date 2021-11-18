@@ -4,73 +4,94 @@ import { React, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
+
 import { fetchCity } from '../actions';
 
 
 
-const CitiesIndex = () => {   
-    const dummyData = [2, 8, 10, 19, 32]  //Values used to test sparklines
 
+const CitiesIndex = () => {      
+
+    const cities = useSelector(state => state.cities)   //Names payload.data cities   
+    /*
     useEffect(() => {
         getData();
-    }, []);
-
+    }, [cities]);
+*/
     const [city, setCity] = useState("");
-    const [temperatures, setTemps] = useState([]);
-    const [pressures, setPressures] = useState([]);
-    const [humidities, setHumidity] = useState([]);    
     
-    let searchedCity = [{}]
+    let tempArray = [];
+    let pressureArray = [];
+    let humidityArray = [];
+    let cityNames = [];
+    
+    //let tempData = [];
+    //let pressureData = [];
+    //let humidityData = [];
 
     const dispatch = useDispatch();    
-    const cities = useSelector(state => state.cities)   //Names payload.data cities   
     
-    async function handleButtonClick (data) {     //Error: Only stores values correctly after third button click
+    
+    async function handleButtonClick (data) {     
         await dispatch(fetchCity(data));  
-        getData();                      
-    };
+                             
+    };   
     
     function getData () {  //iterates through api call (5 total) and creates arrays of needed values
-        if (!_.isEmpty(cities)) {                                      
         
+        if (!_.isEmpty(cities)) {       
             for (let i = 0; i < cities.length; i++) {  
-                for (let j = 0; j < cities[i].list.length; j += 8) {                                          
-                    setTemps(temperatures => [...temperatures, cities[i].list[j].main.temp])                    
-                    setPressures(pressures => [...pressures, cities[i].list[j].main.pressure])
-                    setHumidity(humidities => [...humidities, cities[i].list[j].main.humidity])                
+                    cityNames = cityNames.concat(city)
+                for (let j = 0; j < cities[i].list.length; j += 8) {                      
+                    tempArray = tempArray.concat(cities[i].list[j].main.temp)
+                    pressureArray = pressureArray.concat(cities[i].list[j].main.pressure)                                      
+                    humidityArray = humidityArray.concat(cities[i].list[j].main.humidity)                               
             }
-        } 
-            
-        searchedCity = [...searchedCity, {cityName: city, temps: temperatures, pressure: pressures, humidity: humidities}]         
+            }     
         }
+        console.log(tempArray) 
+        
+
     } 
-    
-    function renderCities(rowData) {                  
+
+    function renderCities() {                  
+        getData();
+        console.log(cityNames)
+        console.log(tempArray)
         if (!_.isEmpty(cities)) {                  
-            return rowData.map((row) => (    //map/iterate through array of objects rendering them to the DOM
-                <tr className="city-info-row" key={row}>                    
-                    <td className="city-name">{row.cityName}</td> 
-                                         
-                    <Sparklines data={temperatures}>       
+            return  (    //map/iterate through array of objects rendering them to the DOM
+                <tr>                                 
+                    <td>{city}</td>
+                    <td>
+                    <Sparklines data={tempArray}>       
+                        <SparklinesLine />
+                        <SparklinesReferenceLine type="mean" />
+                    </Sparklines>                    
+                    </td>
+                    <td>
+                    <Sparklines data={pressureArray}>
                         <SparklinesLine />
                         <SparklinesReferenceLine type="mean" />
                     </Sparklines>
+                    </td>
+                    <td>
+                    <Sparklines data={humidityArray}>
+                        <SparklinesLine />
+                        <SparklinesReferenceLine type="mean" />
+                    </Sparklines> 
+                    </td>           
                     
-                    <Sparklines data={row.pressure}>
-                        <SparklinesLine />
-                        <SparklinesReferenceLine type="mean" />
-                    </Sparklines>
+                </tr>
+                    
                 
-                    <Sparklines data={row.humidity}>
-                        <SparklinesLine />
-                        <SparklinesReferenceLine type="mean" />
-                    </Sparklines>
-                    </tr> //Error: Sparklines work with DummyData and component state values (see temperatures table).  Map function incorrect?             
-             
-            ))
+                    
+                     
+            )
     }        
          return <div>No cities have been selected</div>        
-    }  
+    }
+    
+    
     
     return (
         <div>        
@@ -93,9 +114,10 @@ const CitiesIndex = () => {
                     <th>Pressure (hPa)</th>
                     <th>Humidity (%)</th> 
                 </tr>                                 
-            </thead> 
-            <tbody className="list-group">{renderCities(searchedCity)} </tbody>                
-        </Table>              
+            </thead>   
+            <tbody>{renderCities()}</tbody>                                  
+        </Table>    
+               
         </div>
     )
 }
