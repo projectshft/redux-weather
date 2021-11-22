@@ -25,7 +25,7 @@ const CitiesIndex = () => {
     let humidityArray = [];
     let cityNames = [];
     
-    //let tempData = [];
+    let cityData = [];
     //let pressureData = [];
     //let humidityData = [];
 
@@ -38,26 +38,30 @@ const CitiesIndex = () => {
     };   
     
     function getData () {  //iterates through api call (5 total) and creates arrays of needed values
-        
+        console.log(cities.length)
+
         if (!_.isEmpty(cities)) {       
-            for (let i = 0; i < cities.length; i++) {  
+            for (let i = cities.length - 1; i < cities.length; i++) {  
                     cityNames = cityNames.concat(city)
                 for (let j = 0; j < cities[i].list.length; j += 8) {                      
                     tempArray = tempArray.concat(cities[i].list[j].main.temp)
                     pressureArray = pressureArray.concat(cities[i].list[j].main.pressure)                                      
                     humidityArray = humidityArray.concat(cities[i].list[j].main.humidity)                               
             }
-            }     
+                cityData.concat({cityName: cityNames[i], tempData: tempArray, pressureData: pressureArray, humidityData: humidityArray})
+            }      
+            
+            console.log(cityData)    
         }
         console.log(tempArray) 
+
         
 
     } 
 
     function renderCities() {                  
         getData();
-        console.log(cityNames)
-        console.log(tempArray)
+        
         if (!_.isEmpty(cities)) {                  
             return  (    //map/iterate through array of objects rendering them to the DOM
                 <tr>                                 
