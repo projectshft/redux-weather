@@ -1,4 +1,4 @@
-import './App.css';
+import '../App.css';
 import {
   Container,
   Row,
@@ -13,16 +13,26 @@ import {
   SparklinesLine,
   SparklinesReferenceLine,
 } from 'react-sparklines';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCity } from './actions';
+import { fetchCity } from '../actions';
 
-function App() {
+const CitiesIndex = () => {
   const dispatch = useDispatch();
+  const textInput = useRef(null);
 
   const handleSubmit = (e) => {
-    const queryCity = e.target.elements.query.value;
     e.preventDefault();
-    dispatch(fetchCity(queryCity));
+    textInput.current.focus();
+
+    const queryCity = textInput.current.value;
+    if (!queryCity) {
+      alert('Please enter a valid city name to see its forecast');
+      textInput.current.value = '';
+    } else {
+      dispatch(fetchCity(queryCity));
+      textInput.current.value = '';
+    }
   };
 
   const cities = useSelector((state) => state.cities);
@@ -30,7 +40,7 @@ function App() {
   const renderCities = () =>
     cities.cityList.map((city, index) => (
       <tr key={index}>
-        <td>{city.name}</td>
+        <td style={{ verticalAlign: 'middle' }}>{city.name}</td>
         <td>
           <Sparklines data={city.temperature} height={60} width={200}>
             <SparklinesLine color="orange" />
@@ -84,8 +94,10 @@ function App() {
             <InputGroup>
               <FormControl
                 type="text"
+                ref={textInput}
                 placeholder="Get a 5-day forecast for your favorite cities"
                 id="query"
+                autoFocus
               />
               <Button variant="info" type="submit">
                 Submit
@@ -109,6 +121,6 @@ function App() {
       </Container>
     </div>
   );
-}
+};
 
-export default App;
+export default CitiesIndex;
