@@ -4,9 +4,9 @@ import {
   Row,
   Form,
   FormControl,
+  InputGroup,
   Button,
   Table,
-  InputGroup,
 } from 'react-bootstrap';
 import {
   Sparklines,
@@ -27,7 +27,7 @@ const CitiesIndex = () => {
 
     const queryCity = textInput.current.value;
     if (!queryCity) {
-      alert('Please enter a valid city name to see its forecast');
+      alert('Please enter the name of a city to see its forecast');
       textInput.current.value = '';
     } else {
       dispatch(fetchCity(queryCity));
@@ -45,10 +45,9 @@ const CitiesIndex = () => {
           <Sparklines data={city.temperature} height={60} width={200}>
             <SparklinesLine color="orange" />
             <SparklinesReferenceLine
-              type="mean"
+              type="avg"
               style={{
-                stroke: 'red',
-                strokeOpacity: 0.75,
+                stroke: 'magenta',
                 strokeDasharray: '3, 3',
               }}
             />
@@ -59,10 +58,9 @@ const CitiesIndex = () => {
           <Sparklines data={city.pressure} height={60} width={200}>
             <SparklinesLine color="lime" />
             <SparklinesReferenceLine
-              type="mean"
+              type="avg"
               style={{
-                stroke: 'red',
-                strokeOpacity: 0.75,
+                stroke: 'magenta',
                 strokeDasharray: '3, 3',
               }}
             />
@@ -73,10 +71,9 @@ const CitiesIndex = () => {
           <Sparklines data={city.humidity} height={60} width={200}>
             <SparklinesLine color="turquoise" />
             <SparklinesReferenceLine
-              type="mean"
+              type="avg"
               style={{
-                stroke: 'red',
-                strokeOpacity: 0.75,
+                stroke: 'magenta',
                 strokeDasharray: '3, 3',
               }}
             />
@@ -89,7 +86,7 @@ const CitiesIndex = () => {
   return (
     <div className="App">
       <Container>
-        <Row style={{ padding: 30 }}>
+        <Row style={{ padding: 40 }}>
           <Form onSubmit={handleSubmit}>
             <InputGroup>
               <FormControl
@@ -106,13 +103,13 @@ const CitiesIndex = () => {
           </Form>
         </Row>
         <Row>
-          <Table hover>
+          <Table hover variant="dark">
             <thead>
               <tr>
-                <th>City</th>
-                <th>Temperature (&#176;F)</th>
-                <th>Pressure (hPa)</th>
-                <th>Humidity (%)</th>
+                <th style={{ width: '16%' }}>City</th>
+                <th style={{ width: '28%' }}>Temperature (&#176;F)</th>
+                <th style={{ width: '28%' }}>Pressure (hPa)</th>
+                <th style={{ width: '28%' }}>Humidity (%)</th>
               </tr>
             </thead>
             <tbody>{renderCities()}</tbody>

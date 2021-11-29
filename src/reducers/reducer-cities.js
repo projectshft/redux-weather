@@ -1,23 +1,7 @@
 import { ADD_CITY } from '../actions';
 
 const DEFAULT_STATE = {
-  cityList: [
-    {
-      name: 'Durham',
-      temperature: [
-        5, 10, 5, 20, 25, 30, 5, 10, 5, 20, 30, 35, 40, 5, 20, 30, 35, 40,
-      ],
-      avgTemp: 58,
-      pressure: [
-        5, 10, 5, 20, 25, 30, 5, 10, 5, 20, 30, 35, 40, 5, 20, 30, 35, 40,
-      ],
-      avgPressure: 1010,
-      humidity: [
-        5, 10, 5, 20, 25, 30, 5, 10, 5, 20, 30, 35, 40, 5, 20, 30, 35, 40,
-      ],
-      avgHumidity: 50,
-    },
-  ],
+  cityList: [],
 };
 
 const parseCity = (data) => {
@@ -53,7 +37,6 @@ const citiesReducer = function (state = DEFAULT_STATE, action) {
         cityList: [cityToAdd, ...state.cityList],
       };
     }
-
     default:
       return state;
   }
