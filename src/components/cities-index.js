@@ -22,7 +22,7 @@ const CitiesIndex = () => {
     let pressureData = cities.map(city => city.list.slice(0, 5).map(data => data.main.pressure));
     let humidityArray = cities.map(city => city.list.slice(0, 5).map(data => data.main.humidity));
 
-    let numCities = names.length;
+    
 
           
     
@@ -43,48 +43,43 @@ const CitiesIndex = () => {
     
 
     function renderCities() {         
-        console.log(cities)  
+        
         
         if (!_.isEmpty(cities)) { 
              return(
-                <tbody>
+                <div>
                 {cities.map((city) => 
                 <Row className = 'mb-4 mt-4' md={4}>
-                    <Col>                        
+                    <Col width={3}>                        
                         {city.city.name}                             
+                    </Col>                  
+                    <Col>    
+                        <Sparklines data={city.list.slice(0, 5).map(temperatures => temperatures.main.temp)}>       
+                        <SparklinesLine color="orange" />
+                        <SparklinesReferenceLine type="mean" />
+                        </Sparklines>
                     </Col> 
-                    {renderTemperatures(city)}                 
-                </Row>
+                    <Col>                                     
+                        <Sparklines data={city.list.slice(0, 5).map(temperatures => temperatures.main.pressure)}>       
+                        <SparklinesLine color="green" />
+                        <SparklinesReferenceLine type="mean" />
+                        </Sparklines>                            
+                    </Col>   
+                    <Col>                                     
+                        <Sparklines data={city.list.slice(0, 5).map(temperatures => temperatures.main.humidity)}>       
+                        <SparklinesLine color="black" />
+                        <SparklinesReferenceLine type="mean" />
+                        </Sparklines>                            
+                    </Col>                                                  
+                </Row>                
                 )}                  
-                </tbody>  
+                </div> 
+                
+                
                 )        
         }        
              return <div>No cities have been selected</div>        
-    }
-
-    function renderTemperatures(city) {
-        
-        
-        console.log(numCities.indexOf)
-        console.log(tempData)
-        return (
-         <Col>    
-        {tempData.map((data) =>  
-            
-                                   
-                <Sparklines data={data}>       
-                <SparklinesLine />
-                <SparklinesReferenceLine type="mean" />
-                </Sparklines>          
-        )} 
-        </Col>
-        )
-
-    }
-              
-            
-   
-            
+    }     
     
     return (
         <div>        
@@ -108,49 +103,12 @@ const CitiesIndex = () => {
                     <th>Humidity (%)</th> 
                 </tr>                                 
             </thead>   
-        {renderCities()}                             
+                                    
         </Table>    
-        
+        {renderCities()} 
         </div>
     )
 }
 
 export default CitiesIndex;
 
-/*
- function renderCities() {         
-        console.log(cities)  
-        
-        if (!_.isEmpty(cities)) { 
-             return(
-                <tbody>
-                {cities.map((city) => 
-                <Row className = 'mb-4 mt-4' md={4}>
-                    <Col>                        
-                        {city.city.name}                             
-                    </Col> 
-                    {renderTemperatures(city)}                 
-                </Row>
-                )}                  
-                </tbody>  
-                )        
-        }        
-             return <div>No cities have been selected</div>        
-    }
-
-    function renderTemperatures(city) {
-        console.log(tempData)
-        return (
-         <Col>    
-        {tempData.map((data) =>  
-                                   
-                <Sparklines data={data}>       
-                <SparklinesLine />
-                <SparklinesReferenceLine type="mean" />
-                </Sparklines>          
-        )} 
-        </Col>
-        )
-
-    }
-        */
