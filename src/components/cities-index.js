@@ -1,4 +1,4 @@
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Container, Row, Col} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { React, useEffect, useState } from 'react';
 import _ from 'lodash';
@@ -13,89 +13,78 @@ import { fetchCity } from '../actions';
 const CitiesIndex = () => {      
 
     const cities = useSelector(state => state.cities)   //Names payload.data cities   
-    /*
-    useEffect(() => {
-        getData();
-    }, [cities]);
-*/
     const [city, setCity] = useState("");
     
-    let tempArray = [];
-    let pressureArray = [];
-    let humidityArray = [];
-    let cityNames = [];
     
-    let cityData = [];
-    //let pressureData = [];
-    //let humidityData = [];
+    const dummyData = [23, 27, 32, 30, 26];
+    let names = cities.map(city => city.city.name);
+    let tempData = cities.map(city => city.list.slice(0, 5).map(data => data.main.temp));
+    let pressureData = cities.map(city => city.list.slice(0, 5).map(data => data.main.pressure));
+    let humidityArray = cities.map(city => city.list.slice(0, 5).map(data => data.main.humidity));
+
+    let numCities = names.length;
+
+          
+    
+        
 
     const dispatch = useDispatch();    
+
+    useEffect(() => {           
+    }, [dispatch, fetchCity, city]);
     
     
     async function handleButtonClick (data) {     
-        await dispatch(fetchCity(data));  
-                             
+        await dispatch(fetchCity(data));                               
     };   
+
     
-    function getData () {  //iterates through api call (5 total) and creates arrays of needed values
-        console.log(cities.length)
+    
+    
 
-        if (!_.isEmpty(cities)) {       
-            for (let i = cities.length - 1; i < cities.length; i++) {  
-                    cityNames = cityNames.concat(city)
-                for (let j = 0; j < cities[i].list.length; j += 8) {                      
-                    tempArray = tempArray.concat(cities[i].list[j].main.temp)
-                    pressureArray = pressureArray.concat(cities[i].list[j].main.pressure)                                      
-                    humidityArray = humidityArray.concat(cities[i].list[j].main.humidity)                               
-            }
-                cityData.concat({cityName: cityNames[i], tempData: tempArray, pressureData: pressureArray, humidityData: humidityArray})
-            }      
-            
-            console.log(cityData)    
-        }
-        console.log(tempArray) 
-
+    function renderCities() {         
+        console.log(cities)  
         
-
-    } 
-
-    function renderCities() {                  
-        getData();
-        
-        if (!_.isEmpty(cities)) {                  
-            return  (    //map/iterate through array of objects rendering them to the DOM
-                <tr>                                 
-                    <td>{city}</td>
-                    <td>
-                    <Sparklines data={tempArray}>       
-                        <SparklinesLine />
-                        <SparklinesReferenceLine type="mean" />
-                    </Sparklines>                    
-                    </td>
-                    <td>
-                    <Sparklines data={pressureArray}>
-                        <SparklinesLine />
-                        <SparklinesReferenceLine type="mean" />
-                    </Sparklines>
-                    </td>
-                    <td>
-                    <Sparklines data={humidityArray}>
-                        <SparklinesLine />
-                        <SparklinesReferenceLine type="mean" />
-                    </Sparklines> 
-                    </td>           
-                    
-                </tr>
-                    
-                
-                    
-                     
-            )
-    }        
-         return <div>No cities have been selected</div>        
+        if (!_.isEmpty(cities)) { 
+             return(
+                <tbody>
+                {cities.map((city) => 
+                <Row className = 'mb-4 mt-4' md={4}>
+                    <Col>                        
+                        {city.city.name}                             
+                    </Col> 
+                    {renderTemperatures(city)}                 
+                </Row>
+                )}                  
+                </tbody>  
+                )        
+        }        
+             return <div>No cities have been selected</div>        
     }
-    
-    
+
+    function renderTemperatures(city) {
+        
+        
+        console.log(numCities.indexOf)
+        console.log(tempData)
+        return (
+         <Col>    
+        {tempData.map((data) =>  
+            
+                                   
+                <Sparklines data={data}>       
+                <SparklinesLine />
+                <SparklinesReferenceLine type="mean" />
+                </Sparklines>          
+        )} 
+        </Col>
+        )
+
+    }
+              
+            
+   
+            
     
     return (
         <div>        
@@ -119,13 +108,49 @@ const CitiesIndex = () => {
                     <th>Humidity (%)</th> 
                 </tr>                                 
             </thead>   
-            <tbody>{renderCities()}</tbody>                                  
+        {renderCities()}                             
         </Table>    
-               
+        
         </div>
     )
 }
 
 export default CitiesIndex;
 
+/*
+ function renderCities() {         
+        console.log(cities)  
+        
+        if (!_.isEmpty(cities)) { 
+             return(
+                <tbody>
+                {cities.map((city) => 
+                <Row className = 'mb-4 mt-4' md={4}>
+                    <Col>                        
+                        {city.city.name}                             
+                    </Col> 
+                    {renderTemperatures(city)}                 
+                </Row>
+                )}                  
+                </tbody>  
+                )        
+        }        
+             return <div>No cities have been selected</div>        
+    }
 
+    function renderTemperatures(city) {
+        console.log(tempData)
+        return (
+         <Col>    
+        {tempData.map((data) =>  
+                                   
+                <Sparklines data={data}>       
+                <SparklinesLine />
+                <SparklinesReferenceLine type="mean" />
+                </Sparklines>          
+        )} 
+        </Col>
+        )
+
+    }
+        */
