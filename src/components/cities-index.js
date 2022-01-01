@@ -1,56 +1,32 @@
-import { Table, Button, Container, Row, Col} from 'react-bootstrap';
+import { Button, Row, Col} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { React, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
-
-
 import { fetchCity } from '../actions';
-
-
 
 
 const CitiesIndex = () => {      
 
     const cities = useSelector(state => state.cities)   //Names payload.data cities   
     const [city, setCity] = useState("");
-    
-    
-    const dummyData = [23, 27, 32, 30, 26];
-    let names = cities.map(city => city.city.name);
-    let tempData = cities.map(city => city.list.slice(0, 5).map(data => data.main.temp));
-    let pressureData = cities.map(city => city.list.slice(0, 5).map(data => data.main.pressure));
-    let humidityArray = cities.map(city => city.list.slice(0, 5).map(data => data.main.humidity));
-
-    
-
-          
-    
-        
-
     const dispatch = useDispatch();    
 
     useEffect(() => {           
-    }, [dispatch, fetchCity, city]);
-    
+    }, [dispatch, fetchCity, city]);    
     
     async function handleButtonClick (data) {     
         await dispatch(fetchCity(data));                               
-    };   
-
+    };      
     
-    
-    
-
-    function renderCities() {         
-        
-        
+    //Map through state values for all desired values
+    function renderCities() {          
         if (!_.isEmpty(cities)) { 
              return(
                 <div>
                 {cities.map((city) => 
                 <Row className = 'mb-4 mt-4' md={4}>
-                    <Col width={3}>                        
+                    <Col width={3} class="header-col">                        
                         {city.city.name}                             
                     </Col>                  
                     <Col>    
@@ -73,14 +49,12 @@ const CitiesIndex = () => {
                     </Col>                                                  
                 </Row>                
                 )}                  
-                </div> 
-                
-                
+                </div>                
                 )        
         }        
              return <div>No cities have been selected</div>        
     }     
-    
+    //Initial render with column headers
     return (
         <div>        
         <div className="text-xs-right">
@@ -94,17 +68,13 @@ const CitiesIndex = () => {
             </Button>
         </div>
         <hr />        
-        <Table responsive>
-            <thead>
-                <tr>
-                    <th>City</th>
-                    <th>Temperature (F)</th>
-                    <th>Pressure (hPa)</th>
-                    <th>Humidity (%)</th> 
-                </tr>                                 
-            </thead>   
-                                    
-        </Table>    
+        <Row className = 'mb-4 mt-4' md={4}>
+            <Col class="header-col">City</Col>
+            <Col class="header-col">Temperature (F)</Col>
+            <Col class="header-col">Pressure (hPa)</Col>
+            <Col class="header-col">Humidity (%)</Col>                                 
+        </Row>  
+        <hr />  
         {renderCities()} 
         </div>
     )
