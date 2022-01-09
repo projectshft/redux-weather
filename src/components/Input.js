@@ -1,7 +1,7 @@
 const Input = () => {
   return (
     <div>
-      <input></input>
+      <input type="text"></input>
       <button>Submit</button>
     </div>
   )

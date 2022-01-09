@@ -1,5 +1,9 @@
 const Show = () => {
-  return <>test show</>
+  return (
+    <div>
+      <p>City:</p>
+    </div>
+  )
 }
 
 export default Show;
