@@ -1,8 +1,10 @@
-
+import Input from "./components/Input";
 
 function App() {
   return (
-    <>App Test</>
+    <div>
+      <Input />
+    </div>
   );
 }
 
