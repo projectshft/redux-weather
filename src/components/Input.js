@@ -1,5 +1,10 @@
 const Input = () => {
-  return <>input test</>
+  return (
+    <div>
+      <input></input>
+      <button>Submit</button>
+    </div>
+  )
 }
 
 export default Input
