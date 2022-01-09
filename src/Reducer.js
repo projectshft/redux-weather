@@ -1,5 +1,8 @@
 const mockState = {
-  city: 'Dover'
+  city: 'Dover', 
+  temperature: 97,
+  pressure: 70,
+  humidity: 60
 }
 
 export const inputClick = {
