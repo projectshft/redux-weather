@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux"
 import { searchTermClick } from "../Actions";
 
 const Input = () => {
+  
+
   const dispatch = useDispatch();
 
   const [searchTerm, setSearchTerm] = useState();
@@ -16,7 +18,8 @@ const Input = () => {
     dispatch(searchTermClick(searchTerm))
   }
 
-  console.log(searchTerm)
+  
+
 
   return (
     <div>

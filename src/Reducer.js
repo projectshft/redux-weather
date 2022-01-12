@@ -1,12 +1,21 @@
-// const mockState = {
-//   city: 'Dover', 
-//   temperature: 97,
-//   pressure: 70,
-//   humidity: 60
-// }
+const mockObject = {
+  id1:  {
+    city: 'Dover', 
+    temperature: 97,
+    pressure: 70,
+    humidity: 60
+  },
+  id2: {
+    city: 'Dover', 
+    temperature: 97,
+    pressure: 70,
+    humidity: 60
+  }
+  
+}
 
 const initialState = {
-  statesList: [],
+  statesList: mockObject,
   searchTerm: ''
 }
 
