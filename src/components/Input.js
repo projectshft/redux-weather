@@ -22,10 +22,10 @@ const Input = () => {
 
 
   return (
-    <div>
+    <form>
       <input type="text" onChange={changeHandler}></input>
       <button type="button" className="btn btn-primary" onClick={clickHandler}>Submit</button>
-    </div>
+    </form>
   )
 }
 
