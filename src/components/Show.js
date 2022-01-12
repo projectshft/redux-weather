@@ -6,6 +6,8 @@ const Show = () => {
   const pressure = useSelector(state => state.pressure);
   const humidity = useSelector(state => state.humidity);
   
+
+ 
   return (
     <div>
       <div className="container">
