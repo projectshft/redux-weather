@@ -16,6 +16,7 @@ const Input = () => {
     dispatch(searchTermClick(searchTerm))
   }
 
+  console.log(searchTerm)
 
   return (
     <div>

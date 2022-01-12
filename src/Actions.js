@@ -1,6 +1,6 @@
 export const searchTermClick = (searchTerm) => {
   return {
-    type: 'INPUT_CLICK', 
+    type: 'SEARCHTERM_CLICK', 
     payload: searchTerm
   }
 }

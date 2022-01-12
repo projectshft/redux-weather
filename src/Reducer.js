@@ -13,10 +13,10 @@ const initialState = {
 
 const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INPUT_CLICK':
+    case 'SEARCHTERM_CLICK':
       return {
         ...state,
-        input: state.searchTerm + action.payload
+        searchTerm: state.searchTerm + action.payload
       }
     default:
       return state;
