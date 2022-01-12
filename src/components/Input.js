@@ -13,8 +13,9 @@ const Input = () => {
   }
 
   const clickHandler = () => {
-    dispatch(inputClick())
+    dispatch(inputClick(input))
   }
+
 
   return (
     <div>
@@ -23,5 +24,7 @@ const Input = () => {
     </div>
   )
 }
+
+
 
 export default Input
