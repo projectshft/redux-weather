@@ -1,1 +1,3 @@
 //add a state function for individual posts and combineReducers
+
+//allow enter to also trigger the Submit button

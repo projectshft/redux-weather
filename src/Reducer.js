@@ -25,7 +25,7 @@ const Reducer = (state = initialState, action) => {
     case 'SEARCHTERM_CLICK':
       return {
         ...state,
-        searchTerm: state.searchTerm + action.payload
+        searchTerm: action.payload
       }
     default:
       return state;
