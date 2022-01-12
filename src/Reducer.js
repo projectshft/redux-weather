@@ -7,7 +7,7 @@
 
 const initialState = {
   statesList: [],
-  input: ''
+  searchTerm: ''
 }
 
 
@@ -16,7 +16,7 @@ const Reducer = (state = initialState, action) => {
     case 'INPUT_CLICK':
       return {
         ...state,
-        input: state.input + action.payload
+        input: state.searchTerm + action.payload
       }
     default:
       return state;

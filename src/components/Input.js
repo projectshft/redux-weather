@@ -1,19 +1,19 @@
 
 import { useState } from "react";
 import { useDispatch } from "react-redux"
-import { inputClick } from "../Actions";
+import { searchTermClick } from "../Actions";
 
 const Input = () => {
   const dispatch = useDispatch();
 
-  const [input, setInput] = useState();
+  const [searchTerm, setSearchTerm] = useState();
 
   const changeHandler = (e) => {
-    setInput(e.target.value)
+    setSearchTerm(e.target.value)
   }
 
   const clickHandler = () => {
-    dispatch(inputClick(input))
+    dispatch(searchTermClick(searchTerm))
   }
 
 

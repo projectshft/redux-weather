@@ -1,6 +1,6 @@
-export const inputClick = (input) => {
+export const searchTermClick = (searchTerm) => {
   return {
     type: 'INPUT_CLICK', 
-    payload: input
+    payload: searchTerm
   }
 }
