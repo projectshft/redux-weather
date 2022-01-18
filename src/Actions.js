@@ -4,3 +4,12 @@ export const searchTermClick = (searchTerm) => {
     payload: searchTerm
   }
 }
+
+export const fetchPosts = () => {
+  const request = 
+  
+  return {
+    type: 'FETCH_POSTS',
+    payload: request
+  }
+}

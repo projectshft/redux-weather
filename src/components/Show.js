@@ -5,6 +5,10 @@ const Show = () => {
   const temperature = useSelector(state => state.temperature);
   const pressure = useSelector(state => state.pressure);
   const humidity = useSelector(state => state.humidity);
+
+  const renderPosts = () => {
+    
+  }
   
  
   return (
@@ -16,12 +20,7 @@ const Show = () => {
           <div className="col-3">Pressure (hPa)</div>
           <div className="col-3">Humidity (%)</div>
         </div>
-        <div className="row">
-          <div className="col-3">{city}</div>
-          <div className="col-3">{temperature}</div>
-          <div className="col-3">{pressure}</div>
-          <div className="col-3">{humidity}</div>
-        </div>
+        <ul>{renderPosts()}</ul>
       </div>
       
     </div>
