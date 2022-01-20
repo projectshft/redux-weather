@@ -20,7 +20,8 @@ const Input = () => {
 
   const enterHandler = (e) => {
     if (e.key === 'Enter') {
-      alert('key press works!')
+      e.preventDefault()
+      clickHandler()
     }
   }
 
@@ -30,11 +31,15 @@ const Input = () => {
       <input 
         id="input-box" 
         type="text" 
-        placeholder="enter city" 
+        placeholder="Enter City Name..." 
         onChange={changeHandler} 
         onKeyDown={enterHandler}
       ></input>
-      <button type="button" className="btn btn-primary" onClick={clickHandler}>Submit</button>
+      <button 
+        type="button" 
+        className="btn btn-primary" 
+        onClick={clickHandler}
+      >Submit</button>
     </form>
   )
 }
