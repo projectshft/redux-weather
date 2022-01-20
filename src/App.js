@@ -3,7 +3,7 @@ import Show from "./components/Show";
 
 function App() {
   return (
-    <div>
+    <div className="main-div">
       <Input />
       <Show />
     </div>
