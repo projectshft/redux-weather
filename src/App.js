@@ -20,6 +20,32 @@ function App() {
     dispatch(action)
   }
 
+  function getTemps(cityList) {
+    const temps = [];
+    for (let i = 0; i < cityList.length; i++){
+      temps.push(cityList[i].main.temp);
+    }
+      // parseFloat((cityList.main.temp)*(9/5)-459.67).toFixed(0)
+      
+      return temps;
+  };
+  
+  function getPressure(cityList) {
+    const pressure = [];
+    for (let i = 0; i < cityList.length; i++){
+      pressure.push(cityList[i].main.pressure);
+    }   
+      return pressure;
+  };
+
+  function getHumidity(cityList) {
+    const humidity = [];
+    for (let i = 0; i < cityList.length; i++){
+      humidity.push(cityList[i].main.humidity);
+    }      
+      return humidity;
+  };
+
   return (
     <div className="container-fluid">
       <div className="row" >
@@ -54,24 +80,29 @@ function App() {
             <tbody>
               {cities.map(city => (
                 <tr key={city.name}>
-                  <td>{city.city.name}</td>
                   <td>
-                    <Sparklines data={city.list[0].main.temp}>
-                      <SparklinesLine color="blue" style={{ fill: "none" }}/>
-                      <SparklinesReferenceLine type="mean" />
-                    </Sparklines>
+                    <center><b>{city.city.name}</b></center>
                   </td>
                   <td>
-                    <Sparklines data={[0,100,50,20]}>
-                      <SparklinesLine color="orange" style={{ fill: "none" }}/>
+                    <Sparklines data={getTemps(city.list)}>
+                      <SparklinesLine color="blue" style={{ fill: "7DA7F5" }}/>
                       <SparklinesReferenceLine type="mean" />
                     </Sparklines>
+                    <center><b>(F)</b></center>
                   </td>
                   <td>
-                    <Sparklines data={[0,100,50,20]}>
-                      <SparklinesLine color="green" style={{ fill: "none" }}/>
+                    <Sparklines data={getPressure(city.list)}>
+                      <SparklinesLine color="orange" style={{ fill: "E6B36F" }}/>
                       <SparklinesReferenceLine type="mean" />
                     </Sparklines>
+                    <center><b>hPa</b></center>
+                  </td>
+                  <td>
+                    <Sparklines data={getHumidity(city.list)}>
+                      <SparklinesLine color="green" style={{ fill: "B9F0A3" }}/>
+                      <SparklinesReferenceLine type="mean" />
+                    </Sparklines>
+                    <center><b>%</b></center>
                   </td>
                 </tr>
                 ))

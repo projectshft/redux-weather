@@ -11,6 +11,3 @@ export function fetchCity(city) {
   };
 }
 
-//list.main.temp
-//list.main.pressure
-//list.main.humidity
