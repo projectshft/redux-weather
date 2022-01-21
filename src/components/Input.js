@@ -15,13 +15,16 @@ const Input = () => {
   }
 
   const clickHandler = () => {
-    dispatch(searchTermClick(searchTerm))
+    dispatch(searchTermClick(searchTerm));
   }
+
+
 
   const enterHandler = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
       clickHandler()
+      e.target.value = '';
     }
   }
 
