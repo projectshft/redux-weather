@@ -23,10 +23,8 @@ function App() {
   function getTemps(cityList) {
     const temps = [];
     for (let i = 0; i < cityList.length; i++){
-      temps.push(cityList[i].main.temp);
-    }
-      // parseFloat((cityList.main.temp)*(9/5)-459.67).toFixed(0)
-      
+      temps.push((cityList[i].main.temp-273.15)*(9/5)+32);
+    }      
       return temps;
   };
   
@@ -45,6 +43,14 @@ function App() {
     }      
       return humidity;
   };
+
+  function calculateMean(array){
+    let sum = 0
+    for (let i =0; i < array.length; i++){
+      sum += array[i]
+    }
+    return (sum/array.length).toFixed(0)
+  }
 
   return (
     <div className="container-fluid">
@@ -88,21 +94,21 @@ function App() {
                       <SparklinesLine color="blue" style={{ fill: "7DA7F5" }}/>
                       <SparklinesReferenceLine type="mean" />
                     </Sparklines>
-                    <center><b>(F)</b></center>
+                    <center><b>{calculateMean(getTemps(city.list))}(F)</b></center>
                   </td>
                   <td>
                     <Sparklines data={getPressure(city.list)}>
                       <SparklinesLine color="orange" style={{ fill: "E6B36F" }}/>
                       <SparklinesReferenceLine type="mean" />
                     </Sparklines>
-                    <center><b>hPa</b></center>
+                    <center><b>{calculateMean(getPressure(city.list))}hPa</b></center>
                   </td>
                   <td>
                     <Sparklines data={getHumidity(city.list)}>
                       <SparklinesLine color="green" style={{ fill: "B9F0A3" }}/>
                       <SparklinesReferenceLine type="mean" />
                     </Sparklines>
-                    <center><b>%</b></center>
+                    <center><b>{calculateMean(getHumidity(city.list))}%</b></center>
                   </td>
                 </tr>
                 ))
