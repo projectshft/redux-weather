@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore, applyMiddleware} from "redux";
+import {Provider} from "react-redux";
+import reducer from "./reducer";
+import promise from "redux-promise";
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={createStoreWithMiddleware(reducer)}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
