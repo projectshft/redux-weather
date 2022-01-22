@@ -11,7 +11,7 @@ export const searchTermClick = (searchTerm) => {
 }
 
 export const fetchPosts = () => {
-  const request = axios.get(ROOT_URL);
+  const request = axios.get(`${ROOT_URL}/list`);
   
   return {
     type: 'FETCH_POSTS',

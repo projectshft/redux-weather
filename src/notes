@@ -1,3 +1,2 @@
-//add a state function for individual posts and combineReducers
+//re-factore redux devtools to work with MiddleWare
 
-//allow enter to also trigger the Submit button

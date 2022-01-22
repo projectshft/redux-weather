@@ -1,16 +1,14 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Show = () => {
-  const city = useSelector(state => state.city);
-  const temperature = useSelector(state => state.temperature);
-  const pressure = useSelector(state => state.pressure);
-  const humidity = useSelector(state => state.humidity);
+  
 
   const renderPosts = () => {
-    
+    return 'practice text'
   }
   
- 
+ useEffect(renderPosts);
+
   return (
     <div>
       <div className="container">

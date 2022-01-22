@@ -1,23 +1,5 @@
-const mockObject = [
-  {
-    id: 1,
-    city: 'Dover', 
-    temperature: 97,
-    pressure: 70,
-    humidity: 60
-  },
-  {
-    id: 1,
-    city: 'Dover', 
-    temperature: 97,
-    pressure: 70,
-    humidity: 60
-  }
-  
-]
-
 const initialState = {
-  statesList: mockObject,
+  stateList: [],
   searchTerm: ''
 }
 
@@ -29,6 +11,8 @@ const Reducer = (state = initialState, action) => {
         ...state,
         searchTerm: action.payload
       }
+    case 'FETCH_POSTS':
+      return state;
     default:
       return state;
   }
