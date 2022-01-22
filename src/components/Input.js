@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux"
 import { searchTermClick } from "../Actions";
 
@@ -10,12 +10,15 @@ const Input = () => {
 
   const [searchTerm, setSearchTerm] = useState();
 
+  const inputRef = useRef();
+
   const changeHandler = (e) => {
     setSearchTerm(e.target.value)
   }
 
   const clickHandler = () => {
     dispatch(searchTermClick(searchTerm));
+    inputRef.current.value = '';
   }
 
 
@@ -24,14 +27,15 @@ const Input = () => {
     if (e.key === 'Enter') {
       e.preventDefault()
       clickHandler()
-      e.target.value = '';
     }
   }
+
 
 
   return (
     <form>
       <input 
+        ref={inputRef}
         id="input-box" 
         type="text" 
         placeholder="Enter City Name..." 
