@@ -10,7 +10,7 @@ export const searchTermClick = (searchTerm) => {
   }
 }
 
-export const fetchPosts = () => {
+export const fetchWeatherData = () => {
   const request = axios.get(`${ROOT_URL}/list`);
   
   return {

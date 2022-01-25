@@ -1,2 +1,10 @@
 //re-factore redux devtools to work with MiddleWare
 
+//keep input state in component
+
+//Send search term to API
+//Change API URL to accommodate search term (You'll need to google the documentation)
+//Write your reducer for the city weather data
+//Get weather data in component via useSelector or mapStateToProps
+//Iterate over data, use Sparklines, etc
+
