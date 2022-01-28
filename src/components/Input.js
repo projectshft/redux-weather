@@ -1,12 +1,9 @@
 
 import { useState, useRef } from "react";
-import { useDispatch } from "react-redux"
-import { searchTermClick } from "../Actions";
+
+import fetchWeatherData from '../Actions';
 
 const Input = () => {
-  
-
-  const dispatch = useDispatch();
 
   const [searchTerm, setSearchTerm] = useState();
 
@@ -16,8 +13,10 @@ const Input = () => {
     setSearchTerm(e.target.value)
   }
 
-  const clickHandler = () => {
-    dispatch(searchTermClick(searchTerm));
+  const clickHandler = (e) => {
+    const citySearchForAPI = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=9b71dd7687d5daeb5225c83041aa3ed4`
+    
+    fetchWeatherData(citySearchForAPI);
     inputRef.current.value = '';
   }
 
@@ -26,7 +25,8 @@ const Input = () => {
   const enterHandler = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
-      clickHandler()
+      clickHandler();
+      inputRef.current.value = '';
     }
   }
 
