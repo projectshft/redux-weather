@@ -1,10 +1,12 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import fetchWeatherData from '../Actions';
 
 const Input = () => {
+
+  const city = useSelector(state => state.weatherData.data)
 
   const dispatch = useDispatch()
 
@@ -17,14 +19,13 @@ const Input = () => {
   }
 
   const clickHandler = useCallback(() => {
-    // const citySearchForAPI = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=9b71dd7687d5daeb5225c83041aa3ed4`
     
     dispatch(fetchWeatherData(searchTerm));
     inputRef.current.value = '';
   }, [dispatch, searchTerm]) 
 
 
-  useEffect(() => {console.log('useEffect Test')}, [searchTerm])
+  useEffect(() => {console.log({city})}, [searchTerm, city])
 
   const enterHandler = (e) => {
     if (e.key === 'Enter') {
@@ -33,8 +34,6 @@ const Input = () => {
       inputRef.current.value = '';
     }
   }
-
-
 
   return (
     <div>
@@ -60,12 +59,12 @@ const Input = () => {
           <div className="col-3">Pressure (hPa)</div>
           <div className="col-3">Humidity (%)</div>
         </div>
+        <div>
+        </div>
       </div>
     </div>
     
   )
 }
-
-
 
 export default Input
