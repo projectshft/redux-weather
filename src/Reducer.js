@@ -1,11 +1,15 @@
+const initialState = {
+  weatherData: []
+}
 
 
-
-const Reducer = (state = [], action) => {
+const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_POSTS':
-      //console.log(action)
-      return state;
+      return {
+        ...state,
+        weatherData: action.payload
+      };
     default:
       return state;
   }
