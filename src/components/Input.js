@@ -6,7 +6,7 @@ import fetchWeatherData from '../Actions';
 
 const Input = () => {
 
-  const city = useSelector(state => state.weatherData.data)
+  const city = useSelector(state => state)
 
   const dispatch = useDispatch()
 
