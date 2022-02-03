@@ -37,7 +37,7 @@ const Input = () => {
 
 
   return (
-    <div>
+    <div className="container-fluid">
       <form>
       <input 
         ref={inputRef}
