@@ -19,7 +19,6 @@ const Input = () => {
   }
 
   const clickHandler = useCallback(() => {
-    
     dispatch(fetchWeatherData(searchTerm));
     inputRef.current.value = '';
   }, [dispatch, searchTerm]) 
@@ -34,6 +33,8 @@ const Input = () => {
       inputRef.current.value = '';
     }
   }
+
+
 
   return (
     <div>
@@ -52,6 +53,7 @@ const Input = () => {
         onClick={clickHandler}
       >Submit</button>
       </form>
+      <hr/>
       <div className="container">
         <div className="row">
           <div className="col-3">City</div>
