@@ -1,12 +1,11 @@
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useRef, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
 import fetchWeatherData from '../Actions';
 
 const Input = () => {
 
-  const city = useSelector(state => state)
 
   const dispatch = useDispatch()
 
@@ -23,8 +22,6 @@ const Input = () => {
     inputRef.current.value = '';
   }, [dispatch, searchTerm]) 
 
-
-  useEffect(() => {console.log({city})}, [searchTerm, city])
 
   const enterHandler = (e) => {
     if (e.key === 'Enter') {
