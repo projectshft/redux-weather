@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 import fetchWeatherData from '../Actions';
 
 const Input = () => {
-
-
+  
   const dispatch = useDispatch()
 
   const [searchTerm, setSearchTerm] = useState();
@@ -51,16 +50,7 @@ const Input = () => {
       >Submit</button>
       </form>
       <hr/>
-      <div className="container">
-        <div className="row">
-          <div className="col-3">City</div>
-          <div className="col-3">Temperature (F)</div>
-          <div className="col-3">Pressure (hPa)</div>
-          <div className="col-3">Humidity (%)</div>
-        </div>
-        <div>
-        </div>
-      </div>
+      
     </div>
     
   )
