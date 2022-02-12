@@ -13,6 +13,10 @@ const renderList = () => {
   if (!cityData) {
     return '';
   }
+
+  const fahrenheit = () => {
+    
+  }
   
   return (
     <div>
