@@ -1,6 +1,6 @@
 
 import { useSelector } from "react-redux";
-import { averageTempForCity } from "./AveragingFuncs";
+import { AverageTempForCity } from "./AveragingFuncs";
 
 
 
@@ -12,7 +12,7 @@ export const RenderList = () => {
     return '';
   }
 
-  console.log(averageTempForCity(cityData))
+  console.log(AverageTempForCity(cityData))
   
   return (
     <div>
