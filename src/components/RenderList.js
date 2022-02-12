@@ -17,7 +17,7 @@ export const RenderList = () => {
     
     arr.map(
       data => {
-        data.list.map(
+        return data.list.map(
           data => {
             const temp = data.main.temp;
             return forecastList.push(temp)
@@ -27,7 +27,7 @@ export const RenderList = () => {
     )
 
     const sum = forecastList.reduce((a, b) => a + b, 0);
-    const avg = sum / forecastList.length;
+    const avg = Math.floor(sum / forecastList.length)
 
     return avg;
   }
