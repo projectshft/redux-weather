@@ -3,7 +3,6 @@ import { RenderList } from "./RenderList"
 
 const List = () => {
 
-
   return (
     <div className="container">
         <div className="row">

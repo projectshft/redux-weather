@@ -1,6 +1,5 @@
 
 import { useSelector } from "react-redux";
-import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 
 
@@ -8,21 +7,41 @@ export const RenderList = () => {
   
   const cityData = useSelector(state => state)
   
+
   if (!cityData) {
     return '';
   }
+
+  const averageTempForCity = (arr) => {
+    const forecastList = [];
+    
+    arr.map(
+      data => {
+        data.list.map(
+          data => {
+            const temp = data.main.temp;
+            return forecastList.push(temp)
+          }
+        )
+      }
+    )
+
+    const sum = forecastList.reduce((a, b) => a + b, 0);
+    const avg = sum / forecastList.length;
+
+    return avg;
+  }
+
+  console.log(averageTempForCity(cityData))
 
 
   
   return (
     <div>
-      <ul>{cityData.map((city, index) => <li key={index}> 
+      <ul>{cityData.map((cityData, index) => <li key={index}> 
                                             <div className="row">
                                               <div className="col-3">
-                                              <Sparklines data={[5, 10, 5, 20]}>
-                                                <SparklinesLine color="blue" />
-                                              </Sparklines>
-                                                {city.city.name}
+                                                {cityData.city.name}
                                               </div>
                                               {/* <div className="col-3">{city.list}</div> */}
                                               {/* <div className="col-3">{city.main.pressure}</div> */}
