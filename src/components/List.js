@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import { Sparklines, SparklinesLine } from 'react-sparklines';
+
 
 const List = () => {
 
@@ -13,19 +15,20 @@ const renderList = () => {
   if (!cityData) {
     return '';
   }
-
-  const fahrenheit = () => {
-    
-  }
   
   return (
     <div>
       <ul>{cityData.map((city, index) => <li key={index}> 
                                             <div className="row">
-                                              <div className="col-3">{city.name}</div>
-                                              <div className="col-3">{city.main.temp}</div>
-                                              <div className="col-3">{city.main.pressure}</div>
-                                              <div className="col-3">{city.main.humidity}</div>
+                                              <div className="col-3">
+                                              <Sparklines data={[5, 10, 5, 20]}>
+                                                <SparklinesLine color="blue" />
+                                              </Sparklines>
+                                                {city.city.name}
+                                              </div>
+                                              {/* <div className="col-3">{city.main.temp}</div> */}
+                                              {/* <div className="col-3">{city.main.pressure}</div> */}
+                                              {/* <div className="col-3">{city.main.humidity}</div> */}
                                             </div>
                                           </li>)}
       </ul>
