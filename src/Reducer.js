@@ -9,7 +9,6 @@ const Reducer = (state = [], action) => {
         action.payload
       ];
     default:
-      return state;
   }
 }
 

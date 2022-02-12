@@ -1,5 +1,5 @@
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useSelector } from "react";
 import { useDispatch } from "react-redux";
 
 import fetchWeatherData from '../Actions';
