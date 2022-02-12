@@ -1,41 +1,8 @@
-import { useSelector } from "react-redux";
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import { RenderList } from "./RenderList"
 
 
 const List = () => {
 
-const cityData = useSelector(state => state)
-
-// const city = [
-//   {id: 0, name: 'Dover', pressure: '3', temperature: '7', humidity: '9'},
-//   {id: 1, name: 'Chicago', pressure: '13', temperature: '17', humidity: '19'}
-// ];
-
-const renderList = () => {
-  if (!cityData) {
-    return '';
-  }
-  
-  return (
-    <div>
-      <ul>{cityData.map((city, index) => <li key={index}> 
-                                            <div className="row">
-                                              <div className="col-3">
-                                              <Sparklines data={[5, 10, 5, 20]}>
-                                                <SparklinesLine color="blue" />
-                                              </Sparklines>
-                                                {city.city.name}
-                                              </div>
-                                              {/* <div className="col-3">{city.main.temp}</div> */}
-                                              {/* <div className="col-3">{city.main.pressure}</div> */}
-                                              {/* <div className="col-3">{city.main.humidity}</div> */}
-                                            </div>
-                                          </li>)}
-      </ul>
-    </div>
-    
-  )
-}
 
   return (
     <div className="container">
@@ -46,7 +13,7 @@ const renderList = () => {
           <div className="col-3">Humidity (%)</div>
         </div>
         <div>
-          {renderList()}
+          {RenderList()}
         </div>
       </div>
   )
