@@ -1,8 +1,8 @@
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const List = () => {
 
-// const test = useSelector(test => test)
+const cityData = useSelector(state => state)
 
 const city = [
   {id: 0, name: 'Dover', pressure: '3', temperature: '7', humidity: '9'},
@@ -10,16 +10,20 @@ const city = [
 ];
 
 const renderList = () => {
+  if (!cityData) {
+    return '';
+  }
+  
   return (
     <div>
-      <ul>{city.map(city => <li key={city.id}> 
-                              <div className="row">
-                                <div className="col-3">{city.name}</div>
-                                <div className="col-3">{city.temperature}</div>
-                                <div className="col-3">{city.pressure}</div>
-                                <div className="col-3">{city.humidity}</div>
-                              </div>
-                            </li>)}
+      <ul>{cityData.map((city, index) => <li key={index}> 
+                                            <div className="row">
+                                              <div className="col-3">{city.name}</div>
+                                              <div className="col-3">{city.temperature}</div>
+                                              <div className="col-3">{city.pressure}</div>
+                                              <div className="col-3">{city.humidity}</div>
+                                            </div>
+                                          </li>)}
       </ul>
     </div>
     
