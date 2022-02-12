@@ -16,12 +16,12 @@ export const RenderList = () => {
   
   return (
     <div>
-      <ul>{cityData.map((cityData, index) => <li key={index}> 
+      <ul>{cityData.map((data, index) => <li key={index}> 
                                             <div className="row">
                                               <div className="col-3">
-                                                {cityData.city.name}
+                                                {data.city.name}
                                               </div>
-                                              {/* <div className="col-3">{city.list}</div> */}
+                                              <div className="col-3">{AverageTempForCity(data)}</div>
                                               {/* <div className="col-3">{city.main.pressure}</div> */}
                                               {/* <div className="col-3">{city.main.humidity}</div> */}
                                             </div>

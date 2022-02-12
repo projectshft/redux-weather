@@ -1,14 +1,10 @@
 export const AverageTempForCity = (arr) => {
+  debugger;
+  const updatedArr = arr[0].list
   const forecastList = [];
-  
-  arr.map(
-    data => {
-      return data.list.map(
-        data => {
-          const temp = data.main.temp;
-          return forecastList.push(temp)
-        }
-      )
+  updatedArr.map(
+    e => {
+      return forecastList.push(e.main.temp)
     }
   )
 
