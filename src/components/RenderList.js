@@ -2,7 +2,7 @@
 import { useSelector } from "react-redux";
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import { AverageTempForCity, AveragePressureForCity, AverageHumidityForCity } from "./AveragingFuncs";
-import { tempArray } from "./SparklineLogic";
+import { tempArray, pressureArray } from "./SparklineLogic";
 
 
 
@@ -26,8 +26,14 @@ export const RenderList = () => {
                                                 <Sparklines data={tempArray(data)}>
                                                   <SparklinesLine color="blue" />
                                                 </Sparklines>
-                                                {AverageTempForCity(data)}</div>
-                                              <div className="col-3">{AveragePressureForCity(data)}</div>
+                                                {AverageTempForCity(data)}
+                                              </div>
+                                              <div className="col-3">
+                                                <Sparklines data={pressureArray(data)}>
+                                                  <SparklinesLine color="blue" />
+                                                </Sparklines>
+                                                {AveragePressureForCity(data)}
+                                              </div>
                                               <div className="col-3">{AverageHumidityForCity(data)}</div>
                                             </div>
                                           </li>)}
