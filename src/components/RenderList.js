@@ -1,6 +1,6 @@
 
 import { useSelector } from "react-redux";
-import { AverageTempForCity } from "./AveragingFuncs";
+import { AverageTempForCity, AveragePressureForCity } from "./AveragingFuncs";
 
 
 
@@ -21,7 +21,7 @@ export const RenderList = () => {
                                               </div>
                                         
                                               <div className="col-3">{AverageTempForCity(data)}</div>
-                                              {/* <div className="col-3">{city.main.pressure}</div> */}
+                                              <div className="col-3">{AveragePressureForCity(data)}</div>
                                               {/* <div className="col-3">{city.main.humidity}</div> */}
                                             </div>
                                           </li>)}
