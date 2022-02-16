@@ -24,13 +24,13 @@ export const RenderList = () => {
                                               </div>
                                               <div className="col-3">
                                                 <Sparklines data={tempArray(data)}>
-                                                  <SparklinesLine color="blue" />
+                                                  <SparklinesLine color="orange" />
                                                 </Sparklines>
                                                 {AverageTempForCity(data)}
                                               </div>
                                               <div className="col-3">
                                                 <Sparklines data={pressureArray(data)}>
-                                                  <SparklinesLine color="blue" />
+                                                  <SparklinesLine color="green" />
                                                 </Sparklines>
                                                 {AveragePressureForCity(data)}
                                               </div>
