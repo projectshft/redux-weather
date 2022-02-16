@@ -28,17 +28,17 @@ export const AveragePressureForCity = (data) => {
   return avg;
 }
 
-// export const AverageHumidityForCity = (data) => {
-//   const updatedArr = data.list
-//   const forecastList = [];
-//   updatedArr.map(
-//     e => {
-//       return forecastList.push(e.main.humidity)
-//     }
-//   )
+export const AverageHumidityForCity = (data) => {
+  const updatedArr = data.list
+  const forecastList = [];
+  updatedArr.map(
+    e => {
+      return forecastList.push(e.main.humidity)
+    }
+  )
 
-//   const sum = forecastList.reduce((a, b) => a + b, 0);
-//   const avg = Math.floor(sum / forecastList.length)
+  const sum = forecastList.reduce((a, b) => a + b, 0);
+  const avg = Math.floor(sum / forecastList.length)
 
-//   return avg;
-// }
+  return avg;
+}
