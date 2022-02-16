@@ -21,3 +21,7 @@ code {
   width: 400px;
   margin-bottom: 25px;
 }
+
+.render-list-item {
+  list-style-type: none;
+}

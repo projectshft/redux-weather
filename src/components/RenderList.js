@@ -17,7 +17,7 @@ export const RenderList = () => {
   
   return (
     <div>
-      <ul>{cityData.map((data, index) => <li key={index}>
+      <ul>{cityData.map((data, index) => <li className="render-list-item" key={index}>
                                             <div className="row">
                                               <div className="col-3">
                                                 {data.city.name}
