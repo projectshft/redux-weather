@@ -1,6 +1,5 @@
-export const AverageTempForCity = (arr) => {
-  debugger;
-  const updatedArr = arr[0].list
+export const AverageTempForCity = (data) => {
+  const updatedArr = data.list
   const forecastList = [];
   updatedArr.map(
     e => {
