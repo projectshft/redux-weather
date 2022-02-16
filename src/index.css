@@ -25,3 +25,7 @@ code {
 .render-list-item {
   list-style-type: none;
 }
+
+.header-row {
+  font-weight: bold;
+}
