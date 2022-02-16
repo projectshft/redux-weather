@@ -22,12 +22,11 @@ export const RenderList = () => {
                                               <div className="col-3">
                                                 {data.city.name}
                                               </div>
-                                              <div>
-                                              <Sparklines data={tempArray(data)}>
-                                                <SparklinesLine color="blue" />
-                                              </Sparklines>
-                                              </div>
-                                              <div className="col-3">{AverageTempForCity(data)}</div>
+                                              <div className="col-3">
+                                                <Sparklines data={tempArray(data)}>
+                                                  <SparklinesLine color="blue" />
+                                                </Sparklines>
+                                                {AverageTempForCity(data)}</div>
                                               <div className="col-3">{AveragePressureForCity(data)}</div>
                                               <div className="col-3">{AverageHumidityForCity(data)}</div>
                                             </div>
