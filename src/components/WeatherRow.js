@@ -14,8 +14,8 @@ function WeatherRow() {
   const weather = useSelector((state) => state.weather);
   console.log(weather);
 
-  const city = weather.weatherInfo.city.name;
-  console.log("city", city);
+  // const city = weather.weatherInfo.city.name;
+  // console.log("city", city);
 
   // function renderWeather() {
   //   if (!_.isEmpty(weather)) {
@@ -27,7 +27,7 @@ function WeatherRow() {
 
   return (
     <tr>
-      <th scope="col">{weather !== null && city}</th>
+      <th scope="col">city</th>
       <td>temp graph</td>
       <td>pressure</td>
       <td>humidity</td>
