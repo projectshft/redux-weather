@@ -20,11 +20,14 @@ function SearchBar() {
     resolver: yupResolver(searchSchema),
   });
 
+  //   const [input, setInput] = useState("");
+
   const dispatch = useDispatch();
 
-  const handleSearchSubmit = (data) => {
+  const handleSearchSubmit = (data, e) => {
     console.log(data.search);
     dispatch(fetchWeather(data.search));
+    e.target.reset();
   };
 
   return (
@@ -35,6 +38,7 @@ function SearchBar() {
             type="text"
             className="form-control"
             name="search"
+            // value={input}
             {...register("search")}
             placeholder="Search a city"
             aria-label="city search"

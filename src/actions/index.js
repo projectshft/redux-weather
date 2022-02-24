@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
+export const SET_ERROR = "SET_ERROR";
 
 const ROOT_URL = "https://api.openweathermap.org/data/2.5/forecast";
 
@@ -13,5 +14,12 @@ export function fetchWeather(city) {
   return {
     type: FETCH_WEATHER,
     payload: request,
+  };
+}
+
+export function setError(errors) {
+  return {
+    type: SET_ERROR,
+    payload: errors,
   };
 }
