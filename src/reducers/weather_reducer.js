@@ -8,9 +8,11 @@ const initialState = {
 const weatherReducer = function (state = initialState, action) {
   switch (action.type) {
     case FETCH_WEATHER: {
+      console.log(action.payload.data);
+
       return {
         ...state,
-        weatherInfo: [...state.weatherInfo, { ...action.payload.data }],
+        weatherInfo: [{ ...action.payload.data }, ...state.weatherInfo],
       };
     }
 

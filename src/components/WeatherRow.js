@@ -13,60 +13,48 @@ function WeatherRow() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const weather = useSelector((state) => state.weather);
-  console.log(weather);
+  const weather = useSelector((state) => state.weather.weatherInfo);
 
-  //Variables that we'll need for React Sparklines graphs
-  const city = weather?.weatherInfo?.city?.name;
-  const temp = weather?.weatherInfo?.list?.map((weather) => weather.main.temp);
-  const humidity = weather?.weatherInfo?.list?.map(
-    (weather) => weather.main.humidity
-  );
-  const pressure = weather?.weatherInfo?.list?.map(
-    (weather) => weather.main.pressure
-  );
+  const renderWeather = () => {
+    if (weather) {
+      return weather.map((obj) => (
+        <tr className="chart-row" key={obj.city.name}>
+          <th className="city-name-cell" scope="col">
+            {obj.city.name}
+          </th>
 
-  if (weather.weatherInfo.list) {
+          <td className="chart-graph">
+            <Chart
+              data={obj.list.map((w) => w.main.temp)}
+              color="red"
+              units="Fahrenheit"
+            />
+          </td>
+          <td className="chart-graph">
+            <Chart
+              data={obj.list.map((w) => w.main.humidity)}
+              color="blue"
+              units="%"
+            />
+          </td>
+          <td className="chart-graph">
+            <Chart
+              data={obj.list.map((w) => w.main.pressure)}
+              color="green"
+              units="hPa"
+            />
+          </td>
+        </tr>
+      ));
+    }
     return (
-      <tr className="chart-row" key={city}>
-        <th className="city-name-cell" scope="col">
-          {city}
-        </th>
-        <td className="chart-graph">
-          <Chart
-            // height={100}
-            // width={150}
-            data={temp}
-            color="red"
-            units="Fahrenheit"
-          />
-        </td>
-        <td className="chart-graph">
-          <Chart
-            // height={100}
-            // width={150}
-            data={humidity}
-            color="blue"
-            units="%"
-          />
-        </td>
-        <td className="chart-graph">
-          <Chart
-            // height={100}
-            // width={150}
-            data={pressure}
-            color="green"
-            units="hPa"
-          />
-        </td>
+      <tr>
+        <td>There is no weather to show for that city</td>
       </tr>
     );
-  }
-  return (
-    <tr>
-      <td>There is no weather to show for that city</td>
-    </tr>
-  );
+  };
+
+  return <tbody>{renderWeather()}</tbody>;
 }
 
 export default WeatherRow;

@@ -22,9 +22,7 @@ function WeatherTable(props) {
             </th>
           </tr>
         </thead>
-        <tbody>
-          <WeatherRow />
-        </tbody>
+        <WeatherRow />
       </table>
       <small className="average-line-statement">
         Dashed lines represent averages
