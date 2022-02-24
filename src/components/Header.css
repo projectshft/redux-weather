@@ -1,0 +1,18 @@
+nav.navbar {
+  background-color: #22223b;
+}
+
+nav .navbar-brand {
+  color: rgb(247, 246, 245);
+  font-weight: bold;
+  margin-left: 1rem;
+
+  letter-spacing: 0.5px;
+}
+
+/* CSS HEX */
+/* --space-cadet: #22223bff;
+--independence: #4a4e69ff;
+--heliotrope-gray: #9a8c98ff;
+--silver-pink: #c9ada7ff;
+--isabelline: #f2e9e4ff; */

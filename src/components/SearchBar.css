@@ -1,0 +1,18 @@
+.search-bar-container {
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  width: 25%;
+}
+
+.input-group-append {
+  background-color: #9a8c98ff;
+}
+
+.search-btn.search-btn {
+  color: rgb(247, 246, 245);
+  font-weight: bold;
+  text-transform: uppercase;
+}
