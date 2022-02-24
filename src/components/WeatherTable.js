@@ -6,7 +6,7 @@ function WeatherTable(props) {
   return (
     <div className="container">
       <table className="table">
-        <thead>
+        <thead className="table-head">
           <tr>
             <th className="table-heading" scope="col">
               City
@@ -26,6 +26,9 @@ function WeatherTable(props) {
           <WeatherRow />
         </tbody>
       </table>
+      <small className="average-line-statement">
+        Dashed lines represent averages
+      </small>
     </div>
   );
 }

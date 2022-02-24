@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchWeather } from "../actions";
+import Chart from "./Charts.js";
+import "./WeatherTable.css";
 
 function WeatherRow() {
   const dispatch = useDispatch();
@@ -14,45 +16,55 @@ function WeatherRow() {
   const weather = useSelector((state) => state.weather);
   console.log(weather);
 
-  //   renderWeather(weather) {
-  //     const city = weather.weatherInfo.city.name;;
-  //     const temp = cityData.list.map(weather => weather.main.temp);
-  //     const humidity = cityData.list.map(weather => weather.main.humidity);
-  //     const pressure = cityData.list.map(weather => weather.main.pressure);
+  //Variables that we'll need for React Sparklines graphs
+  const city = weather?.weatherInfo?.city?.name;
+  const temp = weather?.weatherInfo?.list?.map((weather) => weather.main.temp);
+  const humidity = weather?.weatherInfo?.list?.map(
+    (weather) => weather.main.humidity
+  );
+  const pressure = weather?.weatherInfo?.list?.map(
+    (weather) => weather.main.pressure
+  );
 
-  //     return (
-  //         <tr key={city}>
-  //            <th scope="col">{city}</th>
-  //             <td>
-  //                 <Chart height={120} width={170} data={temps} color='red' units='Celsius' />
-  //             </td>
-  //             <td>
-  //                 <Chart height={120} width={170} data={humidities} color='blue' units='%' />
-  //             </td>
-  //             <td>
-  //                 <Chart height={120} width={170} data={pressures} color='green' units='hPa' />
-  //             </td>
-  //         </tr>
-  //     )
-  // }
-
-  // const city = weather.weatherInfo.city.name;
-  // console.log("city", city);
-
-  // function renderWeather() {
-  //   if (!_.isEmpty(weather)) {
-  //     return weather;
-  //   }
-
-  //   return <div>There is no weather to show for that city</div>;
-  // }
-
+  if (weather.weatherInfo.list) {
+    return (
+      <tr className="chart-row" key={city}>
+        <th className="city-name-cell" scope="col">
+          {city}
+        </th>
+        <td className="chart-graph">
+          <Chart
+            // height={100}
+            // width={150}
+            data={temp}
+            color="red"
+            units="Fahrenheit"
+          />
+        </td>
+        <td className="chart-graph">
+          <Chart
+            // height={100}
+            // width={150}
+            data={humidity}
+            color="blue"
+            units="%"
+          />
+        </td>
+        <td className="chart-graph">
+          <Chart
+            // height={100}
+            // width={150}
+            data={pressure}
+            color="green"
+            units="hPa"
+          />
+        </td>
+      </tr>
+    );
+  }
   return (
     <tr>
-      <th scope="col">city</th>
-      <td>temp graph</td>
-      <td>pressure</td>
-      <td>humidity</td>
+      <td>There is no weather to show for that city</td>
     </tr>
   );
 }

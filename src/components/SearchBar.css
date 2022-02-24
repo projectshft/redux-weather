@@ -8,11 +8,13 @@
 }
 
 .input-group-append {
-  background-color: #9a8c98ff;
+  background-color: rgb(157, 179, 157);
 }
 
 .search-btn.search-btn {
-  color: rgb(247, 246, 245);
+  color: white;
   font-weight: bold;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
+  padding: 8px 12px;
 }

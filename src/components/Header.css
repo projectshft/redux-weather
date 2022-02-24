@@ -3,16 +3,8 @@ nav.navbar {
 }
 
 nav .navbar-brand {
-  color: rgb(247, 246, 245);
+  color: white;
   font-weight: bold;
   margin-left: 1rem;
-
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
 }
-
-/* CSS HEX */
-/* --space-cadet: #22223bff;
---independence: #4a4e69ff;
---heliotrope-gray: #9a8c98ff;
---silver-pink: #c9ada7ff;
---isabelline: #f2e9e4ff; */

@@ -3,17 +3,20 @@ import {
   SparklinesLine,
   SparklinesReferenceLine,
 } from "react-sparklines";
+
 import _ from "lodash";
 
-//Test
+//Average data so we can get the line
+
 function average(data) {
-  return _.round(_.sum(data) / data.length);
+  if (data.length > 0) return _.round(_.sum(data) / data.length);
 }
 
-export default (props) => {
+//The actual graphs
+const Chart = (props) => {
   return (
     <div>
-      <Sparklines height={120} width={180} data={props.data}>
+      <Sparklines height={100} width={130} margin={10} data={props.data}>
         <SparklinesLine color={props.color} />
         <SparklinesReferenceLine type="avg" />
       </Sparklines>
@@ -23,3 +26,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default Chart;

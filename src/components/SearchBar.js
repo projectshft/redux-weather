@@ -20,8 +20,6 @@ function SearchBar() {
     resolver: yupResolver(searchSchema),
   });
 
-  //   const [input, setInput] = useState("");
-
   const dispatch = useDispatch();
 
   const handleSearchSubmit = (data, e) => {
