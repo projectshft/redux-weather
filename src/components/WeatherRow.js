@@ -14,6 +14,28 @@ function WeatherRow() {
   const weather = useSelector((state) => state.weather);
   console.log(weather);
 
+  //   renderWeather(weather) {
+  //     const city = weather.weatherInfo.city.name;;
+  //     const temp = cityData.list.map(weather => weather.main.temp);
+  //     const humidity = cityData.list.map(weather => weather.main.humidity);
+  //     const pressure = cityData.list.map(weather => weather.main.pressure);
+
+  //     return (
+  //         <tr key={city}>
+  //            <th scope="col">{city}</th>
+  //             <td>
+  //                 <Chart height={120} width={170} data={temps} color='red' units='Celsius' />
+  //             </td>
+  //             <td>
+  //                 <Chart height={120} width={170} data={humidities} color='blue' units='%' />
+  //             </td>
+  //             <td>
+  //                 <Chart height={120} width={170} data={pressures} color='green' units='hPa' />
+  //             </td>
+  //         </tr>
+  //     )
+  // }
+
   // const city = weather.weatherInfo.city.name;
   // console.log("city", city);
 
