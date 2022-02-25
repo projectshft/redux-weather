@@ -9,6 +9,9 @@ import _ from "lodash";
 //Average data so we can get the line
 
 function average(data) {
+  if (!data) {
+    return;
+  }
   if (data.length > 0) return _.round(_.sum(data) / data.length);
 }
 

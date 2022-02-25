@@ -5,8 +5,8 @@ import WeatherRow from "./WeatherRow";
 function WeatherTable(props) {
   return (
     <div className="container">
-      <table className="table">
-        <thead className="table-head">
+      <table className="table table-borderless">
+        <thead className="thead-light">
           <tr>
             <th className="table-heading" scope="col">
               City
@@ -20,6 +20,7 @@ function WeatherTable(props) {
             <th className="table-heading" scope="col">
               Humidity (%)
             </th>
+            <th className="table-heading" scope="col"></th>
           </tr>
         </thead>
         <WeatherRow />

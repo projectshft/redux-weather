@@ -1,6 +1,4 @@
-import _ from "lodash";
 import { FETCH_WEATHER, SET_ERROR } from "../actions";
-// import _ from "lodash";
 
 const initialState = {
   weatherInfo: [],
@@ -19,6 +17,10 @@ const weatherReducer = function (state = initialState, action) {
         ],
       };
     }
+
+    // case SET_DEFAULT {
+
+    // }
 
     case SET_ERROR: {
       alert(action.payload.response.message);
