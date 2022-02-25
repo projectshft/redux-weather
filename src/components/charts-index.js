@@ -17,7 +17,7 @@ const ChartsIndex = () => {
     if (!_.isEmpty(charts)) {
       return charts.order.map((chartID) => (
         <li className="list-group-item" key={chartID}>
-          <Link to={`/posts/${chartID}`}>{charts.entries[chartID].title}</Link>
+          <Link to={`/charts/${chartID}`}>{charts.entries[chartID].title}</Link>
         </li>
       ));
     }
