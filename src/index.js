@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import promise from "redux-promise";
 
-import ChartsIndex from "./components/posts-index";
+import ChartsIndex from "./components/charts-index";
 import Header from "./components/header";
 import reducers from "./reducers";
 
