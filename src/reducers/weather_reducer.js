@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { FETCH_WEATHER, SET_ERROR } from "../actions";
 // import _ from "lodash";
 
@@ -8,11 +9,14 @@ const initialState = {
 const weatherReducer = function (state = initialState, action) {
   switch (action.type) {
     case FETCH_WEATHER: {
-      console.log(action.payload.data);
-
       return {
         ...state,
-        weatherInfo: [{ ...action.payload.data }, ...state.weatherInfo],
+        weatherInfo: [
+          { ...action.payload.data },
+          ...state.weatherInfo.filter(
+            (entry) => entry.city.id !== action.payload.data.city.id
+          ),
+        ],
       };
     }
 
