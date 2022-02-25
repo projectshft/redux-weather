@@ -3,12 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { rootReducer } from './reducers';
 import App from './App';
 
-//need a store
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={}> 
+    <Provider store={createStore(rootReducer)}>
       <App />
     </Provider>
   </React.StrictMode>,
