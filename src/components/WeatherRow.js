@@ -20,6 +20,7 @@ function WeatherRow(props) {
   const handleDefaultClick = (e) => {
     const city = e.target.id;
     localStorage.setItem("city", city);
+    alert("Your default city is set!");
   };
 
   const weather = useSelector((state) => state.weather.weatherInfo);
