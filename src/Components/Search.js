@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { getData } from "../Actions/Index";
 
 
-let citySchema = Yup.object({'city': Yup.string().required()}).required();;
+let citySchema = Yup.object({'City': Yup.string().required()}).required();;
 
 const Search = (props) => {
   const { register, handleSubmit, formState:{ errors } } = useForm({
@@ -28,23 +28,19 @@ const Search = (props) => {
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <div className="input-group mb-3">
           <input 
+            placeholder='"City"'
             className="form-control border border-dark" 
-            {... register('city')}>                 
+            {... register('City')}>                 
           </input>
           
           <input type='submit' className="btn btn-outline-dark" />
         </div>
-        <p className="text-danger">{errors.city?.message}</p>
+        <p className="text-danger">{errors.City?.message}</p>
       </form>
     </div>
   )
 
 };
-// <button className="btn btn-outline-secondary" type="button">Search</button>
-// <input 
-//   className="form-control" 
-//   name='city'>
-// </input>
 
 export default Search;
 
