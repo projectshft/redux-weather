@@ -13,10 +13,10 @@ import { SparklinesLine } from 'react-sparklines';
 import { Sparklines } from 'react-sparklines'
 import { SparklinesReferenceLine } from 'react-sparklines';
 
-//// STORE
+// Create redux store w/middleware
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-//// ACTIONS
+// Create action FETCH_WEATHER with axios get request based on search query
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 export function fetchWeather(searchQuery) {
@@ -28,7 +28,7 @@ export function fetchWeather(searchQuery) {
   };
 }
 
-//// REDUCERS
+// Create weatherData reducer
 const reducers = combineReducers({
   weatherData: function (
     state = {
@@ -46,7 +46,7 @@ const reducers = combineReducers({
 
         for (let i = 0; i < dataList.length; i += 8) {
           const items = {
-            temperature: dataList.map((d) => d.main.temp),
+            temperature: dataList.map((d) => Math.round(d.main.temp)),
             pressure: dataList.map((d) => d.main.pressure),
             humidity: dataList.map((d) => d.main.humidity)
         };
@@ -61,17 +61,29 @@ const reducers = combineReducers({
     }
   },
 });
-//// UI
 
+// Create main user interface component
 function Main() {
   const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState('');
   
   const items = useSelector((state) => {
-    return state.weatherData.items; 
-  });
+    return state.weatherData.items;     
+  }); 
 
+  const avgTemp = Math.round(items.temperature.reduce((a,b) => a + b, 0) / items.temperature.length);
+  const avgPressure = Math.round(items.pressure.reduce((a,b) => a + b, 0) / items.pressure.length);
+  const avgHumidity = Math.round(items.humidity.reduce((a,b) => a + b, 0) / items.humidity.length);
+
+  //const handleInputChange = (e) => {
+    //setSearchQuery(e.target.value)
+ //}
+
+  //const handleSubmit = () => {
+    //dispatch(fetchWeather(searchQuery));
+  //}
+    
   return (
     <div className="container-fluid">
       <div className="row">
@@ -89,7 +101,10 @@ function Main() {
           <form>
           <div className='form-group'>
             <input
-              type="text"
+              type="text" required={true}
+              placeholder="Enter City Name"
+              autoFocus={true}
+
               onChange={(e) => {
                 setSearchQuery(e.target.value)
                 dispatch(fetchWeather(searchQuery));
@@ -101,9 +116,9 @@ function Main() {
           </form>
         </div>
       </div> 
-      <div className="col-md-6 offset-md-3">
+      <div className="col-md-8 offset-md-2">
       <table className="table">
-        <thead>  
+        <thead className="thead-light">  
           <tr>
           <th scope="col">City</th>
           <th scope="col">Temperature (F)</th>
@@ -113,24 +128,27 @@ function Main() {
         </thead>
         <tbody>
           <tr>
-            <th className="city-name" scope="row"><h5 className="text-muted">{searchQuery}</h5></th>
-              <td>
+            <th className="city-name" scope="row"><h5 className="align-middle text-muted">{searchQuery}</h5></th>
+              <td className="align-middle">
               <Sparklines data={items.temperature}>
                 <SparklinesLine color="#253e56" style={{ fill: "#fdfd96" }} />
                 <SparklinesReferenceLine type="avg" />
               </Sparklines> 
+              <p className="text-center">{avgTemp}°</p>
               </td>
-              <td>
+              <td className="align-middle">
               <Sparklines data={items.pressure}>
                 <SparklinesLine color="#253e56" style={{ fill: "#64cc94" }} />
                 <SparklinesReferenceLine type="avg" />
               </Sparklines> 
+              <p className="text-center">{avgPressure}hPA</p>
               </td>
-              <td>
+              <td className="align-middle">
               <Sparklines data={items.humidity}>
                 <SparklinesLine color="#253e56" style={{ fill: "#aaaaaa" }} />
                 <SparklinesReferenceLine type="avg" />
               </Sparklines>
+              <p className="text-center">{avgHumidity}%</p>
               </td>
           </tr>
         </tbody>  

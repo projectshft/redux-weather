@@ -5,12 +5,28 @@
   background-color: lightgray;
 }
 
+.bar {
+  padding: 20px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
 th {
   text-align: center;
 }
 
-h5 {
-  margin-top: 15px;
+.table > tbody > tr > th {
+  vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+  padding-right: 20px;
+}
+
+.table > tbody > tr > td > p {
+  margin-bottom: 0px;
 }
 
 .city-name {
