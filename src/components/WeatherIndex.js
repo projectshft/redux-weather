@@ -20,7 +20,7 @@ const WeatherIndex = () => {
 
   const renderWeatherData = () => {
     if (!_.isEmpty(weather)) {
-      return weather.map((w) => {
+      return weather.map((w, i) => {
         const tempDataPoints = w.list.map((item) => item.main.temp);
         const pressureDataPoints = w.list.map((item) => item.main.pressure);
         const humidityDataPoints = w.list.map((item) => item.main.humidity);
@@ -37,7 +37,7 @@ const WeatherIndex = () => {
           0
         );
         return (
-          <tr key={w.city.name}>
+          <tr key={i}>
             <td>{w.city.name}</td>
             <td>
               <Sparklines data={tempDataPoints}>
