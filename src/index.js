@@ -16,7 +16,7 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(weatherReducer)}>
     <Router>
-      {/* <Header /> */}
+      <Header />
       <Search />
     </Router>
   </Provider>,

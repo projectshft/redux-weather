@@ -1,12 +1,18 @@
+import '../index.css'
+
 const Header = (props) => {
   return (
     <div>
-      <div className='text-center'>
-        <div className="container">
-          <h1 className="p-3 mb-2 bg-dark text-white">Weather Project</h1>
+      <div className='container-fluid'>
+        <div className="row">
+          <div className="text-center padding">
+            <h1 className="p-3 mb-2 bg-dark text-white">Weather Project</h1>
+          </div>
         </div>
       </div>
-      <div className='container'></div>
+      {/* <div className='container'>
+        {props.children}
+      </div> */}
     </div>
   )
 }
