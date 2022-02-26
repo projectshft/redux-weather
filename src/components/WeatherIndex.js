@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
+import {
+  Sparklines,
+  SparklinesLine,
+  SparklinesReferenceLine,
+} from 'react-sparklines';
 import { fetchWeather } from '../actions';
 
 const WeatherIndex = () => {
@@ -11,22 +16,54 @@ const WeatherIndex = () => {
   const handlleWeatherSearch = (e) => {
     e.preventDefault();
     dispatch(fetchWeather(city));
-    console.log(city);
   };
 
   const renderWeatherData = () => {
     if (!_.isEmpty(weather)) {
-      return weather.map((w, i) => (
-        <tr key={w.city.name}>
-          <td>{w.city.name}</td>
-          <td>{w.list[i].main.temp}</td>
-          <td>{w.list[i].main.pressure}</td>
-          <td>{w.list[i].main.humidity}</td>
-        </tr>
-      ));
+      return weather.map((w) => {
+        const tempDataPoints = w.list.map((item) => item.main.temp);
+        const pressureDataPoints = w.list.map((item) => item.main.pressure);
+        const humidityDataPoints = w.list.map((item) => item.main.humidity);
+        const tempAverage = tempDataPoints.reduce(
+          (item, c) => item + c / tempDataPoints.length,
+          0
+        );
+        const pressureAverage = pressureDataPoints.reduce(
+          (item, c) => item + c / pressureDataPoints.length,
+          0
+        );
+        const humidtyAverage = humidityDataPoints.reduce(
+          (item, c) => item + c / humidityDataPoints.length,
+          0
+        );
+        return (
+          <tr key={w.city.name}>
+            <td>{w.city.name}</td>
+            <td>
+              <Sparklines data={tempDataPoints}>
+                <SparklinesLine color="purple" />
+                <SparklinesReferenceLine type="mean" />
+              </Sparklines>
+              <p>{Math.round(tempAverage)} °F</p>
+            </td>
+            <td>
+              <Sparklines data={pressureDataPoints}>
+                <SparklinesLine color="blue" />
+                <SparklinesReferenceLine type="mean" />
+              </Sparklines>
+              <p>{Math.round(pressureAverage)} hPa</p>
+            </td>
+            <td>
+              <Sparklines data={humidityDataPoints}>
+                <SparklinesLine color="green" />
+                <SparklinesReferenceLine type="mean" />
+              </Sparklines>
+              <p>{Math.round(humidtyAverage)}%</p>
+            </td>
+          </tr>
+        );
+      });
     }
-
-    console.log(weather);
   };
 
   return (

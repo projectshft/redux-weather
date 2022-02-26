@@ -9,8 +9,6 @@ export function fetchWeather(city) {
     `${ROOT_URL}q=${city}&units=imperial&appid=6783e8fc2f1c1f45b18e23afa6f08304`
   );
 
-  // request.then(() => callback())
-
   return {
     type: FETCH_WEATHER,
     payload: request,
