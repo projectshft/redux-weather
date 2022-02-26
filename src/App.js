@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import WeatherTable from "./components/WeatherTable";
+import Footer from "./components/Footer";
+import MapPopUp from "./components/MapPopUp";
 
 function App() {
+  const [mapPopup, setMapPopup] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header />
+      <h1 className="text-heading">weather graph</h1>
+      <SearchBar />
+      <p className="map-text" onClick={() => setMapPopup(true)}>
+        Map me!
+      </p>
+      <MapPopUp trigger={mapPopup} setTrigger={setMapPopup} />
+      <WeatherTable />
+      <Footer />
+    </React.Fragment>
   );
 }
 

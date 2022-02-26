@@ -1,0 +1,23 @@
+nav.navbar,
+footer {
+  background-color: rgb(126, 155, 126);
+}
+
+nav .navbar-brand {
+  color: white;
+  font-weight: bold;
+  margin-left: 1rem;
+  letter-spacing: 0.7px;
+  border: 1px solid white;
+  border-radius: 1000%;
+  padding: 5px;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  color: white;
+  margin-top: 5rem;
+}
