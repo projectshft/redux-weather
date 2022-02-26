@@ -1,20 +1,51 @@
 .search-bar-container {
-  margin-top: 8rem;
+  margin-top: 4rem;
   margin-bottom: 2rem;
+}
+
+.text-heading {
+  margin-top: 7rem;
+  color: rgb(90, 104, 90);
+  text-align: center;
 }
 
 .input-group {
   width: 25%;
 }
 
-.input-group-append {
-  background-color: rgb(157, 179, 157);
-}
-
-.search-btn.search-btn {
-  color: white;
+.search-btn.search-btn,
+.btn.btn-geo {
   font-weight: bold;
   letter-spacing: 0.6px;
   text-transform: uppercase;
   padding: 8px 12px;
+}
+
+.search-btn.search-btn {
+  color: white;
+  background-color: rgb(157, 179, 157);
+}
+
+.btn.btn-outline-success {
+  color: rgb(90, 104, 90);
+  border-color: rgb(90, 104, 90);
+}
+
+.btn.btn-outline-success:hover,
+.btn.btn-outline-success:active {
+  color: rgb(63, 78, 63);
+  border-color: rgb(63, 78, 63);
+  background-color: rgb(228, 240, 228);
+}
+
+.map-text {
+  text-align: center;
+  font-style: italic;
+}
+
+.map-text:hover,
+.map-text:active {
+  cursor: pointer;
+  color: rgb(90, 104, 90);
+  text-decoration: underline;
 }

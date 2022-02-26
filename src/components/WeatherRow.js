@@ -55,12 +55,12 @@ function WeatherRow(props) {
           </td>
           <td>
             <button
-              className="btn btn-outline-success"
+              className="btn btn-outline-success default-btn"
               type="submit"
               onClick={handleDefaultClick}
               id={obj?.city?.name}
             >
-              Set as Default
+              Default
             </button>
           </td>
         </tr>

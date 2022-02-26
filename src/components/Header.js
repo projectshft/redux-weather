@@ -6,7 +6,7 @@ function Header() {
     <div>
       <nav className="navbar navbar-expand-lg">
         <a className="navbar-brand" href="/">
-          WeatherSearch
+          WG
         </a>
       </nav>
     </div>

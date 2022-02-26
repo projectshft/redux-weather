@@ -1,6 +1,7 @@
-.table {
+.weather-table-container {
   margin-top: 9rem;
   margin-bottom: 9rem;
+  gap: 20px;
 }
 
 .table-head {
@@ -8,7 +9,7 @@
 }
 
 .thead-light {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: rgb(99, 109, 99);
 }
 
@@ -17,6 +18,9 @@
   border-top: 1px solid rgb(123, 134, 123);
 }
 
+.chart-row {
+  border-bottom: 1px solid rgb(123, 134, 123);
+}
 .chart-graph {
   width: 30%;
   height: 60%;
@@ -24,16 +28,33 @@
 
 .city-name-cell {
   vertical-align: middle;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: rgb(99, 109, 99);
   width: 10%;
+}
+
+.city-name-cell p {
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-align: left;
+}
+
+.city-name-cell p:hover {
+  cursor: pointer;
 }
 
 .average-line-statement {
   text-align: center;
   font-style: italic;
+  margin-bottom: 4rem;
 }
 
 .chart-row .td.chart-graph {
   padding: 20px;
+}
+
+.default-btn {
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 10px;
 }
