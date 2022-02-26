@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCharts } from '../actions';
-import _ from 'lodash';
+import { SparklinesLine } from 'react-sparklines';
+import { Sparklines } from 'react-sparklines'
+import { SparklinesReferenceLine } from 'react-sparklines';
+
+//import _ from 'lodash';
 
 const ChartsIndex = () => {
   const charts = useSelector(state => state.charts);
@@ -14,21 +18,13 @@ const ChartsIndex = () => {
   }, [fetchCharts]);
 
   function renderCharts() {
-    if (!_.isEmpty(charts)) {
-      return charts.order.map((chartID) => (
-        <li className="list-group-item" key={chartID}>
-          <Link to={`/charts/${chartID}`}>{charts.entries[chartID].title}</Link>
-        </li>
-      ));
-    }
-    return <div>Please enter city name to see weather charts</div>;
-  }
-
-  return (
-    <div>
-      <ul className="list-group">{renderCharts()}</ul>
-    </div>
-  );
+    return (
+      <Sparklines data={charts}>
+        <SparklinesLine />
+        <SparklinesReferenceLine type="avg" />
+      </Sparklines> 
+    )
+  }            
 };
 
 export default ChartsIndex;

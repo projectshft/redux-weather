@@ -20,7 +20,7 @@ const postsReducer = function(state = DEFAULT_STATE, action) {
         order: normalizedCharts.result
       }
 
-    default:
+    default: 
       return state;
   }
 };
