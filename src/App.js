@@ -5,12 +5,14 @@ const App = () => {
   const wait = null;
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row">
-        <div className="col-md-10 col-md-offset-2">
+        <div className="col-md" />
+        <div className="col-md-10">
           <SearchBar />
           <ForecastDisplay />
         </div>
+        <div className="col-md" />
       </div>
     </div>
   );
