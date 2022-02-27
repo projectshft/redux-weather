@@ -35,45 +35,44 @@ const Table = () => {
       F: F
     };
   })
-
+//Couldn't figure out how to make the key error go away. 
   const renderPosts = () => {
       return dataSorter.map((p) => {
         return (
             <tbody>
-              <tr className='text-muted text-center fst-italic'>
-                <td className="align-middle">
-                  {p.city}
-                </td>
-                <td>
-                  <Sparklines data={p.tempArray} svgWidth={295} svgHeight={110}>
-                    <SparklinesBars style={{ stroke: "white", fill: "#41c3f9", fillOpacity: "0" }} />
-                    <SparklinesLine style={{ stroke: "#41c3f9", fill: "#41c3f9", fillOpacity: ".5"}} />
-                    <SparklinesReferenceLine type="avg" />
-                  </Sparklines>
-                  <p>Average: {p.tempAvg}{p.F}</p>
-                </td>
-                <td>
-                 <Sparklines data={p.pressureArray} svgWidth={295} svgHeight={110}>
-                    <SparklinesBars style={{ stroke: "white", fill: "#5076de", fillOpacity: "0" }} />
-                    <SparklinesLine style={{ stroke: "#5076de", fill: "#5076de", fillOpacity: ".5" }} />
-                    <SparklinesReferenceLine type="avg" />
-                  </Sparklines>
-                  <p>Average: {p.pressureAvg} hPa</p>
-                </td>
-                <td>
-                 <Sparklines data={p.humidityArray} svgWidth={295} svgHeight={110}>
-                    <SparklinesBars style={{ stroke: "white", fill: "#5827e8", fillOpacity: "0" }} />
-                    <SparklinesLine style={{ stroke: "#5827e8", fill: "#5827e8", fillOpacity: ".5" }} />
-                    <SparklinesReferenceLine type="avg" />
-                  </Sparklines>
-                  <p>Average: {p.humidityAvg}%</p>
-                </td>
-              </tr>
+                <tr className='text-muted text-center fst-italic'  key={p.city}>
+                  <td className="align-middle" key={p.city}>
+                    {p.city}
+                  </td>
+                  <td key={`${p.city} - temp`}>
+                    <Sparklines data={p.tempArray} svgWidth={295} svgHeight={110}>
+                      <SparklinesBars style={{ stroke: "white", fill: "#41c3f9", fillOpacity: "0" }} />
+                      <SparklinesLine style={{ stroke: "#41c3f9", fill: "#41c3f9", fillOpacity: ".5"}} />
+                      <SparklinesReferenceLine type="avg" />
+                    </Sparklines>
+                    <p key={p.tempAvg}>Average: {p.tempAvg}{p.F}</p>
+                  </td>
+                  <td key={`${p.city} - pressure`}>
+                  <Sparklines data={p.pressureArray} svgWidth={295} svgHeight={110}>
+                      <SparklinesBars style={{ stroke: "white", fill: "#5076de", fillOpacity: "0" }} />
+                      <SparklinesLine style={{ stroke: "#5076de", fill: "#5076de", fillOpacity: ".5" }} />
+                      <SparklinesReferenceLine type="avg" />
+                    </Sparklines>
+                    <p key={p.pressureAvg}>Average: {p.pressureAvg} hPa</p>
+                  </td>
+                  <td key={`${p.city} - humidity`}>
+                  <Sparklines data={p.humidityArray} svgWidth={295} svgHeight={110}>
+                      <SparklinesBars style={{ stroke: "white", fill: "#5827e8", fillOpacity: "0" }} />
+                      <SparklinesLine style={{ stroke: "#5827e8", fill: "#5827e8", fillOpacity: ".5" }} />
+                      <SparklinesReferenceLine type="avg" />
+                    </Sparklines>
+                    <p key={p.humidityAvg}>Average: {p.humidityAvg}%</p>
+                  </td>
+                </tr>
             </tbody>
         )
       });
   }
-
   return (
     <div className="row offset-md-2 col-md-8">
       <table className="table">

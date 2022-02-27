@@ -13,6 +13,7 @@ import { BrowserRouter as Router  } from "react-router-dom";
 import Header from './Components/Header';
 import Search from './Components/Search';
 import Table from './Components/Table';
+import Geolocation from "./Components/Geolocation";
 
 
 
@@ -22,6 +23,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(weatherReducer)}>
     <Router>
       <Header />
+      <Geolocation />
       <Search />
       <Table />
     </Router>

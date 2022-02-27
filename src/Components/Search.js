@@ -5,19 +5,18 @@ import * as Yup from 'yup';
 
 import { getData } from "../Actions/Index";
 
-
 let citySchema = Yup.object({'City': Yup.string().required()}).required();;
 
 const Search = (props) => {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(citySchema)
   });
 
-  const dispatch = useDispatch();
-
   const handleFormSubmit = (data) => {
     dispatch(
-      getData(data),
+      getData(data)
     )
   }
 
@@ -37,7 +36,6 @@ const Search = (props) => {
       </form>
     </div>
   )
-
 };
 
 export default Search;
