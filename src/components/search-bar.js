@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import _ from 'lodash';
+import { getForecast } from '../actions';
 
 const SearchBar = () => {
   const [city, setCity] = useState('');
@@ -13,10 +14,8 @@ const SearchBar = () => {
 
     if (!city.trim()) {
       setError('You must enter a city name.');
-    } else if (city.split(/[\s,]+[A-Z]{2,}/).length === 1) {
-      setError('A country abbreviation is required');
     } else {
-      // dispatch();
+      dispatch(getForecast(city));
     }
   };
 

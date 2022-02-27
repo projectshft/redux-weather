@@ -1,5 +1,5 @@
 import { normalize, schema } from 'normalizr';
-import FORECAST_RECEIVED from '../actions';
+import { FORECAST_RECEIVED } from '../actions';
 
 const defaultState = [];
 

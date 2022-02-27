@@ -1,4 +1,4 @@
-import FORECAST_RECEIVED from '../actions';
+import { FORECAST_RECEIVED } from '../actions';
 
 const defaultSearch = {};
 
