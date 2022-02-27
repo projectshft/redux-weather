@@ -4,14 +4,16 @@ export const FORECAST_RECEIVED = 'FORECAST_RECEIVED';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
-const weatherDataCleaner = (APIResponse) => {
+// helper function for getForecast
+const weatherDataCleaner = (responseObj) => {
   const forecastTemplate = {
+    city: responseObj.city,
     temp: [],
     pressure: [],
     humidity: [],
   };
 
-  const weatherDataObject = APIResponse.data.list.reduce(
+  const weatherDataObject = responseObj.forecastResponse.data.list.reduce(
     (forecastInProgress, weatherPoint) => {
       forecastInProgress.temp.push(weatherPoint.main.temp);
       forecastInProgress.pressure.push(weatherPoint.main.pressure);
@@ -31,10 +33,22 @@ export const getForecast = (city) => {
   );
 
   const forecastsRequest = coordsRequest
-    .then((response) =>
-      axios.get(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${response.data[0].lat}&lon=${response.data[0].lon}&appid=${API_KEY}`
-      )
+    .then(
+      (coordResponse) =>
+        new Promise((resolve, reject) => {
+          // need to return a new promise that wraps the city name and resolved forecast promise instead of simply returning the forecast API promise
+          // because promise middleware doesn't work if the payload is an object with a promise as a value.
+          axios
+            .get(
+              `http://api.openweathermap.org/data/2.5/forecast?lat=${coordResponse.data[0].lat}&lon=${coordResponse.data[0].lon}&appid=${API_KEY}`
+            )
+            .then((forecastResponse) => {
+              resolve({
+                city: coordResponse.data[0].local_names.en,
+                forecastResponse,
+              });
+            });
+        })
     )
     .then(weatherDataCleaner)
     .catch((error) => error);

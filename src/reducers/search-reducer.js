@@ -2,7 +2,6 @@ import { FORECAST_RECEIVED } from '../actions';
 
 const defaultState = {
   city: '',
-  country: '',
   temperature: {
     avg: '',
     dataPoints: [],
@@ -17,23 +16,24 @@ const defaultState = {
   },
 };
 
+const findAverage = (array) =>
+  array.reduce((acc, temp) => acc + temp, 0) / array.length;
+
 const searchReducer = (state = defaultState, action = {}) => {
   if (action.type === FORECAST_RECEIVED) {
-    debugger;
     return {
-      city: '',
-      country: '',
+      city: action.payload.city,
       temperature: {
-        avg: '',
-        dataPoints: [],
+        avg: findAverage(action.payload.temp),
+        dataPoints: action.payload.temp,
       },
       pressure: {
-        avg: '',
-        dataPoints: [],
+        avg: findAverage(action.payload.pressure),
+        dataPoints: action.payload.pressure,
       },
       humidity: {
-        avg: '',
-        dataPoints: [],
+        avg: findAverage(action.payload.humidity),
+        dataPoints: action.payload.humidity,
       },
     };
   }
