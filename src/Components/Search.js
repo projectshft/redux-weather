@@ -17,9 +17,8 @@ const Search = (props) => {
   // const handleFormSubmit = (data) => console.log(data);
 
   const handleFormSubmit = (data) => {
-    console.log(data);
     dispatch(
-      getData(data)
+      getData(data),
     )
   }
 

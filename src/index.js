@@ -4,7 +4,7 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import promise from "redux-promise";
-import weatherReducer from "./Reducers/Weather-Reducer";
+import weatherReducer from "./Reducers/Weather-Data";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
