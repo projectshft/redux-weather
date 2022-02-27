@@ -1,3 +1,4 @@
+import React from 'react';
 import SearchBar from './components/search-bar.js';
 import ForecastDisplay from './components/forecast-display.js';
 

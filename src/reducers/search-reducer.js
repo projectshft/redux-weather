@@ -1,14 +1,44 @@
 import { FORECAST_RECEIVED } from '../actions';
 
-const defaultSearch = {};
+const defaultState = {
+  city: '',
+  country: '',
+  temperature: {
+    avg: '',
+    dataPoints: [],
+  },
+  pressure: {
+    avg: '',
+    dataPoints: [],
+  },
+  humidity: {
+    avg: '',
+    dataPoints: [],
+  },
+};
 
-const searchReducer = (state = defaultSearch, action = {}) => {
-  switch (action.type) {
-    case FORECAST_RECEIVED:
-      return { ...action.payload };
-    default:
-      return state;
+const searchReducer = (state = defaultState, action = {}) => {
+  if (action.type === FORECAST_RECEIVED) {
+    debugger;
+    return {
+      city: '',
+      country: '',
+      temperature: {
+        avg: '',
+        dataPoints: [],
+      },
+      pressure: {
+        avg: '',
+        dataPoints: [],
+      },
+      humidity: {
+        avg: '',
+        dataPoints: [],
+      },
+    };
   }
+
+  return state;
 };
 
 export default searchReducer;
