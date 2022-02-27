@@ -12,10 +12,8 @@ import { Sparklines } from 'react-sparklines'
 import { SparklinesReferenceLine } from 'react-sparklines';
 import _ from 'lodash';
 
-// Create redux store w/middleware
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-// Create action FETCH_WEATHER with axios get request based on search query
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 export function fetchWeather(searchQuery) {
@@ -34,7 +32,6 @@ export function fetchWeather(searchQuery) {
   };
 }
 
-// Create weatherData reducer
 const reducers = combineReducers({
   weatherData: function (
     state = {
@@ -49,28 +46,30 @@ const reducers = combineReducers({
     switch (action.type) {
       case FETCH_WEATHER:
         const dataList = action.payload.data.list;
+        let items = {};
 
         for (let i = 0; i < dataList.length; i += 8) {
-          const items = {
+          items = {
             temperature: dataList.map((d) => Math.round(d.main.temp)),
             pressure: dataList.map((d) => d.main.pressure),
             humidity: dataList.map((d) => d.main.humidity)
         };
+      }
         items.cityName = action.payload.data.city.name;
+        items.avgTemp = Math.round(items.temperature.reduce((a,b) => a + b, 0) / items.temperature.length);
+        items.avgPressure = Math.round(items.pressure.reduce((a,b) => a + b, 0) / items.pressure.length);
+        items.avgHumidity = Math.round(items.humidity.reduce((a,b) => a + b, 0) / items.humidity.length);
 
-        return {
+        return { 
           items
-        }  
-      };
-      break;
+        }
 
       default:
         return state;
+      };
     }
-  },
-});
+  });
 
-// Create main user interface component
 const Main = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [errors, setErrors] = useState({});
@@ -82,11 +81,9 @@ const Main = () => {
       if (!field) {
         acc[key] = { message: `The ${key} field is required`}
       } 
-
       if (!isNaN(field)) {
         acc[key] = { message: `The ${key} must be a valid city name`}
       }
-
       return acc;
     }, {});
 
@@ -106,10 +103,6 @@ const Main = () => {
       dispatch(fetchWeather(searchQuery));
     }
   };
-
-  const avgTemp = Math.round(items.temperature.reduce((a,b) => a + b, 0) / items.temperature.length);
-  const avgPressure = Math.round(items.pressure.reduce((a,b) => a + b, 0) / items.pressure.length);
-  const avgHumidity = Math.round(items.humidity.reduce((a,b) => a + b, 0) / items.humidity.length);
   
   return (
     <div className="container-fluid">
@@ -142,49 +135,47 @@ const Main = () => {
         </div>
       </div> 
       <div className="col-md-8 offset-md-2">
-      <table className="table">
-        <thead className="thead-light">  
-          <tr>
-          <th scope="col">City</th>
-          <th scope="col">Temperature (F)</th>
-          <th scope="col">Pressure (hPa)</th>
-          <th scope="col">Humidity (%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th className="city-name" scope="row"><h5 className="align-middle text-muted">{items.cityName}</h5></th>
-              <td className="align-middle">
-              <Sparklines data={items.temperature}>
-                <SparklinesLine color="#253e56" style={{ fill: "#fdfd96" }} />
-                <SparklinesReferenceLine type="avg" />
-              </Sparklines> 
-              <p className="text-center">{avgTemp}°</p>
-              </td>
-              <td className="align-middle">
-              <Sparklines data={items.pressure}>
-                <SparklinesLine color="#253e56" style={{ fill: "#64cc94" }} />
-                <SparklinesReferenceLine type="avg" />
-              </Sparklines> 
-              <p className="text-center">{avgPressure}hPA</p>
-              </td>
-              <td className="align-middle">
-              <Sparklines data={items.humidity}>
-                <SparklinesLine color="#253e56" style={{ fill: "#aaaaaa" }} />
-                <SparklinesReferenceLine type="avg" />
-              </Sparklines>
-              <p className="text-center">{avgHumidity}%</p>
-              </td>
-          </tr>
-        </tbody>  
-      </table>   
+        <table className="table">
+          <thead className="thead-light">  
+            <tr>
+            <th scope="col">City</th>
+            <th scope="col">Temperature (F)</th>
+            <th scope="col">Pressure (hPa)</th>
+            <th scope="col">Humidity (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th className="city-name" scope="row"><h5 className="align-middle text-muted">{items.cityName}</h5></th>
+                <td className="align-middle">
+                <Sparklines data={items.temperature}>
+                  <SparklinesLine color="#253e56" style={{ fill: "#fdfd96" }} />
+                  <SparklinesReferenceLine type="avg" />
+                </Sparklines> 
+                <p className="text-center">{items.avgTemp}°</p>
+                </td>
+                <td className="align-middle">
+                <Sparklines data={items.pressure}>
+                  <SparklinesLine color="#253e56" style={{ fill: "#64cc94" }} />
+                  <SparklinesReferenceLine type="avg" />
+                </Sparklines> 
+                <p className="text-center">{items.avgPressure}hPA</p>
+                </td>
+                <td className="align-middle">
+                <Sparklines data={items.humidity}>
+                  <SparklinesLine color="#253e56" style={{ fill: "#aaaaaa" }} />
+                  <SparklinesReferenceLine type="avg" />
+                </Sparklines>
+                <p className="text-center">{items.avgHumidity}%</p>
+                </td>
+            </tr>
+          </tbody>  
+        </table>   
       </div>
     </div> 
   );
 }
 
-
-//// MAIN
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Main />
