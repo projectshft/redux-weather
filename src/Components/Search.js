@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+
 import { getData } from "../Actions/Index";
 
 
@@ -13,8 +14,6 @@ const Search = (props) => {
   });
 
   const dispatch = useDispatch();
-
-  // const handleFormSubmit = (data) => console.log(data);
 
   const handleFormSubmit = (data) => {
     dispatch(

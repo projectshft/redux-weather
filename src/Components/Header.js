@@ -10,9 +10,6 @@ const Header = (props) => {
           </div>
         </div>
       </div>
-      {/* <div className='container'>
-        {props.children}
-      </div> */}
     </div>
   )
 }
