@@ -75,6 +75,7 @@ const WeatherIndex = () => {
             className="form-control"
             placeholder="Get a five-day forecast in your favorite cities"
             onChange={(e) => setCity(e.target.value)}
+            required
           />
           <div className="input-group-append">
             <button className="btn btn-primary" type="submit">
