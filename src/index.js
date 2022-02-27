@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
@@ -8,10 +7,10 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import promise from "redux-promise";
 import { combineReducers } from "redux";
 import axios from "axios";
-
 import { SparklinesLine } from 'react-sparklines';
 import { Sparklines } from 'react-sparklines'
 import { SparklinesReferenceLine } from 'react-sparklines';
+import _ from 'lodash';
 
 // Create redux store w/middleware
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
@@ -20,7 +19,14 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 export function fetchWeather(searchQuery) {
-  const request = axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&units=imperial&appid=73d02479adb6279b02fdb623c43367cb`);
+  const request = axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&units=imperial&appid=73d02479adb6279b02fdb623c43367cb`)
+  .catch(function (error) {
+    if (error.response) {
+      alert(`${searchQuery} is not a valid city`);
+    } else {
+      alert('Error', error.message);
+    }
+  });
 
   return {
     type: FETCH_WEATHER,
@@ -50,8 +56,10 @@ const reducers = combineReducers({
             pressure: dataList.map((d) => d.main.pressure),
             humidity: dataList.map((d) => d.main.humidity)
         };
+        items.cityName = action.payload.data.city.name;
+
         return {
-          items,
+          items
         }  
       };
       break;
@@ -63,27 +71,46 @@ const reducers = combineReducers({
 });
 
 // Create main user interface component
-function Main() {
-  const dispatch = useDispatch();
-
+const Main = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const dispatch = useDispatch(); 
+
+  const validFields = (input) => {
+    const errorMessages = _.reduce(input, function (acc, field, key) {
+      if (!field) {
+        acc[key] = { message: `The ${key} field is required`}
+      } 
+
+      if (!isNaN(field)) {
+        acc[key] = { message: `The ${key} must be a valid city name`}
+      }
+
+      return acc;
+    }, {});
+
+    setErrors(errorMessages);
+
+    return _.isEmpty(errorMessages);
+  }; 
   
   const items = useSelector((state) => {
     return state.weatherData.items;     
   }); 
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault(); 
+
+    if (validFields({searchQuery})) {
+      dispatch(fetchWeather(searchQuery));
+    }
+  };
+
   const avgTemp = Math.round(items.temperature.reduce((a,b) => a + b, 0) / items.temperature.length);
   const avgPressure = Math.round(items.pressure.reduce((a,b) => a + b, 0) / items.pressure.length);
   const avgHumidity = Math.round(items.humidity.reduce((a,b) => a + b, 0) / items.humidity.length);
-
-  //const handleInputChange = (e) => {
-    //setSearchQuery(e.target.value)
- //}
-
-  //const handleSubmit = () => {
-    //dispatch(fetchWeather(searchQuery));
-  //}
-    
+  
   return (
     <div className="container-fluid">
       <div className="row">
@@ -98,20 +125,18 @@ function Main() {
 
       <div className="bar row">
         <div className="col-md-6 offset-md-3 p-2">
-          <form>
-          <div className='form-group'>
-            <input
-              type="text" required={true}
-              placeholder="Enter City Name"
-              autoFocus={true}
-
-              onChange={(e) => {
-                setSearchQuery(e.target.value)
-                dispatch(fetchWeather(searchQuery));
-              }}
-              className='form-control'
-            ></input>
-          </div>
+          <form onSubmit={handleFormSubmit}>
+            <div className='form-group'>
+              <input
+                className='form-control'
+                type="text" 
+                placeholder="Enter City Name"
+                autoFocus={true}
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)}}></input>
+                <p className="red">{errors.searchQuery?.message}</p>  
+            </div>
             <button className="btn btn-primary" type="submit">Submit</button>
           </form>
         </div>
@@ -128,7 +153,7 @@ function Main() {
         </thead>
         <tbody>
           <tr>
-            <th className="city-name" scope="row"><h5 className="align-middle text-muted">{searchQuery}</h5></th>
+            <th className="city-name" scope="row"><h5 className="align-middle text-muted">{items.cityName}</h5></th>
               <td className="align-middle">
               <Sparklines data={items.temperature}>
                 <SparklinesLine color="#253e56" style={{ fill: "#fdfd96" }} />
@@ -157,6 +182,7 @@ function Main() {
     </div> 
   );
 }
+
 
 //// MAIN
 ReactDOM.render(
