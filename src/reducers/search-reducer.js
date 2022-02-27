@@ -1,4 +1,5 @@
 import { FORECAST_RECEIVED } from '../actions';
+import { addAverages } from './forecast-reducer.js';
 
 const defaultState = {
   city: '',
@@ -16,29 +17,13 @@ const defaultState = {
   },
 };
 
-const findAverage = (array) =>
-  array.reduce((acc, temp) => acc + temp, 0) / array.length;
-
 const searchReducer = (state = defaultState, action = {}) => {
-  if (action.type === FORECAST_RECEIVED) {
-    return {
-      city: action.payload.city,
-      temperature: {
-        avg: findAverage(action.payload.temp),
-        dataPoints: action.payload.temp,
-      },
-      pressure: {
-        avg: findAverage(action.payload.pressure),
-        dataPoints: action.payload.pressure,
-      },
-      humidity: {
-        avg: findAverage(action.payload.humidity),
-        dataPoints: action.payload.humidity,
-      },
-    };
+  switch (action.type) {
+    case FORECAST_RECEIVED:
+      return addAverages(action.payload);
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export default searchReducer;

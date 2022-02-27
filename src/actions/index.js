@@ -8,14 +8,14 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const weatherDataCleaner = (responseObj) => {
   const forecastTemplate = {
     city: responseObj.city,
-    temp: [],
+    temperature: [],
     pressure: [],
     humidity: [],
   };
 
   const weatherDataObject = responseObj.forecastResponse.data.list.reduce(
     (forecastInProgress, weatherPoint) => {
-      forecastInProgress.temp.push(weatherPoint.main.temp);
+      forecastInProgress.temperature.push(weatherPoint.main.temp);
       forecastInProgress.pressure.push(weatherPoint.main.pressure);
       forecastInProgress.humidity.push(weatherPoint.main.humidity);
 
@@ -40,7 +40,7 @@ export const getForecast = (city) => {
           // because promise middleware doesn't work if the payload is an object with a promise as a value.
           axios
             .get(
-              `http://api.openweathermap.org/data/2.5/forecast?lat=${coordResponse.data[0].lat}&lon=${coordResponse.data[0].lon}&appid=${API_KEY}`
+              `http://api.openweathermap.org/data/2.5/forecast?lat=${coordResponse.data[0].lat}&lon=${coordResponse.data[0].lon}&units=imperial&appid=${API_KEY}`
             )
             .then((forecastResponse) => {
               resolve({
