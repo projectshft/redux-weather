@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Row, Col } from 'react-bootstrap';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import ChartTable from './components/ChartTable';
+import SearchBar from './components/SearchBar';
+
+const App = () => (
+  <Container fluid>
+    <Row>
+      <Col md={{ span: 10, offset: 1 }}>
+        <h1 className="display-3 text-center m-4">Weather App 2.0</h1>
+        <hr />
+        <SearchBar />
+        <ChartTable />
+      </Col>
+    </Row>
+  </Container>
+);
 
 export default App;
