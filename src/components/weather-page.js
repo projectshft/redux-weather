@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchWeather } from "../actions";
-import { Link } from "react-router-dom";
+import { Table } from "react-bootstrap";
 
 const sampleData = [5, 10, 5, 20, 8, 15]
 
@@ -20,12 +20,49 @@ const WeatherPage = (props) => {
   console.log(props.weather);
 
   const renderWeather = () => {
-
+    return (
+    <div>
+      <Table striped hover>
+        <thead>
+          <tr className="text-center">
+            <th>City</th>
+            <th>Temperature (F)</th>
+            <th>Pressure (hPa)</th>
+            <th>Humidty (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="align-middle text-center">{props.weather.city}</td>
+            <td className="w-25">
+              <Sparklines data={props.weather.tempArray} height={100}>
+                <SparklinesLine/>
+                <SparklinesReferenceLine type="mean"/>
+              </Sparklines>
+            </td>
+            <td className="w-25">
+              <Sparklines data={props.weather.tempArray} height={100}>
+                <SparklinesLine/>
+                <SparklinesReferenceLine type="mean"/>
+              </Sparklines>
+            </td>
+            <td className="w-25">
+              <Sparklines data={props.weather.tempArray} height={100}>
+                <SparklinesLine/>
+                <SparklinesReferenceLine type="mean"/>
+              </Sparklines>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    </div>
+    )
   }
 
   return (
     <div>
       <h3>Weather</h3>
+      {renderWeather()}
     </div>
   )
 }

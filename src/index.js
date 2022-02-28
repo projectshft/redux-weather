@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import Header from './components/header'

@@ -4,7 +4,7 @@ const weatherReducer = function (state = [], action) {
   switch (action.type) {
     case FETCH_WEATHER:
       const targetArray = action.payload.data.list;
-
+      console.log(action.payload)
       const tempCollection = [];
       const humityCollection = [];
       const pressureCollection = [];
@@ -19,7 +19,11 @@ const weatherReducer = function (state = [], action) {
         humityCollection.push(timeInterval.main.humidity);
         pressureCollection.push(timeInterval.main.pressure);
       });
+
+      const cityName = action.payload.data.city.name;
+
       return {
+        city: cityName, 
         tempArray: tempCollection,
         humityArray: humityCollection,
         pressureArray: pressureCollection
