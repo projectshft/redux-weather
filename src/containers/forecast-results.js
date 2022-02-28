@@ -5,6 +5,9 @@ import _ from 'lodash';
 const ForecastResults = () => {
   const forecast = useSelector((state) => {
     return state.forecast});
+
+  const default_city = useSelector((state) => {
+      return state.default_city});
  
   if (forecast.error) {
     return (<div className="error-message">Please enter valid city name</div>)
@@ -26,7 +29,7 @@ const ForecastResults = () => {
               <th scope="col-2">Humidity (%)</th>
             </tr>    
             <tr>
-              <td className="align-middle">{forecast.forecast_data.city}{forecast.default_city === forecast.forecast_data.city ? " (default)" : ""}</td>
+              <td className="align-middle">{forecast.forecast_data.city}{default_city === forecast.forecast_data.city ? " (default)" : ""}</td>
               <td>
                 <Sparklines data={forecast.forecast_data.temperature_data} width={100} margin={5}>
                   <SparklinesCurve color="orange"/>

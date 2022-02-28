@@ -8,7 +8,7 @@ const SearchBar = () => {
     return state.forecast.forecast_data.city});
 
   const default_city = useSelector(state => {
-    return state.forecast.default_city});
+    return state.default_city});
   
 
   const errors = useSelector((state) => {
