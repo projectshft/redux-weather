@@ -19,7 +19,7 @@ const SearchBar = () => {
   };
 
   return (
-    <Col md={{ span: 8, offset: 2 }}>
+    <Col md={{ span: 6, offset: 3 }}>
       <Form onSubmit={handleSubmit}>
         <InputGroup className="pt-2 mb-3">
           <FormControl

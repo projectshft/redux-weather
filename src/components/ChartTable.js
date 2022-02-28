@@ -2,12 +2,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, CloseButton } from 'react-bootstrap';
-import {
-  Sparklines,
-  SparklinesLine,
-  SparklinesReferenceLine,
-  SparklinesBars,
-} from 'react-sparklines';
 
 import ChartView from './ChartView';
 import { fetchWeather, deleteWeather } from '../actions';
