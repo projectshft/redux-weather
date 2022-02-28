@@ -3,11 +3,10 @@ import appKey from "../components/apiKeys";
 
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
-export function fetchWeather() {
+export function fetchWeather(query) {
   const request = axios.get('https://api.openweathermap.org/data/2.5/forecast?', {
     params: {
-      lat: 35,
-      lon: 139,
+      q: query,
       appid: appKey
     }
   })
@@ -15,5 +14,5 @@ export function fetchWeather() {
   return  {
     type: FETCH_WEATHER,
     payload: request
-  }
+  } 
 }

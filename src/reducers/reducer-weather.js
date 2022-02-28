@@ -1,10 +1,11 @@
-import { FETCH_WEATHER } from "../actions";
+import { FETCH_WEATHER} from "../actions";
 
 const weatherReducer = function (state = [], action) {
   switch (action.type) {
     case FETCH_WEATHER:
+
       const targetArray = action.payload.data.list;
-      console.log(action.payload)
+      
       const tempCollection = [];
       const humityCollection = [];
       const pressureCollection = [];
@@ -22,15 +23,17 @@ const weatherReducer = function (state = [], action) {
 
       const cityName = action.payload.data.city.name;
 
-      return {
+      return [...state, {
         city: cityName, 
         tempArray: tempCollection,
-        humityArray: humityCollection,
+        humidityArray: humityCollection,
         pressureArray: pressureCollection
-      };
+      }];
     default:
       return state;
   }
+
+
 };
 
 export default weatherReducer;

@@ -1,27 +1,21 @@
-import { Row,Col, Container, InputGroup, Button, FormControl } from "react-bootstrap";
+import { Row,Col, Container, InputGroup, Button, FormControl, Table } from "react-bootstrap";
+import InputSection from './input-section'
 
 const header = function (props) {
-
   return (
     <Container>
       <Row>
-        <Col xs={{ span: 10, offset:1}} >
+        <Col >
           <div>
             <div className="text-center">
               <h1>Weather App</h1>
-              <InputGroup className="mb-4">
-                <FormControl></FormControl>
-                <Button>
-                  Search
-                </Button>
-              </InputGroup>
             </div>
-            <hr />
             <div className="container">
-              {props.children}
+              <div>
+                {props.children}
+              </div>
             </div> 
           </div>
-          Hello
         </Col>
       </Row>
     </Container>    
