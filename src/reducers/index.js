@@ -8,3 +8,12 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+// activeBook: function(state = null, action) {
+//   switch (action.type) {
+//     case "BOOK_SELECTED":
+//       return action.payload;
+//   }
+
+//   return state;
+// }

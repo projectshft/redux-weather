@@ -11,7 +11,7 @@ function App() {
             <hr />
           </div>
           <SearchBar />
-          <ForecastResults />    
+          <ForecastResults /> 
         </div>
       </div>
     </div>

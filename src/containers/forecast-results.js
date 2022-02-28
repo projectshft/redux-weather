@@ -26,7 +26,7 @@ const ForecastResults = () => {
               <th scope="col-2">Humidity (%)</th>
             </tr>    
             <tr>
-              <td className="align-middle">{forecast.forecast_data.city} </td>
+              <td className="align-middle">{forecast.forecast_data.city}{forecast.default_city === forecast.forecast_data.city ? " (default)" : ""}</td>
               <td>
                 <Sparklines data={forecast.forecast_data.temperature_data} width={100} margin={5}>
                   <SparklinesCurve color="orange"/>
