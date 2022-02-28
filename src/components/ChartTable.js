@@ -9,6 +9,7 @@ import {
   SparklinesBars,
 } from 'react-sparklines';
 
+import ChartView from './ChartView';
 import { fetchWeather, deleteWeather } from '../actions';
 
 const ChartTable = () => {
@@ -37,43 +38,13 @@ const ChartTable = () => {
             <div className="mt-2">Avg Humidity: {item.humidityAvg}%</div>
           </td>
           <td>
-            <Sparklines
-              data={item.tempList}
-              limit={5}
-              width={100}
-              height={50}
-              margin={5}
-            >
-              <SparklinesBars style={{ fillOpacity: '.1' }} />
-              <SparklinesLine style={{ fill: 'none' }} />
-              <SparklinesReferenceLine type="avg" />
-            </Sparklines>
+            <ChartView data={item.tempList} lineColor="orange" />
           </td>
           <td>
-            <Sparklines
-              data={item.pressureList}
-              limit={5}
-              width={100}
-              height={50}
-              margin={5}
-            >
-              <SparklinesBars style={{ fillOpacity: '.1' }} />
-              <SparklinesLine style={{ fill: 'none' }} />
-              <SparklinesReferenceLine type="avg" />
-            </Sparklines>
+            <ChartView data={item.pressureList} lineColor="blue" />
           </td>
           <td>
-            <Sparklines
-              data={item.humidityList}
-              limit={5}
-              width={100}
-              height={50}
-              margin={5}
-            >
-              <SparklinesBars style={{ fillOpacity: '.1' }} />
-              <SparklinesLine style={{ fill: 'none' }} />
-              <SparklinesReferenceLine type="avg" />
-            </Sparklines>
+            <ChartView data={item.humidityList} lineColor="green" />
           </td>
         </tr>
       ));
