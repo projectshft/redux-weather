@@ -1,22 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Provider from 'react-redux';
+import {Provider} from 'react-redux';
+import ReactDOM from 'react-dom';
 
-
+import Header from './components/header'
+import WeatherPage from './components/weather-page'
 
 
 
 
 ReactDOM.render(
-  <Provider>
     <BrowserRouter>
       <Header>
         <Switch>
-          <Route />
+          <Route path="/" component={WeatherPage}/>
         </Switch>
       </Header>
-    </BrowserRouter>
-
-
-  </Provider>
+    </BrowserRouter>,
+  document.getElementById('root')
 )
