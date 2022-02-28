@@ -1,33 +1,40 @@
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
-import axios from "axios";
-import appKey from "./apiKeys.js";
-
-
+import { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { fetchWeather } from "../actions";
+import { Link } from "react-router-dom";
 
 const sampleData = [5, 10, 5, 20, 8, 15]
 
-function fetchWeather() {
-  const request = axios.get('https://api.openweathermap.org/data/2.5/forecast?', {
-    params: {
-      lat: '35',
-      lon: '139',
-      appid: appKey
-    }
-  });
-  return request;
-}
 
-const WeatherPage = () => {
-  console.log(fetchWeather());
+const WeatherPage = (props) => {
+
+  useEffect(() => {
+    props.fetchWeather();
+  }, [])
+
+
+  const weather = useSelector(state => state.weather);
+
+  console.log(props.weather);
+
+  const renderWeather = () => {
+
+  }
+
   return (
     <div>
-      <Sparklines data={sampleData}>
-        <SparklinesLine />
-        <SparklinesReferenceLine type="mean" />
-      </Sparklines>
+      <h3>Weather</h3>
     </div>
   )
 }
 
+function mapStateToProps(state) {
+  return { weather: state.weather };
+}
+function mapDispatchToProps(dispatch) {
+  return { fetchWeather: bindActionCreators(fetchWeather, dispatch) };
+}
 
-export default WeatherPage;
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherPage);
