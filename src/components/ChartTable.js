@@ -9,7 +9,7 @@ import {
   SparklinesBars,
 } from 'react-sparklines';
 
-import { fetchWeather } from '../actions';
+import { fetchWeather, deleteWeather } from '../actions';
 
 const ChartTable = () => {
   const weather = useSelector((state) => state.weather);
@@ -19,6 +19,10 @@ const ChartTable = () => {
     dispatch(fetchWeather());
   }, [fetchWeather]);
 
+  const handleDelete = (e) => {
+    dispatch(deleteWeather(e.target.id));
+  };
+
   const renderWeather = () => {
     if (weather) {
       return weather.map((item) => (
@@ -26,8 +30,11 @@ const ChartTable = () => {
           <td>
             <div className="d-flex justify-content-between">
               {item.city}
-              <CloseButton />
+              <CloseButton id={item.id} onClick={handleDelete} />
             </div>
+            <div className="mt-2">Avg Temp: {item.tempAvg}&deg;f</div>
+            <div className="mt-2">Avg Pressure: {item.pressureAvg}</div>
+            <div className="mt-2">Avg Humidity: {item.humidityAvg}%</div>
           </td>
           <td>
             <Sparklines

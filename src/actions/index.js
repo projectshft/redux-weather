@@ -7,9 +7,15 @@ const API_KEY = 'd42fcd703f061a26191fb5165ab48e75';
 const ROOT_URL = 'http://api.openweathermap.org/';
 
 export const fetchWeather = (searchQuery = 'austin') => {
-  const request = axios.get(
-    `${ROOT_URL}data/2.5/forecast?q=${searchQuery}&units=imperial&appid=${API_KEY}`
-  );
+  const request = axios
+    .get(
+      `${ROOT_URL}data/2.5/forecast?q=${searchQuery}&units=imperial&appid=${API_KEY}`
+    )
+    .catch((error) => {
+      if (error.response) {
+        alert('Invalid search. Use valid city name or zip code only.');
+      }
+    });
 
   return {
     type: FETCH_WEATHER,
@@ -17,13 +23,7 @@ export const fetchWeather = (searchQuery = 'austin') => {
   };
 };
 
-export const deleteWeather = (id, callback) => {
-  const request = axios.delete(`${ROOT_URL}/posts/${id}`);
-
-  request.then(() => callback());
-
-  return {
-    type: DELETE_WEATHER,
-    payload: id,
-  };
-};
+export const deleteWeather = (id) => ({
+  type: DELETE_WEATHER,
+  payload: id,
+});
