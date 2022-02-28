@@ -15,6 +15,7 @@ const SearchBar = () => {
       setError('You must enter a city name.');
     } else {
       dispatch(getForecast(city));
+      setCity('');
     }
   };
 

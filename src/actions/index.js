@@ -35,7 +35,7 @@ export const getForecast = (city) => {
   const forecastsRequest = coordsRequest
     .then(
       (coordResponse) =>
-        new Promise((resolve, reject) => {
+        new Promise((resolve) => {
           // need to return a new promise that wraps the city name and resolved forecast promise instead of simply returning the forecast API promise
           // because promise middleware doesn't work if the payload is an object with a promise as a value.
           axios
@@ -51,7 +51,7 @@ export const getForecast = (city) => {
         })
     )
     .then(weatherDataCleaner)
-    .catch((error) => error);
+    .catch((error) => Promise.reject(error));
 
   return {
     type: FORECAST_RECEIVED,

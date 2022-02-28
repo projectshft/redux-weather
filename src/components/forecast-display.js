@@ -8,10 +8,39 @@ const ForecastDisplay = () => {
   const renderForecasts = () =>
     forecasts.order.map((cityName) => {
       const forecastData = forecasts.entries[cityName];
-      return <Forecast data={forecastData} />;
+      return <Forecast key={cityName} data={forecastData} />;
     });
 
-  return <div className="forecasts-container">{renderForecasts()}</div>;
+  return (
+    <div className="wrapper text-center">
+      <div className="container-fluid header">
+        <div className="row">
+          <div className="col-md-2">
+            <span>
+              <strong>City</strong>
+            </span>
+          </div>
+          <div className="col-md">
+            <span>
+              <strong>Temperature (F)</strong>
+            </span>
+          </div>
+          <div className="col-md">
+            <span>
+              <strong>Pressure (hPa)</strong>
+            </span>
+          </div>
+          <div className="col-md">
+            <span>
+              <strong>Humidity (%)</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className="forecasts-container">{renderForecasts()}</div>
+    </div>
+  );
 };
 
 export default ForecastDisplay;
