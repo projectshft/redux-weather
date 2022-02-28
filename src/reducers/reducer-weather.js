@@ -23,11 +23,17 @@ const weatherReducer = function (state = [], action) {
 
       const cityName = action.payload.data.city.name;
 
+      const average = (array) => Math.round(array.reduce((a,b) => a + b) / array.length);
+
+      console.log(action.payload)
       return [...state, {
         city: cityName, 
         tempArray: tempCollection,
         humidityArray: humityCollection,
-        pressureArray: pressureCollection
+        pressureArray: pressureCollection,
+        avgTemp: average(tempCollection) + ' F',
+        avgHumidity: average(humityCollection) + '%',
+        avgPressure: average(pressureCollection) + 'hPa'
       }];
     default:
       return state;

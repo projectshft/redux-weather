@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { fetchWeather } from "../actions";
 import { Table, Form, InputGroup, Button, FormControl } from "react-bootstrap";
 
-const sampleData = [5, 10, 5, 20, 8, 15]
 
 
 const WeatherPage = (props) => {
@@ -33,23 +32,26 @@ const WeatherPage = (props) => {
         <>
         <tr>
           <td className="align-middle text-center">{city.city}</td>
-          <td className="w-25">
+          <td className="text-center w-25">
             <Sparklines data={city.tempArray} height={100}>
               <SparklinesLine color="green"/>
               <SparklinesReferenceLine type="mean"/>
             </Sparklines>
+            <p>{city.avgTemp}</p>
           </td>
-          <td className="w-25">
+          <td className="text-center w-25">
             <Sparklines data={city.pressureArray} height={100}>
               <SparklinesLine color="orange"/>
               <SparklinesReferenceLine type="mean"/>
             </Sparklines>
+            <p>{city.avgPressure}</p>
           </td>
-          <td className="w-25">
+          <td className="text-center w-25">
             <Sparklines data={city.humidityArray} height={100}>
               <SparklinesLine color="red"/>
               <SparklinesReferenceLine type="mean"/>
             </Sparklines>
+            <p>{city.avgHumidity}</p>
           </td>
         </tr>
         </>
