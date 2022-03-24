@@ -6,7 +6,7 @@ const ForecastList = ({forecasts}) => {
     }
 
     const renderForecastItems = () => {
-        forecasts.map((forecast) => {
+        return forecasts.map((forecast) => {
             return <ForecastItem forecast={forecast}/>
         })
     }

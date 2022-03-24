@@ -1,8 +1,12 @@
 import { current } from '@reduxjs/toolkit'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCityWeather } from './forecastAPI';//this is some axios stuff
+import { getFiveDayForecast } from './forecastAPI';//this is some 
+import axios from "axios";
+const ROOT_URL =  `https://api.openweathermap.org/data/2.5/weather`;
+const API_KEY = "948ee37ea38c7bc204af5017eb8a2c87";
 
 const initialState = {
+  defaultCity: "Houston",
   forecasts: [],
   loading: false,
   error: null
@@ -17,10 +21,11 @@ export const fetchCityForecast = createAsyncThunk(
   'fetchCityForecast',
   async (city) => {
       try{
-        const response = await fetchCityWeather(city);
+        const response = await getFiveDayForecast(city);
+        // debugger;
         return response.data;
       }catch(error){
-        throw Error(error)
+        throw Error(error);
       }
   }
 );
@@ -48,11 +53,15 @@ export const forecastSlice = createSlice({
           state.loading = false;
           state.error = false;
           state.forecasts.push(action.payload);
-          console.log("Here's the state after fetching weather.")
-          console.log(current(state))
         })
     },
 });
 
 
 export default forecastSlice.reducer;
+
+export const selectForecasts = (state) => state.weather.forecasts;
+export const selectLoading = (state) => state.weather.loading;
+export const selectError = (state) => state.weather.error;
+export const selectDefaultCity = (state) => state.weather.defaultCity;
+
