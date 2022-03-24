@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SearchBar from './features/search-bar/search-bar';
+import ForecastList from './features/forecast/ForecastList';
+import {fetchCityForecast, 
+    selectDefaultCity,
+    selectForecasts,
+    selectLoading,
+    selectError
+} from './features/forecast/forecastSlice';
+
+
+const App = () => {
+    const forecasts = useSelector(selectForecasts);
+    const defaultCity = useSelector(selectDefaultCity);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCityForecast(defaultCity));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch]);
+
+
+    return (
+        <div className="container">
+            <h1 className="text-center">Redux Weather Eval</h1>
+            <SearchBar />
+            <hr></hr>
+            <ForecastList forecasts={forecasts} />
+        </div>
+    )
 }
 
 export default App;

@@ -1,0 +1,15 @@
+.chartSubheading {
+  text-align: center;
+  margin-top: 9px;
+}
+
+.cityNameWrap {
+  position: relative;
+}
+
+.cityName {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
