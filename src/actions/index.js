@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const FETCH_CITIES = 'FETCH_CITIES';
 export const ADD_CITY = 'ADD_CITY';
@@ -13,10 +13,12 @@ export function fetchCities() {
 }
 
 export function addCity(name) {
-  const request = axios.get(`${ROOT_URL}${name}&units=imperial&appid=${APP_ID}`);
-  debugger;
+  const request = axios.get(`${ROOT_URL}${name}&units=imperial&appid=${APP_ID}`).catch(error => {
+    alert('City not found');
+  });
+
   return {
     type: ADD_CITY,
-    payload: request,
+    payload: request
   };
 }

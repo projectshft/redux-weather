@@ -12,7 +12,7 @@
 
 .search-form {
   width: 1000px;
-  margin-left: 93px;
+  margin-left: 100px;
 }
 
 .city-name {
@@ -23,4 +23,8 @@
   color: red;
   font-style: italic;
   font-size: 12px;
+}
+
+.start-message {
+  padding-top: 30px;
 }

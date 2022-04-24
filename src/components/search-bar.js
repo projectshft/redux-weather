@@ -4,17 +4,20 @@ import { useState } from "react";
 
 const Search = () => {
   const [name, setName] = useState("");
-
   const dispatch = useDispatch();
-  const handleFormSubmit = () => {
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     dispatch(addCity(name));
+    setName('');
   }
 
   return (
-    <div>
-      <form onSubmit={handleFormSubmit} className="search-form justify-content-center row container">
-        <div className="col-9">
+    <div className="container">
+      <form onSubmit={handleFormSubmit} className="align-items-center row">
+        <div className="col-10">
           <input
+            value={name}
             onChange={(e) => setName(e.target.value)}
             className="form-control"
             placeholder="Get a five-day forecast for you favorite cities"
@@ -22,7 +25,7 @@ const Search = () => {
         </div>
         <div className="col-2">
           <button
-            className="btn-primary col-2 form-control"
+            className="btn-primary form-control"
             type="submit"
           >Submit</button>
         </div>
