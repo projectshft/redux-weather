@@ -1,11 +1,21 @@
-
+import { useDispatch } from "react-redux";
+import { addCity } from "../actions"
+import { useState } from "react";
 
 const Search = () => {
+  const [name, setName] = useState("");
+
+  const dispatch = useDispatch();
+  const handleFormSubmit = () => {
+    dispatch(addCity(name));
+  }
+
   return (
     <div>
-      <form className="search-form justify-content-center row container">
+      <form onSubmit={handleFormSubmit} className="search-form justify-content-center row container">
         <div className="col-9">
           <input
+            onChange={(e) => setName(e.target.value)}
             className="form-control"
             placeholder="Get a five-day forecast for you favorite cities"
           ></input>

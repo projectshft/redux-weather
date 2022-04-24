@@ -5,10 +5,10 @@ import {
 } from "react-sparklines";
 
 const Weather = () => {
-  const cities = useSelector((state) => state.cities);
+  const cities = useSelector((state) => state.cities)
 
   const renderCities = () => {
-    return cities.map((city) => {
+    return cities.order.map((city) => {
       const tempData = city.temps;
       // const pressureData = city.pressure;
       // const humidityData = city.humidity;
@@ -42,6 +42,7 @@ const Weather = () => {
 
   return (
     <div className="container text-center">
+      <hr/>
       <table className="table">
         <thead>
           <tr>
@@ -51,7 +52,9 @@ const Weather = () => {
             <th scope="col">Humidity (%)</th>
           </tr>
         </thead>
-        <tbody>{renderCities()}</tbody>
+        <tbody>
+          {renderCities()}
+        </tbody>
       </table>
     </div>
   );
