@@ -14,6 +14,7 @@ const defaultState = {
 const CitiesReducer = function(state = defaultState, action) {
   switch (action.type) {
     case FETCH_CITIES:
+      debugger;
       return state;
     default:
       return state;
