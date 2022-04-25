@@ -1,33 +1,59 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch, connect, useSelector } from 'react-redux';
 import { bindActionCreators } from "redux";
+import { useEffect } from 'react';
 import { fetchCity } from './actions';
 import { useForm } from "react-hook-form";
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 import './App.css';
 
 function App() {
+  const city = useSelector((state) => state.city);
   const { register, handleSubmit, errors } = useForm();
+  console.log(city);
+
+  useEffect(() => {
+    dispatch(fetchCity());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderForecast = () => {
-    const props = {posts: []};
-    
-
-      if (props.posts.length > 0) {
-        return props.posts.map((p) => {
-          return (
-            <tr>
-              <td>{p.city}</td>
-              <td>{p.temperature}</td>
-              <td>{p.pressure}</td>
-              <td>{p.humidity}</td>
-            </tr>
-            // <li className="list-group-item" key={post.id}>
-            //   <Link to={`/posts/${post.id}`}>
-            //     {post.title}
-            //   </Link>
-            // </li>
-          );
+    // const city = useSelector({city});
+    console.log(city);
+      if (city.length > 0) {
+        const temp = city.map((p) => {
+          return p.temperature;
         })
+        const pres = city.map((p) => {
+          return p.pressure;
+        })
+        const humi = city.map((p) => {
+          return p.humidity;
+        })
+
+        return (
+          <tr>
+            <td>City</td>
+            <td>
+              <Sparklines data={temp}>
+                <SparklinesLine color="red"/>
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </td>
+            <td>
+              <Sparklines data={pres}>
+                <SparklinesLine color="blue"/>
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </td>
+            <td>
+              <Sparklines data={humi}>
+                <SparklinesLine color="green"/>
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </td>
+          </tr>
+        );
       } else {
         return <div>No posts to show</div>
       } 
@@ -36,7 +62,7 @@ function App() {
   const renderCity = () => {
     return (
       <div>
-        <table>
+        <table width="1000px">
           <thead> 
             <th>City</th>
             <th>Temperature</th>
@@ -54,15 +80,10 @@ function App() {
   const dispatch = useDispatch();
 
   const handleFormSubmit = (data) => {
-    console.log(data);
-  };
-
-  // const handleFormSubmit = (data) => {
-  //   debugger;
-  //   dispatch(
-  //     fetchCity(data)
-  //   )
-  // }
+    dispatch(
+      fetchCity(data)
+    )
+  }
 
   return (
     <div>
@@ -88,14 +109,16 @@ function App() {
   );
 }
 
-function mapStateToProps(state) {
-  console.log('state='+state);
-  return { city: state.city };
-}
+// function mapStateToProps(state) {
+//   console.log('state='+state);
+//   return { city: state.city };
+// }
 
-function mapDispatchToProps(dispatch) {
-  console.log('dispatch='+dispatch)
-  return { fetchCity: bindActionCreators(fetchCity, dispatch) }
-}
+// function mapDispatchToProps(dispatch) {
+//   console.log('dispatch='+dispatch)
+//   return { fetchCity: bindActionCreators(fetchCity, dispatch) }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default App;
