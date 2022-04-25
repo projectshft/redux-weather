@@ -1,51 +1,19 @@
-// import "bootstrap/dist/css/bootstrap.css";
-
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import { createStore, applyMiddleware } from "redux";
-// import { Provider } from "react-redux";
-// import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import promise from "redux-promise";
-
-// import Header from "./components/header";
-// // import reducers from "./reducers";
-// import ForecastIndex from "./components/forecast-index";
-
-// // const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-
-// ReactDOM.render(
-//   <Provider>
-//   {/* // <Provider store={createStoreWithMiddleware(reducers)}> */}
-//     <BrowserRouter>
-//       <Header>
-//         <Switch>
-//           <Route path="/" component={ForecastIndex} />
-//         </Switch>
-//       </Header>
-//     </BrowserRouter>
-//   </Provider>,
-//   document.getElementById("root")
-// );
-
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { createStore,applyMiddleware } from "redux";
+import promise from "redux-promise";
+import './index.css';
+import App from './App';
+import reducers from "./reducers";
 
-
-import Header from "./components/header";
-// import reducers from "./reducers";
-import ForecastIndex from './components/forecast-index';
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
-   <Provider store={createStore}>
-
-      <Header>
-        {ForecastIndex}
-      </Header>
-
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
