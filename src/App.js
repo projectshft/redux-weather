@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
+import Weather from './components/weather-table';
+import Search from './components/search-bar';
+
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <br/>
+      <h1 className='text-center'>Redux Weather</h1>
+      <br/>
+      <Search />
+      <br/>
+      <Weather />
     </div>
-  );
+  )
 }
 
 export default App;
