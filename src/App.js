@@ -1,25 +1,23 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useDispatch, connect, useSelector } from 'react-redux';
-import { bindActionCreators } from "redux";
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCity } from './actions';
 import { useForm } from "react-hook-form";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import './App.css';
 
 function App() {
   const city = useSelector((state) => state.city);
-  const { register, handleSubmit, errors } = useForm();
-  console.log(city);
-
-  useEffect(() => {
-    dispatch(fetchCity());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const postSchema = Yup.object().shape({
+    city: Yup.string().required().min(3).max(10)
+  });
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(postSchema)
+  });
+  const dispatch = useDispatch();
 
   const renderForecast = () => {
-    // const city = useSelector({city});
-    console.log(city);
       if (city.length > 0) {
         const temp = city.map((p) => {
           return p.temperature;
@@ -55,14 +53,14 @@ function App() {
           </tr>
         );
       } else {
-        return <div>No posts to show</div>
+        return <div></div>
       } 
   }
 
   const renderCity = () => {
     return (
       <div>
-        <table width="1000px">
+        <table>
           <thead> 
             <th>City</th>
             <th>Temperature</th>
@@ -76,8 +74,6 @@ function App() {
       </div>
     )
   }
-
-  const dispatch = useDispatch();
 
   const handleFormSubmit = (data) => {
     dispatch(
@@ -96,7 +92,8 @@ function App() {
             <input
               className='form-control'
               name='city'
-              ref={register}></input>          
+              ref={register}></input>
+              {errors.city?.message}         
           </div>
           <button className='btn btn-primary' type='submit'>Search</button>
         </form>
@@ -108,17 +105,5 @@ function App() {
     </div>
   );
 }
-
-// function mapStateToProps(state) {
-//   console.log('state='+state);
-//   return { city: state.city };
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   console.log('dispatch='+dispatch)
-//   return { fetchCity: bindActionCreators(fetchCity, dispatch) }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default App;
