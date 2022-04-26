@@ -17,14 +17,25 @@ const Header = function () {
   const APIKey = "e4f6ea6ff60bd89789f84c07b1f17a89";
 
   const getForecasts = () => {
-    const geoData = [];
-    const latAndLongData = axios.get("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=" + 1 + "&appid=" + APIKey).then(data => geoData.push(data));
+    const latAndLong = {
+      lat: 0,
+      long: 0
+    };
 
-    const lat = geoData[0].lat;
-    const long = geoData[0].long;
+    const forecastData = [];
 
+    axios.get("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=" + 1 + "&appid=" + APIKey).then(response => {
+      latAndLong.lat = response.data[0].lat;
+      latAndLong.long = response.data[0].lon;
+    }).then(() => getForecastsData());
 
-    
+    const getForecastsData = () => {
+       axios.get("http://api.openweathermap.org/data/2.5/forecast?lat=" + latAndLong.lat + "&lon=" + latAndLong.long + "&appid=" + APIKey).then(response => forecastData.push(response)).then(() => parseForecastData());
+    };
+
+    const parseForecastData = () => {
+      console.log(forecastData[0].data)
+    }
   }
   return (
     <div className="container">
