@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './components/header';
+import Forecast from './components/forecast';
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit';
 import  forecastReducer  from './reducers/index'
@@ -17,7 +17,7 @@ const store = configureStore({
 
 ReactDOM.render(
  <Provider store={store}>
-   <Header/>
+   <Forecast/>
  </Provider>,
   document.getElementById('root')
 );
