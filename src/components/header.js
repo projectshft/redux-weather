@@ -1,13 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { add } from '../reducers/index';
 import axios from 'axios';
-import { Sparklines } from 'react-sparklines'
+import { Sparklines, SparklinesLine } from 'react-sparklines'
 
 const Header = function () {
   const [city, setCity] = useState('');
   const dispatch = useDispatch();
+  const forecast = useSelector(state => state.addForecast.forecast)
 
   const handleChange = (e) => {
     setCity(e.target.value)
@@ -46,6 +47,20 @@ const Header = function () {
       dispatch(add(forecastObj))
     }
   }
+
+  const renderForecasts = () => {
+     return forecast.map((item, index) => {
+        return (
+             <tr key={index}>
+               <td>{item.city}</td>
+               <td><Sparklines data={item.temp}><SparklinesLine color="blue" /></Sparklines></td>
+               <td><Sparklines data={item.pressure}><SparklinesLine color="red" /></Sparklines></td>
+               <td><Sparklines data={item.humidity}><SparklinesLine color="green" /></Sparklines></td>
+           </tr>
+         )
+      })  
+    };
+   
   return (
     <div className="container">
       <form>
@@ -56,7 +71,20 @@ const Header = function () {
          </div>
         </div>
       </form>
-      <div></div>
+      
+      <table className="table">
+  <thead className="thead-dark">
+    <tr>
+      <th scope="col">City</th>
+      <th scope="col">Temperature</th>
+      <th scope="col">Pressure</th>
+      <th scope="col">Humidity</th>
+    </tr>
+  </thead>
+    <tbody>{renderForecasts()}</tbody>
+  
+ 
+</table>
     </div>
   )
 }

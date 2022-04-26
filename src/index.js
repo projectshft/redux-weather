@@ -14,6 +14,7 @@ const store = configureStore({
   }
 })
 
+
 ReactDOM.render(
  <Provider store={store}>
    <Header/>
