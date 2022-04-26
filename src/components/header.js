@@ -1,14 +1,13 @@
 import React from 'react';
-import { useState } from 'react'
-import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { add } from '../reducers/index';
+import axios from 'axios';
+import { Sparklines } from 'react-sparklines'
 
 const Header = function () {
   const [city, setCity] = useState('');
-
-  const data = {
-    temp: 67,
-    humidity: 29
-  }
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setCity(e.target.value)
@@ -34,7 +33,17 @@ const Header = function () {
     };
 
     const parseForecastData = () => {
-      console.log(forecastData[0].data)
+  
+      const data = forecastData[0].data;
+      
+      const forecastObj = {
+        city: data.city.name,
+        temp: data.list.map(item => item.main.temp),
+        pressure: data.list.map(item => item.main.pressure),
+        humidity: data.list.map(item => item.main.humidity)
+      };
+
+      dispatch(add(forecastObj))
     }
   }
   return (
@@ -47,6 +56,7 @@ const Header = function () {
          </div>
         </div>
       </form>
+      <div></div>
     </div>
   )
 }
