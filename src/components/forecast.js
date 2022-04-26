@@ -67,7 +67,7 @@ const Forecast = function () {
         <div className="input-group mb-3">
           <input type="text" className="form-control" placeholder="Search" onChange={handleChange}></input>
           <div className="input-group-append">
-           <button className="btn btn-outline-secondary" type="button" onClick={getForecasts}>Button</button>
+           <button className="btn btn-outline-secondary" type="button" onClick={getForecasts}>Submit</button>
          </div>
         </div>
       </form>
