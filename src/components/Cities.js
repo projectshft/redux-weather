@@ -10,7 +10,10 @@ const renderCities = arr => {
         return <span>No city data yet (this is just a placeholder)</span>
     };
     return arr.map(city => {
-        return <span>{city.name}</span>
+        // return <span>{city.name}</span>
+        return (
+            <City id={city.id} weather={city.weather}/>
+        )
     })
 }
 
