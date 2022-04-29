@@ -8,8 +8,19 @@ const DEFAULT_STATE = {
 const citiesReducer = (state = DEFAULT_STATE, action) => {
     switch (action.type) {
         case FETCH_CITY:
-            let newCity;
-            return _.union([...state.cities], newCity)
+            // console.log('in city reducer');
+            let response = action.payload;
+            let newCity = {
+                id: response.data.city.id,
+                name: response.data.city.name,
+                weather: response.data.list
+            }
+            console.dir(newCity);
+            console.dir(state.cities);
+            return {
+                cities: _.union([...state.cities], [newCity])
+                // cities: [...state.cities, newCity]
+            }
         default:
             return state;
     }
