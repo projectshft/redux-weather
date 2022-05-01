@@ -1,28 +1,35 @@
 import { useSelector } from 'react-redux';
 import City from './City';
 
+import './Cities.css';
+
 const renderCities = arr => {
-    // debugger;
-    // console.dir(arr);
-    // debugger;
     if(arr.length < 1) {
         console.log('there are no cities yet');
         return <span>No city data yet (this is just a placeholder)</span>
     };
     return arr.map(city => {
-        // return <span>{city.name}</span>
         return (
-            <City id={city.id} weather={city.weather}/>
+            <City id={city.id} weather={city.weather} name={city.name}/>
         )
     })
 }
 
 const Cities = (props) => {
     const cities = useSelector(state => state.cities.cities);
-    // console.dir(cities);
     return (
-        <div>
-            {renderCities(cities)}
+        <div className="Cities container">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">City</th>
+                        <th scope="col">Temperature (F)</th>
+                        <th scope="col">Pressure (hPa)</th>
+                        <th scope="col">Humidity (%)</th>
+                    </tr>
+                </thead>
+                <tbody>{renderCities(cities)}</tbody>
+            </table>
         </div>
     )
 }
