@@ -4,15 +4,13 @@ import City from './City';
 import './Cities.css';
 
 const renderCities = arr => {
-    if(arr.length < 1) {
-        console.log('there are no cities yet');
-        return <span>No city data yet (this is just a placeholder)</span>
+    if(arr.length > 0) {
+        return arr.map(city => {
+            return (
+                <City id={city.id} weather={city.weather} name={city.name} averages={city.averages}/>
+            )
+        });
     };
-    return arr.map(city => {
-        return (
-            <City id={city.id} weather={city.weather} name={city.name} averages={city.averages}/>
-        )
-    })
 }
 
 const Cities = (props) => {
