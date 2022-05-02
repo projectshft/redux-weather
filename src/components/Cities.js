@@ -19,7 +19,7 @@ const Cities = (props) => {
     const cities = useSelector(state => state.cities.cities);
     return (
         <div className="Cities container">
-            <table>
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">City</th>
