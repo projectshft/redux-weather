@@ -10,7 +10,7 @@ const renderCities = arr => {
     };
     return arr.map(city => {
         return (
-            <City id={city.id} weather={city.weather} name={city.name}/>
+            <City id={city.id} weather={city.weather} name={city.name} averages={city.averages}/>
         )
     })
 }
