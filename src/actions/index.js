@@ -6,7 +6,8 @@ const API_KEY = 'eef46e88eea99fdfcbf3e442af90b863';
 
 export const fetchCity = (city) => {
     // console.log('fetching city');
-    const cityWeather = axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`, {baseURL: ''});
+    const cityWeather = axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`, {baseURL: ''}).catch(error => {
+    });
 
     return {
         type: FETCH_CITY,
