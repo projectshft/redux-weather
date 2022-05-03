@@ -31,7 +31,7 @@ const citiesReducer = (state = DEFAULT_STATE, action) => {
                 }
             }
             return {
-                cities: newCity ? _.union([...state.cities], [newCity]) : [...state.cities]
+                cities: newCity ? _.unionWith([...state.cities], [newCity], _.isEqual) : [...state.cities]
             }
         default:
             return state;
