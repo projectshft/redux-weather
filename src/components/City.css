@@ -2,3 +2,7 @@
   vertical-align: middle;
   width: 25%;
 }
+
+.City p {
+  margin-block-end: 0;
+}

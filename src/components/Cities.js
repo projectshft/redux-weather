@@ -16,7 +16,7 @@ const renderCities = arr => {
 const Cities = (props) => {
     const cities = useSelector(state => state.cities.cities);
     return (
-        <div className="Cities container">
+        <div className="Cities">
             <table className="table table-striped">
                 <thead>
                     <tr>

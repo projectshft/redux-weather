@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchCity } from "../actions";
+import './SearchForm.css';
 
 const SearchForm = () => {
     const [cityInput, setCityInput] = useState('');
@@ -20,7 +21,7 @@ const SearchForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="SearchForm">
             <div className="row">
                 <div className="col col-11">
                     <input type="text" name="text" value={cityInput} onChange={handleInputChange} placeholder="Get a five-day forecast in your favorite cities"/>
