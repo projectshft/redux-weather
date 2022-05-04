@@ -13,7 +13,7 @@ const renderCities = arr => {
     };
 }
 
-const Cities = (props) => {
+const Cities = () => {
     const cities = useSelector(state => state.cities.order);
     return (
         <div className="Cities">
