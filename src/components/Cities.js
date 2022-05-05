@@ -6,7 +6,7 @@ const renderCities = arr => {
     if(arr.length > 0) {
         return arr.map(city => {
             return (
-                <City id={city._id} />
+                <City id={city._id} key={city._id}/>
             )
         });
     };
