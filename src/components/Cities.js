@@ -1,13 +1,11 @@
 import { useSelector } from 'react-redux';
 import City from './City';
-
 import './Cities.css';
 
 const renderCities = arr => {
     if(arr.length > 0) {
         return arr.map(city => {
             return (
-                // <City id={city._id} weather={city.weather} name={city.name} averages={city.averages}/>
                 <City id={city._id} />
             )
         });

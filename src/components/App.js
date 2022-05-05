@@ -1,6 +1,5 @@
 import Cities from "./Cities";
 import SearchForm from "./SearchForm";
-import './App';
 
 const App = () => {
     return (
