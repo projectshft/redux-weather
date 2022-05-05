@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useSelector } from "react-redux";
 import { SparklinesLine } from "react-sparklines";
 import { SparklinesReferenceLine } from "react-sparklines";
@@ -48,6 +49,10 @@ const City = (props) => {
             </td>
         </tr>
     )
+}
+
+City.propTypes = {
+    id: PropTypes.number.isRequired
 }
 
 export default City;
