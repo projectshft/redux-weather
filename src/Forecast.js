@@ -1,34 +1,31 @@
-import { useGetForecastQuery } from './features/api/apiSlice'
+import { forecastSlice } from './features/forecast/forecastSlice'
+import { useSelector } from 'react-redux'
+import { selectForecasts } from './features/forecast/forecastSlice'
 
-const Forecast = () => {
-  const {
-    data: forecastData,
-    isLoading,
-    isSuccess,
-    isError,
-    error
-  } = useGetForecastQuery();
 
-  let content;
-  if (isLoading) {
-    content = <p>Loading...</p>
-  } else if (isSuccess) {
-    content = forecastData
-  } else if (isError) {
-    content = <p>{error}</p>
-  }
-  
-  return (
-    <main>
-      <h1>Data from weatherAPI</h1>
-      <ul>
-        <li>{content.city}</li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </main>
-  )
-};
+const ForecastSkeleton = ({city}) => {
 
-export default Forecast;
+        <main>
+          <h3>Data from weatherAPI</h3>
+          <ul>
+            <li>{city}</li>
+          </ul>
+        </main>
+
+    };
+
+export const Forecast = () => {
+
+  const {forecasts} = useSelector(selectForecasts);
+  if(forecasts.length > 0)
+  {for (let i = 0; i < forecasts.length; i++) {
+    return(
+      <ForecastSkeleton 
+      city={forecasts[i].city}/>
+    )
+  }}
+}
+
+
+
+
