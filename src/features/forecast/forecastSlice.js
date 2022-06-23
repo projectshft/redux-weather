@@ -6,16 +6,18 @@ const initialState = {
   error: null
 }
 
-export const fetchForecast = createAsyncThunk('forecasts/fetchForecast', async (city, thunkAPI) => {
+export const fetchForecast = createAsyncThunk (
+  'forecasts/fetchForecast', async (city, thunkAPI) => {
   try {
     const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=7458d8be2ead97f146f0eca0e76fec3b`);
     const data = response.json();
     console.log(data);
     return data;
-  } catch (err) {
-    return err.message;
+      } catch (err) {
+          return err.message;
+      }
   }
-})
+)
 
 export const forecastSlice = createSlice({
   name: 'forecast',
@@ -36,7 +38,7 @@ export const forecastSlice = createSlice({
         state.status = 'succeeded';
         const cityName = action.payload.city.name;     
         const fiveDayArray = [];
-        for (let i = 3; i < action.payload.list.length; i += 8) { fiveDayArray.push ( {temp: action.payload.list[i].main.temp, pressure: action.payload.list[i].main.pressure, humidity: action.payload.list[i].main.humidity } )
+        for (let i = 3; i < action.payload.list.length; i += 8) { fiveDayArray.push( {temp: action.payload.list[i].main.temp, pressure: action.payload.list[i].main.pressure, humidity: action.payload.list[i].main.humidity } )
             };    
         state.forecasts.push({city: cityName, fiveDayArray});
          
@@ -49,4 +51,4 @@ export const forecastSlice = createSlice({
   }
 })
 
-export const selectForecasts = state => state.forecast;
+export const selectForecasts = state => state.forecast.forecasts;

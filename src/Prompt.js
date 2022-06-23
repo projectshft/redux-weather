@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 // import {selectForecasts} from './features/forecast/forecastSlice'
 import { fetchForecast } from './features/forecast/forecastSlice';
-import { forecastSlice } from './features/forecast/forecastSlice';
+// import { forecastSlice } from './features/forecast/forecastSlice';
 
 
 const Prompt = () => {
