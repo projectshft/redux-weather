@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -9,12 +10,13 @@ const initialState = {
 export const fetchForecast = createAsyncThunk (
   'forecasts/fetchForecast', async (city, thunkAPI) => {
   try {
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=7458d8be2ead97f146f0eca0e76fec3b`);
+    const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=7458d8be2ead97f146f0eca0e76fec3b`);
+    if (!response.ok) { throw Error (`RESPONSE IS NOT M-KAY: ${response.status}`); }
     const data = response.json();
     console.log(data);
     return data;
       } catch (err) {
-          return err.message;
+          console.log(`catch handler Alert! ${err.message}`);
       }
   }
 )
@@ -51,4 +53,4 @@ export const forecastSlice = createSlice({
   }
 })
 
-export const selectForecasts = state => state.forecast.forecasts;
+export const forecastReducer = forecastSlice.reducer;

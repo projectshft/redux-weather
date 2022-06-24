@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector, getState } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form'
+import { InputGroup, FormControl } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-// import {selectForecasts} from './features/forecast/forecastSlice'
 import { fetchForecast } from './features/forecast/forecastSlice';
-// import { forecastSlice } from './features/forecast/forecastSlice';
 
 
 const Prompt = () => {
@@ -18,6 +17,7 @@ const Prompt = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(fetchForecast(city));
+    setCity("enter city");
   }
    
   const handleChange = (event) => {
@@ -27,14 +27,23 @@ const Prompt = () => {
 
   return (
     <div>
-      <Form.Group >
-        <Form.Control
+      <Container>
+      <InputGroup className="mb-3">
+        <FormControl
           type="text"
           value={city}
           onChange={handleChange}
+          aria-describedby="basic-addon2"
         />
-        <Button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</Button>   
-      </Form.Group>
+        <Button 
+          onClick={handleSubmit} 
+          type="submit" 
+          className="btn btn-primary"
+          id="button-addon2"
+          >Submit
+        </Button>   
+      </InputGroup>
+      </Container>
 
       <Container>
         <Row>

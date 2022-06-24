@@ -3,14 +3,9 @@ import * as ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import  { Provider }  from 'react-redux';
-import { configureStore } from "@reduxjs/toolkit";
-import { forecastSlice } from './features/forecast/forecastSlice';
+import  store  from './store/store'
 
 
-
-const store = configureStore({
-  reducer: forecastSlice.reducer
-});
 
 ReactDOM.render(
   <React.StrictMode>
