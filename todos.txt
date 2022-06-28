@@ -1,10 +1,4 @@
 Buld Index page: 
 
-- create Axios() that will make a http request to the weatherAPI;
-- set up configureStore();
-- set up createSlice();
-
-
-
-- data (5 day forecast) from weather map API then is passed to React Sparklines, and is displayed as graphs and charts in folowwing row items: city, temp, pressure, humidity;
-- easy peasy beachy breezy
+- rn fetchForecast() returned by createAsyncThunk api auto calls reducer with fetchForecast.fulfilled action even though server response is 404, and crashes the app. 
+- try to make 

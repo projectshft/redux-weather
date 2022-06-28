@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -9,14 +8,16 @@ const initialState = {
 
 export const fetchForecast = createAsyncThunk (
   'forecasts/fetchForecast', async (city, thunkAPI) => {
+  
   try {
     const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=7458d8be2ead97f146f0eca0e76fec3b`);
-    if (!response.ok) { throw Error (`RESPONSE IS NOT M-KAY: ${response.status}`); }
+    if (!response.ok) {
+      throw Error (`Error: weather api response: ${response.status}`);
+     }
     const data = response.json();
-    console.log(data);
     return data;
       } catch (err) {
-          console.log(`catch handler Alert! ${err.message}`);
+          console.log(`caught by fetchForecast catch handler Alert! ${err.message}`);
       }
   }
 )
@@ -48,7 +49,7 @@ export const forecastSlice = createSlice({
       
       [fetchForecast.rejected]:(state, action) => {
         state.status = 'failed'
-        state.error = action.error.message
+        state.error = action.error.message || "";
       }
   }
 })
