@@ -35,6 +35,7 @@ const ForecastSkeleton = ({city, temp, pressure, humidity, key}) => {
         </Col>
       </Row>
      </Container>
+   
     )
     };
 
@@ -47,11 +48,11 @@ export const Forecast = () => {
       <div> { 
           forecasts.map((forecast) => (
             <ForecastSkeleton 
+              key={forecast.city.id}
               city={forecast.city}
               temp={forecast.fiveDayArray.map(obj=>Math.round(obj.temp))}
               pressure={forecast.fiveDayArray.map(obj=>Math.round(obj.pressure))}
               humidity={forecast.fiveDayArray.map(obj=>Math.round(obj.humidity))}
-              key={forecast.city.id}
             />
           ))           
         }

@@ -1,4 +1,0 @@
-Buld Index page: 
-
-- rn fetchForecast() returned by createAsyncThunk api auto calls reducer with fetchForecast.fulfilled action even though server response is 404, and crashes the app. 
-- try to make 

@@ -12,13 +12,14 @@ export const fetchForecast = createAsyncThunk (
   try {
     const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=7458d8be2ead97f146f0eca0e76fec3b`);
     if (!response.ok) {
-      throw Error (`Error: weather api response: ${response.status}`);
+      alert('enter a valid city');
+      return thunkAPI.rejectWithValue(response);
      }
     const data = response.json();
     return data;
       } catch (err) {
-          console.log(`caught by fetchForecast catch handler Alert! ${err.message}`);
-      }
+          console.log(err);
+        }
   }
 )
 
