@@ -1,6 +1,18 @@
-import SearchResultsItem from "./SearchResultsItem";
+// import SearchResultsItem from "./SearchResultsItem";
+import { useSelector } from 'react-redux'
+import SearchResultsItem from './SearchResultsItem';
+
+const selectCities = (state) => state.cities;
 
 const SearchResults = () => {
+  const cities = useSelector(selectCities)
+
+  const renderedResultsItems = cities.map(city => {
+    return (
+      <SearchResultsItem key={city.city.id} city={city} />
+    );
+  })
+
   return (
     <table className="table table-striped table-hover">
       <thead>
@@ -12,7 +24,7 @@ const SearchResults = () => {
         </tr>
       </thead>
       <tbody>
-        <SearchResultsItem />
+        {renderedResultsItems}
       </tbody>
     </table>
   );
