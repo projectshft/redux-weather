@@ -1,33 +1,39 @@
-import { Sparklines, SparklinesLine } from "react-sparklines";
+import {
+  Sparklines,
+  SparklinesCurve,
+  SparklinesReferenceLine,
+} from "react-sparklines";
 
 const SearchResultsItem = ({ city }) => {
-  console.log(city);
-  const temp = city.list.reduce((start, item) => {
-    return [...start, item.main.temp];
-  }, []);
-  const pressure = city.list.reduce((start, item) => {
-    return [...start, item.main.pressure];
-  }, []);
-  const humidity = city.list.reduce((start, item) => {
-    return [...start, item.main.humidity];
-  }, []);
+  const { temp, pressure, humidity } = city;
+
+  const avg = (arr) => Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
+
   return (
-    <tr>
-      <th scope="row">{city.city.name}</th>
+    <tr className="">
+      <th scope="row" className="align-middle fs-5">
+        {city.name}
+      </th>
       <td>
-        <Sparklines data={temp}>
-          <SparklinesLine />
+        <Sparklines data={temp} height={100}>
+          <SparklinesCurve color="green" />
+          <SparklinesReferenceLine type="avg" />
         </Sparklines>
+        <div className="fw-bold mt-1">{avg(temp)}° F</div>
       </td>
       <td>
-        <Sparklines data={pressure}>
-          <SparklinesLine />
+        <Sparklines data={pressure} height={100}>
+          <SparklinesCurve color="blue" />
+          <SparklinesReferenceLine type="avg" />
         </Sparklines>
+        <div className="fw-bold mt-1">{avg(pressure)} hPa</div>
       </td>
       <td>
-        <Sparklines data={humidity}>
-          <SparklinesLine />
+        <Sparklines data={humidity} height={100}>
+          <SparklinesCurve color="purple" />
+          <SparklinesReferenceLine type="avg" />
         </Sparklines>
+        <div className="fw-bold mt-1">{avg(humidity)}%</div>
       </td>
     </tr>
   );

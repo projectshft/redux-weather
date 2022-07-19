@@ -9,18 +9,18 @@ const SearchResults = () => {
 
   const renderedResultsItems = cities.map(city => {
     return (
-      <SearchResultsItem key={city.city.id} city={city} />
+      <SearchResultsItem key={city.id} city={city} />
     );
   })
 
   return (
-    <table className="table table-striped table-hover">
+    <table className="table table-striped text-center">
       <thead>
         <tr>
-          <th scope="col">City</th>
-          <th scope="col">Temperatue (F)</th>
-          <th scope="col">Pressure (hPa)</th>
-          <th scope="col">Humidity (%)</th>
+          <th scope="col" className='w-25'>City</th>
+          <th scope="col" className='w-25'>Temperatue (F)</th>
+          <th scope="col" className='w-25'>Pressure (hPa)</th>
+          <th scope="col" className='w-25'>Humidity (%)</th>
         </tr>
       </thead>
       <tbody>
