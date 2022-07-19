@@ -1,3 +1,5 @@
+import SearchResultsItem from "./SearchResultsItem";
+
 const SearchResults = () => {
   return (
     <table className="table table-striped table-hover">
@@ -10,12 +12,7 @@ const SearchResults = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">Las Vegas</th>
-          <td>fpo</td>
-          <td>fpo</td>
-          <td>fpo</td>
-        </tr>
+        <SearchResultsItem />
       </tbody>
     </table>
   );
