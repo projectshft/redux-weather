@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,6 +16,17 @@ const Search = () => {
   });
 
   const dispatch = useDispatch();
+  
+  // const getDefaultCity = () => localStorage.getItem('default_city');
+  // const setDefaultCity = (name) => {
+  //   localStorage.setItem('default_city', name);
+  // }
+
+  // useEffect(() => {
+  //   // dispatch(addCity({city: 'Las Vegas'}));
+  //   localStorage.setItem('default_city', 'las vegas');
+  //   getDefaultCity() && dispatch(addCity({city: getDefaultCity()}))
+  // }, []);
 
   const onSubmit = (data) => {
     dispatch(addCity(data));

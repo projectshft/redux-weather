@@ -1,17 +1,22 @@
-// import SearchResultsItem from "./SearchResultsItem";
 import { useSelector } from 'react-redux'
 import SearchResultsItem from './SearchResultsItem';
+import _ from 'lodash';
 
 const selectCities = (state) => state.cities;
 
 const SearchResults = () => {
   const cities = useSelector(selectCities)
+  console.log(cities)
 
   const renderedResultsItems = cities.map(city => {
     return (
       <SearchResultsItem key={city.id} city={city} />
     );
   })
+
+  if (_.isEmpty(cities)) {
+    return <p className='text-center fw-bold fs-5'>Search for your favorite city</p>
+  }
 
   return (
     <table className="table table-striped text-center">

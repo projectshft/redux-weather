@@ -1,18 +1,29 @@
+import { useDispatch } from "react-redux";
 import {
   Sparklines,
   SparklinesCurve,
   SparklinesReferenceLine,
 } from "react-sparklines";
+import { makeDefaultCity } from "../actions";
 
 const SearchResultsItem = ({ city }) => {
   const { temp, pressure, humidity } = city;
+  const dispatch = useDispatch();
 
   const avg = (arr) => Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
 
+  const handleClickDefault = () => {
+    console.log(city.name)
+    dispatch(makeDefaultCity(city.name))
+  }
+
+  const setDefaultAction = city.default ? 'Remove as Default' : 'Set as Default';
+
   return (
     <tr className="">
-      <th scope="row" className="align-middle fs-5">
-        {city.name}
+      <th scope="row" className="align-middle">
+        <p className="fs-5 m-0">{city.name}</p>
+        <p onClick={handleClickDefault} className="btn text-primary m-0">{setDefaultAction}</p>
       </th>
       <td>
         <Sparklines data={temp} height={100}>
