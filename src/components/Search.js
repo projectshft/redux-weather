@@ -7,33 +7,31 @@ import * as yup from "yup";
 import { addCity } from '../actions';
 
 const schema = yup.object({
-  city: yup.string().required('Please enter a city name'),
+  city: yup
+    .string()
+    .transform(value => value.replace(/[^a-zA-Z0-9 ]/g, '').replace(/  +/g, ' '))
+    .required('Please enter a city name'),
 }).required();
 
 const Search = () => {
-  const { register, handleSubmit, formState:{ errors } } = useForm({
+  const { register, handleSubmit, formState:{ errors }, reset } = useForm({
     resolver: yupResolver(schema)
   });
 
   const dispatch = useDispatch();
-  
-  // const getDefaultCity = () => localStorage.getItem('default_city');
-  // const setDefaultCity = (name) => {
-  //   localStorage.setItem('default_city', name);
-  // }
 
-  // useEffect(() => {
-  //   // dispatch(addCity({city: 'Las Vegas'}));
-  //   localStorage.setItem('default_city', 'las vegas');
-  //   getDefaultCity() && dispatch(addCity({city: getDefaultCity()}))
-  // }, []);
+  useEffect(() => {
+    const defaultCity = localStorage.default_city;
+    defaultCity && dispatch(addCity({city: defaultCity, isDefault: true}));
+  }, []);
 
   const onSubmit = (data) => {
     dispatch(addCity(data));
+    reset();
   };
-
+  
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="row gx-2 mb-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="row gx-2 mb-2">
       <div className='col'>
         <input
           {...register("city", {required: true})}

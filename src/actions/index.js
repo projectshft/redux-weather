@@ -8,28 +8,24 @@ export const DEFAULT_CITY = "DEFAULT_CITY";
 
 const ROOT_URL = "http://api.openweathermap.org";
 
-export function addCity({city}) {
-  
+export async function addCity({ city, isDefault=false }) {
     const params = {
       q: city,
       appid: API_KEY,
       units: 'imperial'
     };
   
-    const request = axios.get(`${ROOT_URL}/data/2.5/forecast?`, { params: params });
-
-    // request.then(response => console.log(response));
-    request.catch(error => alert(`${city} did not return any results.`));
+    const request = await axios
+      .get(`${ROOT_URL}/data/2.5/forecast?`, { params: params })
+      .catch(error => alert(`${city} did not return any results.`));
 
   return {
     type: ADD_CITY,
-    payload: request,
+    payload: {...request, isDefault},
   };
 }
 
 export function makeDefaultCity(city) {
-  localStorage.setItem('default_city', city);
-
   return {
     type: DEFAULT_CITY,
     payload: city,

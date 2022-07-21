@@ -21,19 +21,22 @@ const citiesReducer = function (state = DEFAULT_STATE, action) {
           humidity: action.payload.data.list.reduce((start, item) => {
             return [...start, item.main.humidity];
           }, []),
-          default: false,
+          isDefault: action.payload.isDefault
         },
         ...state,
       ];
     case DEFAULT_CITY:
       return state.map((city) => {
         if (city.name !== action.payload) {
-          return city
+          return {
+            ...city,
+            isDefault: false,
+          }
         }
 
         return {
           ...city,
-          default: !city.default,
+          isDefault: !city.isDefault,
         }
       });
     default:
