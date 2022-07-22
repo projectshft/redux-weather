@@ -7,7 +7,6 @@ const selectCities = (state) => state.cities;
 
 const SearchResults = () => {
   const cities = useSelector(selectCities);
-  console.log(cities)
 
   useEffect(() => {
     const defaultCity = cities.find((city) => city.isDefault === true);

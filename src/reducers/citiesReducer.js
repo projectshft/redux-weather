@@ -5,22 +5,18 @@ const DEFAULT_STATE = [];
 const citiesReducer = function (state = DEFAULT_STATE, action) {
   switch (action.type) {
     case ADD_CITY:
-      const isDuplicate = state?.find(city => city?.id === action.payload.data.city.id)
+      const data = action.payload.data;
+
+      const isDuplicate = state?.find(city => city?.id === data.city.id)
       if (isDuplicate) return state
 
       return [
         {
-          name: action.payload.data.city.name,
-          id: action.payload.data.city.id,
-          temp: action.payload.data.list.reduce((start, item) => {
-            return [...start, item.main.temp];
-          }, []),
-          pressure: action.payload.data.list.reduce((start, item) => {
-            return [...start, item.main.pressure];
-          }, []),
-          humidity: action.payload.data.list.reduce((start, item) => {
-            return [...start, item.main.humidity];
-          }, []),
+          name: data.city.name,
+          id: data.city.id,
+          temp: data.list.reduce((start, item) => [...start, item.main.temp], []),
+          pressure: data.list.reduce((start, item) => [...start, item.main.pressure], []),
+          humidity: data.list.reduce((start, item) => [...start, item.main.humidity], []),
           isDefault: action.payload.isDefault
         },
         ...state,
