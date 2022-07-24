@@ -1,0 +1,8 @@
+.forecast-grid-header {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+}
