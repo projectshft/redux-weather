@@ -43,9 +43,9 @@ const Forecast = () => (
         <SparklinesReferenceLine type="mean" />
       </Sparklines>
       <div />
-      <div>89°F</div>
-      <div>1012 hPa</div>
-      <div>63%</div>
+      <div className="grid-item-description">89°F</div>
+      <div className="grid-item-description">1012 hPa</div>
+      <div className="grid-item-description">63%</div>
     </div>
   </div>
 );

@@ -2,11 +2,16 @@
   margin-top: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-column-gap: 1px;
   text-align: center;
   place-items: center;
 }
 .city-name {
+  font-weight: bold;
+}
+
+.grid-item-description {
+  padding-bottom: 100px;
   font-weight: bold;
 }
