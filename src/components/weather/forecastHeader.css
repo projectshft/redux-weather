@@ -1,10 +1,11 @@
 .forecast-grid-header {
-  margin-top: 25px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-left: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
   text-decoration: underline;
   font-weight: bold;
+  font-size: 20px;
 }

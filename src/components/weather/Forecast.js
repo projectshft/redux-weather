@@ -8,16 +8,17 @@ import { useSelector } from 'react-redux';
 
 const Forecast = () => {
   const selector = useSelector((state) => state.weather);
+  console.log(selector);
 
   const weatherData = () =>
     selector.map((data) => (
-      <div className="forecast-grid" key={data.city.name}>
+      <div className="forecast-grid" key={data.city.id}>
         <div className="forecast-grid-item">
           <div className="city-name">{data.city.name}</div>
           <Sparklines
             className="sparkline-img"
             data={data.list.map((value) => value.main.temp)}
-            width={100}
+            width={80}
             height={50}
             margin={5}
           >
@@ -27,7 +28,7 @@ const Forecast = () => {
           <Sparklines
             className="sparkline-img"
             data={data.list.map((value) => value.main.pressure)}
-            width={100}
+            width={80}
             height={50}
             margin={5}
           >
@@ -37,7 +38,7 @@ const Forecast = () => {
           <Sparklines
             className="sparkline-img"
             data={data.list.map((value) => value.main.humidity)}
-            width={100}
+            width={80}
             height={50}
             margin={5}
           >

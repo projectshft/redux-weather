@@ -10,9 +10,13 @@ const SearchBar = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const city = inputRef.current.value;
-    fetchWeather(city, dispatch);
-    e.target.reset();
+    if (inputRef.current.value === '') {
+      alert('Please Enter a City Name');
+    } else {
+      const city = inputRef.current.value;
+      fetchWeather(city, dispatch);
+      e.target.reset();
+    }
   };
   return (
     <form className="form" onSubmit={onSubmit}>
