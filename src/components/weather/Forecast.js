@@ -4,50 +4,73 @@ import {
   SparklinesLine,
   SparklinesReferenceLine,
 } from 'react-sparklines';
+import { useSelector } from 'react-redux';
 
-const Forecast = () => (
-  <div className="forecast-grid">
-    <div className="forecast-grid-item">
-      <div className="city-name">Charleston</div>
-      <Sparklines
-        className="sparkline-img"
-        data={[5, 1, 4, 2, 7]}
-        limit={5}
-        width={100}
-        height={50}
-        margin={5}
-      >
-        <SparklinesLine color="blue" />
-        <SparklinesReferenceLine type="mean" />
-      </Sparklines>
-      <Sparklines
-        className="sparkline-img"
-        data={[5, 1, 4, 2, 7]}
-        limit={5}
-        width={100}
-        height={50}
-        margin={5}
-      >
-        <SparklinesLine color="red" />
-        <SparklinesReferenceLine type="mean" />
-      </Sparklines>
-      <Sparklines
-        className="sparkline-img"
-        data={[5, 1, 4, 2, 7]}
-        limit={5}
-        width={100}
-        height={50}
-        margin={5}
-      >
-        <SparklinesLine color="orange" />
-        <SparklinesReferenceLine type="mean" />
-      </Sparklines>
-      <div />
-      <div className="grid-item-description">89°F</div>
-      <div className="grid-item-description">1012 hPa</div>
-      <div className="grid-item-description">63%</div>
+const Forecast = () => {
+  const selector = useSelector((state) => state.weather);
+  console.log(selector);
+  const cityName = selector.city.name;
+  const temperature = selector.list.map((data) => data.main.temp);
+  const pressure = selector.list.map((data) => data.main.pressure);
+  const humidity = selector.list.map((data) => data.main.humidity);
+
+  return (
+    <div className="forecast-grid">
+      <div className="forecast-grid-item">
+        <div className="city-name">{cityName}</div>
+        <Sparklines
+          className="sparkline-img"
+          data={temperature}
+          width={100}
+          height={50}
+          margin={5}
+        >
+          <SparklinesLine color="blue" />
+          <SparklinesReferenceLine type="mean" />
+        </Sparklines>
+        <Sparklines
+          className="sparkline-img"
+          data={humidity}
+          width={100}
+          height={50}
+          margin={5}
+        >
+          <SparklinesLine color="red" />
+          <SparklinesReferenceLine type="mean" />
+        </Sparklines>
+        <Sparklines
+          className="sparkline-img"
+          data={pressure}
+          width={100}
+          height={50}
+          margin={5}
+        >
+          <SparklinesLine color="orange" />
+          <SparklinesReferenceLine type="mean" />
+        </Sparklines>
+        <div />
+        <div className="grid-item-description">
+          {Math.round(
+            temperature.reduce((acc, val) => acc + val / temperature.length)
+          )}
+          °F
+        </div>
+        <div className="grid-item-description">
+          {Math.round(
+            pressure.reduce((acc, val) => acc + val / temperature.length)
+          )}{' '}
+          hPa
+        </div>
+        <div className="grid-item-description">
+          {' '}
+          {Math.round(
+            humidity.reduce((acc, val) => acc + val / temperature.length)
+          )}
+          %
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Forecast;

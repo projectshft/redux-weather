@@ -11,7 +11,7 @@ const SearchBar = () => {
   const onClick = (e) => {
     e.preventDefault();
     const city = inputRef.current.value;
-    dispatch(fetchWeather(city, dispatch));
+    fetchWeather(city, dispatch);
   };
   return (
     <form className="form">
