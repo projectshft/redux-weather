@@ -8,13 +8,14 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
 
-  const onClick = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const city = inputRef.current.value;
     fetchWeather(city, dispatch);
+    e.target.reset();
   };
   return (
-    <form className="form">
+    <form className="form" onSubmit={onSubmit}>
       <div className="search-bar">
         <input
           ref={inputRef}
@@ -23,7 +24,7 @@ const SearchBar = () => {
           placeholder="Enter City Name"
           name="search"
         />
-        <button className="search-bar-button" type="submit" onClick={onClick}>
+        <button className="search-bar-button" type="submit">
           <FaSearch />
         </button>
       </div>

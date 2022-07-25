@@ -1,5 +1,7 @@
 .forecast-grid-header {
   margin-top: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;

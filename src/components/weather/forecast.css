@@ -1,17 +1,24 @@
 .forecast-grid-item {
-  margin-top: 25px;
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-left: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr auto;
   grid-column-gap: 1px;
   text-align: center;
   place-items: center;
+  border: 1px solid lightgray;
+  background: aliceblue;
+  border-radius: 30px;
 }
 .city-name {
   font-weight: bold;
+  font-size: 25px;
+  padding-top: 30px;
 }
 
 .grid-item-description {
-  padding-bottom: 100px;
   font-weight: bold;
+  padding: 10px;
 }
