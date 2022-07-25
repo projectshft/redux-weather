@@ -6,13 +6,17 @@ import {
 } from 'react-sparklines';
 import { useSelector } from 'react-redux';
 
-const Forecast = () => {
+const Forecast = (props) => {
   const selector = useSelector((state) => state.weather);
-  console.log(selector);
-  const cityName = selector.city.name;
-  const temperature = selector.list.map((data) => data.main.temp);
-  const pressure = selector.list.map((data) => data.main.pressure);
-  const humidity = selector.list.map((data) => data.main.humidity);
+
+  const cityName = selector.map((data) => data.city.name);
+  const temperature = selector[0].list.map((data) => data.main.temp);
+  const pressure = selector[0].list.map((data) => data.main.pressure);
+  const humidity = selector[0].list.map((data) => data.main.humidity);
+  console.log(
+    selector.map((data) => data.city.name),
+    'test'
+  );
 
   return (
     <div className="forecast-grid">
@@ -74,3 +78,5 @@ const Forecast = () => {
 };
 
 export default Forecast;
+
+// return()
