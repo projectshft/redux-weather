@@ -51,7 +51,7 @@ const Forecast = () => {
                 .map((value) => value.main.temp)
                 .reduce((acc, val) => acc + val) / 40
             )}
-            °F
+            °C
           </div>
           <div className="grid-item-description">
             {Math.round(
