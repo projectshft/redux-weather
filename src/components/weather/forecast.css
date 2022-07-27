@@ -11,7 +11,7 @@
   border: 1.5px solid #00008b;
   background: #f0f8ff;
   border-radius: 30px;
-  box-shadow: 1px 4px;
+  box-shadow: 3px 3px 5px 6px #ccc;
 }
 .city-name {
   font-weight: bold;
