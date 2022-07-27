@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 const Forecast = () => {
   const selector = useSelector((state) => state.weather);
-  console.log(selector);
 
   const weatherData = () =>
     selector.map((data) => (
@@ -52,7 +51,7 @@ const Forecast = () => {
                 .map((value) => value.main.temp)
                 .reduce((acc, val) => acc + val) / 40
             )}
-            °C
+            °F
           </div>
           <div className="grid-item-description">
             {Math.round(
@@ -75,7 +74,7 @@ const Forecast = () => {
       </div>
     ));
 
-  return <>{weatherData()}</>;
+  return <> {weatherData()}</>;
 };
 
 export default Forecast;
