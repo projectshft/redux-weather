@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: auto;
+  margin-top: 50%;
+  background-color: red;
 }
 
 code {
@@ -13,5 +16,15 @@ code {
 }
 
 table {
+  width: 500px;
+}
+
+.city-display {
   width: 1000px;
+}
+
+.city-table {
+  width: 1000px;
+  margin: auto;
+  padding: 20%;
 }

@@ -8,64 +8,85 @@ import * as Yup from 'yup';
 import './App.css';
 
 function App() {
-  const city = useSelector((state) => state.city);
+  console.log(useSelector(state => state.city));
+  const city = useSelector(state => state.city);
   const postSchema = Yup.object().shape({
-    city: Yup.string().required().min(3).max(10)
+    city: Yup.string().required().min(3)
   });
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(postSchema)
   });
   const dispatch = useDispatch();
 
+  console.log(`city ` + city.map((p) => {
+    return p.temperature;
+  }));
+
+  
+
   const renderForecast = () => {
       if (city.length > 0) {
-        const temp = city.map((p) => {
-          return p.temperature;
-        })
-        const pres = city.map((p) => {
-          return p.pressure;
-        })
-        const humi = city.map((p) => {
-          return p.humidity;
-        })
 
-        return (
+        return city.map((p) => (
           <tr>
-            <td>City</td>
-            <td>
-              <Sparklines data={temp}>
-                <SparklinesLine color="red"/>
-                <SparklinesReferenceLine type="avg" />
+            <td>{p.city}</td>
+            <td><Sparklines data={p.temperature}>
+              <SparklinesLine color="red"/>
+              <SparklinesReferenceLine type="avg" />
               </Sparklines>
             </td>
-            <td>
-              <Sparklines data={pres}>
-                <SparklinesLine color="blue"/>
-                <SparklinesReferenceLine type="avg" />
+            <td><Sparklines data={p.pressure}>
+              <SparklinesLine color="green"/>
+              <SparklinesReferenceLine type="avg" />
               </Sparklines>
             </td>
-            <td>
-              <Sparklines data={humi}>
-                <SparklinesLine color="green"/>
-                <SparklinesReferenceLine type="avg" />
+            <td><Sparklines data={p.humidity}>
+              <SparklinesLine color="yellow"/>
+              <SparklinesReferenceLine type="avg" />
               </Sparklines>
             </td>
           </tr>
-        );
+        ));
+
+        // return (
+        //   <tr>
+        //     <td>{location}</td>
+        //     {/* <td>
+        //       <Sparklines data={temp}>
+        //         <SparklinesLine color="red"/>
+        //         <SparklinesReferenceLine type="avg" />
+        //       </Sparklines>
+        //     </td>
+        //     <td>
+        //       <Sparklines data={pres}>
+        //         <SparklinesLine color="blue"/>
+        //         <SparklinesReferenceLine type="avg" />
+        //       </Sparklines>
+        //     </td>
+        //     <td>
+        //       <Sparklines data={humi}>
+        //         <SparklinesLine color="green"/>
+        //         <SparklinesReferenceLine type="avg" />
+        //       </Sparklines>
+        //     </td> */}
+        //   </tr>
+        // );
       } else {
-        return <div></div>
+        return <div>No results</div>
       } 
   }
 
   const renderCity = () => {
     return (
-      <div>
-        <table>
-          <thead> 
-            <th>City</th>
-            <th>Temperature</th>
-            <th>Pressure</th>
-            <th>Humidity</th>
+      <div className='city-display'>
+        <table className='city-table'>
+          <thead>
+            <tr> 
+              <th>City</th>
+              <th>Temperature</th>
+              <th>Pressure</th>
+              <th>Humidity</th>
+            </tr>
           </thead>
           <tbody>
             {renderForecast()}
@@ -82,8 +103,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='container'>
       <div className='text-xs-right'>
+        <center><h1>Weather Forecast</h1></center>
         <form 
         onSubmit={ handleSubmit(handleFormSubmit) }
         >
