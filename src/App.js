@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import './App.css';
 
 function App() {
-  console.log(useSelector(state => state.city));
   const city = useSelector(state => state.city);
   const postSchema = Yup.object().shape({
     city: Yup.string().required().min(3)
@@ -17,12 +16,6 @@ function App() {
     resolver: yupResolver(postSchema)
   });
   const dispatch = useDispatch();
-
-  console.log(`city ` + city.map((p) => {
-    return p.temperature;
-  }));
-
-  
 
   const renderForecast = () => {
       if (city.length > 0) {
@@ -47,30 +40,6 @@ function App() {
             </td>
           </tr>
         ));
-
-        // return (
-        //   <tr>
-        //     <td>{location}</td>
-        //     {/* <td>
-        //       <Sparklines data={temp}>
-        //         <SparklinesLine color="red"/>
-        //         <SparklinesReferenceLine type="avg" />
-        //       </Sparklines>
-        //     </td>
-        //     <td>
-        //       <Sparklines data={pres}>
-        //         <SparklinesLine color="blue"/>
-        //         <SparklinesReferenceLine type="avg" />
-        //       </Sparklines>
-        //     </td>
-        //     <td>
-        //       <Sparklines data={humi}>
-        //         <SparklinesLine color="green"/>
-        //         <SparklinesReferenceLine type="avg" />
-        //       </Sparklines>
-        //     </td> */}
-        //   </tr>
-        // );
       } else {
         return <div>No results</div>
       } 
