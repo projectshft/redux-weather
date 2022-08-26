@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOneDay } from '../actions';
+import { fetchFiveDay } from '../actions';
 import FiveDayGraph from './FiveDayGraph';
 
 const WeatherRow = () => {
@@ -9,7 +9,7 @@ const WeatherRow = () => {
   const longLat = [35.801011001660314, -78.61440264232716]
 
   useEffect(()=>{
-    dispatch(fetchOneDay(longLat))
+    dispatch(fetchFiveDay(longLat))
     console.log(weatherObj)
   })
   return (

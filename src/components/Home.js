@@ -1,5 +1,5 @@
 import React from 'react'
-import OneDayForecast from './OneDayForecast'
+
 import SearchBar from './SearchBar'
 import WeatherRow from './WeatherRow'
 
@@ -10,7 +10,6 @@ const Home = () => {
     <div>
       <h1>HOME</h1>
     <SearchBar />
-    <OneDayForecast />
     <WeatherRow />
     {/* <Counter /> */}
     </div>

@@ -6,9 +6,9 @@ const longLat = [35.801011001660314, -78.61440264232716]
 
 const SearchBar = (props) => {
   const dispatch = useDispatch();
-  // const forecast = useSelector(({forecasts})=>{
-  //   return forecasts.state
-  // })
+  const forecast = useSelector(({forecastState})=>{
+    return forecast
+  })
   const oneDayForecast = (locationData) => {
     
   }
@@ -19,12 +19,7 @@ const SearchBar = (props) => {
 
   const handleOneDayClick = () => {
     
-    // dispatch(
-    //   fetchOneDay(longLat, () => {
-    //     console.log(props)
-    //   })
-
-    // )
+    
     console.log('one day')
 
     }
@@ -34,7 +29,7 @@ const SearchBar = (props) => {
     dispatch(
       
       fetchFiveDay(longLat, () => {
-        console.log(props)
+        console.log(forecast)
       })
       )
       console.log('five day')

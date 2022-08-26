@@ -2,7 +2,9 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 
 const FiveDayGraph = () => {
-  const forecastArray = useSelector((state) => state.forecasts)
+  const forecastArray = useSelector(({forecastState}) => {
+    return forecastState.forecastObj
+  })
   ////
   console.log(`5 day graph--array: ${forecastArray}`)
   // console.log(`5 day graph--id: ${id}`)
