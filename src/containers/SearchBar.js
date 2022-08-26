@@ -12,15 +12,19 @@ export default function WeatherIndex() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="search">
       <input
         type="text"
         name="City Name"
         id="name"
+        className="search__text"
+        placeholder="Search for any city's 5 day forecast"
         onChange={(e) => setCity(e.target.value)}
         value={city}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" className="search__btn">
+        City Search
+      </button>
     </form>
   );
 }

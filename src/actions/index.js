@@ -21,6 +21,7 @@ export function fetchLocation(city) {
   const req = axios.get(
     `${ROOT_URL}/geo/1.0/direct?q=${city}&limit=1&appid=${REACT_APP_WEATHER_API_KEY}`
   );
+  req.catch((error) => alert(error));
   return {
     type: FETCH_LOCATION,
     payload: req,
