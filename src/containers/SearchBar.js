@@ -5,7 +5,7 @@ import { fetchLocation } from '../actions';
 export default function WeatherIndex() {
   const [city, setCity] = useState('');
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchLocation(city));
     setCity('');

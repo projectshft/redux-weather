@@ -8,17 +8,19 @@ import {
 } from 'react-sparklines';
 import { fetchForecast } from '../actions';
 
-export default function WeatherIndex() {
-  function checkIfNums(data) {
-    if (typeof data.lat === 'number' && typeof data.lon === 'number') {
-      return true;
-    }
-    alert('The city name entered was not valid. Please check your spelling.');
-    return false;
+function checkIfNums(data) {
+  if (typeof data.lat === 'number' && typeof data.lon === 'number') {
+    return true;
   }
+  alert('The city name entered was not valid. Please check your spelling.');
+  return false;
+}
+
+export default function WeatherIndex() {
   const geoData = useSelector(({ location }) => location);
   const forecastData = useSelector(({ forecasts }) => forecasts);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!_.isEmpty(geoData) && checkIfNums(geoData)) {
       dispatch(fetchForecast(geoData));
