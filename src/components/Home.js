@@ -6,6 +6,7 @@ import WeatherRow from './WeatherRow'
 
 
 const Home = () => {
+  
   return (
     <div>
       <h1>HOME</h1>

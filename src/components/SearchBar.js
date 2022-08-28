@@ -1,41 +1,29 @@
 import React from 'react'
 import {useDispatch, useSelector } from 'react-redux'
-import { fetchFiveDay, fetchLocation, fetchOneDay } from '../actions'
+import { fetchFiveDay } from '../actions'
 
-const longLat = [35.801011001660314, -78.61440264232716]
-
-const SearchBar = (props) => {
+const SearchBar = () => {
+  const forecastObj = useSelector((state) => state.forecastState)
   const dispatch = useDispatch();
-  const forecast = useSelector(({forecastState})=>{
-    return forecast
-  })
-  const oneDayForecast = (locationData) => {
-    
-  }
-
-  const fiveDayForecast = () => {
-    //
-  }
 
   const handleOneDayClick = () => {
-    
-    
-    console.log('one day')
-
+    const locationQuery = "Raleigh"
+    dispatch(fetchFiveDay(locationQuery, () => {
+      console.log('one day click callback')
+      console.log(forecastObj)
+    }))
     }
   
-  const handleFiveDayClick = () => {
-    
+  const handleFiveDayClick = (data) => {
+    data = forecastObj
+    const fiveDayLocationToSearch = "chicago"
     dispatch(
-      
-      fetchFiveDay(longLat, () => {
-        console.log(forecast)
+      fetchFiveDay(fiveDayLocationToSearch, () => {
+        console.log('callback')
+        console.log(data)
       })
       )
-      console.log('five day')
-  }
-
- 
+    }
 
   return (
     <div>

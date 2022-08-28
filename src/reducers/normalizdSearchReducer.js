@@ -1,24 +1,26 @@
-import { FETCH_FIVE_DAY } from "../actions"
+import { FETCH_FIVE_DAY, FETCH_FORECASTS } from "../actions"
 import generateId from '../components/generateId'
+import { normalize, schema } from 'normalizr'
+import _ from 'lodash'
+
+const forecastSchema = new schema.Entity('forecasts', undefined, {
+  idAttribute: id => id
+})
 
 const DEFAULT_STATE = {
-  forecastObj: {
-    id: generateId(),
-    name: "",
-    temp: [],
-    humidity: [],
-    pressure: []
-  }
- 
+  entries: [],
+  order: []
 }
 
 const searchReducer = function(state = DEFAULT_STATE, action){
 
   switch (action.type) {
+    case FETCH_FORECASTS:
+      return state
     case FETCH_FIVE_DAY:
-      if(action.payload.data){
+      if(action.payload.data !== undefined ){
 
-        const fiveDayData = action.payload.data || state.forecastObj
+        const fiveDayData = action.payload.data
         const id = generateId()
         const tempObj = []
         const humidObj = []
@@ -30,15 +32,17 @@ const searchReducer = function(state = DEFAULT_STATE, action){
         });
         
         const newObj = {
-          forecastObj: {
             id:id,
             name: fiveDayData.city.name,
             temp: tempObj,
             humidity: humidObj,
             pressure: pressureObj
-          }}
-          console.log(newObj)
-          return {...state.forecastObj, ...newObj};
+          }
+          // console.log(newObj)
+          return {
+            entries: {...state.entries, [newObj.id]:newObj},
+            order: _.union([...state.order], [newObj.id])
+          }
         } else {
           return state
         }
