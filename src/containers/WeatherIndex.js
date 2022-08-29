@@ -23,10 +23,6 @@ export default function WeatherIndex() {
     }
   }, [dispatch, geoData]);
 
-  if (_.isEmpty(forecastData.entries)) {
-    return <div>Search a city to get the forecast!</div>;
-  }
-
   function renderData() {
     const temperatureData = forecastData.order.map((id) =>
       forecastData.entries[id].list.map((timestamp) => timestamp.main.temp)
@@ -37,6 +33,7 @@ export default function WeatherIndex() {
     const humidityData = forecastData.order.map((id) =>
       forecastData.entries[id].list.map((timestamp) => timestamp.main.humidity)
     );
+
     const graphs = forecastData.order
       .map((id, index) => (
         <WeatherRow
@@ -48,12 +45,13 @@ export default function WeatherIndex() {
         />
       ))
       .reverse();
-    //
 
-    // return forecastData.forEach(forecast => {
-
-    // })
     return graphs;
   }
-  return <>{renderData()}</>;
+
+  return _.isEmpty(forecastData.entries) ? (
+    <div>Search a city to get the forecast!</div>
+  ) : (
+    renderData()
+  );
 }
