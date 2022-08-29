@@ -2,34 +2,34 @@ import React from 'react'
 import {useDispatch, useSelector } from 'react-redux'
 import { fetchFiveDay } from '../actions'
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const forecastObj = useSelector((state) => state.forecastState)
   const dispatch = useDispatch();
 
-  const handleOneDayClick = () => {
-    const locationQuery = "Raleigh"
-    dispatch(fetchFiveDay(locationQuery, () => {
-      console.log('one day click callback')
-      console.log(forecastObj)
-    }))
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const locationQuery = e.target[0].value
+    dispatch(fetchFiveDay(locationQuery))
+    e.target[0].value = ""
     }
   
-  const handleFiveDayClick = (data) => {
-    data = forecastObj
-    const fiveDayLocationToSearch = "chicago"
-    dispatch(
-      fetchFiveDay(fiveDayLocationToSearch, () => {
-        console.log('callback')
-        console.log(data)
-      })
-      )
-    }
+return (
+    <div className='search-bar-element'>
+      <h2 className='search-bar-text'>Search Bar</h2>
+      <form onSubmit={handleSubmit} className="searchbar form-group">
+      <label>Enter the city you want to search
 
-  return (
-    <div>
-      <h2>Search Bar</h2>
-      <button onClick={handleOneDayClick} className="one-day-btn" >Fetch One Day</button>
-      <button onClick={handleFiveDayClick} className="five-day-btn">Fetch Five Day</button>
+      <input 
+        type="text"
+        className='form-control'
+        name='city' 
+        required="true" 
+        placeholder='Raleigh' 
+        />
+        </label>
+      <button value="submit" type='submit' className="one-day-btn" >Click!</button>
+      </form>
+      
     </div>
   )
 }
