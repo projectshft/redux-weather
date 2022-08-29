@@ -12,21 +12,21 @@ const DisplayWeather = () => {
           <td className="align-middle">{c.city}</td>
           <td className="align-middle">
             <Sparklines data={c.temperature} width={80} height={50} margin={5}>
-              <SparklinesLine/>
+              <SparklinesLine style={{ stroke: '#D11313', fill:'#D11313', fillOpacity: ".25" }}/>
               <SparklinesReferenceLine type="avg" />
             </Sparklines>
             {Math.round(c.temperature.reduce((acc, cur) => acc + cur, 0)/c.temperature.length)} °F
           </td>
           <td className="align-middle">
             <Sparklines data={c.pressure} width={80} height={50} margin={5}>
-              <SparklinesLine />
+              <SparklinesLine style={{ stroke: '#3BF1F1', fill: '#3BF1F1', fillOpacity: ".25" }} />
               <SparklinesReferenceLine type="avg" />
             </Sparklines>
             {Math.round(c.pressure.reduce((acc, cur) => acc + cur, 0)/c.pressure.length)} hPa
           </td>
           <td className="align-middle">
             <Sparklines data={c.humidity} width={80} height={50} margin={5}>
-              <SparklinesLine />
+              <SparklinesLine style={{ stroke: '#23EA87', fill: '#23EA87', fillOpacity: ".25" }} />
               <SparklinesReferenceLine type="avg" />
             </Sparklines>
             {Math.round(c.humidity.reduce((acc, cur) => acc + cur, 0)/c.humidity.length)} %
@@ -42,7 +42,7 @@ const DisplayWeather = () => {
         <thead>
           <tr>
             <th>City</th>
-            <th>Tempreture(°F)</th>
+            <th>Temperature(°F)</th>
             <th>Pressure(hPa)</th>
             <th>Humidity(%)</th>
           </tr>
