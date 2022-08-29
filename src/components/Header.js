@@ -1,7 +1,7 @@
 
 const Header = () => {
     return (
-        <div className="jumbotron">
+        <div className="jumbotron bg-transparent">
             <h1 className="display-4">Redux-Weather</h1>
             <p className="lead">Enter your city to see the next 5 days weather in graphical charts!</p>
         </div>
