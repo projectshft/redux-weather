@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { fetchForecast } from "../actions";
 
 
 const SearchNew = () => {
   const [city, setCity] = useState("");
 
+  const dispatch = useDispatch();
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
   
-  fetchForecast(city);
+    dispatch(fetchForecast(city));
   }
 
 
