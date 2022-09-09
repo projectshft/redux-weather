@@ -12,8 +12,9 @@ code {
     monospace;
 }
 
-#bar {
+#search-bar {
   width: 70%;
   margin-left: 15%;
-  margin-top: 3%;
+  margin-right: 15%;
+  margin-top: 4%;
 }
