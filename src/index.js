@@ -7,15 +7,14 @@ import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import promise from "redux-promise";
 import reducers from "./reducers";
 import SearchNew from "./components/search-new";
+import CitiesShow from './components/cities-show';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    
-    <SearchNew />,
-    
-
+    <SearchNew />
+    <CitiesShow />
   </Provider>,
  
   document.getElementById('root')

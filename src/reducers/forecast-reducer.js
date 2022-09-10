@@ -9,9 +9,10 @@ const ForecastReducer = (state = [], action) => {
           temperature: f.main.temp, 
           pressure: f.main.pressure, 
           humidity: f.main.humidity 
-          }
+        }
       });
-      console.log(newState);
+
+      // console.log(newState);
       return newState;
     default:
       return state;

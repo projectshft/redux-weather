@@ -10,7 +10,7 @@ const API_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY
 export async function fetchForecast(city) {
 
   const request = await axios.get(`${API_URL}&q=${city}`);
-  console.log(request);
+  // console.log(request);
   
   return {
     type: FETCH_FORECAST,
