@@ -7,7 +7,20 @@ const CitiesShow = () => {
 
   console.log(forecast);
 
+  const temp = [];
+  const pressure = [];
+  const humidity = [];
+
+  forecast.forEach((f) => {
+    temp.push(f.temperature);
+    pressure.push(f.pressure);
+    humidity.push(f.humidity);
+  });
+
+  console.log(temp);
   
+
+
   
 
   return (
@@ -23,15 +36,15 @@ const CitiesShow = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {NewState.forecast?.map((f) => {
-            return (
-              <tr key={f.dt}>
-                <td>{f.temperature}</td>
-                <td>{f.pressure}</td>
-                <td>{f.humidity}</td>
+          {
+              <tr>
+                <td>city</td>
+                <td>{temp}</td>
+                <td>{pressure}</td>
+                <td>{humidity}</td>
               </tr>
-            );
-          })} */}
+            
+          }
         </tbody>
       </table>
     </div>
