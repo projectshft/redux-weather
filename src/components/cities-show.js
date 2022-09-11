@@ -1,10 +1,17 @@
+// import React Sparklines from 'react-sparklines';
+import { useSelector } from "react-redux";
 
+const CitiesShow = () => {
 
-const CitiesShow = (newState => {
-  console.log('@cities-show');
+  const forecast = useSelector((state) => state.forecast);
+
+  console.log(forecast);
+
+  
+  
 
   return (
-   
+
     <div>
       <table className="table table-hover" id="display">
         <thead>
@@ -16,7 +23,7 @@ const CitiesShow = (newState => {
           </tr>
         </thead>
         <tbody>
-          {newState.forecast?.map((f) => {
+          {/* {NewState.forecast?.map((f) => {
             return (
               <tr key={f.dt}>
                 <td>{f.temperature}</td>
@@ -24,12 +31,12 @@ const CitiesShow = (newState => {
                 <td>{f.humidity}</td>
               </tr>
             );
-          })}
+          })} */}
         </tbody>
       </table>
     </div>
   );
-});
+};
 
 
 export default CitiesShow;

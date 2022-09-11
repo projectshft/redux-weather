@@ -10,6 +10,7 @@ const SearchNew = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    
   
     dispatch(fetchForecast(city));
   }

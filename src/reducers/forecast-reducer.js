@@ -4,16 +4,14 @@ const ForecastReducer = (state = [], action) => {
   switch (action.type) {
     case FETCH_FORECAST:
       
-    let newState = action.payload.data.list.map(function (f) {
+    const NewState = action.payload.data.list.map(function (f) {
         return {
           temperature: f.main.temp, 
           pressure: f.main.pressure, 
           humidity: f.main.humidity 
-        }
+          }
       });
-
-      // console.log(newState);
-      return newState;
+      return NewState;
     default:
       return state;
   }
