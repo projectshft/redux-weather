@@ -11,16 +11,22 @@ const CitiesShow = () => {
   const pressure = [];
   const humidity = [];
 
-  // city.push(forecast[0].city);
-
   forecast.forEach((f) => {
     temp.push(f.temperature);
     pressure.push(f.pressure);
     humidity.push(f.humidity);
   });
 
+  forecast.reduce((acc, f) => {
+    if (acc.indexOf(f.city) === -1) {
+      acc.push(f.city);
+    }
+    return acc;
+  }, city);
+
   return (
 
+    
     <div>
       <table className="table table-hover" id="display">
         <thead>
