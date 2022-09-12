@@ -59,7 +59,7 @@ const WeatherDisplay = () => {
   return (
     <div className='container-fluid'>
       <br />
-      <table className="table">
+      <table className="table row align-items-center">
         <thead>
           <tr>
             <th>City</th>

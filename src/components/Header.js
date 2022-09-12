@@ -1,6 +1,6 @@
 const header = (props) => {
   return (
-    <div>
+    <div className="row align-items-center">
       <div className='jumbotron text-center'>
         <div className="container">
           <h1 className="jumbotron-heading">Weather Forecast</h1>
