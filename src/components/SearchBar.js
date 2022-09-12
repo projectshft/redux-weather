@@ -18,7 +18,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="input-group mb-8">
+    <div className="input-group mb-3">
       <input
         type="text"
         className="form-control"
@@ -27,7 +27,7 @@ const SearchBar = () => {
         onChange={(event) => setCity(event.target.value)}
       />
       
-      <div className="input-group-append">
+      <div className="input-group">
         
         <br />
 

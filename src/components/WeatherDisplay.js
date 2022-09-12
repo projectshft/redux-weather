@@ -24,15 +24,7 @@ const WeatherDisplay = () => {
                 <SparklinesLine style={{ stroke: "#ed2121", strokeWidth: "0.5", fill: "#f5426f", fillOpacity: "0.5" }}/>
                 <SparklinesReferenceLine type="avg" />
               </Sparklines>
-              {Math.round(c.temp.reduce((acc, cur) => acc + cur, 0)/c.temp.length)}{'\u00b0'} F
-            </td>
-
-            <td className="align-middle">
-              <Sparklines data={c.pressure} width={100} height={80} margin={10}>
-                <SparklinesLine style={{ stroke: "#21ed65", strokeWidth: "0.5", fill: "#21ed35", fillOpacity: "0.5" }}/>
-                <SparklinesReferenceLine type="avg" />
-              </Sparklines>
-              {Math.round(c.pressure.reduce((acc, cur) => acc + cur, 0)/c.temp.length)} hPa
+              {Math.round(c.temp.reduce((previousValue, currentValue) => previousValue + currentValue, 0)/c.temp.length)}{'\u00b0'} F
             </td>
 
             <td className="align-middle">
@@ -40,8 +32,18 @@ const WeatherDisplay = () => {
                 <SparklinesLine style={{ stroke: "#2151ed", strokeWidth: "0.5", fill: "#21ceed", fillOpacity: "0.5" }}/>
                 <SparklinesReferenceLine type="avg" />
               </Sparklines>
-              {Math.round(c.humidity.reduce((acc, cur) => acc + cur, 0)/c.temp.length)} %
+              {Math.round(c.humidity.reduce((previousValue, currentValue) => previousValue + currentValue, 0)/c.temp.length)} %
             </td>
+
+            <td className="align-middle">
+              <Sparklines data={c.pressure} width={100} height={80} margin={10}>
+                <SparklinesLine style={{ stroke: "#21ed65", strokeWidth: "0.5", fill: "#21ed35", fillOpacity: "0.5" }}/>
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+              {Math.round(c.pressure.reduce((previousValue, currentValue) => previousValue + currentValue, 0)/c.temp.length)} hPa
+            </td>
+
+
           </tr>
         );
       });
@@ -64,8 +66,8 @@ const WeatherDisplay = () => {
           <tr>
             <th>City</th>
             <th>Tempreture(F)</th>
-            <th>Pressure(hPa)</th>
             <th>Humidity(%)</th>
+            <th>Pressure(hPa)</th>
           </tr>
         </thead>
         <tbody>{renderWeather()}</tbody>

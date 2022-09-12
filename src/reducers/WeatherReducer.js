@@ -10,14 +10,14 @@ const WeatherReducer = (state = [], action) => {
           humidity: info.main.humidity,
         };
       });
-      const cityInfo = action.payload.data.city.name;
+      const cityName = action.payload.data.city.name;
       let cityCurrent = {};
       citiesData.forEach((obj) => {
         Object.keys(obj).forEach((key) => {
           cityCurrent[key] = (cityCurrent[key] || []).concat([obj[key]]);
         });
       });
-      cityCurrent["city"] = cityInfo;
+      cityCurrent["city"] = cityName;
       return [cityCurrent, ...state];
 
     default:
