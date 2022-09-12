@@ -24,9 +24,10 @@ const CitiesShow = () => {
     return acc;
   }, city);
 
+  console.log(forecast);
+
   return (
 
-    
     <div>
       <table className="table table-hover" id="display">
         <thead>

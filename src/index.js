@@ -1,22 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import { legacy_createStore as createStore, applyMiddleware } from "redux"; 
+import { composeWithDevTools } from "redux-devtools-extension";
 import promise from "redux-promise";
 import reducers from "./reducers";
 import SearchNew from "./components/search-new";
-import CitiesShow from './components/cities-show';
+import CitiesShow from "./components/cities-show";
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
+// ReactDOM.render(
+//   <Provider store={createStoreWithMiddleware(reducers)}>
+//     <SearchNew />
+//     <CitiesShow />
+//   </Provider>,
+ 
+//   document.getElementById('root')
+// );
+
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(promise)));
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <SearchNew />
     <CitiesShow />
   </Provider>,
- 
   document.getElementById('root')
 );
+
 
