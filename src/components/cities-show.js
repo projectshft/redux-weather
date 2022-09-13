@@ -27,22 +27,7 @@ const CitiesShow = () => {
   //   return acc;
   // }, city);
 
-  console.log(forecast);
  
-  // const renderForecast = () => {
-  //   return forecast.map((function (f) {
-  //     return (
-  //       <tr key={f.city}>
-  //         <td>{f.city}</td>
-  //         <td>{f.temperature}</td>
-  //         <td>{f.pressure}</td>
-  //         <td>{f.humidity}</td>
-  //       </tr>
-  //     );
-  //   }));
-  // };
-
-
 
   return (
 

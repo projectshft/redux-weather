@@ -6,13 +6,17 @@ const ForecastReducer = (state = [], action) => {
       
     let newCity = [...action.payload.data.list.map(function (f) {
         return {
+         
+          id: action.payload.data.city.id,
           city: action.payload.data.city.name,
           temperature: f.main.temp, 
           pressure: f.main.pressure, 
           humidity: f.main.humidity 
           };
-      }),...state];
+      }), ...state];
 
+      console.log(newCity);
+      debugger;
       
       return newCity;
 
