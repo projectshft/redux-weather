@@ -6,6 +6,7 @@ const CitiesShow = () => {
 
   const forecast = useSelector((state) => state.forecast);
 
+  
   const city = [];
   const temp = [];
   const pressure = [];
@@ -16,15 +17,32 @@ const CitiesShow = () => {
     pressure.push(f.pressure);
     humidity.push(f.humidity);
   });
+ 
 
-  forecast.reduce((acc, f) => {
-    if (acc.indexOf(f.city) === -1) {
-      acc.push(f.city);
-    }
-    return acc;
-  }, city);
+
+  // forecast.reduce((acc, f) => {
+  //   if (acc.indexOf(f.city) === -1) {
+  //     acc.push(f.city);
+  //   }
+  //   return acc;
+  // }, city);
 
   console.log(forecast);
+ 
+  // const renderForecast = () => {
+  //   return forecast.map((function (f) {
+  //     return (
+  //       <tr key={f.city}>
+  //         <td>{f.city}</td>
+  //         <td>{f.temperature}</td>
+  //         <td>{f.pressure}</td>
+  //         <td>{f.humidity}</td>
+  //       </tr>
+  //     );
+  //   }));
+  // };
+
+
 
   return (
 
@@ -43,7 +61,8 @@ const CitiesShow = () => {
               <tr>
                 <td>{city}</td>
                 <td>
-                  <Sparklines data={temp} height={110} width={180} >
+                  <Sparklines data={temp} height={110} width={180} 
+                  >
                     <SparklinesLine color="red" />
                     <SparklinesReferenceLine type="avg" />
                   </Sparklines>
@@ -66,7 +85,7 @@ const CitiesShow = () => {
       </table>
     </div>
   );
-};
+} 
 
 
 export default CitiesShow;
