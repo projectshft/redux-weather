@@ -4,10 +4,10 @@ const ForecastReducer = (state = [], action) => {
   switch (action.type) {
     case FETCH_FORECAST:
       
-    let newCity = [...action.payload.data.list.map(function (f) {
+    let fetchedForecast = [...action.payload.data.list.map(function (f) {
         return {
          
-          id: action.payload.data.city.id,
+          // id: action.payload.data.city.id,
           city: action.payload.data.city.name,
           temperature: f.main.temp, 
           pressure: f.main.pressure, 
@@ -15,11 +15,7 @@ const ForecastReducer = (state = [], action) => {
           };
       }), ...state];
 
-      console.log(newCity);
-      debugger;
-      
-      return newCity;
-
+    return fetchedForecast;
       
     default:
       return state;

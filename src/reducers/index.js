@@ -3,7 +3,7 @@ import ForecastReducer from "./forecast-reducer";
 
 
 const rootReducer = combineReducers({
-  forecast: ForecastReducer,
+  forecasts: ForecastReducer,
 });
 
 export default rootReducer;
