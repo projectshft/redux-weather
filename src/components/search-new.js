@@ -7,8 +7,11 @@ const SearchNew = () => {
   const dispatch = useDispatch();
   const handleFormSubmit = (e) => {
     e.preventDefault();
+  if (city === "" || city === undefined) {
+    alert("Please enter a city");
+  } else {
     dispatch(fetchForecast(city));
-  }
+  }};
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
