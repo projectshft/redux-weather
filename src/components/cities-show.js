@@ -1,16 +1,10 @@
 import { useSelector } from "react-redux";
 import React from "react";
-import {
-  Sparklines,
-  SparklinesLine,
-  SparklinesReferenceLine,
-} from "react-sparklines";
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
 
 const CitiesShow = () => {
   const forecasts = useSelector((state) => state.forecasts);
-
   const city = [];
-
   forecasts.reduce((acc, f) => {
     if (acc.indexOf(f.city) === -1) {
       acc.push(f.city);
@@ -24,8 +18,6 @@ const CitiesShow = () => {
     let temp = [];
     let pressure = [];
     let humidity = [];
-   
-    //filter forecast by the city using 'c' ...returns a boolean
     let filteredForecast = forecasts.filter((f) => {
       let include = f.city === c;
       return include;
@@ -37,30 +29,17 @@ const CitiesShow = () => {
       humidity.push(f.humidity);
     });
 
-    console.log(forecasts);
+    const findAverage = (array) => {
+      return Math.round(
+        array.reduce((acc, t) => {
+          return acc + t;
+        }, 0) / array.length
+      );
+    };
 
-    let averageTemp = Math.round(
-      temp.reduce((acc, t) => {
-        return acc + t;
-      }, 0) / temp.length
-    );
-
-    let averagePressure = Math.round(
-      pressure.reduce((acc, p) => {
-        return acc + p;
-      }, 0) / pressure.length
-    );
-
-    let averageHumidity = Math.round(
-      humidity.reduce((acc, h) => {
-        return acc + h;
-      }, 0) / humidity.length
-    );
-
-
-
-
-
+    let averageTemp = findAverage(temp);
+    let averagePressure = findAverage(pressure);
+    let averageHumidity = findAverage(humidity);
 
     return (
       <tr key="{city.name}">

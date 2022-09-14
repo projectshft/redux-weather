@@ -2,19 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchForecast } from "../actions";
 
-
 const SearchNew = () => {
   const [city, setCity] = useState("");
-
   const dispatch = useDispatch();
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
-  
     dispatch(fetchForecast(city));
   }
-
-
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
@@ -28,7 +22,6 @@ const SearchNew = () => {
       <br/><br/> 
     </div>
   );
-
 }
 
 export default SearchNew;

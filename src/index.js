@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { legacy_createStore as createStore, applyMiddleware } from "redux"; 
 import { composeWithDevTools } from "redux-devtools-extension";
 import promise from "redux-promise";
+
 import reducers from "./reducers";
 import SearchNew from "./components/search-new";
 import CitiesShow from "./components/cities-show";
