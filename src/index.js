@@ -10,17 +10,6 @@ import reducers from "./reducers";
 import SearchNew from "./components/search-new";
 import CitiesShow from "./components/cities-show";
 
-// const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-
-// ReactDOM.render(
-//   <Provider store={createStoreWithMiddleware(reducers)}>
-//     <SearchNew />
-//     <CitiesShow />
-//   </Provider>,
- 
-//   document.getElementById('root')
-// );
-
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(promise)));
 
 ReactDOM.render(

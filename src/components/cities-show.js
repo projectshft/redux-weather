@@ -6,22 +6,58 @@ const CitiesShow = () => {
 
   const forecasts = useSelector((state) => state.forecasts);
 
-  
-  const eachCity = {};
+  forecasts.map ((forecast) => {
+    
 
-  const mapEachCity = forecasts.map((forecast) => {
+    
+  });
+
+  const eachForecast = [{
+    city: [],
+    temp: [],
+    pressure: [],
+    humidity: []
+  }];
+   
+
+
+  // const eachForecast = [];
+
+  // const mapForecast = forecasts.map((forecast) => {
+    
+    
+
+  //   return mappedForecast;
+
+    
+  // });
+};
+  
+
+    
+    
+    
+
+
+    
+
+
+  
+  
+
+
+
+
+
+  // const eachCity = {};
+
+  // const mapEachCity = forecasts.map((forecast) => {
     //to do: map the 1st order filter to the 2nd order filter right here. Then, push the 2nd order filter to empty eachCity object. Then, return eachCity object.
 
-    return {
-    id: forecast.id,
-    city: forecast.city.name,
-    temperature: forecast.temperature,
-    pressure: forecast.pressure,
-    humidity: forecast.humidity
-    }});
+    
 
 
-  }
+  // }
  
 
   // const renderCities = () => {
