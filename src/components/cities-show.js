@@ -64,27 +64,27 @@ const CitiesShow = () => {
 
     return (
       <tr key="{city.name}">
-        <td>{name}</td>
+        <td id="name">{name}</td>
         <td>
           <Sparklines data={temp} height={110} width={180}>
             <SparklinesLine color="red" />
             <SparklinesReferenceLine type="avg" />
           </Sparklines><br/>
-          <div>{averageTemp} F</div>
+          <div id="center">{averageTemp} F</div>
         </td>
         <td>
           <Sparklines data={pressure} height={120} width={180}>
             <SparklinesLine color="green" />
             <SparklinesReferenceLine type="avg" />
           </Sparklines><br/>
-          <div>{averagePressure} hPa</div>
+          <div id="center">{averagePressure} hPa</div>
         </td>
         <td>
-          <Sparklines data={humidity} height={120} width={180}>
+          <Sparklines data={humidity} height={128} width={180}>
             <SparklinesLine color="blue" />
             <SparklinesReferenceLine type="avg" />
           </Sparklines><br/>
-          <div>{averageHumidity} %</div>
+          <div id="center">{averageHumidity} %</div>
         </td>
       </tr>
     );
@@ -95,10 +95,10 @@ const CitiesShow = () => {
       <table className="table table-hover" id="display">
         <thead>
           <tr key={city}>
-            <th>City</th>
-            <th>Temperature (F)</th>
-            <th>Pressure (hPa)</th>
-            <th>Humidity (%)</th>
+            <th id="city">City</th>
+            <th id="orient">Temperature (F)</th>
+            <th id="orient">Pressure (hPa)</th>
+            <th id="orient">Humidity (%)</th>
           </tr>
         </thead>
         <tbody>{contents}</tbody>

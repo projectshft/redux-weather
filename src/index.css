@@ -25,3 +25,25 @@ code {
   margin-right: 15%;
   margin-top: 4%;
 }
+
+#center {
+  text-align: center;
+}
+
+#orient {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 4%;
+  font-size: large;
+}
+
+#name {
+  font-size: large;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding-top: 9%;
+}
+
+#city {
+  font-size: large;
+}
