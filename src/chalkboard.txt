@@ -1,0 +1,14 @@
+SETTING STATE FOR 'ERROR'
+const [error, setError] = useState(false);
+const [loading, setLoading] = useState(false);
+and then I will need to use useEffect so that if a component doesn't mount, I'll be able to throw an error message (a bit uncertain about this claim)
+
+question #1: would I place this code in 'SearchNew'?
+
+question #2: If I'm going to manage the 'error' state, I will need to dispatch an action for that. That would require me to restructure my reducer with an additional case. You suggested an object with two key-value pairs, but I don't have any idea how to incorporate this into my code. But once I know how, where do I place the code? Just above 'default: return state'? 
+
+question #3: I imagine my root reducer will need to include 'error' in it. But does it have to?
+
+question #4: which files need to be modified to account for error-handling? And which file do I actually begin writing the code for error-handling? When it comes to adding functionality to my app, I get lost in the order of stubbing things out. I try to use debuggers and checkpoints along the way, but where and when would I place these debuggers to see if the code I am adding actually works?
+
+question #5: am I in danger of not passing the course since I am nearly two modules behind?
