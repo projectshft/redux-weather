@@ -5,7 +5,7 @@ const API_KEY = '9de0841aea702821eece6900aab8d8f1';
 const API_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&units=imperial`;  
 export async function fetchForecast(city) {
   const request = await axios.get(`${API_URL}&q=${city}`);
-  if (request.status !== 200) {
+  if (request.statusText === 'Not Found') {
     alert (`Error: ${request.status}`);
   } else {
   return {
@@ -13,3 +13,4 @@ export async function fetchForecast(city) {
     payload: request
   }};
 }
+
