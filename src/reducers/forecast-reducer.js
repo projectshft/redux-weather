@@ -13,7 +13,7 @@ const ForecastReducer = (state = [], action) => {
       }), ...state];
       return fetchedForecast;
     default:
-      return state;
+      return state;  
   }
 };
 
