@@ -6,14 +6,16 @@ const CitiesShow = () => {
   const forecasts = useSelector((state) => state.forecasts);
   const error = useSelector((state) => state.forecasts.error);
   const city = [];
-  
+
   if (error) {
     return <div><h2>{error}</h2></div>;
   } else {
-  forecasts.reduce((acc, f) => {
+  forecasts.data.reduce((acc, f) => {
     if (acc.indexOf(f.city) === -1) {
       acc.push(f.city);
     }
+    console.log (acc);
+    debugger;
     return acc;
   }, city);
 
@@ -23,7 +25,7 @@ const CitiesShow = () => {
     let temp = [];
     let pressure = [];
     let humidity = [];
-    let filteredForecast = forecasts.filter((f) => {
+    let filteredForecast = forecasts.data.filter((f) => {
       let include = f.city === c;
       return include;
     });

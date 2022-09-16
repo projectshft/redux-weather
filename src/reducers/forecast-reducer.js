@@ -13,6 +13,7 @@ const ForecastReducer = (state = {}, action) => {
           humidity: f.main.humidity 
           };
       }), ...state];
+      //receiving error: state is not iterable. This makes sense since state is an object, not an array. So I tried to use '...state.forecasts', but that didn't work either. Then I tried '...state.forecasts.data', but to no avail. Decided to take out the spread operator and just return the array. This got rid of the error, but then I got new errors in my array helper methods. 
       return {error: '', data: fetchedForecast};
     case FETCH_FORECAST_ERROR:
       return {data: [], error: action.payload};
