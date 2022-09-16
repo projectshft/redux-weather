@@ -1,6 +1,8 @@
 import { FETCH_FORECAST } from "../actions";
+import { FETCH_FORECAST_ERROR } from "../actions";
 
-const ForecastReducer = (state = [], action) => {
+const ForecastReducer = (state = {}, action) => {
+  
   switch (action.type) {
     case FETCH_FORECAST:       
       let fetchedForecast = [...action.payload.data.list.map(function (f) {
@@ -11,9 +13,12 @@ const ForecastReducer = (state = [], action) => {
           humidity: f.main.humidity 
           };
       }), ...state];
-      return fetchedForecast;
+      return {error: '', data: fetchedForecast};
+    case FETCH_FORECAST_ERROR:
+      return {data: [], error: action.payload};
     default:
-      return state;  
+      const defaultState = { data: [], error: '' };
+      return defaultState;
   }
 };
 

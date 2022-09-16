@@ -7,12 +7,12 @@ const API_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY
 
 export async function fetchForecast(city) {
   const request = await axios.get(`${API_URL}&q=${city}`);
-  const error = 'This city was not found';
+  
 
   if (request.data.cod === '404') {
     return {
       type: FETCH_FORECAST_ERROR,
-      payload:{error}
+      payload:'No city data found'
     };
   } else {
     return {

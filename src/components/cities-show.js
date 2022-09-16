@@ -4,7 +4,12 @@ import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-spark
 
 const CitiesShow = () => {
   const forecasts = useSelector((state) => state.forecasts);
+  const error = useSelector((state) => state.forecasts.error);
   const city = [];
+  
+  if (error) {
+    return <div><h2>{error}</h2></div>;
+  } else {
   forecasts.reduce((acc, f) => {
     if (acc.indexOf(f.city) === -1) {
       acc.push(f.city);
@@ -84,6 +89,6 @@ const CitiesShow = () => {
       </table>
     </div>
   );
-};
+}};
 
 export default CitiesShow;
