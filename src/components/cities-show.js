@@ -15,7 +15,6 @@ const CitiesShow = () => {
       acc.push(f.city);
     }
     console.log (acc);
-    debugger;
     return acc;
   }, city);
 
