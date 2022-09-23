@@ -1,11 +1,9 @@
-const weatherReducer = function(state = '', action) {
+/* eslint-disable default-param-last */
+
+const weatherReducer = function (state = [], action) {
   switch (action.type) {
-    case "DISPLAY_WEATHER":
-
-      return [
-        ...state, ...action.payload,
-      ]
-
+    case 'DISPLAY_WEATHER':
+      return [...state, action.payload];
     default:
       return state;
   }
