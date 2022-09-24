@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { displayWeather } from '../actions';
+import { fetchWeather } from '../actions';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -8,7 +8,7 @@ const SearchBar = () => {
 
   const handleChange = (e) => setQuery(e.target.value);
 
-  const handleClick = () => dispatch(displayWeather(query));
+  const handleClick = () => dispatch(fetchWeather(query));
 
   return (
     <div className="search-bar ">

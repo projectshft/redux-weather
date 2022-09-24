@@ -2,8 +2,8 @@
 
 const weatherReducer = function (state = [], action) {
   switch (action.type) {
-    case 'DISPLAY_WEATHER':
-      return [...state, action.payload];
+    case 'FETCH_WEATHER':
+      return [action.payload, ...state];
     default:
       return state;
   }
