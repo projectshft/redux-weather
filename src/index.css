@@ -14,8 +14,16 @@ code {
 
 table {
   text-align: center;
+  vertical-align: middle;
 }
 
+th {
+  vertical-align: middle;
+}
+
+.spark {
+  width: 240px;
+}
 .form-control {
   margin-top: 10px !important;
 }

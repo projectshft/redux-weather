@@ -13,31 +13,34 @@ export default function DisplayWeather() {
       <th scope="row" key={i}>
         {weather.city}
       </th>
-      <td>
-        <Sparklines data={weather.temp}>
-          <SparklinesLine />
+      <td className="spark">
+        <Sparklines data={weather.temp.tempArr}>
+          <SparklinesLine color="#FFD700" />
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
+        {weather.temp.tempAver}
       </td>
-      <td>
+      <td className="spark">
         {' '}
-        <Sparklines data={weather.pressure}>
-          <SparklinesLine />
+        <Sparklines data={weather.pressure.prArr}>
+          <SparklinesLine color="#006400" />
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
+        {weather.pressure.prAver}
       </td>
-      <td>
+      <td className="spark">
         {' '}
-        <Sparklines data={weather.humidity}>
-          <SparklinesLine />
+        <Sparklines data={weather.humidity.humArr}>
+          <SparklinesLine color="#191970" />
           <SparklinesReferenceLine type="avg" />
         </Sparklines>
+        {weather.humidity.humAver}
       </td>
     </tr>
   ));
   return (
     <div>
-      <table className="table">
+      <table className="table table-hover">
         <thead className="table-light">
           <tr>
             <th scope="col-md-3">City</th>

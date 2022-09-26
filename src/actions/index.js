@@ -6,106 +6,49 @@ import axios from 'axios';
 const upperFirstLetter = (str) => str[0].toUpperCase() + str.slice(1);
 
 const averDataPerEachDay = (obj) => {
-  let sumTemp1 = 0;
-  for (let i = 0; i < 8; i++) {
-    const hourly = obj.data.list[i].main.temp;
-    sumTemp1 = hourly + sumTemp1;
-  }
+  const temp = obj.data.list.reduce(
+    (acc, a) => {
+      const t = a.main.temp;
+      acc.tempAver = t + acc.tempAver;
+      acc.tempArr.push(t);
+      return acc;
+    },
+    {
+      tempAver: 0,
+      tempArr: [],
+    }
+  );
+  temp.tempAver = Math.round(temp.tempAver / 40);
 
-  let sumTemp2 = 0;
-  for (let i = 8; i > 7 && i < 16; i++) {
-    const hourly = obj.data.list[i].main.temp;
-    sumTemp2 = hourly + sumTemp2;
-  }
+  const pressure = obj.data.list.reduce(
+    (acc, a) => {
+      const pr = a.main.pressure;
+      acc.prAver = pr + acc.prAver;
+      acc.prArr.push(pr);
+      return acc;
+    },
+    {
+      prAver: 0,
+      prArr: [],
+    }
+  );
+  pressure.prAver = Math.round(pressure.prAver / 40);
 
-  let sumTemp3 = 0;
-  for (let i = 16; i > 15 && i < 24; i++) {
-    const hourly = obj.data.list[i].main.temp;
-    sumTemp3 = hourly + sumTemp3;
-  }
+  const humidity = obj.data.list.reduce(
+    (acc, a) => {
+      const hum = a.main.humidity;
+      acc.humAver = hum + acc.humAver;
+      acc.humArr.push(hum);
+      return acc;
+    },
+    {
+      humAver: 0,
+      humArr: [],
+    }
+  );
+  humidity.humAver = Math.round(humidity.humAver / 40);
 
-  let sumTemp4 = 0;
-  for (let i = 24; i > 23 && i < 32; i++) {
-    const hourly = obj.data.list[i].main.temp;
-    sumTemp4 = hourly + sumTemp4;
-  }
-
-  let sumTemp5 = 0;
-  for (let i = 32; i > 31 && i < 40; i++) {
-    const hourly = obj.data.list[i].main.temp;
-    sumTemp5 = hourly + sumTemp5;
-  }
-
-  let sumPr1 = 0;
-  for (let i = 0; i < 8; i++) {
-    const hourly = obj.data.list[i].main.pressure;
-    sumPr1 = hourly + sumPr1;
-  }
-
-  let sumPr2 = 0;
-  for (let i = 8; i > 7 && i < 16; i++) {
-    const hourly = obj.data.list[i].main.pressure;
-    sumPr2 = hourly + sumPr2;
-  }
-
-  let sumPr3 = 0;
-  for (let i = 16; i > 15 && i < 24; i++) {
-    const hourly = obj.data.list[i].main.pressure;
-    sumPr3 = hourly + sumPr3;
-  }
-
-  let sumPr4 = 0;
-  for (let i = 24; i > 23 && i < 32; i++) {
-    const hourly = obj.data.list[i].main.pressure;
-    sumPr4 = hourly + sumPr4;
-  }
-
-  let sumPr5 = 0;
-  for (let i = 32; i > 31 && i < 40; i++) {
-    const hourly = obj.data.list[i].main.pressure;
-    sumPr5 = hourly + sumPr5;
-  }
-
-  let sumHum1 = 0;
-  for (let i = 0; i < 8; i++) {
-    const hourly = obj.data.list[i].main.humidity;
-    sumHum1 = hourly + sumHum1;
-  }
-
-  let sumHum2 = 0;
-  for (let i = 8; i > 7 && i < 16; i++) {
-    const hourly = obj.data.list[i].main.humidity;
-    sumHum2 = hourly + sumHum2;
-  }
-
-  let sumHum3 = 0;
-  for (let i = 16; i > 15 && i < 24; i++) {
-    const hourly = obj.data.list[i].main.humidity;
-    sumHum3 = hourly + sumHum3;
-  }
-
-  let sumHum4 = 0;
-  for (let i = 24; i > 23 && i < 32; i++) {
-    const hourly = obj.data.list[i].main.humidity;
-    sumHum4 = hourly + sumHum4;
-  }
-
-  let sumHum5 = 0;
-  for (let i = 32; i > 31 && i < 40; i++) {
-    const hourly = obj.data.list[i].main.humidity;
-    sumHum5 = hourly + sumHum5;
-  }
-  return {
-    temp: [
-      Math.round(sumTemp1 / 8),
-      Math.round(sumTemp2 / 8),
-      Math.round(sumTemp3 / 8),
-      Math.round(sumTemp4 / 8),
-      Math.round(sumTemp5 / 8),
-    ],
-    pressure: [sumPr1 / 8, sumPr2 / 8, sumPr3 / 8, sumPr4, sumPr5],
-    humidity: [sumHum1 / 8, sumHum2 / 8, sumHum3 / 8, sumHum4 / 8, sumHum5 / 8],
-  };
+  return { temp, pressure, humidity };
 };
 
 export async function fetchWeather(query) {
