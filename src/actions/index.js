@@ -1,11 +1,8 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import axios from 'axios';
 
 const upperFirstLetter = (str) => str[0].toUpperCase() + str.slice(1);
 
-const averDataPerEachDay = (obj) => {
+const tempHumPrAverageAndArray = (obj) => {
   const temp = obj.data.list.reduce(
     (acc, a) => {
       const t = a.main.temp;
@@ -51,24 +48,26 @@ const averDataPerEachDay = (obj) => {
   return { temp, pressure, humidity };
 };
 
+const generateId = () => Math.round(Math.random() * 100000000);
+
 export async function fetchWeather(query) {
   const cityUppercase = upperFirstLetter(query);
   const latLon = await axios.get(
     `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=88f3a5b06c7349e901851ad64cc7758c`
   );
-
   const { lat } = latLon.data[0];
   const { lon } = latLon.data[0];
-  const request = await axios.get(
+
+  const requestObj = await axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=88f3a5b06c7349e901851ad64cc7758c&units=imperial`
   );
 
-  const newData = averDataPerEachDay(request);
   const dataWeather = {
+    id: generateId(),
     city: cityUppercase,
-    ...newData,
+    ...tempHumPrAverageAndArray(requestObj),
   };
-  console.log(dataWeather);
+
   return {
     type: 'FETCH_WEATHER',
     payload: dataWeather,

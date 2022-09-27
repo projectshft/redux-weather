@@ -35,3 +35,12 @@ th {
 .container {
   max-width: 75% !important;
 }
+p {
+  color: #bf1650;
+  display: box;
+}
+
+p::before {
+  display: inline;
+  content: "⚠ ";
+}
