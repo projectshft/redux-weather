@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 export default function DisplayWeather() {
   const weathers = useSelector((state) => state.weather);
+
   const weathersMap = weathers.map((weather) => (
     <tr key={weather.id}>
       <th scope="row">{weather.city}</th>

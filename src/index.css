@@ -37,10 +37,13 @@ th {
 }
 p {
   color: #bf1650;
-  display: box;
+  display: flex;
 }
 
 p::before {
   display: inline;
   content: "⚠ ";
+}
+.form-control {
+  border-radius: 4px 0px 0px 4px !important;
 }

@@ -17,29 +17,30 @@ const SearchBar = () => {
     dispatch(fetchWeather(data.searchBar));
   };
   return (
-    <div className="input-group mb-3">
-      <input
-        type="text"
-        className="form-control"
-        aria-describedby="button-addon2"
-        aria-label="searchBar"
-        placeholder="Put here your city"
-        {...register('searchBar', {
-          required: true,
-          pattern: /^[A-Za-z]+$/i,
-        })}
-      />
-      {errors?.searchBar?.type === 'required' && (
-        <p>What should I search for ?</p>
-      )}
-      {errors?.searchBar?.type === 'pattern' && (
-        <p>City name usually consists of alphabetical characters only.</p>
-      )}
+    <div className="input-group mb-4">
+      <div className="bar" style={{ width: '90%', position: 'relative' }}>
+        <input
+          type="text"
+          className="form-control"
+          aria-describedby="button-addon2"
+          aria-label="searchBar"
+          placeholder="Put here your city"
+          {...register('searchBar', {
+            required: true,
+          })}
+        />
+        {errors?.searchBar?.type === 'required' && (
+          <div style={{ position: 'absolute' }}>
+            <p>What should I search for ?</p>
+          </div>
+        )}
+      </div>
       <button
         onClick={handleSubmit(handleClick)}
         type="button"
         className="btn btn-outline-secondary"
         id="button-addon2"
+        style={{ width: '10%' }}
       >
         Search
       </button>
