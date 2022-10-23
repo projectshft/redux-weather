@@ -1,13 +1,25 @@
+import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import promise from "redux-promise";
+import {createStore, applyMiddleware} from 'redux'
+
+
+import WeatherIndex from './components/weather-index'
+import SearchBar from './components/search_bar.js'
+import reducers from "./reducers";
+
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <SearchBar/>
+    <WeatherIndex/>
+  </Provider>,
   document.getElementById('root')
 );
 
