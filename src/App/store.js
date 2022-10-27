@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiSlice } from '../Features/api/apiSlice';
-import citiesReducer from '../Features/city/citySlice';
+import currentWeatherReducer from '../Features/city/currentWeatherSlice';
+import fiveDayWeatherReducer from '../Features/city/fiveDayWeatherSlice';
+import currentCityReducer from '../Features/city/currentCity';
 
 export default configureStore({
   reducer: {
-    cities: citiesReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    currentCity: currentCityReducer,
+    currentWeather: currentWeatherReducer,
+    fiveDayWeather: fiveDayWeatherReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
 });
