@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import HourlyForecast from '../HourlyForecasts/HourlyForecast';
-import Precipitation from '../Graphs/Precipitation';
 import Graphs from '../Graphs/Graphs';
 
 const MainContent = () => (

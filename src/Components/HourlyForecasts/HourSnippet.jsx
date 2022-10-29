@@ -1,4 +1,5 @@
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 const HourSnippet = ({ weather }) => (
   <div className="my-5 mr-3 flex h-36 w-28 shrink-0 flex-col items-center justify-evenly rounded bg-white p-4 text-sm shadow-md">
@@ -8,5 +9,9 @@ const HourSnippet = ({ weather }) => (
     <div className="flex">{Math.round(weather.main.temp)}</div>
   </div>
 );
+
+HourSnippet.propTypes = {
+  weather: PropTypes.object,
+};
 
 export default HourSnippet;
