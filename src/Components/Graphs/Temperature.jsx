@@ -23,7 +23,7 @@ const Temperature = () => {
     content = (
       <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 110, bottom: 60, left: 60 }}
+        margin={{ top: 50, right: 60, bottom: 60, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
           type: 'linear',
@@ -32,7 +32,7 @@ const Temperature = () => {
           stacked: false,
           reverse: false,
         }}
-        curve="basis"
+        curve="monotoneX"
         axisTop={null}
         axisRight={null}
         axisBottom={{

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPreviousCity, setCurrentCity } from '../../Features/city/currentCity';
+import GeoLocationButton from './GeoLocationButton';
 import searchIcon from '../../assets/search-interface-symbol.png';
 
 const SearchCities = () => {
@@ -21,15 +22,20 @@ const SearchCities = () => {
 
   return (
     <form className="m-2 my-5 flex w-5/6 shadow-md">
+      <GeoLocationButton />
       <input
-        className="w-full rounded-l-md bg-white px-3"
+        className="w-full bg-white px-3"
         placeholder="Search City..."
         value={text}
         onChange={(e) => handleSearchChange(e)}
         onKeyDown={(e) => handleSearchChange(e)}
         onSubmit={(e) => handleSearchSubmit(e)}
       />
-      <button className="rounded-r-md bg-white p-1 text-blue-500" type="submit" onClick={(e) => handleSearchSubmit(e)}>
+      <button
+        className="rounded-r-md bg-orange-500 p-1 text-blue-500"
+        type="submit"
+        onClick={(e) => handleSearchSubmit(e)}
+      >
         <img className="w-4" src={searchIcon} alt="search-icon" />
       </button>
     </form>

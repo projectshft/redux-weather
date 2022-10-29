@@ -12,14 +12,16 @@ const PreviousCities = () => {
 
   return (
     <div className="my-5 w-5/6">
-      <div className="my-1 w-full rounded-md bg-white px-2 text-slate-900">Previous Cities:</div>
+      <div className="my-1 mb-3 w-full rounded-md bg-orange-500 px-2 text-center text-white shadow-md">
+        Previous Cities:
+      </div>
       {cityArray.length > 0
         ? cityArray.map((city, idx) => (
             <button
               key={idx}
               type="button"
               onClick={(e) => handlePreviousCityClick(e)}
-              className="my-1 w-full rounded px-2 text-center text-white"
+              className="my-1 w-full rounded-md bg-white px-2 text-center  shadow-md hover:bg-orange-500 hover:text-white"
             >
               {city}
             </button>

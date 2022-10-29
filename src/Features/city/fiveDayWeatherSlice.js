@@ -13,11 +13,23 @@ export const fiveDayWeatherSlice = createSlice({
   name: 'fiveDayWeather',
   initialState: {
     fiveDayData: [],
+    loading: 'idle',
   },
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchFiveDayWeatherByCity.pending, (state) => {
+      state.loading = 'pending';
+    });
     builder.addCase(fetchFiveDayWeatherByCity.fulfilled, (state, action) => {
-      state.fiveDayData = action.payload;
+      if (action.payload.cod === '404') {
+        state.loading = 'not-found';
+      } else {
+        state.fiveDayData = action.payload;
+        state.loading = 'success';
+      }
+    });
+    builder.addCase(fetchFiveDayWeatherByCity.rejected, (state) => {
+      state.loading = 'rejected';
     });
   },
 });
