@@ -1,5 +1,9 @@
+import { Row } from 'react-bootstrap';
+
 const WeatherDataListItem = () => (
-  <div>Weather Data Item based on location</div>
+  <Row>
+    <p>Weather Data</p>
+  </Row>
 );
 
 export default WeatherDataListItem;
