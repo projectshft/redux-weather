@@ -1,7 +1,7 @@
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 
 const SearchBar = () => (
-  <Row className="justify-content-center ">
+  <Row className="justify-content-center">
     <Col md={6}>
       <InputGroup className="my-3">
         <InputGroup.Text
