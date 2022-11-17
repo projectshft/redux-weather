@@ -1,5 +1,7 @@
+import WeatherDataListItem from './WeatherDataListItem';
+
 const Weather = () => {
-  const weatherDataList = [<weatherDataListItem />];
+  const weatherDataList = [<WeatherDataListItem />];
   return <div>{weatherDataList}</div>;
 };
 
