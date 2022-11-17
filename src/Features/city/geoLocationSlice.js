@@ -13,7 +13,7 @@ export const fetchGeoLocation = createAsyncThunk('geoLocation/fetchGeoLocation',
   const lon = position.coords.longitude;
 
   const response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=371e007761abd9ab85f149c680e677ac`
+    `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=371e007761abd9ab85f149c680e677ac`
   )
     .then((res) => res.json())
     .catch((err) => err);
