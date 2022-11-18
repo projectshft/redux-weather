@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const WEATHER_ADD_5DAY = 'WEATHER_ADD_5DAY';
+export const WEATHER_ADD_CURRENT = 'WEATHER_ADD_CURRENT';
 export const ADD_LOCATION = 'ADD_LOCATION';
 
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API;
@@ -42,7 +43,7 @@ export const fetchLatitudeLongitude = (query = null) => {
   // }
 };
 
-export const fetch5DayWeatherForLocation = (lat, lon, id) => {
+export const fetch5DayWeatherForLocation = async (lat, lon, id) => {
   if (!lat || !lon) {
     console.error('fetch5DayWeather: no latitude and/or longitude provided');
   }
@@ -55,18 +56,30 @@ export const fetch5DayWeatherForLocation = (lat, lon, id) => {
     APPID: API_KEY,
   };
 
-  const request = axios.get(origin, { params });
+  const request = await axios.get(origin, { params });
 
   return {
     type: WEATHER_ADD_5DAY,
     payload: request,
+    id,
   };
 };
 
-export const fetchCurrentWeatherForLocation = (
-  query,
-  lat = null,
-  lon = null
-) => {
-  const origin = 'https://api.openweathermap.org/data/2.5/weather?lat=';
+export const fetchCurrentWeatherForLocation = async (lat, lon, id) => {
+  const origin = 'https://api.openweathermap.org/data/2.5/weather?';
+
+  const params = {
+    lat,
+    lon,
+    units: 'imperial',
+    APPID: API_KEY,
+  };
+
+  const request = await axios.get(origin, { params });
+
+  return {
+    type: WEATHER_ADD_CURRENT,
+    payload: request,
+    id,
+  };
 };

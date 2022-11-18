@@ -21,7 +21,7 @@ const SearchBar = () => {
       const { lon } = res.data[0];
 
       dispatch(fetch5DayWeatherForLocation(lat, lon, id));
-      // dispatch(fetchCurrentWeatherForLocation(query, lat, lon));
+      dispatch(fetchCurrentWeatherForLocation(lat, lon, id));
     });
   };
   return (
