@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { fetchLatitudeLongitude } from '../actions';
+import {
+  fetch5DayWeatherForLocation,
+  fetchCurrentWeatherForLocation,
+  fetchLatitudeLongitude,
+} from '../actions';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('sdfsdf');
@@ -9,8 +13,16 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSubmitClick = () => {
-    console.log('clicked');
-    dispatch(fetchLatitudeLongitude(query));
+    const latLon = fetchLatitudeLongitude(query);
+    const id = Date.now();
+
+    latLon.then((res) => {
+      const { lat } = res.data[0];
+      const { lon } = res.data[0];
+
+      dispatch(fetch5DayWeatherForLocation(lat, lon, id));
+      // dispatch(fetchCurrentWeatherForLocation(query, lat, lon));
+    });
   };
   return (
     <Row className="justify-content-center">
