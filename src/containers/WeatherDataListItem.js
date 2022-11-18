@@ -1,9 +1,46 @@
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
-const WeatherDataListItem = () => (
-  <Row>
-    <p>Weather Data</p>
-  </Row>
-);
+import CurrentWeather from './CurrentWeather';
+import TempChart from './TempChart';
+import PressureChart from './PressureChart';
+import HumidityChart from './HumidityChart';
+
+const WeatherDataListItem = ({ weather }) => {
+  if (!weather.location || !weather.forecast) {
+    return <div>An error occurred, please try your serach again.</div>;
+  }
+
+  // eslint-disable-next-line prettier/prettier
+  const tempData = weather.forecast.map(
+      (dataPoint) => dataPoint.main.temp
+    );
+  const pressureData = weather.forecast.map(
+    (dataPoint) => dataPoint.main.pressure
+  );
+  const humidityData = weather.forecast.map(
+    (dataPoint) => dataPoint.main.humidity
+  );
+
+  return (
+    <Row>
+      <Col>
+        {/* <CurrentWeather data={weather.current} /> */}
+        <TempChart data={tempData} />
+        {/* <PressureChart data={pressureData} /> */}
+        {/* <HumidityChart data={humidityData}/> */}
+      </Col>
+    </Row>
+  );
+};
+
+WeatherDataListItem.propTypes = {
+  weather: PropTypes.shape({
+    current: PropTypes.object,
+    forecast: PropTypes.object,
+    location: PropTypes.object,
+  }),
+};
 
 export default WeatherDataListItem;

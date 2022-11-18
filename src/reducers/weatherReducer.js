@@ -24,7 +24,7 @@ const DEFAULT_STATE = {
   },
 };
 
-const weatherReducer = (state = DEFAULT_STATE, action) => {
+const weatherReducer = (state = {}, action) => {
   switch (action.type) {
     // case ADD_LOCATION:
     //   debugger;
