@@ -1,4 +1,4 @@
-export const WEATHER_ADD_LOCATION = 'WEATHER_ADD_LOCATION';
+export const WEATHER_ADD = 'WEATHER_ADD';
 export const ADD_LOCATION = 'ADD_LOCATION';
 
 // eslint-disable-next-line arrow-body-style
@@ -11,6 +11,6 @@ export const fetchLatitudeLongitude = (query) => {
 };
 
 export const fetch5DayWeatherForLocation = () => ({
-  type: WEATHER_ADD_LOCATION,
+  type: WEATHER_ADD,
   payload: '5 day weather',
 });

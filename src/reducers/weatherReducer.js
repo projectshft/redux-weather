@@ -1,5 +1,5 @@
 /* eslint-disable default-param-last */
-import { WEATHER_ADD_LOCATION } from '../actions';
+import { WEATHER_ADD } from '../actions';
 
 const DEFAULT_STATE = {
   temp: 82,
@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
 
 const weatherReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
-    case WEATHER_ADD_LOCATION:
+    case WEATHER_ADD:
       debugger;
       return state;
     default:
