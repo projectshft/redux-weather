@@ -5,6 +5,8 @@ import {
   fetch5DayWeatherForLocation,
   fetchCurrentWeatherForLocation,
   fetchLatitudeLongitude,
+  fetchWeatherData,
+  addWeatherData,
 } from '../actions';
 
 const SearchBar = () => {
@@ -12,23 +14,53 @@ const SearchBar = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmitClick = () => {
-    const latLon = fetchLatitudeLongitude(query);
+  const handleCurrentLocationClick = async () => {
     const id = Date.now();
 
-    latLon.then((res) => {
-      const { lat } = res.data[0];
-      const { lon } = res.data[0];
+    const success = (pos) => {
+      console.log('success');
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
 
       dispatch(fetch5DayWeatherForLocation(lat, lon, id));
       dispatch(fetchCurrentWeatherForLocation(lat, lon, id));
-    });
+    };
+
+    const error = (err) => {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error);
+
+    debugger;
   };
+
+  // const handleSubmitClick = () => {
+  //   const latLon = fetchLatitudeLongitude(query);
+  //   const id = Date.now();
+
+  //   latLon.then((res) => {
+  //     const { lat } = res.data[0];
+  //     const { lon } = res.data[0];
+
+  //     dispatch(fetch5DayWeatherForLocation(lat, lon, id));
+  //     dispatch(fetchCurrentWeatherForLocation(lat, lon, id));
+  //   });
+  // };
+  const handleSubmitClick = async () => {
+    const weatherData = await fetchWeatherData(query);
+
+    const id = Date.now();
+
+    dispatch(addWeatherData(weatherData, id));
+  };
+
   return (
     <Row className="justify-content-center">
       <Col md={6}>
         <InputGroup className="my-3">
           <InputGroup.Text
+            onClick={handleCurrentLocationClick}
             role="button"
             className="btn btn-primary"
             id="search-current-location"

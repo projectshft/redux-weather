@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Col } from 'react-bootstrap';
 
 const CurrentWeather = ({ data }) => {
-  debugger;
   const currentTemp = Math.round(data.main.temp);
   const condition = data.weather[0].main;
   const conditionIcon = data.weather[0].icon;

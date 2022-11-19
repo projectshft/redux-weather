@@ -12,10 +12,13 @@ const WeatherDataListItem = ({ weather }) => {
   if (!weather.location || !weather.forecast) {
     return <div>An error occurred, please try your serach again.</div>;
   }
+  console.log(weather);
 
-  const timeData = formatTime(weather.forecast);
+  const timeData = formatTime(weather.forecast.list);
 
-  const tempData = weather.forecast.map((dataPoint) => dataPoint.main.temp);
+  const tempData = weather.forecast.list.map(
+    (dataPoint) => dataPoint.main.temp
+  );
   const tempChartConfig = generateChartConfig(
     tempData,
     timeData,
@@ -29,7 +32,7 @@ const WeatherDataListItem = ({ weather }) => {
     }
   );
 
-  const pressureData = weather.forecast.map(
+  const pressureData = weather.forecast.list.map(
     (dataPoint) => dataPoint.main.pressure
   );
   const pressureChartConfig = generateChartConfig(
@@ -45,7 +48,7 @@ const WeatherDataListItem = ({ weather }) => {
     }
   );
 
-  const humidityData = weather.forecast.map(
+  const humidityData = weather.forecast.list.map(
     (dataPoint) => dataPoint.main.humidity
   );
   const humidityChartConfig = generateChartConfig(

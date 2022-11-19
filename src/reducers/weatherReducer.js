@@ -3,6 +3,7 @@ import {
   WEATHER_ADD_5DAY,
   WEATHER_ADD_CURRENT,
   ADD_LOCATION,
+  WEATHER_ADD_ALL,
 } from '../actions';
 
 const DEFAULT_STATE = {
@@ -29,6 +30,15 @@ const weatherReducer = (state = {}, action) => {
     // case ADD_LOCATION:
     //   debugger;
     //   return { [id]: { ...action.payload.data[0] }, ...state };
+    case WEATHER_ADD_ALL:
+      return {
+        [action.id]: {
+          current: action.payload.current.data,
+          forecast: action.payload.forecast.data,
+          location: action.payload.location,
+        },
+        ...state,
+      };
     case WEATHER_ADD_5DAY:
       return {
         ...state,
