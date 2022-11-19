@@ -7,9 +7,10 @@ import { Line } from 'react-chartjs-2';
 const PressureChart = ({ pressureData }) => {
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top',
+        display: false,
       },
       title: {
         display: true,
@@ -24,12 +25,13 @@ const PressureChart = ({ pressureData }) => {
     labels,
     datasets: [
       {
+        label: 'Pressure',
         data: pressureData.map((dataPoint) => dataPoint),
       },
     ],
   };
   return (
-    <Col>
+    <Col md={3}>
       <Line data={data} options={options} />
     </Col>
   );

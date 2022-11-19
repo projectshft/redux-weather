@@ -14,7 +14,6 @@ import {
   Legend,
   Filler,
 } from 'chart.js';
-
 import annotationPlugin from 'chartjs-plugin-annotation';
 
 ChartJS.register(
@@ -29,17 +28,17 @@ ChartJS.register(
   annotationPlugin
 );
 
-const TempChart = ({ data }) => {
-  console.log(data);
-
+const TempChart = ({ tempData }) => {
   const averageTemp =
-    data.reduce((acc, dataPoint) => acc + dataPoint, 0) / data.length;
+    tempData.reduce((acc, dataPoint) => acc + dataPoint, 0) / tempData.length;
+  const labels = tempData.map((dataPoint, i) => i);
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top',
+        display: false,
       },
       title: {
         display: true,
@@ -55,7 +54,7 @@ const TempChart = ({ data }) => {
             scaleID: 'y',
             value: averageTemp,
             label: {
-              display: true,
+              display: false,
               content: `Avg. ${Math.round(averageTemp)}F`,
               position: 'end',
             },
@@ -65,30 +64,29 @@ const TempChart = ({ data }) => {
     },
   };
 
-  const labels = data.map((dataPoint, i) => i);
-
-  console.log(averageTemp);
-
-  const dataInfo = {
+  const data = {
     labels,
     datasets: [
       {
         fill: true,
-        data: data.map((dataPoint) => dataPoint),
+        data: tempData.map((dataPoint) => dataPoint),
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        pointRadius: 0,
       },
     ],
   };
 
+  // console.log(averageTemp);
+
   return (
-    <Col>
-      <Line data={dataInfo} options={options} />
+    <Col md={3}>
+      <Line data={data} options={options} />
     </Col>
   );
 };
 
 TempChart.propTypes = {
-  data: ProptTypes.array,
+  tempData: ProptTypes.array,
 };
 export default TempChart;

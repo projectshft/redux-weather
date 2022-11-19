@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import CurrentWeather from './CurrentWeather';
-import TempChart from './TempChart';
-import PressureChart from './PressureChart';
-import HumidityChart from './HumidityChart';
+import TempChart from './charts/TempChart';
+import PressureChart from './charts/PressureChart';
+import HumidityChart from './charts/HumidityChart';
 
 const WeatherDataListItem = ({ weather }) => {
   if (!weather.location || !weather.forecast) {
@@ -26,7 +26,7 @@ const WeatherDataListItem = ({ weather }) => {
   return (
     <Row>
       {/* <CurrentWeather data={weather.current} /> */}
-      <TempChart data={tempData} />
+      <TempChart tempData={tempData} />
       <PressureChart pressureData={pressureData} />
       {/* <HumidityChart data={humidityData}/> */}
     </Row>
