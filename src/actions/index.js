@@ -1,8 +1,8 @@
+/* eslint-disable no-shadow */
 import axios from 'axios';
 
 export const WEATHER_ADD_5DAY = 'WEATHER_ADD_5DAY';
 export const WEATHER_ADD_CURRENT = 'WEATHER_ADD_CURRENT';
-export const ADD_LOCATION = 'ADD_LOCATION';
 export const WEATHER_ADD_ALL = 'WEATHER_ADD_ALL';
 
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API;
@@ -14,24 +14,7 @@ export const addWeatherData = (forecastCurrentAndLocation, id) => ({
   id,
 });
 
-// eslint-disable-next-line arrow-body-style
 export const fetchLatitudeLongitude = (query = null) => {
-  // if (!query) {
-  //   const success = (pos) => {
-  //     console.log('success');
-  //     const lat = pos.coords.latitude;
-  //     const lon = pos.coords.longitude;
-  //     debugger;
-  //     return { lat, lon };
-  //   };
-
-  //   const error = (err) => {
-  //     console.warn(`ERROR(${err.code}): ${err.message}`);
-  //   };
-
-  //   navigator.geolocation.getCurrentPosition(success, error);
-  // }
-  // //  else {
   const origin = 'https://api.openweathermap.org/geo/1.0/direct?';
 
   const params = {
@@ -44,9 +27,7 @@ export const fetchLatitudeLongitude = (query = null) => {
     .then((data) => data)
     .catch((error) => console.log(error));
 
-  // const request = axios.get(origin, { params });
   return request;
-  // }
 };
 
 export const fetchWeatherData = async (query, lat = null, lon = null) => {
@@ -63,6 +44,15 @@ export const fetchWeatherData = async (query, lat = null, lon = null) => {
       resolve({ location, forecast, current });
     });
   }
+  const forecast = await fetch5DayWeather(lat, lon);
+
+  const current = await fetchCurrentWeather(lat, lon);
+
+  const location = { lat, lon };
+
+  return new Promise((resolve) => {
+    resolve({ location, forecast, current });
+  });
 };
 
 const fetchCurrentWeather = async (lat, lon) => {
