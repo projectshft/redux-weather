@@ -28,21 +28,37 @@ ChartJS.register(
   annotationPlugin
 );
 
-const TempChart = ({ tempData }) => {
+const TempChart = ({ tempData, timeData }) => {
   const averageTemp =
     tempData.reduce((acc, dataPoint) => acc + dataPoint, 0) / tempData.length;
-  const labels = tempData.map((dataPoint, i) => i);
+  const labels = timeData.formattedDays;
 
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'F °',
+          color: 'black',
+          font: {
+            family: 'Times',
+            size: 15,
+            lineHeight: 1,
+          },
+          // padding: { top: 30, left: 0, right: 0, bottom: 0 },
+        },
+      },
+    },
     plugins: {
       legend: {
         display: false,
       },
       title: {
         display: true,
-        text: 'Temp',
+        text: 'Temp (Farenheit)',
       },
       annotation: {
         annotations: {
@@ -88,5 +104,7 @@ const TempChart = ({ tempData }) => {
 
 TempChart.propTypes = {
   tempData: ProptTypes.array,
+  timeData: ProptTypes.object,
 };
+
 export default TempChart;
