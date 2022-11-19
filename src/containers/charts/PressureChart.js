@@ -4,40 +4,31 @@ import { Col } from 'react-bootstrap';
 // eslint-disable-next-line import/no-unresolved
 import { Line } from 'react-chartjs-2';
 
-const PressureChart = ({ pressureData }) => {
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: 'Pressure',
-      },
+import generateChartConfig from './config/generateChartConfig';
+
+const PressureChart = ({ pressureData, timeData }) => {
+  const config = generateChartConfig(
+    pressureData,
+    timeData,
+    {
+      y: 'hPa',
+      title: 'Pressure(hPa)',
     },
-  };
+    {
+      borderColor: 'rgb(179,27,27)',
+      backgroundColor: 'rgb(179,27,27,0.5)',
+    }
+  );
 
-  const labels = pressureData.map((dataPoint, i) => i);
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Pressure',
-        data: pressureData.map((dataPoint) => dataPoint),
-      },
-    ],
-  };
   return (
     <Col md={3}>
-      <Line data={data} options={options} />
+      <Line data={config.data} options={config.options} />
     </Col>
   );
 };
 
 PressureChart.propTypes = {
   pressureData: PropTypes.array,
+  timeData: PropTypes.object,
 };
 export default PressureChart;
