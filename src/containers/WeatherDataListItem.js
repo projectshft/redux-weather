@@ -25,12 +25,10 @@ const WeatherDataListItem = ({ weather }) => {
 
   return (
     <Row>
-      <Col>
-        {/* <CurrentWeather data={weather.current} /> */}
-        <TempChart data={tempData} />
-        {/* <PressureChart data={pressureData} /> */}
-        {/* <HumidityChart data={humidityData}/> */}
-      </Col>
+      {/* <CurrentWeather data={weather.current} /> */}
+      <TempChart data={tempData} />
+      <PressureChart pressureData={pressureData} />
+      {/* <HumidityChart data={humidityData}/> */}
     </Row>
   );
 };
