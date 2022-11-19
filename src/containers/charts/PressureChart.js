@@ -4,7 +4,7 @@ import { Col } from 'react-bootstrap';
 // eslint-disable-next-line import/no-unresolved
 import { Line } from 'react-chartjs-2';
 
-import generateChartConfig from './config/generateChartConfig';
+import generateChartConfig from '../config/generateChartConfig';
 
 const PressureChart = ({ pressureData, timeData }) => {
   const config = generateChartConfig(

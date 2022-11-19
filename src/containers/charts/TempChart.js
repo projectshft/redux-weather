@@ -16,7 +16,7 @@ import {
 } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 
-import generateChartConfig from './config/generateChartConfig';
+import generateChartConfig from '../config/generateChartConfig';
 
 ChartJS.register(
   CategoryScale,
