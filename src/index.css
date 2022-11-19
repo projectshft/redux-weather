@@ -15,3 +15,8 @@ code {
 .main-container {
   margin-top: 56px;
 }
+
+.chart-small:hover {
+  background-color: blanchedalmond;
+  padding: 5px;
+}

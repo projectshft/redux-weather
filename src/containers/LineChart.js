@@ -30,7 +30,7 @@ ChartJS.register(
 
 const LineChart = ({ config }) => (
   <Col md={3}>
-    <Line data={config.data} options={config.options} />
+    <Line className="chart-small" data={config.data} options={config.options} />
   </Col>
 );
 
