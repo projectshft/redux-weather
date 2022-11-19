@@ -16,6 +16,8 @@ import {
 } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 
+import generateChartConfig from './config/generateChartConfig';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -29,75 +31,23 @@ ChartJS.register(
 );
 
 const TempChart = ({ tempData, timeData }) => {
-  const averageTemp =
-    tempData.reduce((acc, dataPoint) => acc + dataPoint, 0) / tempData.length;
-  const labels = timeData.formattedDays;
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        display: true,
-        title: {
-          display: true,
-          text: 'F °',
-          color: 'black',
-          font: {
-            family: 'Times',
-            size: 15,
-            lineHeight: 1,
-          },
-          // padding: { top: 30, left: 0, right: 0, bottom: 0 },
-        },
-      },
+  const config = generateChartConfig(
+    tempData,
+    timeData,
+    {
+      y: 'F  °',
+      title: 'Temp (Farenheit)',
     },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: true,
-        text: 'Temp (Farenheit)',
-      },
-      annotation: {
-        annotations: {
-          annotation: {
-            type: 'line',
-            borderColor: 'black',
-            borderDash: [6, 3],
-            borderWidth: 2,
-            scaleID: 'y',
-            value: averageTemp,
-            label: {
-              display: false,
-              content: `Avg. ${Math.round(averageTemp)}F`,
-              position: 'end',
-            },
-          },
-        },
-      },
-    },
-  };
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        fill: true,
-        data: tempData.map((dataPoint) => dataPoint),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        pointRadius: 0,
-      },
-    ],
-  };
-
+    {
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    }
+  );
   // console.log(averageTemp);
 
   return (
     <Col md={3}>
-      <Line data={data} options={options} />
+      <Line data={config.data} options={config.options} />
     </Col>
   );
 };
