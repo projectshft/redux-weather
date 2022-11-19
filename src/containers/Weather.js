@@ -5,14 +5,17 @@ import WeatherDataListItem from './WeatherDataListItem';
 
 const Weather = () => {
   const weatherData = useSelector((state) => state.weather);
+  console.log(weatherData);
+
   const renderWeatherDataList = () =>
     _.map(weatherData, (obj, key) => {
       const location = obj;
       return <WeatherDataListItem key={key} weather={location} />;
     });
+
   return (
     <Row className="justify-content-center ">
-      <Col md={8}>{renderWeatherDataList()}</Col>
+      <Col md={10}>{renderWeatherDataList()}</Col>
     </Row>
   );
 };

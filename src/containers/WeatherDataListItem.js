@@ -63,7 +63,7 @@ const WeatherDataListItem = ({ weather }) => {
 
   return (
     <Row>
-      {/* <CurrentWeather data={weather.current} /> */}
+      <CurrentWeather data={weather.current} />
       <LineChart config={tempChartConfig} />
       <LineChart config={pressureChartConfig} />
       <LineChart config={humidityChartConfig} />
