@@ -28,14 +28,14 @@ ChartJS.register(
   annotationPlugin
 );
 
-const Chart = ({ config }) => (
+const LineChart = ({ config }) => (
   <Col md={3}>
     <Line data={config.data} options={config.options} />
   </Col>
 );
 
-Chart.propTypes = {
+LineChart.propTypes = {
   config: ProptTypes.object,
 };
 
-export default Chart;
+export default LineChart;

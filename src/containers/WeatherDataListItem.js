@@ -5,11 +5,8 @@ import _ from 'lodash';
 import formatTime from '../helpers/formatTime';
 
 import CurrentWeather from './CurrentWeather';
-import TempChart from './charts/TempChart';
-import PressureChart from './charts/PressureChart';
-import HumidityChart from './charts/HumidityChart';
-import Chart from './Chart';
-import generateChartConfig from './config/generateChartConfig';
+import LineChart from './LineChart';
+import generateChartConfig from './chartsConfig/generateChartConfig';
 
 const WeatherDataListItem = ({ weather }) => {
   if (!weather.location || !weather.forecast) {
@@ -67,12 +64,9 @@ const WeatherDataListItem = ({ weather }) => {
   return (
     <Row>
       {/* <CurrentWeather data={weather.current} /> */}
-      {/* <TempChart tempData={tempData} timeData={timeData} /> */}
-      {/* <PressureChart pressureData={pressureData} timeData={timeData} /> */}
-      {/* <HumidityChart data={humidityData} timeData={timeData}/> */}
-      <Chart config={tempChartConfig} />
-      <Chart config={pressureChartConfig} />
-      <Chart config={humidityChartConfig} />
+      <LineChart config={tempChartConfig} />
+      <LineChart config={pressureChartConfig} />
+      <LineChart config={humidityChartConfig} />
     </Row>
   );
 };
