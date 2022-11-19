@@ -5,7 +5,6 @@ import WeatherDataListItem from './WeatherDataListItem';
 
 const Weather = () => {
   const weatherData = useSelector((state) => state.weather);
-  console.log(weatherData);
 
   const renderWeatherDataList = () =>
     _.map(weatherData, (obj, key) => {

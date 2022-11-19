@@ -39,7 +39,6 @@ const weatherReducer = (state = {}, action) => {
         },
       };
     case WEATHER_ADD_CURRENT:
-      debugger;
       return {
         ...state,
         [action.id]: {
