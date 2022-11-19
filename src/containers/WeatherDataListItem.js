@@ -56,8 +56,8 @@ const WeatherDataListItem = ({ weather }) => {
       title: 'Humidity(%)',
     },
     {
-      borderColor: 'rgb(179,27,27)',
-      backgroundColor: 'rgb(179,27,27,0.5)',
+      borderColor: 'rgb(103,202,7)',
+      backgroundColor: 'rgb(103,202,7, 0.5)',
     }
   );
 
