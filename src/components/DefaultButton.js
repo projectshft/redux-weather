@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Col, Toast, ToastContainer, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const DefaultButton = ({ location, handleDefaultSet }) => {
   const [show, setShow] = useState(false);

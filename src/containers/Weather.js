@@ -1,6 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
+
 import WeatherDataListItem from './WeatherDataListItem';
 
 const Weather = () => {

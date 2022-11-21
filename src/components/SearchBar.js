@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+
 import { addWeatherData } from '../actions';
 import { fetchWeatherData } from '../helpers/fetchData';
 

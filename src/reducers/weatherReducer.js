@@ -16,22 +16,6 @@ const weatherReducer = (state = DEFAULT_STATE, action) => {
         },
         ...state,
       };
-    // case WEATHER_ADD_5DAY:
-    //   return {
-    //     ...state,
-    //     [action.id]: {
-    //       ...state[action.id],
-    //       forecast: action.payload.data.list,
-    //       location: action.payload.data.city,
-    //     },
-    //   };
-    // case WEATHER_ADD_CURRENT:
-    //   return {
-    //     ...state,
-    //     [action.id]: {
-    //       current: action.payload.data,
-    //     },
-    //   };
     default:
       return state;
   }

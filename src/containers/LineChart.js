@@ -1,7 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
-import ProptTypes from 'prop-types';
 import { Col, Modal } from 'react-bootstrap';
-// eslint-disable-next-line import/no-unresolved
+import ProptTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
