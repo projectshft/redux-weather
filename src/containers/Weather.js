@@ -10,7 +10,7 @@ const Weather = () => {
   if (_.isEmpty(weatherData)) {
     return (
       <Row>
-        <Col className="offset-3" md={5}>
+        <Col className="offset-4 text-center" md={4}>
           <h2>Search for a city to get started!</h2>
         </Col>
       </Row>
