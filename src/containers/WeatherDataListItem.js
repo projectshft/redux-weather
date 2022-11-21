@@ -8,7 +8,7 @@ import generateChartConfig from './chartsConfig/generateChartConfig';
 import formatTime from '../helpers/formatTime';
 
 const WeatherDataListItem = ({ weather, id }) => {
-  if (!weather.location || !weather.forecast) {
+  if (!weather) {
     return <div>An error occurred, please try your serach again.</div>;
   }
 
@@ -23,6 +23,7 @@ const WeatherDataListItem = ({ weather, id }) => {
   const tempData = weather.forecast.list.map(
     (dataPoint) => dataPoint.main.temp
   );
+
   const tempChartConfig = generateChartConfig(
     tempData,
     timeData,
@@ -40,6 +41,7 @@ const WeatherDataListItem = ({ weather, id }) => {
   const pressureData = weather.forecast.list.map(
     (dataPoint) => dataPoint.main.pressure
   );
+
   const pressureChartConfig = generateChartConfig(
     pressureData,
     timeData,
@@ -57,6 +59,7 @@ const WeatherDataListItem = ({ weather, id }) => {
   const humidityData = weather.forecast.list.map(
     (dataPoint) => dataPoint.main.humidity
   );
+
   const humidityChartConfig = generateChartConfig(
     humidityData,
     timeData,
@@ -83,7 +86,7 @@ const WeatherDataListItem = ({ weather, id }) => {
 };
 
 WeatherDataListItem.propTypes = {
-  weather: PropTypes.object,
+  weather: PropTypes.objectOf(PropTypes.object),
   id: PropTypes.string,
 };
 
