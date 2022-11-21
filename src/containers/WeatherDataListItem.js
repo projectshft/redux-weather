@@ -1,4 +1,5 @@
-import { Row, Col, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Row, Col, Button, Toast, ToastContainer } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -6,13 +7,14 @@ import formatTime from '../helpers/formatTime';
 import CurrentWeather from './CurrentWeather';
 import LineChart from './LineChart';
 import generateChartConfig from './chartsConfig/generateChartConfig';
+import DefaultButton from '../components/DefaultButton';
 
 const WeatherDataListItem = ({ weather, id }) => {
   if (!weather.location || !weather.forecast) {
     return <div>An error occurred, please try your serach again.</div>;
   }
 
-  const handleDefaultClick = () => {
+  const handleDefaultSet = () => {
     localStorage.setItem('defaultWeather', JSON.stringify({ [id]: weather }));
   };
 
@@ -73,11 +75,7 @@ const WeatherDataListItem = ({ weather, id }) => {
 
   return (
     <Row className="align-items-center weather-list-item" id={id}>
-      <Col className="d-flex justify-content-center" md={1}>
-        <Button onClick={handleDefaultClick} className="btn-add-default">
-          Set as Default
-        </Button>
-      </Col>
+      <DefaultButton location={location} handleDefaultSet={handleDefaultSet} />
       <CurrentWeather data={weather.current} />
       <LineChart config={tempChartConfig} />
       <LineChart config={pressureChartConfig} />
