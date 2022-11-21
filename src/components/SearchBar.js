@@ -36,6 +36,13 @@ const SearchBar = () => {
   const handleSubmitClick = async () => {
     const weatherData = await fetchWeatherData(query);
 
+    if (weatherData === null) {
+      alert(
+        `Search failed. Make sure everything is spelled correctly. Try a different format`
+      );
+      return;
+    }
+
     const id = Date.now();
 
     dispatch(addWeatherData(weatherData, id));

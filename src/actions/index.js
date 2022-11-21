@@ -34,6 +34,19 @@ export const fetchWeatherData = async (query, lat = null, lon = null) => {
   if (!lat || !lon) {
     const latLon = await fetchLatitudeLongitude(query);
 
+    if (latLon.data.length === 0) {
+      return null;
+    }
+    // if (latLon.data.length === 0) {
+    //   return new Promise((resolve, reject) => {
+    //     reject(
+    //       new Error(
+    //         'Could not fetch latitude/longitude for the searched location.'
+    //       )
+    //     );
+    //   });
+    // }
+
     const location = latLon.data[0];
 
     const forecast = await fetch5DayWeather(location.lat, location.lon);
