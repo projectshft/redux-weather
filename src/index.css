@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: gainsboro;
 }
 
 code {
@@ -17,18 +18,21 @@ code {
 }
 
 .chart-small:hover {
-  background-color: blanchedalmond;
+  background-color: gainsboro;
   padding: 5px;
 }
 
 .btn-add-default {
   font-size: 10px;
   padding: 3px;
+  background-color: rgb(110, 190, 190);
+  border-color: rgb(110, 190, 190);
 }
 
 .condition-icon {
   background-color: rgb(110, 190, 190);
   margin: 0 auto;
+  border-radius: 50px;
 }
 
 .weather-current {
@@ -42,6 +46,7 @@ code {
   padding: 5px;
   border: 1px solid black;
   border-radius: 5px;
+  background-color: aliceblue;
 }
 
 .modal-title {
