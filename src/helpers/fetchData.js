@@ -32,7 +32,7 @@ export const fetchWeatherData = async (query, lat = null, lon = null) => {
   });
 };
 
-const fetchLatitudeLongitude = (query = null) => {
+const fetchLatitudeLongitude = (query) => {
   const origin = 'https://api.openweathermap.org/geo/1.0/direct?';
 
   const params = {
@@ -49,6 +49,10 @@ const fetchLatitudeLongitude = (query = null) => {
 };
 
 const fetchCurrentWeather = async (lat, lon) => {
+  if (!lat || !lon) {
+    console.error('fetchCurrentWeather: no latitude and/or longitude provided');
+  }
+
   const origin = 'https://api.openweathermap.org/data/2.5/weather?';
 
   const params = {
@@ -63,7 +67,7 @@ const fetchCurrentWeather = async (lat, lon) => {
   return request;
 };
 
-const fetch5DayWeather = (lat, lon, id) => {
+const fetch5DayWeather = (lat, lon) => {
   if (!lat || !lon) {
     console.error('fetch5DayWeather: no latitude and/or longitude provided');
   }
