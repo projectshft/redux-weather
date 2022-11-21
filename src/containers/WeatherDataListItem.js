@@ -1,13 +1,11 @@
-import { useState } from 'react';
-import { Row, Col, Button, Toast, ToastContainer } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
-import formatTime from '../helpers/formatTime';
 import CurrentWeather from './CurrentWeather';
 import LineChart from './LineChart';
-import generateChartConfig from './chartsConfig/generateChartConfig';
 import DefaultButton from '../components/DefaultButton';
+import generateChartConfig from './chartsConfig/generateChartConfig';
+import formatTime from '../helpers/formatTime';
 
 const WeatherDataListItem = ({ weather, id }) => {
   if (!weather.location || !weather.forecast) {
