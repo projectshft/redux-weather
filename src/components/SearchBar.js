@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import { Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import {
-  fetch5DayWeatherForLocation,
-  fetchCurrentWeatherForLocation,
-  fetchLatitudeLongitude,
-  fetchWeatherData,
-  addWeatherData,
-} from '../actions';
+import { addWeatherData } from '../actions';
+import { fetchWeatherData } from '../helpers/fetchData';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
