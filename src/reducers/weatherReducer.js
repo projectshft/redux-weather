@@ -5,26 +5,11 @@ import {
   WEATHER_ADD_ALL,
 } from '../actions';
 
-const DEFAULT_STATE = {
-  734535: {
-    current: { temp: 82, condition: 'clouds' },
-    forecast: [
-      { temp: 82, condition: 'clouds' },
-      { temp: 82, condition: 'clouds' },
-      { temp: 82, condition: 'clouds' },
-      { temp: 82, condition: 'clouds' },
-      { temp: 82, condition: 'clouds' },
-    ],
-    location: {
-      lat: 54,
-      lon: -34,
-      state: 'California',
-      name: 'Santa Cruz',
-    },
-  },
-};
+const DEFAULT_STATE = localStorage.defaultWeather
+  ? JSON.parse(localStorage.getItem('defaultWeather'))
+  : {};
 
-const weatherReducer = (state = {}, action) => {
+const weatherReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case WEATHER_ADD_ALL:
       return {
