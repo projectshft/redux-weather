@@ -10,7 +10,7 @@ const CurrentWeather = ({ data }) => {
 
   console.log(currentTemp, condition, conditionIcon, location);
   return (
-    <Col md={3}>
+    <Col md={2}>
       <div>{location}</div>
       <img
         src={`http://openweathermap.org/img/wn/${conditionIcon}@2x.png`}

@@ -43,7 +43,6 @@ const LineChart = ({ config }) => {
           options={config.options}
         />
       </Col>
-      
       <Modal show={show} onHide={handleHide} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>{config.options.plugins.title.text}</Modal.Title>
