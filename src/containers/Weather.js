@@ -18,10 +18,9 @@ const Weather = () => {
   }
 
   const renderWeatherDataList = () =>
-    _.map(weatherData, (obj, key) => {
-      const location = obj;
-      return <WeatherDataListItem id={key} key={key} weather={location} />;
-    });
+    _.map(weatherData, (obj, key) => (
+      <WeatherDataListItem id={key} key={key} weather={obj} />
+    ));
 
   return (
     <Row>
