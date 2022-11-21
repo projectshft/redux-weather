@@ -8,11 +8,12 @@ const CurrentWeather = ({ data }) => {
   const conditionIcon = data.weather[0].icon;
   const location = `${data.name}, ${data.sys.country}`;
 
-  console.log(currentTemp, condition, conditionIcon, location);
   return (
-    <Col md={2}>
-      <div>{location}</div>
+    <Col className="weather-current" md={2}>
+      <div className="location-current">{location}</div>
+      <div className="conditon-name">{condition}</div>
       <img
+        className="condition-icon"
         src={`http://openweathermap.org/img/wn/${conditionIcon}@2x.png`}
         alt="Condition Icon"
       />

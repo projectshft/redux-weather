@@ -16,6 +16,8 @@ const WeatherDataListItem = ({ weather, id }) => {
     localStorage.setItem('defaultWeather', JSON.stringify({ [id]: weather }));
   };
 
+  const location = weather.current.name;
+
   const timeData = formatTime(weather.forecast.list);
 
   const tempData = weather.forecast.list.map(
@@ -31,7 +33,8 @@ const WeatherDataListItem = ({ weather, id }) => {
     {
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    }
+    },
+    location
   );
 
   const pressureData = weather.forecast.list.map(
@@ -47,7 +50,8 @@ const WeatherDataListItem = ({ weather, id }) => {
     {
       borderColor: 'rgb(179,27,27)',
       backgroundColor: 'rgb(179,27,27,0.5)',
-    }
+    },
+    location
   );
 
   const humidityData = weather.forecast.list.map(
@@ -63,12 +67,13 @@ const WeatherDataListItem = ({ weather, id }) => {
     {
       borderColor: 'rgb(103,202,7)',
       backgroundColor: 'rgb(103,202,7, 0.5)',
-    }
+    },
+    location
   );
 
   return (
-    <Row className="align-items-center" id={id}>
-      <Col md={1}>
+    <Row className="align-items-center weather-list-item" id={id}>
+      <Col className="d-flex justify-content-center" md={1}>
         <Button onClick={handleDefaultClick} className="btn-add-default">
           Set as Default
         </Button>

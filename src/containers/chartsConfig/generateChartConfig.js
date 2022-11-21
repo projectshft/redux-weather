@@ -1,4 +1,10 @@
-const generateChartConfig = (weatherData, timeData, titles, colors) => {
+const generateChartConfig = (
+  weatherData,
+  timeData,
+  titles,
+  colors,
+  location
+) => {
   const average =
     weatherData.reduce((acc, dataPoint) => acc + dataPoint, 0) /
     weatherData.length;
@@ -67,6 +73,7 @@ const generateChartConfig = (weatherData, timeData, titles, colors) => {
   return {
     options,
     data,
+    location,
   };
 };
 

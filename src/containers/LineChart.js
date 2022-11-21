@@ -45,7 +45,7 @@ const LineChart = ({ config }) => {
       </Col>
       <Modal show={show} onHide={handleHide} centered size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>{config.options.plugins.title.text}</Modal.Title>
+          <Modal.Title>{`${config.location}: ${config.options.plugins.title.text}`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Line

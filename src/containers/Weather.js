@@ -12,8 +12,8 @@ const Weather = () => {
     });
 
   return (
-    <Row className="justify-content-center ">
-      <Col md={10}>{renderWeatherDataList()}</Col>
+    <Row className="">
+      <Col md={12}>{renderWeatherDataList()}</Col>
     </Row>
   );
 };
