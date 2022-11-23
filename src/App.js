@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCoordinates } from "./actions";
+import { useEffect } from "react";
+import WeatherList from "./components/weather-list"
+import WeatherInput from "./components/weather-input"
 
 function App() {
+  console.log({fetchCoordinates})
+  const dispatch = useDispatch();
+  useEffect(() => {
+  dispatch(fetchCoordinates('bangkok'));
+},[])
+
+const state = useSelector(state => console.log('state on app.js', state))
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <WeatherInput />
+    <WeatherList />
     </div>
   );
 }
