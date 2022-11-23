@@ -22,7 +22,6 @@ export function fetchCoordinates (query) {
         payload: data
     }
     })
-    })
-   
+    })   
 }
 
