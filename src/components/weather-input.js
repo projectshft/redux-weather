@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {fetchCoordinates} from '../actions'
+import {fetchWeather} from '../actions'
 
 
 
@@ -8,7 +8,7 @@ const WeatherInput = () => {
     const [city, setCity] = useState('')
     const dispatch = useDispatch();
     const handleClick = (city) => { 
-        dispatch(fetchCoordinates(city))
+        dispatch(fetchWeather(city))
     }
 
     return(
