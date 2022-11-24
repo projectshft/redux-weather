@@ -6,16 +6,24 @@ import WeatherList from "./components/weather-list"
 import WeatherInput from "./components/weather-input"
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-  dispatch(fetchWeather('bangkok'));
-},[])
 
+  const weather = useSelector((state)=> state.items)
+  const dispatch = useDispatch();
+//   useEffect(() => {
+//   dispatch(fetchWeather('bangkok'));
+// },[dispatch])
+
+
+console.log('app',weather)
+
+//to do 
+//make new objects for every city looked up
+//format data in charts
 
   return (
     <div>
     <WeatherInput />
-    <WeatherList />
+    <WeatherList weather={ weather}/>
     </div>
   );
 }

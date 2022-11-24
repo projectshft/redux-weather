@@ -1,13 +1,18 @@
-import { FETCH_COORDINATES, FETCH_WEATHER } from "../actions";
+import { FETCH_WEATHER } from "../actions";
 
-const initialState = { weatherList: [] }
+const initialState = {
+    items: []
+}
 
-const reducer = function(state = initialState, action) {
+const reducer = function(state=initialState, action) {
     switch (action.type) {
       case FETCH_WEATHER:
         console.log('payload', action.payload)
-        const temps = action.payload.map(a=> a.main.temp)
-        function sliceIntoChunks(arr, chunkSize) {
+        const list= action.payload.list
+        const temps = list.map(a=> a.main.temp)
+        const pressures = list.map(a=> a.main.pressure)
+        const humidities = list.map(a=> a.main.humidity)
+        function divideIntoDays(arr, chunkSize) {
             const res = [];
             for (let i = 0; i < arr.length; i += chunkSize) {
                 const chunk = arr.slice(i, i + chunkSize);
@@ -15,19 +20,42 @@ const reducer = function(state = initialState, action) {
             }
             return res;
         }
-        const fiveDays = sliceIntoChunks(temps, 5)
-        const arrOfAverages = []
-        function getAverage(temps, oneDay){
-        for (let i = 0; i < fiveDays.length; i++) {
-            console.log(fiveDays[i])
-           arrOfAverages.push(fiveDays[i].reduce((a,b)=>a+b,0) / fiveDays[i].length)
+        const oneDay = 8;
+        const fiveDayTemps = divideIntoDays(temps, oneDay)
+        const fiveDayPressures = divideIntoDays(pressures, oneDay)
+        const fiveDayHumidities = divideIntoDays(humidities, oneDay)
+        function getAverages (temps, arr, fiveDays) {
+          for (let i = 0; i < fiveDays.length; i++) {
+           arr.push(Math.floor(fiveDays[i].reduce((a,b)=>a+b,0) / fiveDays[i].length))
+          }
+          return arr;
         }
-    }
+        const tempArr = []
+        const pressureArr = []
+        const humidityArr = []
+        const avgTemps = getAverages(temps, tempArr, fiveDayTemps)
+        const avgPressures = getAverages(pressures, pressureArr, fiveDayPressures)
+        const avgHumidities = getAverages(humidities, humidityArr, fiveDayHumidities)
+        const avgCeptionTemp = avgTemps.reduce((a,b)=>a+b,0) / avgTemps.length
+        const avgCeptionPressure = avgPressures.reduce((a,b)=>a+b,0) / avgPressures.length 
+        const avgCeptionHumidity = avgHumidities.reduce((a,b)=>a+b,0) / avgHumidities.length 
+       
+        let weatherObj = {
+            avgTemps: avgTemps || [],
+            avgPressures: avgPressures  || [],
+            avgHumidities: avgHumidities || [],
+            avgCeptionTemp: avgCeptionTemp || '',
+            avgCeptionPressure: avgCeptionPressure || '',
+            avgCeptionHumidity: avgCeptionHumidity || '',
+            city: action.payload.city.name  
+        }
+        // state.items =[...state.items, weatherObj]
             return {
-                temps: temps,
-                avgTemps: arrOfAverages
-            }
-        }
+                items: [...state.items, weatherObj]
+            }   
+            default:
+                return state;
+        };
     }
 
 

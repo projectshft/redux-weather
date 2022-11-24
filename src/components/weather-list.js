@@ -1,27 +1,41 @@
-import { useSelector, useDispatch } from "react-redux";
-import {fetchCoordinates} from '../actions'
-import { useEffect } from "react";
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
-const WeatherList = () => {
-
-
-    const forecast = useSelector((state) => {
-        console.log('state',state)
-        // state.forecast
-    })
-
+const WeatherList = ({ weather }) => {
+  
    
-    // const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(fetchCoordinates());
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    //   }, [fetchCoordinates]);
+function renderWeather(){
+    
+    return weather.map((i) =>(
+     
+        <table className="table">
+        <tbody>
+    <tr>
+        <th>{i.city}</th>
+      <td><Sparklines data={i.avgTemps}>
+        <SparklinesLine style={{ fill: "#41c3f9" }}/>
+        <SparklinesReferenceLine type="mean" />
+        </Sparklines>{i.avgCeptionTemp} F</td>
+      <td><Sparklines data={i.avgPressures}>
+        <SparklinesLine style={{ fill: "#198935" }} />
+        <SparklinesReferenceLine type="mean" />
+        </Sparklines>{i.avgCeptionPressure} hPa</td>
+      <td><Sparklines data={i.avgHumidities}>
+        <SparklinesLine style={{ fill: "#D8A3DA" }} />
+        <SparklinesReferenceLine type="mean" />
+        </Sparklines>{i.avgCeptionHumidity} %</td>
+    </tr>
+    </tbody>
+    </table>
+    ))
+}
 
 return (
     <div>
-        <h1></h1>
+        <hr></hr>
+      <div>{renderWeather()}</div>
     </div>
     )
 

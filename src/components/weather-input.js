@@ -13,8 +13,9 @@ const WeatherInput = () => {
 
     return(
         <div>
-        <input onChange={(e) => setCity(e.target.value)}></input>
-        <button type="button" onClick={() => handleClick(city)}>Submit</button>
+            <h5> Get weather data by city: </h5>
+        <input className="form-group" onChange={(e) => setCity(e.target.value)}></input>
+        <button className="btn btn-primary form-group" type="button" onClick={() => handleClick(city)}>Submit</button>
         </div>
     )
 }
