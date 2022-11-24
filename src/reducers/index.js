@@ -1,5 +1,21 @@
 import { FETCH_WEATHER } from "../actions";
 
+function getAverages (temps, arr, fiveDays) {
+    for (let i = 0; i < fiveDays.length; i++) {
+     arr.push(Math.floor(fiveDays[i].reduce((a,b)=>a+b,0) / fiveDays[i].length))
+    }
+    return arr;
+  }
+
+function divideIntoDays(arr, chunkSize) {
+    const res = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        const chunk = arr.slice(i, i + chunkSize);
+        res.push(chunk);
+    }
+    return res;
+}
+
 const initialState = {
     items: []
 }
@@ -12,24 +28,10 @@ const reducer = function(state=initialState, action) {
         const temps = list.map(a=> a.main.temp)
         const pressures = list.map(a=> a.main.pressure)
         const humidities = list.map(a=> a.main.humidity)
-        function divideIntoDays(arr, chunkSize) {
-            const res = [];
-            for (let i = 0; i < arr.length; i += chunkSize) {
-                const chunk = arr.slice(i, i + chunkSize);
-                res.push(chunk);
-            }
-            return res;
-        }
         const oneDay = 8;
         const fiveDayTemps = divideIntoDays(temps, oneDay)
         const fiveDayPressures = divideIntoDays(pressures, oneDay)
         const fiveDayHumidities = divideIntoDays(humidities, oneDay)
-        function getAverages (temps, arr, fiveDays) {
-          for (let i = 0; i < fiveDays.length; i++) {
-           arr.push(Math.floor(fiveDays[i].reduce((a,b)=>a+b,0) / fiveDays[i].length))
-          }
-          return arr;
-        }
         const tempArr = []
         const pressureArr = []
         const humidityArr = []
@@ -49,9 +51,8 @@ const reducer = function(state=initialState, action) {
             avgCeptionHumidity: avgCeptionHumidity || '',
             city: action.payload.city.name  
         }
-        // state.items =[...state.items, weatherObj]
             return {
-                items: [...state.items, weatherObj]
+                items: [weatherObj, ...state.items]
             }   
             default:
                 return state;

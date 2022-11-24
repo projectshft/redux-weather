@@ -7,9 +7,7 @@ const WeatherList = ({ weather }) => {
    
 
 function renderWeather(){
-    
     return weather.map((i) =>(
-     
         <table className="table">
         <tbody>
     <tr>
