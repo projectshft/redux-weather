@@ -1,25 +1,35 @@
-import './App.css';
-import Row from './Row'
-import { useSelector } from 'react-redux';
-import * as actions from './actions';
-import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-
-
+import "./App.css";
+import Row from "./Row";
+import { useSelector } from "react-redux";
+import * as actions from "./actions";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 function App() {
-  const cities = useSelector((state) => (state))
-  const [city, setCity] = useState('denver')
+  const cities = useSelector((state) => state);
+  const [city, setCity] = useState("");
   const dispatch = useDispatch();
-  useEffect(() => dispatch(actions.createItem(city)),[])
-    
-
-
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(city);
+    dispatch(actions.createItem(city));
+    setCity("");
+  };
 
   return (
-    <div className="App" >
-      <form className="form-control" action="">
-        <input className="form-group" type="text" onChange={e => setCity(e.target.value)} />
+    <div className="App">
+      <form
+        className="form-control"
+        action=""
+        onSubmit={(e) => handleSearch(e)}
+      >
+        <input
+          className="form-group"
+          type="text"
+          onChange={(e) => setCity(e.target.value)}
+          placeholder="Search by City Name"
+          value={city}
+        />
         <button className="custom">Search</button>
       </form>
       <div className="flexbox-container mx-auto w-75">
