@@ -5,10 +5,10 @@ import { useState } from "react";
 
 import { fetchWeather } from './components/fetch-weather';
 
-// currently working on getting the value of the search bar
-// later I will move the page formatting to a new file or multiple files in order to keep App.js clean
+// TO DO: move the page formatting to a new file or multiple files to keep App.js clean
 function App() {
   const [city, setCity] = useState('');
+  // const [weather, setWeather] = useState([]);
 
   return (
     <div className="container text-center">
@@ -37,8 +37,8 @@ function App() {
             </thead>
             <tbody className="table-group-divider">
               <tr>
-                <th scope="row">Nashville</th>
-                <td>50</td>
+                <th scope="row">Some City</th>
+                <td>50 &#176;F</td>
                 <td>100</td>
                 <td>55%</td>
               </tr>

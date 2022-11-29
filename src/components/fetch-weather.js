@@ -6,19 +6,13 @@ export const API_KEY = "c60d7d92799f3cf527b48cf6335c9cc5";
 export const ROOT_URL = "https://api.openweathermap.org/data/2.5/forecast?";
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
-// e.target.value currently returns undefined
-export function fetchWeather(e, city) {
+export async function fetchWeather(e, city) {
   e.preventDefault();
 
-
-  const request = axios.get(`${ROOT_URL}q=${city}&appid=${API_KEY}`)
-    .then(response => console.log(response))
-    .catch(err => console.log(err));
-
-  debugger;
-  console.log(request);
-
-  console.log(e);
+  const request = await axios({
+    url: (`${ROOT_URL}q=${city}&appid=${API_KEY}`)
+  })
+  console.log(request.data)
 
   return {
     type: FETCH_WEATHER,
