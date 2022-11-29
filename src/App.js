@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// To be added once fetchWeather is working as desired:
 // import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 import { fetchWeather } from './components/fetch-weather';
@@ -19,7 +18,7 @@ function App() {
     setWeather(prevState => {
       return [...prevState, newWeather];
     })
-  }
+  };
 
   const weatherList = () => weather.map((weather, id) => {
     return (
@@ -30,7 +29,7 @@ function App() {
         <td>{weather.humidity}</td>
       </tr>
     )
-  })
+  });
 
   return (
     <div className="container text-center">
@@ -60,10 +59,6 @@ function App() {
             <tbody className="table-group-divider">
               {weatherList()}
             </tbody>
-              {/* <Sparklines data={sampleData}>
-                <SparklinesLine />
-                <SparklinesReferenceLine type="avg" />
-              </Sparklines> */}
           </table>
 
         </div>
