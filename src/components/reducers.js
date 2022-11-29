@@ -9,10 +9,4 @@ export function weatherReducer(state = DEFAULT_STATE, action) {
     default:
       return state;
   }
-}
-
-// need a reducer that returns the desired values from the weather API (temp, pressure, humidity)
-// see 1. Intro to Redux - 8. React with Redux
-
-
-// will need to use combineReducers
+};
