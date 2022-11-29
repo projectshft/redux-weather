@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from "react";
+// To be added once fetchWeather is working as desired:
 // import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 import { fetchWeather } from './components/fetch-weather';
@@ -8,7 +8,29 @@ import { fetchWeather } from './components/fetch-weather';
 // TO DO: move the page formatting to a new file or multiple files to keep App.js clean
 function App() {
   const [city, setCity] = useState('');
-  // const [weather, setWeather] = useState([]);
+  const [weather, setWeather] = useState([{
+    city: "Some City",
+    temp: 50,
+    pressure: 1000,
+    humidity: 85
+  }]);
+
+  const addWeather = (newWeather) => {
+    setWeather(prevState => {
+      return [...prevState, newWeather];
+    })
+  }
+
+  const weatherList = () => weather.map((weather, id) => {
+    return (
+      <tr key={id}>
+        <th>{weather.city}</th>
+        <td>{weather.temp}</td>
+        <td>{weather.pressure}</td>
+        <td>{weather.humidity}</td>
+      </tr>
+    )
+  })
 
   return (
     <div className="container text-center">
@@ -19,7 +41,7 @@ function App() {
       <div className="row justify-content-center">
         <div className="col-8">
 
-          <form className="search-form" onSubmit={(e) => fetchWeather(e, city)}>
+          <form className="search-form" onSubmit={(e) => fetchWeather(e, city, {addWeather})} >
             <div className="input-group mb-3">
               <input type="text" className="form-control" placeholder="Enter City Name Here" id="search-bar" value={city} onChange={e => setCity(e.target.value)} />
               <button className="btn btn-primary search" type="submit" id="button-addon2">Search</button>
@@ -36,12 +58,7 @@ function App() {
               </tr>
             </thead>
             <tbody className="table-group-divider">
-              <tr>
-                <th scope="row">Some City</th>
-                <td>50 &#176;F</td>
-                <td>100</td>
-                <td>55%</td>
-              </tr>
+              {weatherList()}
             </tbody>
               {/* <Sparklines data={sampleData}>
                 <SparklinesLine />
