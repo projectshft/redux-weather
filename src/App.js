@@ -19,7 +19,7 @@ function App() {
       <div className="row justify-content-center">
         <div className="col-8">
 
-          <form className="search-form" onSubmit={fetchWeather}>
+          <form className="search-form" onSubmit={(e) => fetchWeather(e, city)}>
             <div className="input-group mb-3">
               <input type="text" className="form-control" placeholder="Enter City Name Here" id="search-bar" value={city} onChange={e => setCity(e.target.value)} />
               <button className="btn btn-primary search" type="submit" id="button-addon2">Search</button>
