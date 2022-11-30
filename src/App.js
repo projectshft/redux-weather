@@ -16,8 +16,8 @@ function App() {
     })
   };
 
+  // Returns the 5-day weather info, formatted into Sparklines charts
   const weatherList = () => weather.map((weather, id) => {
-    // TO BE CORRECTED: The first graph looks right, but the next two are smaller and smaller... 
     return (
       <tr key={id}>
         <th>{weather.city}</th>
@@ -44,7 +44,7 @@ function App() {
       <br></br>
 
       <div className="row justify-content-center">
-        <div className="col-8">
+        <div className="col-10">
 
           <form className="search-form" onSubmit={(e) => fetchWeather(e, search, {addWeather})} >
             <div className="input-group mb-3">
@@ -56,10 +56,10 @@ function App() {
           <table className="table align-middle">
             <thead>
               <tr>
-                <th scope="col">City</th>
-                <th scope="col">Temperature &#40;&#176;F&#41;</th>
-                <th scope="col">Pressure &#40;hPa&#41;</th>
-                <th scope="col">Humidity &#40;%&#41;</th>
+                <th scope="col" style={{ width: '25%' }}>City</th>
+                <th scope="col" style={{ width: '25%' }}>Temperature &#40;&#176;F&#41;</th>
+                <th scope="col" style={{ width: '25%' }}>Pressure &#40;hPa&#41;</th>
+                <th scope="col" style={{ width: '25%' }}>Humidity &#40;%&#41;</th>
               </tr>
             </thead>
             <tbody className="table-group-divider">
