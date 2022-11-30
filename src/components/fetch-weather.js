@@ -12,20 +12,19 @@ export async function fetchWeather(e, search, {addWeather}) {
     url: (`https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=imperial&appid=${API_KEY}`)
   })
 
-  const weatherArray = request.data.list;
-  console.log(weatherArray);
+  const weatherDetails = request.data.list;
 
   const city = request.data.city.name;
   const temp = [];
   const pressure = [];
   const humidity = [];
 
-  weatherArray.forEach(data => {
+  weatherDetails.forEach(data => {
     temp.push(data.main.temp);
     pressure.push(data.main.pressure);
     humidity.push(data.main.humidity);
   });
-
+  
   addWeather({ city, temp, pressure, humidity });
 
   return {

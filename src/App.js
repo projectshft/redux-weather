@@ -16,23 +16,35 @@ function App() {
     })
   };
 
-  // Returns the 5-day weather info, formatted into Sparklines charts
+  
+  // Returns the 5-day weather info formatted into Sparklines charts
   const weatherList = () => weather.map((weather, id) => {
+
+    // Function that gets the average of each array
+    const findAverage = (array) => {
+      const total = array.reduce((acc, c) => acc + c, 0) / array.length;
+      return Math.round(total);
+    };
+  
+    const avgTemp = findAverage(weather.temp);
+    const avgPressure = findAverage(weather.pressure);
+    const avgHumidity = findAverage(weather.humidity);
+
     return (
       <tr key={id}>
         <th>{weather.city}</th>
         <td><Sparklines data={weather.temp} height={120}>
           <SparklinesLine color="#FF7F50" />
           <SparklinesReferenceLine type="avg" />
-        </Sparklines>avg temp</td>
+        </Sparklines>{avgTemp}&#176;F</td>
         <td><Sparklines data={weather.pressure} height={120}>
           <SparklinesLine color="#228B22" />
           <SparklinesReferenceLine type="avg" />
-        </Sparklines>avg pressure</td>
+        </Sparklines>{avgPressure} hPa</td>
         <td><Sparklines data={weather.humidity} height={120}>
           <SparklinesLine color="#2F4F4F" />
           <SparklinesReferenceLine type="avg" />
-        </Sparklines>avg humidity</td>
+        </Sparklines>{avgHumidity}%</td>
       </tr>
     )
   });
