@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import getWeather from '../actions/get-weather';
 
 const SearchBar = () => {
 
@@ -10,6 +11,8 @@ const handleChange = (event) => {
 
 const handleSearch = () => {
   console.log('clicked')
+  console.log(search);
+  getWeather();
 }
 
 
