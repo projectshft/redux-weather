@@ -1,3 +1,4 @@
+import React from 'react'
 import logo from './logo.svg';
 import Searchbar from './components/Searchbar'
 import Weather from './components/Weather'
