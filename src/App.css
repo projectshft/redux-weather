@@ -1,4 +1,6 @@
 .App {
+  margin-top: 20px;
+
   text-align: center;
 }
 
@@ -35,4 +37,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+table {
+  margin-top: 10px;
+
+  border: 2px red solid;
 }
