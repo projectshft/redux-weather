@@ -6,8 +6,9 @@ import { fetchWeather } from './components/fetch-weather';
 
 // TO DO: Clean up App.js
 // TO DO: Clear the search bar after each search
+// TO DO: Add current forecast (not required per project prompt)
 function App() {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState('');
   const [weather, setWeather] = useState([]);
 
   const addWeather = (newWeather) => {
@@ -15,7 +16,6 @@ function App() {
       return [...prevState, newWeather];
     })
   };
-
   
   // Returns the 5-day weather info formatted into Sparklines charts
   const weatherList = () => weather.map((weather, id) => {
@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="container text-center">
-      <h1>React-Redux Weather App</h1>
+      <h1>5-Day Weather Forecast</h1>
 
       <br></br>
 

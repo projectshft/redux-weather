@@ -5,13 +5,13 @@ import { createStore, applyMiddleware } from 'redux'
 import promise from 'redux-promise';
 
 import App from './App';
-import { weatherReducer } from './components/reducers';
+import reducers from './components/index.js';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={createStoreWithMiddleware(weatherReducer)}>
+    <Provider store={createStoreWithMiddleware(reducers)}>
       <App />
     </Provider>
   </React.StrictMode>,
