@@ -3,16 +3,45 @@ import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-spark
 import { useSelector } from 'react'
 
 const Weather = () => {
-  const forecasts = useSelector((state) => state.forecasts);
+  const forecast = useSelector((state) => state.forecast);
   const error = useSelector((state) => state.forecasts.error);
   const city = [];
 
+const weatherData = () => {
+  forecast.map((data) => (
+    <div className="row">
+      <div className="city">{data.city.name}</div>      
+    </div>
+  ))
+}
+
   return (
-    <div>
-      <Sparklines data={temp} width={150} height={150}>
+    <div>   
+      <Sparklines 
+        data={data.list.map((item) => item.main.humidity)}
+        width={100} 
+        height={120}>
       <SparklinesReferenceLine type="avg" />
+      <SparklinesLine color="blue"/>
       </Sparklines>
-      <h4 className="text-center">{average}{unit}</h4>
+
+      <Sparklines 
+        data={data.list.map((item) => item.main.pressure)}
+        width={100} 
+        height={120}>
+      <SparklinesReferenceLine type="avg" />
+      <SparklinesLine color="blue"/>
+      </Sparklines>
+
+      <Sparklines 
+        data={data.list.map((item) => item.main.temp)}
+        width={100} 
+        height={120}>
+      <SparklinesReferenceLine type="avg" />
+      <SparklinesLine color="blue"/>
+      </Sparklines>
+
+
     </div>
   )
 }

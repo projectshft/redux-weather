@@ -6,7 +6,7 @@ import { store } from './store'
 const Searchbar = () => {
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState('');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=75e7ccabdef5725374998f0c3f3798b2`;
  
