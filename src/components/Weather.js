@@ -1,49 +1,51 @@
 import React from 'react'
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines'
-import { useSelector } from 'react'
+import { useSelector } from 'react-redux'
 
-const Weather = () => {
-  const forecast = useSelector((state) => state.forecast);
-  const error = useSelector((state) => state.forecasts.error);
-  const city = [];
-
-const weatherData = () => {
-  forecast.map((data) => (
-    <div className="row">
-      <div className="city">{data.city.name}</div>      
-    </div>
-  ))
-}
+const getSparklines = (chartData) => {
+  const forecast = useSelector((state) => state.forecast)
 
   return (
-    <div>   
+    <div className="sparklines-container">   
       <Sparklines 
-        data={data.list.map((item) => item.main.humidity)}
+        data={forecast.list.map((item) => item.main.humidity)}
         width={100} 
         height={120}>
-      <SparklinesReferenceLine type="avg" />
-      <SparklinesLine color="blue"/>
+        <SparklinesReferenceLine type="avg" />
+        <SparklinesLine color="blue"/>
       </Sparklines>
 
       <Sparklines 
-        data={data.list.map((item) => item.main.pressure)}
+        data={forecast.list.map((item) => item.main.pressure)}
         width={100} 
         height={120}>
-      <SparklinesReferenceLine type="avg" />
-      <SparklinesLine color="blue"/>
+        <SparklinesReferenceLine type="avg" />
+        <SparklinesLine color="blue"/>
       </Sparklines>
 
       <Sparklines 
-        data={data.list.map((item) => item.main.temp)}
+        data={forecast.list.map((item) => item.main.temp)}
         width={100} 
         height={120}>
-      <SparklinesReferenceLine type="avg" />
-      <SparklinesLine color="blue"/>
+        <SparklinesReferenceLine type="avg" />
+        <SparklinesLine color="blue"/>
       </Sparklines>
-
 
     </div>
   )
 }
 
-export default Weather
+export default getSparklines
+
+
+//   const forecast = useSelector((state) => state.forecast);
+//   const error = useSelector((state) => state.forecasts.error);
+//   const city = [];
+
+// const weatherData = () => {
+//   forecast.map((data) => (
+//     <div className="row">
+//       <div className="city">{data.city.name}</div>      
+//     </div>
+//   ))
+// }
