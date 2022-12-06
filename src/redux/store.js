@@ -4,8 +4,7 @@ import { applyMiddleware } from 'redux'
 import { configureStore } from '@reduxjs/toolkit';
 import { weatherReducer } from './reducers';
 
-// import reducer??
-// import reducers from './reducers'
+const middlewares = [thunk];
 
 const store = configureStore({
   middleware: [ applyMiddleware(thunk) ],  
