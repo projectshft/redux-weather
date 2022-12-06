@@ -5,8 +5,15 @@ import { useSelector } from 'react-redux'
 const getSparklines = (chartData) => {
   const forecast = useSelector((state) => state.forecast)
 
+  function showCharts()  {
+    let temp = forecast.main.temp;
+    let humidity = forecast.main.humidity;
+    let pressure = forecast.main.pressure;
+  }
+
   return (
     <div className="sparklines-container">   
+      <p className="city">{forecast.name}</p>
       <Sparklines 
         data={forecast.list.map((item) => item.main.humidity)}
         width={100} 
@@ -38,14 +45,3 @@ const getSparklines = (chartData) => {
 export default getSparklines
 
 
-//   const forecast = useSelector((state) => state.forecast);
-//   const error = useSelector((state) => state.forecasts.error);
-//   const city = [];
-
-// const weatherData = () => {
-//   forecast.map((data) => (
-//     <div className="row">
-//       <div className="city">{data.city.name}</div>      
-//     </div>
-//   ))
-// }
