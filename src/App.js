@@ -1,53 +1,21 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+import { useDispatch } from 'react-redux';
+// import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 import { fetchWeather } from './components/fetch-weather';
+import WeatherInfo from './containers/weather-info';
 
-// TO DO: Clean up App.js
-// TO DO: Clear the search bar after each search
-// TO DO: Add current forecast (not required per project prompt)
 function App() {
   const [search, setSearch] = useState('');
-  const [weather, setWeather] = useState([]);
-
-  const addWeather = (newWeather) => {
-    setWeather(prevState => {
-      return [...prevState, newWeather];
-    })
-  };
+  const dispatch = useDispatch();
   
-  // Returns the 5-day weather info formatted into Sparklines charts
-  const weatherList = () => weather.map((weather, id) => {
-
-    // Function that gets the average of each array
-    const findAverage = (array) => {
-      const total = array.reduce((acc, c) => acc + c, 0) / array.length;
-      return Math.round(total);
-    };
-  
-    const avgTemp = findAverage(weather.temp);
-    const avgPressure = findAverage(weather.pressure);
-    const avgHumidity = findAverage(weather.humidity);
-
-    return (
-      <tr key={id}>
-        <th>{weather.city}</th>
-        <td><Sparklines data={weather.temp} height={120}>
-          <SparklinesLine color="#FF7F50" />
-          <SparklinesReferenceLine type="avg" />
-        </Sparklines>{avgTemp}&#176;F</td>
-        <td><Sparklines data={weather.pressure} height={120}>
-          <SparklinesLine color="#228B22" />
-          <SparklinesReferenceLine type="avg" />
-        </Sparklines>{avgPressure} hPa</td>
-        <td><Sparklines data={weather.humidity} height={120}>
-          <SparklinesLine color="#2F4F4F" />
-          <SparklinesReferenceLine type="avg" />
-        </Sparklines>{avgHumidity}%</td>
-      </tr>
-    )
-  });
+  // add weather useSelector & prevent dispatching if that city data already exists
+  function onSubmit(e) {
+    e.preventDefault();
+    dispatch(fetchWeather(search));
+    setSearch('');
+  }
 
   return (
     <div className="container text-center">
@@ -58,7 +26,7 @@ function App() {
       <div className="row justify-content-center">
         <div className="col-10">
 
-          <form className="search-form" onSubmit={(e) => fetchWeather(e, search, {addWeather})} >
+          <form className="search-form" onSubmit={onSubmit} >
             <div className="input-group mb-3">
               <input type="text" className="form-control" placeholder="Enter City Name Here" id="search-bar" value={search} onChange={e => setSearch(e.target.value)} />
               <button className="btn btn-primary search" type="submit" id="button-addon2">Search</button>
@@ -75,7 +43,7 @@ function App() {
               </tr>
             </thead>
             <tbody className="table-group-divider">
-              {weatherList()}
+              <WeatherInfo />
             </tbody>
           </table>
 

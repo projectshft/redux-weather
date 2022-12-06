@@ -5,8 +5,7 @@ export const API_KEY = "c60d7d92799f3cf527b48cf6335c9cc5";
 export const FETCH_WEATHER = "FETCH_WEATHER";
 
 // TO DO: Prevent duplicate searches of the same city
-export async function fetchWeather(e, search, {addWeather}) {
-  e.preventDefault();
+export async function fetchWeather(search) {
 
   const url = (`https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=imperial&appid=${API_KEY}`)
 
@@ -32,16 +31,10 @@ export async function fetchWeather(e, search, {addWeather}) {
       humidity.push(data.main.humidity);
     });
     
-    addWeather({ city, temp, pressure, humidity });
+    return {
+      type: FETCH_WEATHER,
+      payload: { city, temp, pressure, humidity }
+    }
   } 
   
-  // resets the search bar
-  // TO FIX: ERROR - this clears the search bar, but if you click on Search afterwards it still searches for the last input city
-  const inputField = document.getElementById('search-bar');
-  inputField.value = '';
-
-  return {
-    type: FETCH_WEATHER,
-    payload: request,
-  };
 };
