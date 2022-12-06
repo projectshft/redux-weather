@@ -1,9 +1,28 @@
-import { FETCH_WEATHER } from '../actions/index'
+// import { FETCH_WEATHER } from '../actions/index'
 
-export default function (state = [], action) {
+// const initialState = {
+//   weather: {},
+// }
+
+// const reducers = combineReducers({
+//   weatherData: function(
+//     state ={
+//       temperature: [],
+//       pressure: [],
+//       humidity: [],
+//     },
+//   action)
+// )
+
+export const weatherReducer = (state, action) => {
   switch (action.type) {
-    case FETCH_WEATHER:
-      return [action.payload.data,...state]; 
+    case 'FETCH_WEATHER':
+      return {
+        ...state,
+        weather: action.payload,
+      }; 
+    default:
+      return state;
+    }
   }
-  return state
-}
+
