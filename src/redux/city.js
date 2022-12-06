@@ -8,53 +8,40 @@ export function updateAPI(cityName) {
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
       )
       .then((response) => {
-        console.log(response.data);
-        console.log("the pressure is:", response.data.list[0].main.pressure);
-        console.log("the humidity is:", response.data.list[0].main.humidity);
-        console.log("the 5 day forecast is:");
-        console.log(response.data.list[0].main.temp);
-        console.log(response.data.list[8].main.temp);
-        console.log(response.data.list[16].main.temp);
-        console.log(response.data.list[24].main.temp);
-        console.log(response.data.list[32].main.temp);
+        // console.log(response.data);
+        // console.log("the pressure is:", response.data.list[0].main.pressure);
+        // console.log("the humidity is:", response.data.list[0].main.humidity);
+        // console.log("the 5 day forecast is:");
+        // console.log(response.data.list[0].main.temp);
+        // console.log(response.data.list[8].main.temp);
+        // console.log(response.data.list[16].main.temp);
+        // console.log(response.data.list[24].main.temp);
+        // console.log(response.data.list[32].main.temp);
 
-        dispatch({ type: "GET_CITY", payload: response.data.city.name });
+        dispatch({ type: "GET_CITY", payload: response.data });
       })
       .catch((error) => {
         console.log(error);
+        alert("Please try again!");
       });
   };
 }
 
-const testObj = {
-  city: "placeholder city",
-  temp: 85,
-  pressure: 45,
-  humidity: 78,
-};
-
-const testObj1 = {
-  city: "Ohio",
-  temp: null,
-  pressure: null,
-  humidity: null,
-};
-
 const otherInitialState = {
   weatherInfo: [
-    {
-      city: "Ohio",
-      temp: 45,
-      pressure: 87,
-      humidity: 40,
-    },
+    // {
+    //   city: "Sandusky",
+    //   temp: 45,
+    //   pressure: 87,
+    //   humidity: 40,
+    // },
   ],
 };
 
 // state
-const initialState = {
-  weatherInfo: [testObj, testObj1],
-};
+// const initialState = {
+//   weatherInfo: [testObj, testObj1],
+// };
 
 //previous set up for reducer state to concatenate weather data.
 // city: weather.city.concat([action.payload])
@@ -66,15 +53,16 @@ const initialState = {
 export default function citySearchReducer(weather = otherInitialState, action) {
   switch (action.type) {
     case "GET_CITY":
+      // console.log(action.payload);
       return {
-        ...weather,
+        // ...weather,
         weatherInfo: [
           ...weather.weatherInfo,
           {
-            city: action.payload,
-            temp: 1000,
-            pressure: 2000,
-            humidity: "HUMID",
+            city: action.payload.city.name,
+            temp: action.payload.list[0].main.temp,
+            pressure: action.payload.list[0].main.pressure,
+            humidity: action.payload.list[0].main.humidity,
           },
         ],
       };

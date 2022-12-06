@@ -7,17 +7,9 @@ import { useState } from "react";
 // action creators
 import { updateAPI } from "../src/redux/city.js";
 
-//You must be able to ender a city, click search and see 3 charts show up.
-// There will be a chart for "temperature" (in F), Pressure and Humidity.
-// ---  openweatherAPI to pull the data for all three.
-
-// Each of the charts will be populated with data from the 5 day forecast as well as a reference line which will show the average (of that particular data point).
-// api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-
 function App() {
   const [cityName, setCityName] = useState("");
   const cityProfile = useSelector((state) => state);
-  // console.log(cityProfile);
 
   const listedCities = cityProfile.citySearchReducer.weatherInfo.map(
     (item, index) => {
@@ -26,9 +18,15 @@ function App() {
           <td>
             <b>{item.city}</b>
           </td>
-          <td>{item.temp}</td>
-          <td>{item.pressure}</td>
-          <td>{item.humidity}</td>
+          <td>
+            <b>{item.temp} °F</b>
+          </td>
+          <td>
+            <b>{item.pressure} hPa</b>
+          </td>
+          <td>
+            <b>{item.humidity} %</b>
+          </td>
         </tr>
       );
     }
@@ -44,6 +42,7 @@ function App() {
       alert("Please enter a city!");
     } else {
       getCurrentWeatherInfoAction(cityName);
+      setCityName("");
     }
   };
 
