@@ -4,7 +4,6 @@ import { applyMiddleware } from 'redux'
 import { configureStore } from '@reduxjs/toolkit';
 import { weatherReducer } from './reducers';
 
-
 // import reducer??
 // import reducers from './reducers'
 

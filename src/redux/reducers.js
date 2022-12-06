@@ -1,9 +1,9 @@
-import { fetchWeather } from '../actions'
+import { FETCH_WEATHER } from '../actions/index'
 
-export const weatherReducer = ( state = {}, action) => {
-  if(action.type === 'GET_WEATHER') {
-    state = {...state, weatherData: action.payload}
+export default function (state = [], action) {
+  switch (action.type) {
+    case FETCH_WEATHER:
+      return [action.payload.data,...state]; 
   }
-  return state;
-};
-
+  return state
+}
