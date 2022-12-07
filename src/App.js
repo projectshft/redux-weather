@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Provider } from 'react-redux';
+import Forecast from './Components/Forecast';
+import { createStore } from 'redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialState = {
+  forecast: [],
+  myAPIkey: '1502126fb8fbfbaeaeef67feb3bcbedc'
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'FETCH_FORECAST':
+      return {
+        ...state,
+        forecast: action.payload
+      };
+    default:
+      return state;
+  }
 }
+
+const store = createStore(reducer);
+
+const App = () => (
+  <Provider store={store}>
+    <Forecast />
+  </Provider>
+);
 
 export default App;
