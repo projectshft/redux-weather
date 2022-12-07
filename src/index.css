@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  background-color: darkgrey;
+}
+
+.result{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group{
+  position: relative;
+  display: flex;
+  width: 60vw;
+  margin: 30px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#table{
+  position: relative;
+  width: 80vw;
+  border-radius: 10px;
+}
+
+tr{
+  text-align: center;
+}
