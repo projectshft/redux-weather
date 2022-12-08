@@ -1,10 +1,13 @@
 import React from 'react';
+import SearchBar from './container/search_bar';
+
 
 const App = () =>{
   return(
-    <h1>hello</h1>
-    //<SearchBar>
-    //<WeatherIndex>
+    <div>
+      <SearchBar />
+      {/* <WeatherIndex> */}
+    </div>
   )
 }
 
