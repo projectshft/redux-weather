@@ -4,7 +4,7 @@ import SearchBar from './container/search_bar';
 
 const App = () =>{
   return(
-    <div>
+    <div className="col-md-6 offset-md-3">
       <SearchBar />
       {/* <WeatherIndex> */}
     </div>

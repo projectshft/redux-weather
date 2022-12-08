@@ -7,7 +7,7 @@ const SearchBar = () => {
   
   const handleSearchBarClick = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    console.log(e.target);
   }
 
   return (
