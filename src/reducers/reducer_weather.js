@@ -1,4 +1,4 @@
-import {FETCH_WEATHER} from '../actions';
+import {FETCH_WEATHER} from "../actions";
 
 const weatherReducer = (state = null, action) => {
   switch (action.type) {

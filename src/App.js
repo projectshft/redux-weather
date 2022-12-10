@@ -1,5 +1,5 @@
-import React from 'react';
-import SearchBar from './container/search_bar';
+import React from "react";
+import SearchBar from "./container/search_bar";
 
 
 const App = () =>{

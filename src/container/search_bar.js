@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 //const API_KEY = process.env.REDUX_APP_WEATHER_API_KEY
-//const axios = require('axios')
+//const axios = require("axios")
 
 const SearchBar = () => {
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState("")
   
   const handleSearchBarClick = (e) => {
     e.preventDefault();
