@@ -1,9 +1,10 @@
 import React from 'react';
+import SearchBar from './SearchBar';
 
-const WeatherHeading = () => {
+const WeatherTable = (weather) => {
     return (
     <div>
-        <table className="table table-striped table-margin">
+        <table className="table table-striped table-margin w-75 container-fluid">
   <thead>
     <tr>
       <th scope="col">City</th>
@@ -13,6 +14,14 @@ const WeatherHeading = () => {
     </tr>
   </thead>
   <tbody>
+  {/* {weather.map((city) => (
+        <tr  key={weather.number}>
+          <td><img src={contact.profilePic} alt={contact.name + "'s profile pitcure"} /></td>
+          <td>{city.name}</td>
+          <td>{city.temop}</td>
+          <td>{city.humidity}</td>
+        </tr> */}
+
     <tr>
         {/* {cityArr.map(city => {
             return (
@@ -31,4 +40,4 @@ const WeatherHeading = () => {
     )
 }
 
-export default WeatherHeading;
+export default WeatherTable;

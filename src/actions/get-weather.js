@@ -26,4 +26,6 @@ const getWeather = (location = "pittsburgh") => async dispatch => {
     });
 };
 
+
+
 export default getWeather;

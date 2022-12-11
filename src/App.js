@@ -1,7 +1,7 @@
 import './App.css';
 import Heading from './components/Heading';
 import SearchBar from './components/SearchBar';
-import WeatherHeading from './components/WeatherHeading';
+import WeatherTable from './components/WeatherTable';
 import { Provider } from "react-redux";
 
 
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Heading></Heading>
       <SearchBar/>
-      <WeatherHeading />
+      <WeatherTable />
     </div>
   );
 }
