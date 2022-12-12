@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
-// import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
-
 import { fetchWeather } from './components/fetch-weather';
 import WeatherInfo from './containers/weather-info';
 
@@ -10,13 +8,14 @@ function App() {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   
-  // add weather useSelector & prevent dispatching if that city data already exists
+  // calls fetchWeather() and clears the search bar
   function onSubmit(e) {
     e.preventDefault();
     dispatch(fetchWeather(search));
     setSearch('');
   }
 
+  // page styling and formatting
   return (
     <div className="container text-center">
       <h1>5-Day Weather Forecast</h1>
