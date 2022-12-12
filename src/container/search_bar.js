@@ -14,7 +14,6 @@ const SearchBar = () => {
     e.preventDefault();
     
     dispatch(fetchCityWeather(e.target.value));
-    debugger;
     
   }
 
