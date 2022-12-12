@@ -1,4 +1,7 @@
+import { GET_WEATHER } from "../actions/get-weather";
+
 const initialWeatherState = {
+    loading: false,
     error: false,
     success: false,
     data: {}
@@ -6,16 +9,16 @@ const initialWeatherState = {
 
 const weatherReducer = (state = initialWeatherState, action) => {
 
-    const GET_WEATHER = {
-        PENDING: "GET_WEATHER_PENDING",
-        SUCCESS: "GET_WEATHER_SUCCESS",
-        REJECTED: "GET_WEATHER_REJECTED"
-      }
-
     switch (action.type) {
+        case GET_WEATHER.PENDING:
+            return {
+              ...state,
+              loading: true
+            };
         case GET_WEATHER.SUCCESS:
             return {
                 ...state,
+                loading: false,
                 success: true,
                 data: action.payload
             };
@@ -28,3 +31,5 @@ const weatherReducer = (state = initialWeatherState, action) => {
             return state;
     }
 };
+
+export default weatherReducer;

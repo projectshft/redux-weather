@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import getWeather from '../actions/get-weather';
+import { getWeather } from '../actions/get-weather';
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
 
 const SearchBar = () => {
 
@@ -11,11 +12,12 @@ const handleChange = (event) => {
 }
 
 
-const handleSearch = () => {
+const handleSearch = (event) => {
+  event.preventDefault();
   console.log(search); 
-  const input = document.getElementById('input');
-  input.value = ''; 
-  // getWeather(search);
+  getWeather(search);
+  setSearch('');
+
 }
 
 
