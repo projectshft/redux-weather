@@ -1,19 +1,27 @@
 import React, { useState } from "react"
-//const API_KEY = process.env.REDUX_APP_WEATHER_API_KEY
-//const axios = require("axios")
+import { /* useSelector, */ useDispatch } from "react-redux";
+
+import { fetchCityWeather } from "../actions";
+
 
 const SearchBar = () => {
+  //const weatherPosts = useSelector(state => state.weatherPosts);
+  const dispatch = useDispatch();
+  
   const [city, setCity] = useState("")
   
-  const handleSearchBarClick = (e) => {
+  const handleSearchButtonClick = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    
+    dispatch(fetchCityWeather(e.target.value));
+    debugger;
+    
   }
 
   return (
     <div className="input-group">
       <input value={city} onChange={(e)=>setCity(e.target.value)} type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-      <button value={city} type="button" className="btn btn-outline-primary" onClick={handleSearchBarClick}>search</button>
+      <button value={city} type="button" className="btn btn-outline-primary" onClick={handleSearchButtonClick}>search</button>
     </div>
   )
 }

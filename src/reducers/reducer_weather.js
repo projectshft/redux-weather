@@ -1,12 +1,14 @@
-import {FETCH_WEATHER} from "../actions";
+import {FETCH_CITYWEATHER} from "../actions";
 
-const weatherReducer = (state = null, action) => {
+
+
+const weatherPostsReducer = (state = [], action) => {
   switch (action.type) {
-    case FETCH_WEATHER:
-      return state;
+    case FETCH_CITYWEATHER:
+      return action.payload.data;
     default:
       return state;
   }
 }
 
-export default weatherReducer
+export default weatherPostsReducer
