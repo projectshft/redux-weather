@@ -29,8 +29,9 @@ export async function fetchWeather(search) {
   // if data is returned from both API requests, return only desired data in the payload
   if (forecastRequest && currentWeatherRequest) {
     const weatherDetails = forecastRequest.data.list;
-    const currentWeather = Math.round(currentWeatherRequest.data.main.temp);
-  
+    const currentTemp = Math.round(currentWeatherRequest.data.main.temp);
+    const currentConditions = currentWeatherRequest.data.weather[0].main;
+
     const city = forecastRequest.data.city.name;
     const temp = [];
     const pressure = [];
@@ -44,7 +45,7 @@ export async function fetchWeather(search) {
     
     return {
       type: FETCH_WEATHER,
-      payload: { city, currentWeather, temp, pressure, humidity }
+      payload: { city, currentTemp, currentConditions, temp, pressure, humidity }
     }
   } 
   

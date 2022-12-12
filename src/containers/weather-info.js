@@ -22,7 +22,7 @@ const WeatherInfo = () => {
         <tr key={id}>
           <th>
             <div><h4>{weather.city}</h4></div>
-            <div><h6>Currently: {weather.currentWeather}&#176;F</h6></div>
+            <div><h6>Currently: {weather.currentTemp}&#176;F, {weather.currentConditions}</h6></div>
             </th>
           <td><Sparklines data={weather.temp} height={120}>
             <SparklinesLine color="#FF7F50" />
