@@ -1,12 +1,13 @@
 import { combineReducers } from "redux";
 import { GET_WEATHER } from "../actions/get-weather";
 
-const initialWeatherState = {
-    loading: false,
-    error: false,
-    success: false,
-    data: {}
-};
+// const initialWeatherState = {
+//     loading: false,
+//     error: false,
+//     success: false,
+//     data: {}
+// };
+
 
 // const weatherReducer = (state = initialWeatherState, action) => {
 
@@ -33,13 +34,17 @@ const initialWeatherState = {
 //     }
 // };
 
+
+const initialWeatherState = [];
+
 const weatherReducer = (state = initialWeatherState, action) => {
     switch (action.type) {
         case GET_WEATHER:
-            console.log(action.payload.data);
-            return [action.payload.data, ...state];
+            console.log(action.payload);
+            return [action.payload, ...state];
+
         default: 
-        return state;
+            return state;
     }
 }
 

@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore } from "redux";
 import  rootReducer  from './reducer/weather-reducer';
 // import { weatherReducer } from "./reducer/weather-reducer";
 
@@ -9,6 +9,7 @@ import  rootReducer  from './reducer/weather-reducer';
 //   rootReducer,
 //   composeWithDevTools(applyMiddleware(thunk))
 // );
+
 
 const WeatherStore = createStore(rootReducer);
 

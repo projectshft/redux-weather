@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_KEY } from '../Api';
+import { useDispatch } from "react-redux";
 
 // export const GET_WEATHER = {
 //     PENDING: "GET_WEATHER_PENDING",
@@ -29,15 +30,53 @@ const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?appid=${API_KE
 //     });
 // };
 
+
+
 export const getWeather = (location) => {
   const url = `${BASE_URL}&q=${location}`;
-  const request = axios.get(url);
+  // const request = axios.get(url);
+
+  const request = axios.get(url).then(function(response) {
+
   console.log(url);
-  console.log(request);
+  console.log(response.data);
 
   return {
     type: GET_WEATHER,
-    payload: request
+    payload: response.data
   }
 }
+)}
+
+
+
+
+
+
+
+
+
+
+
+// export const getWeather = (location) =>  {
+//     axios
+//     .get(BASE_URL, {
+//       params: {
+//         q: location,
+//       }
+//     })
+
+//     .then(response => {
+//       console.log(response.data);
+//       return { 
+//         type: GET_WEATHER, 
+//         payload: response.data 
+//       }
+//     })
+
+//     .catch(err => {
+//       console.log(err.reponse, err);
+//     });
+// };
+
 
