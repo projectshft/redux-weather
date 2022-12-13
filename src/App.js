@@ -1,14 +1,14 @@
 import React from "react";
 import SearchBar from "./container/search_bar";
-import WeatherIndex from "./container/weather_index"
+import WeatherList from "./container/weather_list"
 
 
 const App = () =>{
   return(
-    <div className="col-md-6 offset-md-3">
+    <div className="col-md-8 offset-md-2">
       <SearchBar />
       <br></br>
-      <WeatherIndex />
+      <WeatherList />
     </div>
   )
 }
