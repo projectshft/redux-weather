@@ -1,7 +1,6 @@
-import { /* useDispatch, */ useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Sparklines,SparklinesLine,SparklinesReferenceLine } from 'react-sparklines';
-//import { fetchWeatherPosts } from "../actions"
-//import { useEffect } from "react";
+
 
 const WeatherList = () =>{
   const weatherPosts = useSelector(state => state.weatherPosts)
@@ -40,22 +39,6 @@ const WeatherList = () =>{
       return (<tr><th>No Weather to Show</th></tr>)
     }
   }
- 
-
-
-
-
-  // const renderTableHeader = () => {
-  //   if(!_.isEmpty(weatherPosts) > 0) {
-  //     return (
-
-  //     )
-  //   } else {
-  //     return (
-  //       <h1>Enter a city to display charts</h1>
-  //     )
-  //   }
-  // }
   
   return (
     <table className="table">

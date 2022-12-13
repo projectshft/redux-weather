@@ -1,20 +1,17 @@
 import React, { useState } from "react"
-import { /* useSelector, */ useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { fetchCityWeather } from "../actions";
 
 
 const SearchBar = () => {
-  //const weatherPosts = useSelector(state => state.weatherPosts);
   const dispatch = useDispatch();
   
   const [city, setCity] = useState("")
   
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
-    
     dispatch(fetchCityWeather(e.target.value));
-    
   }
 
   return (
