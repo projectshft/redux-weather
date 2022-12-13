@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { getWeather } from '../actions/get-weather';
-import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+// import { useDispatch } from 'react-redux';
 
 const SearchBar = () => {
 
 //sets the state of the search with the text in the input field
 const [search, setSearch] = useState('');
+// const dispatch = useDispatch();
 
 const handleChange = (event) => {
   setSearch(event.target.value);
@@ -15,7 +16,7 @@ const handleChange = (event) => {
 const handleSearch = (event) => {
   event.preventDefault();
   console.log(search); 
-  getWeather(search);
+  // dispatch(getWeather(search));
   setSearch('');
 
 }
