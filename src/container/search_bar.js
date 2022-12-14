@@ -12,15 +12,16 @@ const SearchBar = () => {
   
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
-    const filteredCity = _.filter(weatherPosts, (obj) => e.target.value)
-
+    const filteredCity = _.filter(weatherPosts, (obj) => e.target.value.toUpperCase() === obj.city)
     if(weatherPosts.length === 0){
       dispatch(fetchCityWeather(e.target.value));
     }
-    else if(e.target.value.toUpperCase() !== filteredCity[0]['city'].toUpperCase()){
+    else if(filteredCity.length === 0){
       dispatch(fetchCityWeather(e.target.value));
-    }else{
+    }else if(filteredCity.length !== 0){
       return alert("City already listed!");
+    }else{
+      return alert("Enter a valid city...")
     }
     
   }
