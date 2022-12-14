@@ -32,37 +32,49 @@ const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?appid=${API_KE
 
 
 
-export const getWeather = (location) => {
-  const url = `${BASE_URL}&q=${location}`;
-  // const request = axios.get(url);
+// export const getWeather = (location) => {
+//   const url = `${BASE_URL}&q=${location}`;
+//   // const request = axios.get(url);
 
-  const request = axios.get(url).then(function(response) {
+//   const request = axios.get(url).then(function(response) {
+
+//   console.log(url);
+//   console.log(response.data);
+
+//   return {
+//     type: GET_WEATHER,
+//     payload: response.data
+//   }
+// }
+// )}
+
+
+
+
+// parsity 
+export function getWeather (location) {
+  const url = `${BASE_URL}&q=${location}`;
+
+  const request = axios.get(url);
 
   console.log(url);
-  console.log(response.data);
+  console.log(request);
 
   return {
     type: GET_WEATHER,
-    payload: response.data
+    payload: request
   }
-}
-)}
+};
 
 
 
 
 
-
-
-
-
-
-
-// export const getWeather = (location) =>  {
+// export function getWeather (location) {
 //     axios
 //     .get(BASE_URL, {
 //       params: {
-//         q: location,
+//         q: location
 //       }
 //     })
 
@@ -80,3 +92,21 @@ export const getWeather = (location) => {
 // };
 
 
+
+
+// export function getWeather (location) {
+//   return function(dispatch) {
+//     axios.get(BASE_URL, {
+//       params: {
+//         q: location
+//       }
+//     })
+//     .then(response => {
+//       console.log(response.data);
+//       dispatch({
+//         type: GET_WEATHER,
+//         payload: response.data
+//       })
+//     })
+//   }
+// }
