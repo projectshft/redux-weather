@@ -1,4 +1,4 @@
-
+//Header component function. Will return and display Redux Weather at the top.
 const Header = (props) => {
   return (
     <div>

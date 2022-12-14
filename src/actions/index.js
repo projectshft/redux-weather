@@ -6,7 +6,7 @@ export const FETCH_CITYWEATHER = "FETCH_CITYWEATHER";
 
 const ROOT_URL = "https://api.openweathermap.org/data/2.5";
 
-
+//NOT SURE HOW TO DO ERROR, TRY , CATCH
 export function fetchCityWeather(city) {
   const request = axios.get(`${ROOT_URL}/forecast?q=${city}&appid=d2ebbe84afd80c9a2267505ea9c93841`);
   return {

@@ -3,12 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore,applyMiddleware } from "redux";
 import promise from "redux-promise"
+//provider gives application access to redux store
 import { Provider } from "react-redux";
 
 import Header from "./components/header.js"
 import App from "./App";
 import reducers from "./reducers"
 
+//making sure actoins wait for promise to be fulfulled before we pass the data to the reducer
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(

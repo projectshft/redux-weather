@@ -4,7 +4,6 @@ import { Sparklines,SparklinesLine,SparklinesReferenceLine } from 'react-sparkli
 
 const WeatherList = () =>{
   const weatherPosts = useSelector(state => state.weatherPosts)
-  //const dispatch = useDispatch();
 
   const RenderRow = () => { 
     if(weatherPosts.length>0){
