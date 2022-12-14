@@ -14,7 +14,7 @@ const weatherPostsReducer = (state = [], action) => {
         humidity.push(action.payload.data.list[i].main.humidity);
       };
       const fiveDayData = {
-        city: action.payload.data.city.name,
+        city: action.payload.data.city.name.toUpperCase(),
         temp: temp,
         pressure: pressure,
         humidity: humidity,
