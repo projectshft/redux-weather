@@ -5,21 +5,24 @@ import {FETCH_CITYWEATHER} from "../actions";
 const weatherPostsReducer = (state = [], action) => {
   switch (action.type) {
     case FETCH_CITYWEATHER: 
-      const temp = [];
-      const pressure = [];
-      const humidity = [];
-      for (let i = 0; i < action.payload.data.list.length; i+=8) {
-        temp.push(action.payload.data.list[i].main.temp);
-        pressure.push(action.payload.data.list[i].main.pressure);
-        humidity.push(action.payload.data.list[i].main.humidity);
-      };
-      const fiveDayData = {
-        city: action.payload.data.city.name.toUpperCase(),
-        temp: temp,
-        pressure: pressure,
-        humidity: humidity,
+      const weatherData = action.payload.data;
+      const fiveDayData = (data) => {
+        const temp = [];
+        const pressure = [];
+        const humidity = [];
+        for (let i = 0; i < action.payload.data.list.length; i+=8) {
+          temp.push(action.payload.data.list[i].main.temp);
+          pressure.push(action.payload.data.list[i].main.pressure);
+          humidity.push(action.payload.data.list[i].main.humidity);
+        };
+        return({
+          city: action.payload.data.city.name.toUpperCase(),
+          temp: temp,
+          pressure: pressure,
+          humidity: humidity,
+        })
       }; 
-      return [fiveDayData,...state];
+      return [fiveDayData(weatherData),...state];
     default:
       return state;
   }
