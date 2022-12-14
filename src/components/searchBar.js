@@ -8,25 +8,28 @@ import { getWeather } from '../actions'
 function SearchBar () {
   const [city, setCity] = useState('')
   const dispatch = useDispatch();
-
-  const search = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(getWeather(e.target.value));
+    dispatch(getWeather(city));
   }
 
   return(
-    <div className="search-bar">
-      <input 
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        type='search'
-        placeholder='Search by city'
-      />
-      <button 
-        value={city}
-        type="button"
-        onClick={search}
-      > Search </button>
+    <div>
+      <form onSubmit={handleFormSubmit}>
+        <div className="searchbar">
+          <input 
+            type='text'
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder='Search by city'
+          />
+          <button 
+            type='submit'
+            // value={city}
+            onClick={handleFormSubmit}
+          > Search </button>
+        </div>
+      </form>
     </div>
     )
   }
