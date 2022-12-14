@@ -1,39 +1,34 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { getWeather } from '../actions'
 
-export const GET_WEATHER = 'GET_WEATHER';
+// export const GET_WEATHER = 'GET_WEATHER';
 
-function searchBar (city) {
-  const req = axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=75e7ccabdef5725374998f0c3f3798b2`);
-  return {
-    type: GET_WEATHER,
-    payload: req
-  }
+function SearchBar () {
+  const [city, setCity] = useState('')
+  const dispatch = useDispatch();
 
-
-
-  // const [city, setCity] = useState('')
-  // const [data, setData] = useState('')
-
-  
   const search = (e) => {
-    if (e.key === 'Enter') {
-      searchFiveDay();
-      fetch(url)
-        .then(response => response.json())
-        .then(result => {
-          console.log('search', result)
-          setWeather(result);
-          setCity('');
-      })
-    }
+    e.preventDefault();
+    dispatch(getWeather(e.target.value));
   }
 
+  return(
+    <div className="search-bar">
+      <input 
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        type='search'
+        placeholder='Search by city'
+      />
+      <button 
+        value={city}
+        type="button"
+        onClick={search}
+      > Search </button>
+    </div>
+    )
+  }
 
-  return (
-    <div>Get Weather</div>
-  )
-}
-
-export default searchBar
+export default SearchBar
