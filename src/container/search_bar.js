@@ -12,15 +12,17 @@ const SearchBar = () => {
   
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
+    const cityPresent = weatherPosts.filter(obj => e.target.value===obj.city);
+    console.log(e.target.value)
     if(weatherPosts.length === 0){
       dispatch(fetchCityWeather(e.target.value));
-    }else{
-      if(!e.target.value === weatherPosts.find(obj => {return e.target.value})){
-        dispatch(fetchCityWeather(e.target.value));
-      }else{
-        return alert("Please enter another city!");
-      }
     }
+    else if(cityPresent.length === 0 ){
+      dispatch(fetchCityWeather(e.target.value));
+    }else{
+      return alert("City already listed!");
+    }
+    
   }
 
   return (

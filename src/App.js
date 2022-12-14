@@ -1,4 +1,4 @@
-
+//App component which acts as a container for all other components
 import React from "react";
 import SearchBar from "./container/search_bar";
 import WeatherList from "./container/weather_list"

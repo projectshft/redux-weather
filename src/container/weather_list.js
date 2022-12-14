@@ -1,35 +1,30 @@
 import { useSelector } from "react-redux";
 import { Sparklines,SparklinesLine,SparklinesReferenceLine } from 'react-sparklines';
 
-
+//component which returns list of weather that contains 5 day charts for temp, pressure, and humidity
 const WeatherList = () =>{
   const weatherPosts = useSelector(state => state.weatherPosts)
+
+  const renderChart = (dataValues) => {
+    return(
+      <td >
+        <Sparklines limit={5} svgWidth={250} svgHeight={75} margin={5} data={dataValues}>
+          <SparklinesLine />
+          <SparklinesReferenceLine type="mean" />
+        </Sparklines>
+      </td>
+    )
+  }
 
   const RenderRow = () => { 
     if(weatherPosts.length>0){
       return weatherPosts.map((currentWeatherPost, index)=>{
-        console.log(currentWeatherPost.city);
         return(
           <tr key={index}>
             <th>{currentWeatherPost.city}</th>
-            <td >
-              <Sparklines limit={5} svgWidth={250} svgHeight={75} margin={5} data={currentWeatherPost.temp}>
-                <SparklinesLine />
-                <SparklinesReferenceLine type="mean" />
-              </Sparklines>
-            </td>
-            <td >
-              <Sparklines  limit={5} svgWidth={250} svgHeight={75} margin={5} data={currentWeatherPost.pressure}>
-                <SparklinesLine />
-                <SparklinesReferenceLine type="mean" />
-              </Sparklines>
-            </td>
-            <td >
-              <Sparklines limit={5} svgWidth={250} svgHeight={75} margin={5} data={currentWeatherPost.humidity}>
-                <SparklinesLine />
-                <SparklinesReferenceLine type="mean" />
-              </Sparklines>
-            </td>
+            {renderChart(currentWeatherPost.temp)}
+            {renderChart(currentWeatherPost.pressure)}
+            {renderChart(currentWeatherPost.humidity)}
           </tr>
         )
       })
