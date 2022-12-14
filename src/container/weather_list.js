@@ -3,8 +3,10 @@ import { Sparklines,SparklinesLine,SparklinesReferenceLine } from 'react-sparkli
 
 //component which returns list of weather that contains 5 day charts for temp, pressure, and humidity
 const WeatherList = () =>{
+  //useSelector function allows component to extract data from Redux store state
   const weatherPosts = useSelector(state => state.weatherPosts)
 
+  //function used to return JSX for the charts that takes the 5 day data values
   const renderChart = (dataValues) => {
     return(
       <td >
@@ -16,6 +18,7 @@ const WeatherList = () =>{
     )
   }
 
+  //function used return JSX row that contains all the charts and name of the city. Only render if state has objects.
   const RenderRow = () => { 
     if(weatherPosts.length>0){
       return weatherPosts.map((currentWeatherPost, index)=>{
