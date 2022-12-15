@@ -16,17 +16,12 @@ const SearchBar = () => {
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
     setCity('');
-    //variable which searches for input value inside of an array of objects. Returns in an arraay, matched objects that contain value to input.
+    //variable which searches for input value inside of an array of objects. Returns in an arraay matched objects that contain value to component state.
     const filteredCity = _.filter(weatherPosts, (obj) => cityState.toUpperCase() === obj.city)
-    //if checking for input matches to redux state
-    if(weatherPosts.length === 0){
-      dispatch(fetchCityWeather(cityState));
-    }
-    else if(filteredCity.length === 0){
-      dispatch(fetchCityWeather(cityState));
-    }else{
-      return alert("City already listed!");
-    }
+    //checking for input matches to redux state
+     weatherPosts.length === 0 ? dispatch(fetchCityWeather(cityState))
+    :filteredCity.length === 0 ? dispatch(fetchCityWeather(cityState))
+    :alert("City already listed!");
   }
 
   return (
