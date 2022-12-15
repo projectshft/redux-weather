@@ -13,6 +13,7 @@ export function fetchCityWeather(city) {
   const request = axios.get(`${ROOT_URL}/forecast?q=${city}&appid=d2ebbe84afd80c9a2267505ea9c93841&units=imperial`)
   .catch(err=> {
     console.log(`City not found. Input a valid city! ${err}`)
+    alert(`City not found. Input a valid city! \n${err}`)
   })
 
   return {
