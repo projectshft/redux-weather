@@ -10,7 +10,7 @@ const ROOT_URL = "https://api.openweathermap.org/data/2.5";
 //function which returns type and payload
 export function fetchCityWeather(city) {
   //promise and catch
-  const request = axios.get(`${ROOT_URL}/forecast?q=${city}&appid=d2ebbe84afd80c9a2267505ea9c93841`)
+  const request = axios.get(`${ROOT_URL}/forecast?q=${city}&appid=d2ebbe84afd80c9a2267505ea9c93841&units=imperial`)
   .catch(err=> {
     console.log(`City not found. Input a valid city! ${err}`)
   })
