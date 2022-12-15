@@ -7,12 +7,15 @@ const WeatherList = () =>{
   const weatherPosts = useSelector(state => state.weatherPosts)
 
   //function used to return JSX for the charts that takes the 5 day data values
-  const renderChart = (dataValues, color) => {
+  const renderChart = (dataValues, color, specificCurrentWeatherMetric, symbol) => {
     return(
+      <div>
         <Sparklines limit={5} svgWidth={250} svgHeight={75} margin={5} data={dataValues}>
           <SparklinesLine color={color}/>
           <SparklinesReferenceLine type="mean" />
         </Sparklines>
+        <div className="text-center">{specificCurrentWeatherMetric} {symbol}</div>
+      </div>
     )
   }
 
@@ -23,18 +26,9 @@ const WeatherList = () =>{
         return(
           <tr key={index}>
             <th>{currentWeatherPost.city}</th>
-            <td >
-              {renderChart(currentWeatherPost.temp, 'blue')}
-              <div className="text-center">{currentWeatherPost.tempAve} &#8457;</div>
-            </td>
-            <td >
-              {renderChart(currentWeatherPost.pressure, 'green')}
-              <div className="text-center">{currentWeatherPost.pressureAve} &#13169;</div>
-            </td>
-            <td >
-              {renderChart(currentWeatherPost.humidity, 'red')}
-              <div className="text-center">{currentWeatherPost.humidityAve} %</div>
-            </td>
+            <td >{renderChart(currentWeatherPost.temp, 'blue', currentWeatherPost.tempAve, "\u2109")}</td>
+            <td >{renderChart(currentWeatherPost.pressure, 'green', currentWeatherPost.pressureAve, "\u3371")}</td>
+            <td >{renderChart(currentWeatherPost.humidity, 'red', currentWeatherPost.humidityAve, "%")}</td>
           </tr>
         )
       })
