@@ -26,14 +26,9 @@ const SearchBar = () => {
     }
     else if(filteredCity.length === 0){
       dispatch(fetchCityWeather(cityState));
-    }else if(filteredCity.length !== 0){
+    }else{
       return alert("City already listed!");
     }
-    // does not execute because error. Not sure how to keep program running with failed promise from axios.
-    else{
-      return 
-    }
-    
   }
 
   return (
