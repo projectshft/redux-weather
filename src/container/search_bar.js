@@ -17,20 +17,21 @@ const SearchBar = () => {
   //function which handles onClick.
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
+    setCity('');
     //variable which searches for input value inside of an array of objects. Returns in an arraay, matched objects that contain value to input.
-    const filteredCity = _.filter(weatherPosts, (obj) => e.target.value.toUpperCase() === obj.city)
+    const filteredCity = _.filter(weatherPosts, (obj) => cityState.toUpperCase() === obj.city)
     //if checking for input matches to redux state
     if(weatherPosts.length === 0){
-      dispatch(fetchCityWeather(e.target.value));
+      dispatch(fetchCityWeather(cityState));
     }
     else if(filteredCity.length === 0){
-      dispatch(fetchCityWeather(e.target.value));
+      dispatch(fetchCityWeather(cityState));
     }else if(filteredCity.length !== 0){
       return alert("City already listed!");
     }
-    //does not execute because error. Not sure how to keep program running with failed promise from axios.
+    // does not execute because error. Not sure how to keep program running with failed promise from axios.
     else{
-      return alert("Enter a valid city...")
+      return 
     }
     
   }
