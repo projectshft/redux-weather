@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_KEY } from '../Api';
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 export const GET_WEATHER = {
     PENDING: "GET_WEATHER_PENDING",
@@ -20,6 +20,7 @@ export const getWeather = (location) => async dispatch => {
         q: location,
       }
     })
+
     .then(response => 
       dispatch({ type: GET_WEATHER.SUCCESS, payload: response.data })
       

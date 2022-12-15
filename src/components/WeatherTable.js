@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 
 const data = {
@@ -54,7 +55,21 @@ const data = {
 
 
 
-const WeatherTable = (weather) => {
+const WeatherTable = () => {
+  // const weather = useSelector((state) => state.weather);
+  const weather = useSelector((state) => state.weatherReducer);
+
+  if (weather.data) {
+    const name = weather.data.name;
+    console.log(weather.data.name);
+    console.log(weather.data.main.temp);
+    console.log(weather.data.main.humidity);
+    console.log(weather.data.main.pressure);
+  }
+  const test = weather.data;
+  console.log(test);
+
+  console.log(weather);
     return (
     <div>
         <table className="table table-striped table-margin w-75 container-fluid">
@@ -86,6 +101,11 @@ const WeatherTable = (weather) => {
       <td>{data.main.temp} °F</td>
       <td>{data.main.humidity}</td>
       <td>{data.main.pressure}</td>
+{/* 
+      <td>{weather.name}</td>
+      <td>{weather.temp} °F</td>
+      <td>{weather.main.humidity}</td>
+      <td>{weather.main.pressure}</td> */}
     </tr>
   </tbody>
 </table>

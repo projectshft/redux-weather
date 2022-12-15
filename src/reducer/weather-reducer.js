@@ -2,15 +2,22 @@ import { combineReducers } from "redux";
 import { GET_WEATHER } from "../actions/get-weather";
 
 
-const initialWeatherState = [];
+// const initialWeatherState = [];
+const initialWeatherState = {};
+
 
 
 const weatherReducer = (state = initialWeatherState, action) => {
     console.log(action);
     console.log(action.payload);
+
     switch (action.type) {
+
         case GET_WEATHER.PENDING:
-            return [...state];
+            return {
+                ...state
+            };
+
         case GET_WEATHER.SUCCESS:
             return {
                 ...state,
@@ -22,10 +29,12 @@ const weatherReducer = (state = initialWeatherState, action) => {
     }
 }
 
-console.log(initialWeatherState);
+// export const rootReducer = combineReducers({
+//     weather: weatherReducer
+// });
 
 export const rootReducer = combineReducers({
-    weather: weatherReducer
+    weatherReducer
 });
 
 export default weatherReducer;

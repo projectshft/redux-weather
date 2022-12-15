@@ -120,12 +120,10 @@ const handleChange = (event) => {
 
 const handleSearch = (event) => {
   event.preventDefault();
-
   console.log(search); 
   dispatch(getWeather(search));
   // getWeather(search);
   setSearch('');
-
 }
 
 

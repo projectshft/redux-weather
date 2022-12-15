@@ -32,6 +32,10 @@ const middleware = applyMiddleware(thunk);
 
 const WeatherStore = createStore(rootReducer, middleware);
 
+const sub = WeatherStore.subscribe(() => {
+  console.log('state after dispatch', WeatherStore.getState())
+})
+
 
 
 // const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
