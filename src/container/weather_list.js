@@ -7,14 +7,13 @@ const WeatherList = () =>{
   const weatherPosts = useSelector(state => state.weatherPosts)
 
   //function used to return JSX for the charts that takes the 5 day data values
-  const renderChart = (dataValues) => {
+  const renderChart = (dataValues, color) => {
     return(
-      <td >
+      
         <Sparklines limit={5} svgWidth={250} svgHeight={75} margin={5} data={dataValues}>
-          <SparklinesLine />
+          <SparklinesLine color={color}/>
           <SparklinesReferenceLine type="mean" />
         </Sparklines>
-      </td>
     )
   }
 
@@ -25,9 +24,18 @@ const WeatherList = () =>{
         return(
           <tr key={index}>
             <th>{currentWeatherPost.city}</th>
-            {renderChart(currentWeatherPost.temp)}
-            {renderChart(currentWeatherPost.pressure)}
-            {renderChart(currentWeatherPost.humidity)}
+            <td >
+              {renderChart(currentWeatherPost.temp, 'blue')}
+              <div className="text-center">{currentWeatherPost.tempAve} &#8457;</div>
+            </td>
+            <td >
+              {renderChart(currentWeatherPost.pressure, 'green')}
+              <div className="text-center">{currentWeatherPost.pressureAve} &#13169;</div>
+            </td>
+            <td >
+              {renderChart(currentWeatherPost.humidity, 'red')}
+              <div className="text-center">{currentWeatherPost.humidityAve} %</div>
+            </td>
           </tr>
         )
       })
@@ -42,9 +50,9 @@ const WeatherList = () =>{
       <thead>
         <tr>
           <th scope="col">City</th>
-          <th scope="col">Temperature (&#8457;)</th>
-          <th scope="col">Pressure</th>
-          <th scope="col">Humidity</th>
+          <th className="text-center" scope="col">Temperature</th>
+          <th className="text-center" scope="col">Pressure</th>
+          <th className="text-center" scope="col">Humidity</th>
         </tr>
       </thead>
       <tbody>
