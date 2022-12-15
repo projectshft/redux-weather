@@ -9,7 +9,6 @@ const WeatherList = () =>{
   //function used to return JSX for the charts that takes the 5 day data values
   const renderChart = (dataValues, color) => {
     return(
-      
         <Sparklines limit={5} svgWidth={250} svgHeight={75} margin={5} data={dataValues}>
           <SparklinesLine color={color}/>
           <SparklinesReferenceLine type="mean" />
