@@ -6,7 +6,6 @@ export const FETCH_CITYWEATHER = "FETCH_CITYWEATHER";
 const ROOT_URL = "https://api.openweathermap.org/data/2.5";
 const API_KEY = "d2ebbe84afd80c9a2267505ea9c93841";
 
-//NOT SURE HOW TO PROCEED FROM ERROR
 //function which returns type and payload
 export function fetchCityWeather(city) {
   //promise and catch
@@ -33,8 +32,8 @@ export function fetchCityWeather(city) {
         humidityAve: _.round(_.mean(humidity))
       })
     }
+
     return fiveDayData(request)
-    
   })
   .catch(err=> {
     console.log(`City not found. Input a valid city! ${err}`)
