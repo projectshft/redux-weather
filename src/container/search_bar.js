@@ -11,10 +11,8 @@ const SearchBar = () => {
   //usedispatch function hook returns dispatch function from redux store. Used to dispatch actions.
   const dispatch = useDispatch();
 
-  //react local state
   const [cityState, setCity] = useState("")
 
-  //function which handles onClick.
   const handleSearchButtonClick = (e) => {
     e.preventDefault();
     setCity('');
