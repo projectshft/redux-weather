@@ -3,12 +3,16 @@ import { GET_WEATHER } from "../actions/get-weather";
 
 
 // const initialWeatherState = [];
-const initialWeatherState = {};
+const initialWeatherState = {
+    success: false,
+    data: {
+        main: {}
+    }
+};
 
 
 
 const weatherReducer = (state = initialWeatherState, action) => {
-    console.log(action);
     console.log(action.payload);
 
     switch (action.type) {
@@ -21,7 +25,8 @@ const weatherReducer = (state = initialWeatherState, action) => {
         case GET_WEATHER.SUCCESS:
             return {
                 ...state,
-                data: action.payload
+                data: action.payload,
+                success: true
             }
 
         default: 

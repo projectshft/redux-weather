@@ -2,83 +2,25 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 
-const data = {
-  "coord": {
-    "lon": 10.99,
-    "lat": 44.34
-  },
-  "weather": [
-    {
-      "id": 501,
-      "main": "Rain",
-      "description": "moderate rain",
-      "icon": "10d"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 298.48,
-    "feels_like": 298.74,
-    "temp_min": 297.56,
-    "temp_max": 300.05,
-    "pressure": 1015,
-    "humidity": 64,
-    "sea_level": 1015,
-    "grnd_level": 933
-  },
-  "visibility": 10000,
-  "wind": {
-    "speed": 0.62,
-    "deg": 349,
-    "gust": 1.18
-  },
-  "rain": {
-    "1h": 3.16
-  },
-  "clouds": {
-    "all": 100
-  },
-  "dt": 1661870592,
-  "sys": {
-    "type": 2,
-    "id": 2075663,
-    "country": "IT",
-    "sunrise": 1661834187,
-    "sunset": 1661882248
-  },
-  "timezone": 7200,
-  "id": 3163858,
-  "name": "Zocca",
-  "cod": 200
-}
-
-
-
-
 const WeatherTable = () => {
   // const weather = useSelector((state) => state.weather);
   const weather = useSelector((state) => state.weatherReducer);
+  const { data } = weather;
+  const { name, main } = data;
+  const { temp, humidity, pressure } = main;
 
-  if (weather.data) {
-    const name = weather.data.name;
-    console.log(weather.data.name);
-    console.log(weather.data.main.temp);
-    console.log(weather.data.main.humidity);
-    console.log(weather.data.main.pressure);
-  }
-  const test = weather.data;
-  console.log(test);
 
-  console.log(weather);
+
+
     return (
     <div>
         <table className="table table-striped table-margin w-75 container-fluid">
   <thead>
     <tr>
       <th scope="col">City</th>
-      <th scope="col">Temp</th>
-      <th scope="col">Pressure</th>
-      <th scope="col">Humidity</th>
+      <th scope="col">Temp (°F)</th>
+      <th scope="col">Pressure (Pa)</th>
+      <th scope="col">Humidity (%)</th>
     </tr>
   </thead>
   <tbody>
@@ -97,15 +39,16 @@ const WeatherTable = () => {
                 <td><ChartComponent x={city.temp} y={city.something} /></ChartComponent></td>
             )
         })} */}
-      <td>{data.name}</td>
+      {/* <td>{data.name}</td>
       <td>{data.main.temp} °F</td>
       <td>{data.main.humidity}</td>
-      <td>{data.main.pressure}</td>
-{/* 
-      <td>{weather.name}</td>
-      <td>{weather.temp} °F</td>
-      <td>{weather.main.humidity}</td>
-      <td>{weather.main.pressure}</td> */}
+      <td>{data.main.pressure}</td> */}
+    </tr>
+    <tr>
+      <td>{ name }</td>
+      <td>{ temp }</td>
+      <td>{ humidity }</td>
+      <td>{ pressure }</td>
     </tr>
   </tbody>
 </table>
