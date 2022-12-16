@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 const WeatherTable = () => {
   // const weather = useSelector((state) => state.weather);
   const weather = useSelector((state) => state.weatherReducer);
-  const { data } = weather;
-  const { name, main } = data;
-  const { temp, humidity, pressure } = main;
+  console.log(weather);
 
-
+  // const { data } = weather;
+  // const { name, main } = data;
+  // const { temp, humidity, pressure } = main;
 
 
     return (
@@ -39,17 +39,14 @@ const WeatherTable = () => {
                 <td><ChartComponent x={city.temp} y={city.something} /></ChartComponent></td>
             )
         })} */}
-      {/* <td>{data.name}</td>
-      <td>{data.main.temp} °F</td>
-      <td>{data.main.humidity}</td>
-      <td>{data.main.pressure}</td> */}
     </tr>
     <tr>
-      <td>{ name }</td>
-      <td>{ temp }</td>
-      <td>{ humidity }</td>
-      <td>{ pressure }</td>
+      <td>{ weather[1] ? weather[1].city.name : ''}</td>
+      <td>{'chart'}</td>
+      <td>{'chart'}</td>
+      <td>{'chart'}</td>
     </tr>
+
   </tbody>
 </table>
     </div>

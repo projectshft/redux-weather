@@ -10,7 +10,7 @@ export const GET_WEATHER = {
 
 // export const GET_WEATHER = 'GET_WEATHER';
 
-const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}&units=imperial`;
+const BASE_URL = `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&units=imperial`;
 
 export const getWeather = (location) => async dispatch => {
     dispatch ({type: GET_WEATHER.PENDING});
