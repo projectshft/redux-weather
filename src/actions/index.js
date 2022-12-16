@@ -1,28 +1,34 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const fetchPosts = "FETCH_DATA";
-export const CREATE_DATA = "CREATE_DATA";
-//q=${value} from searchbar do i need to pull state?
-const ROOT_URL = `https://api.openweathermap.org/data/2.5/forecast?q=Hartford&cnt=40&appid=79a5ea387ec460414cf26ee9382db272&units=imperial`;
+const API_KEY = 'a4105833f7852b16b55b0723a6b147e5';
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
 
-export function FetchPosts() {
-  // const request = axios.get(`${ROOT_URL}`);
+export const FETCH_WEATHER = 'FETCH_WEATHER';
 
-  return dispatch => {
-    dispatch({ type: fetchPosts});
-      return axios.get(`${ROOT_URL}`)
-        .then(res => {
-          return res.data
-          // dispatch({ type: FetchPostSuccess, paload: res.data})
-    })
-  };
-}
+export function fetchWeather(city) {
+  const url = `${ROOT_URL}&q=${city}&units=imperial`;
+  const request = axios.get(url).then(function(response){
 
-export function createPost(values) {
-  const post = Object.assign({}, values);
+    const weatherInfo = response.data
+    //add .list to access 40arrays
+      // city: 
+      
+      // temp: response.data,
+      // pressure: response.data,
+      // humidity: response.data
+    
+    // console.log("response", response.data.city.name, response.data.list[0].main.temp, response.data.list[0].main.pressure, response.data.list[0].main.humidity);
+    console.log('weatherInfo', weatherInfo);
+    
+    // const tempData = {temp: response.data.list[0].main.temp}
+    // const pressureData = {pressure: response.data.list[0].main.pressure}
+    // const humidityData = {humidity: response.data.list[0].main.humidity}
+    return weatherInfo;
+  });
+
 
   return {
-    type: CREATE_DATA,
-    payload: post,
-  };
+    type: FETCH_WEATHER,
+    payload: request
+  }
 }
