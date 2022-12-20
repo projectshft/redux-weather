@@ -5,27 +5,50 @@ const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KE
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
-export function fetchWeather(city) {
+export async function fetchWeather(city) {
   const url = `${ROOT_URL}&q=${city}&units=imperial`;
-  const request = axios.get(url).then(function(response){
+  const request = await axios.get(url).then(function(response){
 
-    const weatherInfo = response.data
+    const mappedData = () => {
+      const avgTemp = [];
+      const avgPressure = [];
+      const avgHumidity = [];
+      const avgData = {
+        avgTemp: avgTemp,
+        avgPressure: avgPressure,
+        avgHumidity: avgHumidity,
+      };
+      response.data.list.map((item) => {
+        console.log('item' , item);
+  
+        avgData.avgTemp = avgTemp.push(item);
+        avgData.avgPressure = avgPressure.push(item);
+        avgData.avgHumidity = avgHumidity.push(item);
+        return avgData;
+      });
+      // avgTemp = avgTemp;
+      // avgPressure = avgPressure/40;
+      // avgHumidity = avgHumidity/40; 
+      return avgData;
+    }
+    const weatherInfo = {
+      name: response.data.city.name,
+      temp: response.data.list[0].main.temp,
+      pressure: response.data.list[0].main.pressure,
+      humidity: response.data.list[0].main.humidity,
+      avgTemp: mappedData().avgTemp,
+      avgPressure: mappedData().avgPressure,
+      avgHumidity: mappedData().avgHumidity,
+    }
     //add .list to access 40arrays
       // city: 
       
-      // temp: response.data,
-      // pressure: response.data,
-      // humidity: response.data
-    
-    // console.log("response", response.data.city.name, response.data.list[0].main.temp, response.data.list[0].main.pressure, response.data.list[0].main.humidity);
+      // temp: response.data.list,
+      // pressure: response.data.list,
+      // humidity: response.data.list
     console.log('weatherInfo', weatherInfo);
-    
-    // const tempData = {temp: response.data.list[0].main.temp}
-    // const pressureData = {pressure: response.data.list[0].main.pressure}
-    // const humidityData = {humidity: response.data.list[0].main.humidity}
     return weatherInfo;
   });
-
 
   return {
     type: FETCH_WEATHER,

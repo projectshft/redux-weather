@@ -1,54 +1,57 @@
-import React, {useState} from 'react';
-import { fetchWeather } from '../actions';
+import React from 'react';
+import { connect, useSelector } from "react-redux";
 import Chart from './chart';
-import { connect } from "react-redux";
 
-
-
-const WeatherList = (weatherInfo) => {
+const WeatherList = () => {
   // eslint-disable-next-line no-unused-vars
-
-  // const individualInfo = () => {
-  //   weatherInfo.map(item) {
-  //   return item
-  // }}
+  const weatherInfo = useSelector((state) => state.weather);
   const renderTable = (weatherInfo) => {
-    // const [data, setData] = useState('Search data');
-    console.log(weatherInfo, 'rendertable');      
     return (
-                <div>
-                <table className='table table-hover'>
-                    <thead>
-                        <tr>
-                            <th>City</th>
-                            <th>Temperature (F)</th>
-                            <th>Pressure (hPa)</th>              
-                            <th>Humidity (%)</th>          
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                        {weatherInfo.weatherInfo}
-                        </td>
-                        {/* <td>{weatherData}</td>
-                        <td>{weatherData}</td>
-                        <td>{weatherData}</td> */}
-                        </tr>
-                       
-                          {/* {weatherInfo.map(row)} */}
-                    </tbody>
-                </table>
-                </div>
-            );
+      <div>
+        <table className='table table-hover'>
+            <thead>
+                <tr>
+                    <th>City</th>
+                    <th>Temperature (F)</th>
+                    <th>Pressure (hPa)</th>              
+                    <th>Humidity (%)</th>          
+                </tr>
+            </thead>
+            <tbody>
+            {
+              weatherInfo.map((piece) => {
+                return (
+                  <tr key={piece.name + piece.temp}>
+                    <td>{piece.name}</td>
+                    
+                    <td>
+                    <Chart height={120} width={170} data={[1, 2, 4, 8, 2]} color='yellow' units='Farenheit' />
+                </td>
+                <td>
+                    <Chart height={120} width={170} data={[1, 2, 4, 8, 2]} color='green' units='%' />
+                </td>
+                <td>
+                    <Chart height={120} width={170} data={[1, 2, 4, 8, 2]} color='black' units='hPa' />
+                </td>
+                    
+                  
+                    {/* <td>{piece.temp}</td>
+                    <td>{piece.pressure}</td>
+                    <td>{piece.humidity}</td> */}
+                  </tr>
+                )
+              })
+            }
+            </tbody>
+        </table>
+      </div>
+    );
+  }
+  return renderTable(weatherInfo);
 }
-return renderTable(weatherInfo);
-}
-
-
 
 const mapStateToProps = ({ weather }) => {
   return { weather };
 }
-export default connect(mapStateToProps)(WeatherList);
 
+export default connect(mapStateToProps)(WeatherList);
