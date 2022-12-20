@@ -25,13 +25,13 @@ const WeatherList = () => {
                     <td>{piece.name}</td>
                     
                     <td>
-                    <Chart height={120} width={170} data={[1, 2, 4, 8, 2]} color='yellow' units='Farenheit' />
+                    <Chart height={120} width={170} data={piece.chartTemperature} color='yellow' units='Farenheit' />
                 </td>
                 <td>
-                    <Chart height={120} width={170} data={[1, 2, 4, 8, 2]} color='green' units='%' />
+                    <Chart height={120} width={170} data={piece.chartHumidity} color='green' units='%' />
                 </td>
                 <td>
-                    <Chart height={120} width={170} data={[1, 2, 4, 8, 2]} color='black' units='hPa' />
+                    <Chart height={120} width={170} data={piece.chartPressure} color='black' units='hPa' />
                 </td>
                     
                   

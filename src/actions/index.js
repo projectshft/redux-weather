@@ -39,6 +39,27 @@ export async function fetchWeather(city) {
       avgTemp: mappedData().avgTemp,
       avgPressure: mappedData().avgPressure,
       avgHumidity: mappedData().avgHumidity,
+      chartPressure: [
+        response.data.list[0].main.pressure,
+        response.data.list[8].main.pressure,
+        response.data.list[16].main.pressure,
+        response.data.list[24].main.pressure,
+        response.data.list[32].main.pressure
+      ],
+      chartTemperature: [
+        response.data.list[0].main.temp,
+        response.data.list[8].main.temp,
+        response.data.list[16].main.temp,
+        response.data.list[24].main.temp,
+        response.data.list[32].main.temp
+      ],
+      chartHumidity: [
+        response.data.list[0].main.humidity,
+        response.data.list[8].main.humidity,
+        response.data.list[16].main.humidity,
+        response.data.list[24].main.humidity,
+        response.data.list[32].main.humidity
+      ]
     }
     //add .list to access 40arrays
       // city: 
