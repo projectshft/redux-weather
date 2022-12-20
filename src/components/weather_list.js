@@ -28,12 +28,11 @@ const WeatherList = () => {
                     <Chart height={120} width={170} data={piece.chartTemperature} color='yellow' units='Farenheit' />
                 </td>
                 <td>
-                    <Chart height={120} width={170} data={piece.chartHumidity} color='green' units='%' />
-                </td>
-                <td>
                     <Chart height={120} width={170} data={piece.chartPressure} color='black' units='hPa' />
                 </td>
-                    
+                <td>
+                    <Chart height={120} width={170} data={piece.chartHumidity} color='green' units='%' />
+                </td>
                   
                     {/* <td>{piece.temp}</td>
                     <td>{piece.pressure}</td>
