@@ -1,11 +1,16 @@
 import axios from 'axios';
 
-export const GET_WEATHER = 'GET_WEATHER'
-export function getWeather(city){
-  const request = axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=75e7ccabdef5725374998f0c3f3798b2`);
-  
+const ROOT_URL = 'https://api.openweathermap.org/data/2.5/forecast?q='
+const API_KEY = '75e7ccabdef5725374998f0c3f3798b2';
+
+export const FETCH_WEATHER = "FETCH_WEATHER";
+
+export function fetchWeather(input) {
+
+  const request = axios.get(`${ROOT_URL}${input}&units=imperial&appid=${API_KEY}`)
+
   return {
-    type: GET_WEATHER,
+    type: FETCH_WEATHER,
     payload: request
-  }
+  };
 }

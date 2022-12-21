@@ -1,56 +1,75 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
+import { 
+  Sparklines, 
+  SparklinesLine, 
+  SparklinesReferenceLine 
+} from 'react-sparklines';
 
-function Charts(){
-  const chartInfo = useSelector((state) => state.chartInfo)
-  const displayCharts = () => {
-    return chartInfo.map((chartInfo, id) => {
-    
-    const getAverageData = (array) => {
-      const total = array.reduce((acc, val) => acc + val, 0) / array.length;
-      return Math.round(total);
-    }
+const Charts = ({ forecast }) => {
 
-    const averageTemp = getAverageData(weather.temp);
-    const averagePressure = getAverageData(weather.pressure);
-    const averageHumidity = getAverageData(weather.humidity);
+  const dataAvg = (weatherArray) => {
+    const total = weatherArray.reduce((a, b) => a + b, 0);
+    return Math.round( total / weatherArray.length);
+  }
 
+  return forecast.map((search, i) => (
+  
+    <table key={i}>
+      <tbody>
+        <tr>
+          <td>
+            <h3>{search.data.city.name}</h3>
+          </td>
 
-  return(
-    <tr key={index}>
-      <th>{currentWeatherPost.city}</th>
-      <td >
-        <Sparklines data={temp} height={100} width={120}>
-          <SparklinesLine color="orange" />
-          <SparklinesReferenceLine type="avg" />
-        </Sparklines>
-        <p>{averageTemp} F</p>
-      </td>
+          <td>
+            <Sparklines 
+              data={search.data.list.map((chart) => {
+                return chart.main.temp;
+              })}>
+              <SparklinesLine 
+                color="red" />
+              <SparklinesReferenceLine 
+                type="avg" />
+            </Sparklines>
+              <p>{dataAvg(search.data.list.map((chart) => {
+                return chart.main.temp
+              }))} </p>
+          </td>
 
-     <td >
-        <Sparklines data={pressure} height={100} width={120}>
-          <SparklinesLine color="green" />
-          <SparklinesReferenceLine type="avg" />
-        </Sparklines>
-        <p>{averagePressure} hPa</p>
-      </td>
+          <td>
+            <Sparklines 
+              data={search.data.list.map((chart) => { 
+                return chart.main.pressure;
+              })}>
+            <SparklinesLine 
+              color="red" />
+            <SparklinesReferenceLine 
+              type="avg" />
+            </Sparklines>
+            <p>{dataAvg(search.data.list.map((chart) => {
+              return chart.main.pressure
+            }))} hPa </p>
+          </td>
 
-      <td >
-        <Sparklines data={humidity} height={100} width={120}>
-          <SparklinesLine color="blue" />
-          <SparklinesReferenceLine type="avg" />
-        </Sparklines>
-        <p>{averageHumidity} %</p>
-      </td>
-    </tr>
-    );
-  });
-}
+          <td>
+            <Sparklines 
+              data={search.data.list.map((chart) => {
+                return chart.main.humidity;
+              })}>
+            <SparklinesLine 
+              color="red" />
+            <SparklinesReferenceLine 
+              type="avg" />
+            </Sparklines>
+            <p>{dataAvg(search.data.list.map((chart) => {
+              return chart.main.humidity;
+            }))} % </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  ));
 
-return (
-  displayCharts ()
-)
-}
+};
 
-export default Charts
+export default Charts;
