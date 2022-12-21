@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.background {
+  background-color: #282c34;
+}
+
+.search {
+  margin-top: 20px;
+}
+
+.table-margin {
+  margin-top: 50px;
+}
+
