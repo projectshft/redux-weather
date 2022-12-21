@@ -21,7 +21,7 @@ const weatherReducer = (state = initialWeatherState, action) => {
         //     return [...state];
 
         case GET_WEATHER.SUCCESS:
-            return ['success', action.payload, ...state]
+            return [action.payload, ...state]
 
         default: 
             return state;
