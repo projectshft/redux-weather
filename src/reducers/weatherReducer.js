@@ -10,5 +10,4 @@ const weatherReducer = (state = [], action) => {
   }
 } 
 
-
 export default weatherReducer;

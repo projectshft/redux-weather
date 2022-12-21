@@ -1,19 +1,21 @@
+import { useSelector } from 'react-redux';
 import { 
   Sparklines, 
   SparklinesLine, 
   SparklinesReferenceLine 
 } from 'react-sparklines';
 
-const Charts = ({ forecast }) => {
 
-  const dataAvg = (weatherArray) => {
-    const total = weatherArray.reduce((a, b) => a + b, 0);
-    return Math.round( total / weatherArray.length);
+const Charts = () => {
+  const forecast = useSelector((state) => state.forecast)
+  const dataAvg = (data) => {
+    const findAvg = data.reduce((a, b) => a + b, 0);
+    return Math.round( findAvg / data.length);
   }
 
-  return forecast.map((search, i) => (
+  return forecast.map((search, id) => (
   
-    <table key={i}>
+    <table key={id}>
       <tbody>
         <tr>
           <td>

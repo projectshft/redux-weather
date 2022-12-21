@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { fetchWeather } from './actions';
 import Charts from './components/Charts';
 
 function App() {
   const [city, setCity] = useState("");
-  const forecast = useSelector((state) => state.forecast)
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -18,20 +17,27 @@ function App() {
 
   return (
     <main>
-      <h1>Redux Weather App</h1>
-      <div className="row">
+      <h1 style={{ 'display': 'flex', 'justifyContent' : 'center'}} >
+        Redux Weather App </h1>
+      <div className="row"
+        style={{ 'display': 'flex', 'justifyContent' : 'center'}} >
         <input 
           type="text"  
           placeholder="Search by city name" 
           onChange={handleSubmit} 
-          value={city}>
+          value={city}
+          style={{'width':'300px', 'height' :'40px', 'marginBottom': '50px'}}
+          >
         </input>
-      </div>
-      <div className="col">
-        <button onClick={handleChange}>Get Weather</button>
+        <button 
+          style={{'width':'100px', 'height' :'45px', 'fontSize':'14px'}}
+          onClick={handleChange}>
+          Get Weather
+        </button>
       </div>
     
-        <Charts forecast={forecast} />
+      <Charts/>
+
     </main>
   )
 }
