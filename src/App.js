@@ -18,6 +18,7 @@ function App() {
 
   return (
     <main>
+      <h1>Redux Weather App</h1>
       <div className="row">
         <input 
           type="text"  
@@ -30,19 +31,7 @@ function App() {
         <button onClick={handleChange}>Get Weather</button>
       </div>
     
-      <div className="row">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">City</th>
-              <th scope="col">Temp</th>
-              <th scope="col">Pressure</th>
-              <th scope="col">Humidity</th>
-            </tr>
-          </thead>
-        </table>
         <Charts forecast={forecast} />
-      </div>
     </main>
   )
 }

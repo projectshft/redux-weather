@@ -22,36 +22,42 @@ const Charts = ({ forecast }) => {
 
           <td>
             <Sparklines 
+              svgWidth={200}
+              svgHeight={150}
               data={search.data.list.map((chart) => {
                 return chart.main.temp;
               })}>
               <SparklinesLine 
-                color="red" />
+                color="green" />
               <SparklinesReferenceLine 
                 type="avg" />
             </Sparklines>
-              <p>{dataAvg(search.data.list.map((chart) => {
+              <p>Temperature: {dataAvg(search.data.list.map((chart) => {
                 return chart.main.temp
-              }))} </p>
+              }))} F </p>
           </td>
 
           <td>
             <Sparklines 
+              svgWidth={200}
+              svgHeight={150}
               data={search.data.list.map((chart) => { 
                 return chart.main.pressure;
               })}>
             <SparklinesLine 
-              color="red" />
+              color="orange" />
             <SparklinesReferenceLine 
               type="avg" />
             </Sparklines>
-            <p>{dataAvg(search.data.list.map((chart) => {
+            <p>Pressure: {dataAvg(search.data.list.map((chart) => {
               return chart.main.pressure
             }))} hPa </p>
           </td>
 
           <td>
             <Sparklines 
+              svgWidth={200}
+              svgHeight={150}
               data={search.data.list.map((chart) => {
                 return chart.main.humidity;
               })}>
@@ -60,7 +66,7 @@ const Charts = ({ forecast }) => {
             <SparklinesReferenceLine 
               type="avg" />
             </Sparklines>
-            <p>{dataAvg(search.data.list.map((chart) => {
+            <p>Humidity: {dataAvg(search.data.list.map((chart) => {
               return chart.main.humidity;
             }))} % </p>
           </td>
