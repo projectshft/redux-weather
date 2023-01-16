@@ -10,7 +10,7 @@ import Header from "./components/header.js"
 import App from "./App";
 import reducers from "./reducers"
 
-//making sure actoins wait for promise to be fulfulled before we pass the data to the reducer
+//making sure actions wait for promise to be fulfulled before we pass the data to the reducer
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
