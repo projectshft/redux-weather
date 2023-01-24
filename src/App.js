@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+//App component which acts as a container for all other components
+import React from "react";
+import SearchBar from "./container/search_bar";
+import WeatherList from "./container/weather_list"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () =>{
+  return(
+    <div className="col-md-8 offset-md-2">
+      <SearchBar />
+      <br></br>
+      <WeatherList />
     </div>
-  );
+  )
 }
 
 export default App;
