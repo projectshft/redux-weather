@@ -1,10 +1,35 @@
 import { FETCH_CITY, FETCH_CITIES } from "../action-creators/actions";
 
+// still only getting a promise but no actual action coming through for our payload
+
 const citiesReducer = function (state = [], action) {
   switch(action.type) {
     case FETCH_CITY:
-      return function () {
-        // let dayOne = 0
+      return function () {    
+        const getFiveDay = action.payload.data.list.reduce((accumulator, time, index) => {
+          index <= 7 ? accumulator['one'] = accumulator['one'] + time.main.temp
+          : index > 7 && index <= 15 ? accumulator['two'] = accumulator['two'] + time.main.temp
+          : index > 15 && index <= 23 ? accumulator['three'] = accumulator['three'] + time.main.temp
+          : index > 23 && index <= 31 ? accumulator['four'] = accumulator['four'] + time.main.temp
+          : index > 31 && index <= 40 ? accumulator['five'] = accumulator['five'] + time.main.temp
+          : console.log('none')
+
+          return accumulator
+        }, {})
+        console.log(getFiveDay)
+      }
+    default:
+      return state;
+  };
+};
+
+ export default citiesReducer;
+
+
+
+
+
+  // let dayOne = 0
         // let dayTwo = 0
         // let dayThree = 0
         // let dayFour = 0
@@ -22,16 +47,4 @@ const citiesReducer = function (state = [], action) {
         // let forecast = [dayOne, dayTwo, dayThree, dayFour, dayFive];
 
         // forecast.map((day) => day/8);
-      
-      const getFiveDay = action.payload.list.reduce((accumulator, time, index) => {
-        
-      })
-
-      }
-    default:
-      return state;
-  };
-};
-
- export default citiesReducer
 
