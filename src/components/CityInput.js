@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTemp } from '../action-creators/actions'
+import { fetchHumidity, fetchPressure, fetchTemp } from '../action-creators/actions'
 import { useState, useEffect } from 'react'
 
 
@@ -10,6 +10,8 @@ const CityInput = () => {
 
   useEffect(() => {
     dispatch(fetchTemp());
+    dispatch(fetchPressure());
+    dispatch(fetchHumidity());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []) 
 
