@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table } from 'react-bootstrap';
-import FiveDayForecast from './five-day-forecast';
+
 
 const WeatherTable = () => {
   return (
@@ -14,7 +14,6 @@ const WeatherTable = () => {
         </tr>
       </thead>
       <tbody>
-        <FiveDayForecast />
       </tbody>
     </Table>
   )
