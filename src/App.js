@@ -1,10 +1,14 @@
-import './App.css';
+import React from 'react'
 import CityInput from './components/CityInput';
+import Display from './components/Display'
 
-function App() {
+function App () {
   return (
-    <CityInput />
-  );
+    <div>
+      <CityInput />
+      <Display />
+    </div>
+  )
 }
 
 export default App;

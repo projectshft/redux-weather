@@ -12,7 +12,7 @@ const citiesReducer = function (state = [], action) {
         let dayThree = 0
         let dayFour = 0
         let dayFive = 0
-        let temperature = [];
+        let temper = [];
        action.payload.data.list.forEach((section, index) => {
           if(index <= 7){
             dayOne = dayOne + section.main.temp
@@ -26,7 +26,8 @@ const citiesReducer = function (state = [], action) {
             dayFive = dayFive + section.main.temp
           }
         }); 
-        temperature.push((dayOne/8), (dayTwo/8), (dayThree/8), (dayFour/8), (dayFive/8));
+        temper.push((dayOne/8), (dayTwo/8), (dayThree/8), (dayFour/8), (dayFive/8));
+        const temperature = temper.map((day) => Math.round(((day-273.15)*(9/5)+32)))
         return [{temp: temperature}, ...state]
 
     case FETCH_PRESSURE:
@@ -35,7 +36,7 @@ const citiesReducer = function (state = [], action) {
         let dayThreeP = 0
         let dayFourP = 0
         let dayFiveP = 0
-        let pressure = [];   
+        let press = [];   
       action.payload.data.list.forEach((section, index) => {
         if(index <= 7){
           dayOneP = dayOneP + section.main.pressure
@@ -49,7 +50,8 @@ const citiesReducer = function (state = [], action) {
           dayFiveP = dayFiveP + section.main.pressure
         }
       }); 
-      pressure.push((dayOneP/8), (dayTwoP/8), (dayThreeP/8), (dayFourP/8), (dayFiveP/8));
+      press.push((dayOneP/8), (dayTwoP/8), (dayThreeP/8), (dayFourP/8), (dayFiveP/8));
+      const pressure = press.map((day) => Math.round(day));
       return [{pressure: pressure}, ...state]
       
     case FETCH_HUMIDITY:
@@ -58,7 +60,7 @@ const citiesReducer = function (state = [], action) {
       let dayThreeH = 0
       let dayFourH = 0
       let dayFiveH = 0
-      let humidity = [];   
+      let hum = [];   
     action.payload.data.list.forEach((section, index) => {
       if(index <= 7){
         dayOneH = dayOneH + section.main.humidity
@@ -72,7 +74,8 @@ const citiesReducer = function (state = [], action) {
         dayFiveH = dayFiveH + section.main.humidity
       }
     }); 
-      humidity.push((dayOneH/8), (dayTwoH/8), (dayThreeH/8), (dayFourH/8), (dayFiveH/8));
+      hum.push((dayOneH/8), (dayTwoH/8), (dayThreeH/8), (dayFourH/8), (dayFiveH/8));
+      const humidity = hum.map((day) => Math.round(day))
       return [{humidity: humidity}, ...state]        
         
         
