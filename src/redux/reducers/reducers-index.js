@@ -1,7 +1,8 @@
-// import { combineReducers } from "redux";
+import { combineReducers } from "redux";
+import testReducer from "./test-reducer.js"
 
 const allReducers = combineReducers({
-  // sampleKeyName: sampleReducer, <- (import file)
-})
+  testData: testReducer,
+});
 
 export default allReducers;
