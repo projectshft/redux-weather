@@ -1,9 +1,9 @@
+import EXAMPLE_ACTION from './reducers-index'
+
 const testReducer = (state = false, action) => {
   switch (action.type) {
-    case "LOG_IN":
+    case EXAMPLE_ACTION:
       return true;
-    case "LOG_OUT":
-      return false;
     default:
       return state;
   }
