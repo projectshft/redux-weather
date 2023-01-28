@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cityNameSlice = createSlice({
   name: 'cityName',
-  initialState: '',
+  initialState: {},
   reducer: {
     declareCityName: (state, action) => {
-      return state.value = action.payload
+      return state.splice(0, 1, action.payload);
     }
   }
 })

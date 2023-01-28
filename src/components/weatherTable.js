@@ -1,8 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { Table } from 'react-bootstrap';
-
+import WeatherTableData from './weatherTableData';
 
 const WeatherTable = () => {
+
   return (
     <Table responsive>
       <thead>
@@ -14,6 +15,7 @@ const WeatherTable = () => {
         </tr>
       </thead>
       <tbody>
+        <WeatherTableData />
       </tbody>
     </Table>
   )

@@ -1,42 +1,38 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form } from 'react-bootstrap';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchForecastAction } from '../features/forecastSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { declareCityName } from '../features/cityNameSlice';
 
 const cityNameSchema = yup.object({
-  cityName: yup.string().required('You must provide a city').max(20)
+  city: yup.string().required('You must provide a city').max(20)
 })
 
 
 const CityNameSearch = (props) => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(cityNameSchema)
   });
 
-
   const dispatch = useDispatch();
-
+  
   const handleCitySubmit = (data) => {
-    debugger;
-    dispatch(
-      declareCityName(data.cityName, () => {
-        reset();
-      })
-      )
-  }
-
+    dispatch(fetchForecastAction(data.city));
+  };
+ 
   return (
       <Form className="d-flex" onSubmit={handleSubmit(handleCitySubmit)}>
         <Form.Control
           type="search"
           placeholder="Get a five-day forecast in your favorite cities"
-          {...register("cityName")}>
+          {...register("city")}>
         </Form.Control>
+        {errors.city?.message}
+        <div></div>
         <Button variant="dark" type="submit">Submit</Button>
-        {errors.cityName?.message}
       </Form>
       
   )

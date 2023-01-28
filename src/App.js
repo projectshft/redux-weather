@@ -1,5 +1,5 @@
 import CityNameSearch from "./components/cityNameSearch";
-import WeatherTable from "./components/weather-table";
+import WeatherTable from "./components/weatherTable";
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
