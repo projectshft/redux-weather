@@ -16,7 +16,7 @@ const CityInput = () => {
   }, []) 
 
   const renderWeather = () => {
-    console.log(weather)
+    // console.log(weather)
   }
   
   return (

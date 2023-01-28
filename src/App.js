@@ -1,12 +1,12 @@
 import React from 'react'
 import CityInput from './components/CityInput';
-import Display from './components/Display'
+import DisplayHumidity from './components/Display-Humidity'
 
 function App () {
   return (
     <div>
       <CityInput />
-      <Display />
+      <DisplayHumidity />
     </div>
   )
 }
