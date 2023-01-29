@@ -1,11 +1,20 @@
-// storing strings as vars to avoid bugs. Don't forget to import consts in specific reducer
+import config from "../../config";
+import axios from "axios";
+const key = config.MY_API_KEY
+
 export const CITY_SEARCH = "CITY_SEARCH";
 
-export function searchCity() {
-  const request = 'an api request, probably'
-  debugger
-  return {
-    type: CITY_SEARCH,
-    payload: request
-  }
-}
+export function searchCity(city) {
+  return (dispatch) => {
+    axios.get(`https://api.openweathermap.org/data/2.5/forecast/?q=${city}&units=imperial&appid=${key}`)
+      .then((response) => {
+        dispatch({
+          type: CITY_SEARCH,
+          payload: response.data
+        });
+      })
+      .catch((error) => {
+        console.error(error)
+      });
+  };
+};

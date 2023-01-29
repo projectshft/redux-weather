@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import citySearchReducer from "./citySearchReducer.js";
+import searchCityReducer from "./SearchCityReducer.js";
 
+// This is the state object / store
 const allReducers = combineReducers({
-  city: citySearchReducer
+  data: searchCityReducer
 });
 
 export default allReducers;
