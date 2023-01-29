@@ -1,6 +1,8 @@
-import DisplayHeader from "./Display-Header";
-import SearchBar from "./Search-Bar";
+import ChartHeader from "./chart-header";
+import SearchBar from "../containers/search-bar";
+import WeatherList from "../containers/weather-list";
 
+// Root component
 const App = () => {
   return (
     <div className="app container text-center">
@@ -12,13 +14,19 @@ const App = () => {
 
       <div className="row">
         <div className="col-8 offset-2">
-        <SearchBar />
+          <SearchBar />
         </div>
       </div>
 
-      <div className="row m-0">
+      <div className="row">
         <div className="col-8 offset-2">
-          <DisplayHeader />
+          <ChartHeader />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-8 offset-2">
+        <WeatherList />
         </div>
       </div>
     </div>

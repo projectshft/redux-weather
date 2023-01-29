@@ -1,22 +1,22 @@
-const DisplayHeader = () => {
+const ChartHeader = () => {
   return (
-    <div className="display-header">
+    <div className="chart-header mt-2">
       <div className="row">
         <hr />
         <div className="col">
-          <p>City</p>
+          <p><strong>City</strong></p>
         </div>
 
         <div className="col">
-          <p>Temperature (F)</p>
+          <p><strong>Temperature (F)</strong></p>
         </div>
 
         <div className="col">
-          <p>Pressure (hPa)</p>
+          <p><strong>Pressure (hPa)</strong></p>
         </div>
 
         <div className="col">
-          <p>Humidity (%)</p>
+          <p><strong>Humidity (%)</strong></p>
         </div>
         <hr />
       </div>
@@ -24,4 +24,4 @@ const DisplayHeader = () => {
   );
 }
  
-export default DisplayHeader;
+export default ChartHeader;
