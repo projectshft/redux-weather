@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import forecastReducer from "../features/forecastSlice";
+import fiveDayForecastSlice from "../features/forecastSlice";
 
 const store = configureStore({
-  reducer: forecastReducer
+  reducer: fiveDayForecastSlice
 });
 
 export default store;

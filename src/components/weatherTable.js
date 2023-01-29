@@ -9,7 +9,7 @@ const WeatherTable = () => {
       <thead>
         <tr className="text-center">
           <th>City</th>
-          <th>Temperature (K)</th>
+          <th>Temperature (F)</th>
           <th>Pressure (hPa)</th>
           <th>Humidity (%)</th>
         </tr>

@@ -8,8 +8,20 @@ export const fetchForecastAction = createAsyncThunk(
   async(payload, { rejectWithValue, getState, dispatch }) => {
     try {
       const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${payload}&appid=${API_KEY}&units=imperial`);
-    
-    return data;
+
+      const cityFiveDayData = {
+        city: data.city.name,
+        temperature: data.list.map(e => {
+          return e.main.temp;
+        }),
+        pressure: data.list.map(e => {
+          return e.main.pressure;
+        }),
+        humidity: data.list.map(e => {
+          return e.main.humidity;
+        })
+      }
+      return cityFiveDayData;
     } catch (error){
       if(!error?.response){
         throw error
@@ -23,13 +35,13 @@ export const fetchForecastAction = createAsyncThunk(
 
 const fiveDayForecastSlice = createSlice({
   name: "forecasts",
-  initialState: [],
+  initialState: {},
   reducers: {
-    addForecast: {
-      reducer: (state, action) => {
-        state.push(action.payload)
-      }
-    }
+    // addForecast: {
+    //   reducer: (state, action) => {
+    //     state.push(action.payload)
+    //   }
+    // }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchForecastAction.pending, (state, action) => {
