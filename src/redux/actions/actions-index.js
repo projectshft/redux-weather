@@ -1,9 +1,11 @@
-export const EXAMPLE_ACTION = "EXAMPLE_ACTION"; // <= storing strings as vars to avoid bugs. Don't forget to import consts in reducer
+// storing strings as vars to avoid bugs. Don't forget to import consts in specific reducer
+export const CITY_SEARCH = "CITY_SEARCH";
 
-export function exampleAction() {
+export function searchCity() {
   const request = 'an api request, probably'
+  debugger
   return {
-    type: EXAMPLE_ACTION,
+    type: CITY_SEARCH,
     payload: request
   }
 }
