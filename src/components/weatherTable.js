@@ -14,9 +14,7 @@ const WeatherTable = () => {
           <th>Humidity (%)</th>
         </tr>
       </thead>
-      <tbody>
-        <WeatherTableData />
-      </tbody>
+      <WeatherTableData />
     </Table>
   )
 };
