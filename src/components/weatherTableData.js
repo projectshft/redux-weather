@@ -16,9 +16,7 @@ const WeatherTableData = () => {
       }
     }}, [cityInfo]);
   
-  console.log(cityData);
-  
-  function renderCityForecastData() {
+  const renderCityForecastData = () => {
     const average = array => array.reduce((a, b) => a + b) / array.length;
     
     if (!_.isEmpty(cityData)) {

@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchForecastAction } from '../features/forecastSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,24 +12,19 @@ const cityNameSchema = yup.object({
 
 
 const CityNameSearch = (props) => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: yupResolver(cityNameSchema)
   });
 
-  const formRef = useRef(null);
-
   const dispatch = useDispatch();
   
-  const handleReset = () => {
-    formRef.current.reset();
-  }
   const handleCitySubmit = (data) => {
     dispatch(fetchForecastAction(data.city));
-    handleReset();
+    reset();
   };
  
   return (
-      <Form ref={formRef} className="d-flex" onSubmit={handleSubmit(handleCitySubmit)}>
+      <Form className="d-flex" onSubmit={handleSubmit(handleCitySubmit)}>
         <Form.Control
           type="search"
           placeholder="Get a five-day forecast in your favorite cities"
