@@ -16,7 +16,7 @@ function App() {
       return;
     }
     if (!/^[a-zA-Z\s]+$/.test(city)) {
-      setValidationError('City can only contain letters.');
+      setValidationError('City can only contain letters and spaces.');
       event.target.city.value = ''
       return;
     }
