@@ -36,13 +36,7 @@ export const fetchForecastAction = createAsyncThunk(
 const fiveDayForecastSlice = createSlice({
   name: "forecasts",
   initialState: {},
-  reducers: {
-    // addForecast: {
-    //   reducer: (state, action) => {
-    //     state.push(action.payload)
-    //   }
-    // }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchForecastAction.pending, (state, action) => {
       state.loading = true;

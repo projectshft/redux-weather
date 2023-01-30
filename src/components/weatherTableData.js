@@ -11,9 +11,10 @@ const WeatherTableData = () => {
 
   useEffect(()=> {
     if (!_.isEmpty(cityInfo)) {
+      if (cityData.find(city => city.city === cityInfo.city) === undefined) {
         setCityData([cityInfo, ...cityData]);
       }
-    }, [cityInfo]);
+    }}, [cityInfo]);
   
   console.log(cityData);
   
