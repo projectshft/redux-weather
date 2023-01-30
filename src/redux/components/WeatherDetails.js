@@ -14,20 +14,23 @@ function WeatherDetails() {
           <td>
             {<Sparklines data={details.temp}>
               <SparklinesLine color="#FF2233" />
-              <SparklinesReferenceLine type="median" />
+              <SparklinesReferenceLine type="mean" />
             </Sparklines>}
+            {Math.round(Object.values(details.temp).reduce((sum, value) => sum + value, 0) / Object.values(details.temp).length)} °F
           </td>
           <td>
             {<Sparklines data={details.pressure}>
               <SparklinesLine color="#CD7733" />
-              <SparklinesReferenceLine type="median" />
+              <SparklinesReferenceLine type="mean" />
             </Sparklines>}
+            {Math.round(Object.values(details.pressure).reduce((sum, value) => sum + value, 0) / Object.values(details.temp).length)} hPa
           </td>
           <td>
             {<Sparklines data={details.humidity}>
               <SparklinesLine color="#44FF88" />
-              <SparklinesReferenceLine type="median" />
+              <SparklinesReferenceLine type="mean" />
             </Sparklines>}
+            {Math.round(Object.values(details.humidity).reduce((sum, value) => sum + value, 0) / Object.values(details.temp).length)} %
           </td>
         </tr>
       ))}
