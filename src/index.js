@@ -8,8 +8,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import allReducers from './redux/reducers/reducers-index';
-import { Sparklines } from 'react-sparklines';
-
 
 const store = createStore(
   allReducers,

@@ -2,14 +2,30 @@ import SearchResults from "./SearchResults";
 import { Form, FormControl, Button } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { searchCity } from "../actions/actions-index";
+import { useState } from "react";
 
 function App() {
   const dispatch = useDispatch()
-
-  const handleSubmit = (event) => {
+  const [validationError, setValidationError] = useState('')
+  
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const city = event.target.city.value;
-    dispatch(searchCity(city));
+    if (!city) {
+      setValidationError('City is required.');
+      return;
+    }
+    if (!/^[a-zA-Z]+$/.test(city)) {
+      setValidationError('City can only contain letters.');
+      return;
+    }
+    setValidationError('');
+    try {
+      await dispatch(searchCity(city));
+    } catch (error) {
+      setValidationError('Enter a valid city name and try again.');
+    }
+    event.target.city.value = ''
   };
 
   return (
@@ -29,6 +45,7 @@ function App() {
             >Search
           </Button>
         </Form>
+        { validationError && <div className="text-danger">{validationError}</div> }
         <hr />
         <SearchResults />
       </div>

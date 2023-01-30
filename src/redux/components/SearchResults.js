@@ -5,7 +5,7 @@ function SearchResults() {
   return (
     <div>
       <div className="container">
-        <div className="row">
+        <div className="row text-center">
           <Table hover>
             <thead>
               <tr>
