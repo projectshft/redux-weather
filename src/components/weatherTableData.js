@@ -1,60 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
+import _ from 'lodash';
 
 
 const WeatherTableData = () => {
   const cityInfo = useSelector((state) => state.forecasts)
 
   const [ cityData, setCityData ] = useState([]);
-  if (cityInfo) {
-    if (cityData.length === 0) {
-      setCityData([cityInfo]);
-    // } else {
-    //   if (cityData.indexOf(cityInfo) !== -1) {
-    //     setCityData([cityInfo, ...cityData])
-    //   }  
+
+  useEffect(()=> {
+    if (!_.isEmpty(cityInfo)) {
+        setCityData([cityInfo, ...cityData]);
+      }
+    }, [cityInfo]);
+  
+  console.log(cityData);
+  
+  function renderCityForecastData() {
+    const average = array => array.reduce((a, b) => a + b) / array.length;
+    
+    if (!_.isEmpty(cityData)) {
+      return cityData.map((cityForecast) => (
+        <tr className="text-center" key={cityForecast.city}>
+          <td className="align-middle">{cityForecast.city}</td>
+          <td className="align-middle">
+            <Sparklines data={cityForecast.temperature}>
+              <SparklinesLine color="orange" />
+              <SparklinesReferenceLine type="avg" />
+            </Sparklines>
+            <p>{Math.round(average(cityForecast.temperature))} F</p>
+          </td>
+          <td className="align-middle">
+          <Sparklines data={cityForecast.pressure}>
+              <SparklinesLine color="blue" />
+              <SparklinesReferenceLine type="avg" />
+            </Sparklines>
+            <p>{Math.round(average(cityForecast.pressure))} hPa</p>
+          </td>
+          <td className="align-middle">
+          <Sparklines data={cityForecast.humidity}>
+              <SparklinesLine color="green" />
+              <SparklinesReferenceLine type="avg" />
+            </Sparklines>
+            <p>{Math.round(average(cityForecast.humidity))} %</p>
+          </td>
+        </tr>
+      ))
     }
   }
-  console.log(cityData);
-
-  const average = array => array.reduce((a, b) => a + b) / array.length;
   
-  // const averageTemp = Math.round(average(cityInfo.temperature));
-  // const averagePressure = Math.round(average(cityInfo.pressure));
-  // const averageHumidity = Math.round(average(cityInfo.humidity));
+  
+
 
   return (
   <>
-    { cityInfo ?
       <tbody>
-      <tr className="text-center">
-        <td className="align-middle">{cityInfo.city}</td>
-        <td className="align-middle">
-          <Sparklines data={cityInfo.temperature}>
-            <SparklinesLine color="orange" />
-            <SparklinesReferenceLine type="avg" />
-          </Sparklines>
-          {/* <p>{averageTemp} F</p> */}
-        </td>
-        <td className="align-middle">
-        <Sparklines data={cityInfo.pressure}>
-            <SparklinesLine color="blue" />
-            <SparklinesReferenceLine type="avg" />
-          </Sparklines>
-          {/* <p>{averagePressure} hPa</p> */}
-        </td>
-        <td className="align-middle">
-        <Sparklines data={cityInfo.humidity}>
-            <SparklinesLine color="blue" />
-            <SparklinesReferenceLine type="avg" />
-          </Sparklines>
-          {/* <p>{averageHumidity} %</p> */}
-        </td>
-      </tr>
+        {renderCityForecastData()}
       </tbody>
-      : <tbody></tbody>
-    }
   </>
   )
 }
