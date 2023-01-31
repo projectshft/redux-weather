@@ -1,23 +1,19 @@
 import React from 'react'
-import DisplayHumidity from './components/Display-Humidity';
-import { useState } from 'react';
+import CreateDisplay from './components/Create-Display';
+import InputCity from './components/Input-City';
+
+
+
 
 
 function App () {
 
-  const [city, setCity] = useState('');
-  
-  
+
+
   return (
     <div>
-      <form>
-        <input
-        value={city}
-        onChange={(e) => setCity(e.target.value)}></input>
-        {/* <button onClick={renderWeather}>Submit</button> */}
-        <div>temp:</div>
-      </form>
-      <DisplayHumidity city={city} />
+      <InputCity />
+      <CreateDisplay />
     </div>
   )
 }

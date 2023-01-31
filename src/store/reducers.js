@@ -78,11 +78,11 @@ const citiesReducer = function (state = [], action) {
         return humidity
   } 
 
-      return {
+      return [{
         temperature: findTemp(),
         pressure: findPressure(),
         humidity: findHumidity()
-      }
+      }, ...state]
 
     default:
       return state;
