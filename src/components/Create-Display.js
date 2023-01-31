@@ -1,26 +1,30 @@
 import { useSelector } from "react-redux";
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 const CreateDisplay = () => {
-  const weather = useSelector((state) => state.weather);
+  let weather = useSelector((state) => state.weather);
 
-  function handleDisplay() {
-    weather.map(city => {
-      const getData = () => {
-        for (const key in city) {
-          city[key].map((measurement) => <li>{measurement}</li>)
-        }
-      }
-    return getData()
-    });   
+  if(weather < 1) {
+    weather = 0
   }
+
+ console.log(weather)
 
   return (
     <div>  
-    <ul>{handleDisplay()}</ul>
+    hello
     </div>
   )
 }
 
 export default CreateDisplay;
 
-//won't show up for some reason.
+
+// const data = weather[0].pressure
+
+//   const handleDisplay = () => {
+//     return (
+//       <div>{data.map((item) => <li>{item}</li>)}</div>
+//     )
+    
+//   }
