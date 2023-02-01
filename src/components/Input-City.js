@@ -18,11 +18,6 @@ const InputCity = () => {
     dispatch(fetchWeather(city)) 
   }
 
-  const handleDisplay1 = () => {
-    console.log(weather)
-  }
-
-
   return(
   <Container>
     <Row className="justify-content-md-center mt-4" xs={1} md={2} gap={3}>
@@ -37,9 +32,6 @@ const InputCity = () => {
           />
           <Button variant="primary" id="button-addon2" onClick={handleDisplay}>
             Button
-          </Button>
-          <Button variant="primary" id="button-addon2" onClick={handleDisplay1}>
-            Console
           </Button>
         </InputGroup>
       </Col>

@@ -5,15 +5,40 @@ import { FETCH_WEATHER } from "../action-creators/actions";
 const citiesReducer = function (state = [], action) {
   switch(action.type) {
     case FETCH_WEATHER:
-      return action.payload.data.list.map((section) => {
-        return {
-          temperature: section.main.temp,
-          pressure: section.main.pressure,
-          humidity: section.main.humidity
-
-        }
+      let temper = [0, 0, 0, 0, 0];
+      let press = [0, 0, 0, 0, 0];
+      let humid = [0, 0, 0, 0, 0];
+      action.payload.data.list.map((section, index) => {
+        if(index <= 7){
+          temper[0] = temper[0] + section.main.temp
+          press[0] = press[0] + section.main.pressure
+          humid[0] = humid[0] + section.main.humidity
+        } else if (index > 7 && index <= 15) {
+          temper[1] = temper[1] + section.main.temp
+          press[1] = press[1] + section.main.pressure
+          humid[1] = humid[1] + section.main.humidity
+        } else if (index > 15 && index <= 23) {
+          temper[2] = temper[2] + section.main.temp
+          press[2] = press[2] + section.main.pressure
+          humid[2] = humid[2] + section.main.humidity
+        } else if (index > 23 && index <= 31) {
+          temper[3] = temper[3] + section.main.temp
+          press[3] = press[3] + section.main.pressure
+          humid[3] = humid[3] + section.main.humidity
+        } else if (index > 31 && index <= 40) {
+          temper[4] = temper[4] + section.main.temp
+          press[4] = press[4] + section.main.pressure
+          humid[4] = humid[4] + section.main.humidity
+        }         
       });
-      
+      temper = temper.map((day) => Math.round(((day/8) - 273.15) * (9/5) + 32))
+      press = press.map((day) => Math.round((day/8)))
+      humid = humid.map((day) => Math.round((day/8)))
+
+      return [{
+        temper, press, humid
+      }, ...state]
+
 
     default:
       return state;

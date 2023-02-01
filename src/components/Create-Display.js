@@ -1,23 +1,48 @@
 import { useSelector } from "react-redux";
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+// import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 const CreateDisplay = () => {
   let weather = useSelector((state) => state.weather);
 
-  if(weather < 1) {
-    weather = 0
-  }
+  
 
- console.log(weather)
+ const handleDisplay = () => {
+  let data = [];
+
+  if(weather.length > 1) {
+    console.log(weather)
+    weather.map((city) => {
+      let cityInfo = [];
+      for (const key in city) {
+        console.log(city[key])
+        cityInfo.push(<li>{key}: {city[key]}</li>)
+      }
+      data.push(<ul>{cityInfo}</ul>)
+    })
+  }
+  return data
+ }
 
   return (
     <div>  
-    hello
+    {handleDisplay()}
     </div>
   )
 }
 
 export default CreateDisplay;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // const data = weather[0].pressure

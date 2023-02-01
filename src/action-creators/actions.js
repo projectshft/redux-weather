@@ -1,6 +1,4 @@
 import axios from "axios";
-
-export const FETCH_ALL = 'FETCH_ALL';
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
 
