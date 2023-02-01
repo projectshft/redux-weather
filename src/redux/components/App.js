@@ -11,6 +11,7 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const city = event.target.city.value;
+    dispatch(searchCity(city))
     if (!city) {
       setValidationError('City is required.');
       return;
