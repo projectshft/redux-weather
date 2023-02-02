@@ -1,6 +1,11 @@
 import React from 'react'
 import CreateDisplay from './components/Create-Display';
 import InputCity from './components/Input-City';
+import Header from './components/Header';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Container } from 'react-bootstrap';
+import './App.css';
 
 
 
@@ -11,10 +16,15 @@ function App () {
 
 
   return (
-    <div>
-      <InputCity />
-      <CreateDisplay />
-    </div>
+    <Container className='align-items-center'>
+      <Row className='ms-5 me-5'>
+        <Col>
+          <InputCity />
+          <Header />
+          <CreateDisplay />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

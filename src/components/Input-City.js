@@ -11,7 +11,6 @@ import Container from 'react-bootstrap/Container';
 
 const InputCity = () => {
   const [city, setCity] = useState('');
-  const weather = useSelector((state) => state.weather);
   const dispatch = useDispatch(); 
 
   const handleDisplay = () => {
@@ -20,12 +19,13 @@ const InputCity = () => {
 
   return(
   <Container>
+    <h1 style={{textAlign: 'center'}}>Redux Weather</h1>
     <Row className="justify-content-md-center mt-4" xs={1} md={2} gap={3}>
       <Col >
         <InputGroup className="mb-3">
           <Form.Control
-            placeholder="Recipient's username"
-            aria-label="Recipient's username"
+            placeholder="City..."
+            aria-label="City"
             aria-describedby="basic-addon2"
             value={city}
             onChange={(e) => setCity(e.target.value)}

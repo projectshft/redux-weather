@@ -1,5 +1,6 @@
 import axios from "axios";
 export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const FETCH_AVERAGE = 'FETCH_AVERAGE'
 
 
 export function fetchWeather (city) {
@@ -12,4 +13,14 @@ export function fetchWeather (city) {
   };
 }
 
-//fETCH ALL COMING SOON
+export function fetchAverage (data, measurement) {
+
+  return {
+    type: FETCH_AVERAGE,
+    payload: {
+      measurement,
+      data
+    }
+  }
+}
+
