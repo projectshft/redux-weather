@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
 
-// use mapStateToProp to get read data from state
+//TODO: Refactor to make it map through an array so it can have mulitple city forecast, make name and city dynamic
 
-const table = () => {
+const Table = (props) => {
   return (
     <div>
       <table className="table table-hover mt-3">
@@ -20,7 +21,7 @@ const table = () => {
             <th scope="row" className="align-middle">Austin</th>
             <td>
               <Sparklines
-                data={[60, 73, 71, 65, 80, 73, 68]}
+                data={props.temp}
                 width={100}
                 height={60}
                 margin={5}
@@ -32,7 +33,7 @@ const table = () => {
             </td>
             <td>
             <Sparklines
-                data={[80, 73, 71, 49, 80, 73, 88]}
+                data={props.pressure}
                 width={100}
                 height={65}
                 margin={5}
@@ -44,7 +45,7 @@ const table = () => {
             </td>
             <td>
             <Sparklines
-                data={[60, 73, 71, 65, 40, 53, 30]}
+                data={props.humidity}
                 width={100}
                 height={70}
                 margin={5}
@@ -61,4 +62,15 @@ const table = () => {
   );
 };
 
-export default table;
+function mapStateToProp(state) {
+  //TODO: DELETE BELOW
+  //console.log(state);
+  //console.log(state.weather.temp);
+  return {
+    temp: state.weather.temp,
+    pressure: state.weather.pressure,
+    humidity: state.weather.humidity
+  }
+}
+
+export default connect(mapStateToProp)(Table);
