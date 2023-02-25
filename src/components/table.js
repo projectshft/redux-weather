@@ -18,10 +18,10 @@ const Table = (props) => {
         </thead>
         <tbody>
           <tr>
-            <th scope="row" className="align-middle">Austin</th>
+            <th scope="row" className="align-middle">{props.city.name}</th>
             <td>
               <Sparklines
-                data={props.temp}
+                data={props.city.temp}
                 width={100}
                 height={60}
                 margin={5}
@@ -33,7 +33,7 @@ const Table = (props) => {
             </td>
             <td>
             <Sparklines
-                data={props.pressure}
+                data={props.city.pressure}
                 width={100}
                 height={65}
                 margin={5}
@@ -45,7 +45,7 @@ const Table = (props) => {
             </td>
             <td>
             <Sparklines
-                data={props.humidity}
+                data={props.city.humidity}
                 width={100}
                 height={70}
                 margin={5}
@@ -63,13 +63,13 @@ const Table = (props) => {
 };
 
 function mapStateToProp(state) {
-  //TODO: DELETE BELOW
-  //console.log(state);
-  //console.log(state.weather.temp);
   return {
-    temp: state.weather.temp,
-    pressure: state.weather.pressure,
-    humidity: state.weather.humidity
+    city: {
+      name: state.weather.city.name,
+      temp: state.weather.city.temp,
+      pressure: state.weather.city.pressure,
+      humidity: state.weather.city.humidity
+    }
   }
 }
 
