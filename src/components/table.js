@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
-
-//TODO: Refactor to make it map through an array so it can have mulitple city forecast, make name and city dynamic
+import _ from "lodash";
 
 const Table = (props) => {
   return (
@@ -29,7 +28,7 @@ const Table = (props) => {
                 <SparklinesLine color="#ffc61a" />
                 <SparklinesReferenceLine type="mean" />
               </Sparklines>
-              <p className="text-center">58 F</p>
+              <p className="text-center">{Math.round(_.mean(props.city.temp))} F</p>
             </td>
             <td>
             <Sparklines
@@ -41,7 +40,7 @@ const Table = (props) => {
                 <SparklinesLine color="#00802b" />
                 <SparklinesReferenceLine type="mean" />
               </Sparklines>
-              <p className="text-center">1013 hPa</p>
+              <p className="text-center">{Math.round(_.mean(props.city.pressure))} hPa</p>
             </td>
             <td>
             <Sparklines
@@ -53,7 +52,7 @@ const Table = (props) => {
                 <SparklinesLine color="#253e56" />
                 <SparklinesReferenceLine type="mean" />
               </Sparklines>
-              <p className="text-center">57 %</p>
+              <p className="text-center">{Math.round(_.mean(props.city.humidity))} %</p>
             </td>
           </tr>
         </tbody>
