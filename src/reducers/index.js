@@ -7,12 +7,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-/*
-const rootReducer = combineReducers({
-  posts: PostsReducer,
-});
-
-// weather should be a slice of state:
-temp, humidity, and pressure should all be combined
-*/

@@ -1,7 +1,10 @@
-// weather is it's own state
 import { FETCH_WEATHER } from "../actions"
 
-// TODO: empty out DEFAULT_STATE when done
+const DEFAULT_STATE= {
+  cities: []
+};
+
+/*
 const DEFAULT_STATE= {
   city: {
     name: '',
@@ -10,10 +13,12 @@ const DEFAULT_STATE= {
     humidity: [],
   }
 };
+*/
 
 const weatherReducer = function (state = DEFAULT_STATE, action) {
 
   //manipulate data here and return the correct data into state
+  console.log(state);
   
   switch (action.type) {    
     case FETCH_WEATHER:
@@ -26,16 +31,30 @@ const weatherReducer = function (state = DEFAULT_STATE, action) {
 
       data.list.forEach(element => {
         tempArray.push(element.main.temp);
-      });
-
-      data.list.forEach(element => {
         pressureArray.push(element.main.pressure);
-      });
-
-      data.list.forEach(element => {
         humidityArray.push(element.main.humidity);
       });
 
+      const newCity = {
+        name: data.city.name,
+        temp: tempArray,
+        pressure: pressureArray,
+        humidity: humidityArray
+      }
+
+      const newCities = [...state.cities, newCity];
+
+      return {
+        cities: newCities
+      }
+    default: 
+      return state;
+  }
+}
+
+export default weatherReducer;
+
+/*
       return {
         city: {
           name: data.city.name,
@@ -44,9 +63,4 @@ const weatherReducer = function (state = DEFAULT_STATE, action) {
           humidity: humidityArray
         }
       }
-    default: 
-      return state;
-  }
-}
-
-export default weatherReducer;
+*/
