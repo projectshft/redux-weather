@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { fetchWeather } from "../actions";
 import { bindActionCreators } from 'redux';
 
 const Search = () => {
   const [query, setQuery] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchWeather(query);
+
+    dispatch(
+      fetchWeather(query)
+    );
   }
 
   return (
