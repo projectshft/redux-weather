@@ -14,6 +14,8 @@ const Search = () => {
     dispatch(
       fetchWeather(query)
     );
+
+    setQuery('');
   }
 
   return (
@@ -34,8 +36,11 @@ const Search = () => {
   )
 }
 
+/*
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchWeather: fetchWeather }, dispatch);
 }
+*/
 
-export default connect (null, mapDispatchToProps) (Search);
+export default Search;
+//export default connect (null, mapDispatchToProps) (Search);
