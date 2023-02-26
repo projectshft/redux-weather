@@ -4,26 +4,11 @@ const DEFAULT_STATE= {
   cities: []
 };
 
-/*
-const DEFAULT_STATE= {
-  city: {
-    name: '',
-    temp: [],
-    pressure: [],
-    humidity: [],
-  }
-};
-*/
-
 const weatherReducer = function (state = DEFAULT_STATE, action) {
-
-  //manipulate data here and return the correct data into state
-  console.log(state);
   
   switch (action.type) {    
     case FETCH_WEATHER:
       const data = action.payload.data;
-      console.log(data);
     
       const tempArray = [];
       const pressureArray = [];
@@ -42,7 +27,7 @@ const weatherReducer = function (state = DEFAULT_STATE, action) {
         humidity: humidityArray
       }
 
-      const newCities = [...state.cities, newCity];
+      const newCities = [newCity, ...state.cities];
 
       return {
         cities: newCities
@@ -53,14 +38,3 @@ const weatherReducer = function (state = DEFAULT_STATE, action) {
 }
 
 export default weatherReducer;
-
-/*
-      return {
-        city: {
-          name: data.city.name,
-          temp: tempArray,
-          pressure: pressureArray,
-          humidity: humidityArray
-        }
-      }
-*/
