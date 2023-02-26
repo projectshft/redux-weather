@@ -9,13 +9,11 @@ import _ from "lodash";
 
 const Table = () => {
   const cities = useSelector(state => state.weather.cities);
-  console.log(cities);
 
-  //TODO: create a function to map through "state array" so we can show a new city object when it is added
   function renderCities() {
     if (cities.length > 0) {
-      return cities.map((city) => (
-        <tr>
+      return cities.map((city, index) => (
+        <tr key={index}>
           <th scope="row" className="align-middle">
             {city.name}
           </th>
@@ -57,10 +55,8 @@ const Table = () => {
         </tr>
       ));
     }
-    return <div></div>
   }
 
-  //TODO: refactor below to just call the function above
   return (
     <div>
       <table className="table table-hover mt-3">
@@ -78,19 +74,5 @@ const Table = () => {
   );
 };
 
-/*
-function mapStateToProp(state) {
-  return {
-    cities: {
-      name: state.weather.cities.name,
-      temp: state.weather.cities.temp,
-      pressure: state.weather.cities.pressure,
-      humidity: state.weather.cities.humidity
-    }
-  }
-}
-*/
-
 export default Table;
 
-//export default connect(mapStateToProp)(Table);
