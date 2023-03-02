@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { weatherReducer } from "../reducers/weatherReducer";
-import { combineReducers } from "@reduxjs/toolkit";
-import { applyMiddleware } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
-// import { composeWithDevTools } from "redux-devtools-extension";
+import weatherReducer from "../actions/apiSlice";
 
 const store = configureStore({
-  weather: {weatherReducer}
+  reducer: {
+    weather: weatherReducer,
+  }
 })
 
 export default store;

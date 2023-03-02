@@ -1,19 +1,25 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {weatherRequest} from "../Redux/actions/apiCall";
-
+import { fetchWeather } from "../Redux/actions/apiSlice";
 
 
 const SearchBar = () => {
   const [city, setCity] = useState("");
-  const temp = useSelector(state => state.temperature);
+  const {temperature} = useSelector(state => state.weather);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchWeather("marmora"));
+    console.log(temperature)
+  })
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(weatherRequest(city));
+    dispatch(fetchWeather(city));
   };
 
   return (
@@ -22,7 +28,7 @@ const SearchBar = () => {
         <input className="textbox" type="text" required value={city} onChange={(e) =>setCity(e.target.value)} placeholder="Search"></input>
         <button>Search</button>
       </form>
-      <div>{temp}</div>
+      <div></div>
 
     </div>
    );

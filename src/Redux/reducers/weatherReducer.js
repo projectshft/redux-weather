@@ -1,5 +1,5 @@
 // import { createSlice } from "@reduxjs/toolkit";
-import {weatherRequest} from "../actions/apiCall";
+import {weatherRequest} from "../actions/apiSlice";
 
 
 
