@@ -1,28 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
-// import { FETCH_WEATHER } from "../actions/apiCall";
+// import { createSlice } from "@reduxjs/toolkit";
+import {weatherRequest} from "../actions/apiCall";
 
-export const weatherReducer = createSlice({
-  name: "weather",
-  initialState: {
-    temperature: [],
-    // pressure: {},
-    // humidity: {},
-  },
-  reducers: {
-    temperature: (state) => {
-      state.temperature = state.action.payload.data.main[0];
-    }
-  }
-})
 
-// export function weatherReducer(state = {temperature: []}, action) {
-//   switch (action.type) {
-//     case "FETCH_WEATHER":
-//       return {...state, temperature: action.payload}
-//       default:
-//         return state;
+
+// const initialState = {
+//   temperature: [],
+//   pressure: [],
+//   humidity: [],
+//   loading: false, error: null
+// } 
+
+// export const weatherReducer = createSlice({
+//   name: "weatherData", initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder.addCase(weatherRequest.fulfilled, (state, action) => {
+//       state.temperature.push(action.payload.main.temp)
+//       state.pressure.push(action.payload.main.humidity);
+//       state.humidity.push(action.payload.main.humidity);
+//     })
 //   }
-// }
+// })
+
+
+export function weatherReducer(state = {temperature: [], pressure: [], humidity: []}, action) {
+  switch (action.type) {
+    case "FETCH_WEATHER":
+      return {...state, 
+      temperature: action.payload.main.temp,
+      pressure: action.payload.main.pressure,
+      humidity: action.payload.main.humidity}
+      default:
+        return state;
+  }
+}
 
 
 
