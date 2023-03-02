@@ -3,15 +3,17 @@ import { getTemp, getPres, getHum } from "../helperFunctions";
 
 
 export const fetchWeather = createAsyncThunk("weather/fetchWeather", async (city) => {
-  return fetch (`https://api.openweathermap.org/data/2.5/forecast?q=${city},us&limit=5&lang=en&units=imperial&appid=1098d6d3f6137503dc9534bfc05cb19d`).then((res) => res.json().then((data) => data.list))
+  return city && fetch (`https://api.openweathermap.org/data/2.5/forecast?q=${city},us&limit=5&lang=en&units=imperial&appid=1098d6d3f6137503dc9534bfc05cb19d`).then((res) => res.json().then((data) => data))
 })
 
 export const weatherSlice = createSlice({
   name: "weather",
   initialState: {
+    city: [],
     temperature: [],
     pressure: [],
     humidity: [],
+    history: [],
     status: null,
   },
   reducers: {},
@@ -21,6 +23,7 @@ export const weatherSlice = createSlice({
     },
     [fetchWeather.fulfilled]: (state, {payload}) => {
       state.status = "success"
+      state.city = payload.city.name
       state.temperature = getTemp(payload)
       state.pressure = getPres(payload)
       state.humidity = getHum(payload)
@@ -32,8 +35,9 @@ export const weatherSlice = createSlice({
 })
 
 
-
+export const selectCity = state => state.weather.city
 export const selectTemperature = state => state.weather.temperature
-export const selectPressure = (state) => state.weather.pressure;
-export const selectHumidity = (state) => state.weather.humidity;
+export const selectPressure = state => state.weather.pressure;
+export const selectHumidity = state => state.weather.humidity;
+
 export default weatherSlice.reducer
