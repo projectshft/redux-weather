@@ -14,6 +14,7 @@ export const weatherSlice = createSlice({
     humidity: [],
     status: null,
   },
+  reducers: {},
   extraReducers: {
     [fetchWeather.pending]: (state, action) => {
       state.status = "loading"
@@ -30,4 +31,9 @@ export const weatherSlice = createSlice({
 }
 })
 
+
+
+export const selectTemperature = state => state.weather.temperature
+export const selectPressure = (state) => state.weather.pressure;
+export const selectHumidity = (state) => state.weather.humidity;
 export default weatherSlice.reducer

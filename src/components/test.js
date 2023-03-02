@@ -1,15 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchWeather } from "../Redux/actions/apiSlice";
 import { useEffect } from "react";
+// import { weatherSlice } from "../Redux/actions/apiSlice";
+import { selectTemperature } from "../Redux/actions/apiSlice";
 
 const Test = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchWeather("marmora"))
   }, [dispatch])
-  // dispatch(fetchWeather("marmora"))
+
+  const temp = useSelector(selectTemperature)
+
+  // useSelector(state => weatherSlice(state, temperature) )
   return (
-    <h1>test...</h1>
+    <h1>{temp}</h1>
     );
 }
  
