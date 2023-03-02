@@ -8,6 +8,7 @@ function App() {
       <h1>ReduxWeatherApplication</h1>
       {/* <SearchBar/> */}
       <Test/>
+      
     </div>
   );
 }
