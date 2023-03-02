@@ -1,10 +1,11 @@
 import './App.css';
-import { fetchWeather } from './Redux/actions/apiCall';
+import SearchBar from './components/Search';
 
 function App() {
   return (
     <div className="App">
       <h1>ReduxWeatherApplication</h1>
+      <SearchBar/>
     </div>
   );
 }
