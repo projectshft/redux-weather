@@ -1,16 +1,15 @@
 import './App.css';
-// import SearchBar from './components/Search';
-// import Test from './components/test';
+import SearchBar from './components/Search';
+import Test from './components/test';
 
-import OtherApp from './components/Other';
 
 function App() {
+
   return (
     <div className="App">
-      {/* <h1 className='appTitle'>REDUXweather</h1>
+      <h3> Redux Weather </h3>
       <SearchBar/>
-      <Test/> */}
-      <OtherApp/>
+      <Test />
     </div>
   );
 }

@@ -1,20 +1,12 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-// import weatherReducer from "../slices/apiSlice";
-import weatherReducer from "../slices/testSlice";
+import {  configureStore, combineReducers } from "@reduxjs/toolkit";
+import weatherReducer from "../slices/apiSlice";
+import reducer from "../slices/apiSlice";
 
-const reducer = combineReducers({
-  weather: weatherReducer,
-})
+
+const rootReducer = combineReducers({weather: reducer})
 
 const store = configureStore({
-  reducer: reducer
+  reducer: rootReducer
 })
 
-export default store
-// const store = configureStore({
-//   reducer: {
-//     weather: weatherReducer,
-//   }
-// })
-
-// export default store;
+export default store;

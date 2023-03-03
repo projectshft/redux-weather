@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchWeather } from "../Redux/slices/apiSlice";
+
 
 
 const SearchBar = () => {
   const [city, setCity] = useState("");
   const dispatch = useDispatch();
+  // dispatch(fetchWeather("Marmora"))
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ const SearchBar = () => {
   };
 
   return (
+    // <div>hello</div>
     <div className="searchBar">
       <form onSubmit={handleSubmit}>
         <input className="form-control" type="text" required value={city} onChange={(e) =>setCity(e.target.value)} placeholder="Search"></input>
@@ -22,7 +24,7 @@ const SearchBar = () => {
       <div></div>
 
     </div>
-   );
+  )
 }
  
 export default SearchBar;

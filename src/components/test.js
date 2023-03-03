@@ -1,8 +1,7 @@
 import {  useSelector } from "react-redux";
 import {selectCity, selectHumidity, selectPressure, selectTemperature } from "../Redux/slices/apiSlice";
-import { useEffect } from "react";
 import { Sparklines, SparklinesLine } from "react-sparklines";
-import {usePrevious} from "../Redux/helperFunctions";
+
 
 
 
@@ -12,9 +11,8 @@ const Test = () => {
   const pres = useSelector(selectPressure);
   const hum = useSelector(selectHumidity);
   const cityInfo = useSelector(selectCity);
-  const newData = [temp, pres, hum, cityInfo];
-  const oldData = usePrevious(newData);
- 
+
+
 
 
   // useSelector(state => weatherSlice(state, temperature) )
