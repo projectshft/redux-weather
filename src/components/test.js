@@ -11,17 +11,15 @@ const Test = () => {
   const temp = useSelector(selectTemperature);
   const pres = useSelector(selectPressure);
   const hum = useSelector(selectHumidity);
-  const cityInfo = useSelector(selectCity)
-
-  const prevTemp = usePrevious(temp);
-  const prevPress = usePrevious(hum)
+  const cityInfo = useSelector(selectCity);
+  const newData = [temp, pres, hum, cityInfo];
+  const oldData = usePrevious(newData);
+ 
 
 
   // useSelector(state => weatherSlice(state, temperature) )
   return (
     <div>
-      <div>{prevTemp} "and" {prevPress}</div>
-      <ul>
       <div class="container text-center">
         <div class="row align-items-start">
           <div class="col">
@@ -45,7 +43,6 @@ const Test = () => {
           </div>
         </div>
       </div>
-      </ul>
     </div>
   );
 };
