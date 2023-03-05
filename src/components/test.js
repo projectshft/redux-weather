@@ -11,6 +11,7 @@ const Test = () => {
   const pres = useSelector(selectPressure);
   const hum = useSelector(selectHumidity);
   const cityInfo = useSelector(selectCity);
+  
 
 
 
