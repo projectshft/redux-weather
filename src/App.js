@@ -3,9 +3,12 @@ import SearchBar from "./components/Search";
 import WeatherView from "./components/View";
 
 function App() {
+  
+ 
   return (
     <div className="App">
-      <h3> Redux Weather </h3>
+      <h1 className="title"> Redux Weather </h1>
+      <h4 className="title">5 Day Averages</h4>
       <SearchBar />
       <div class="container text-center">
         <div class="row align-items-start">
