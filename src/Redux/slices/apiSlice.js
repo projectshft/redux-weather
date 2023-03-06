@@ -99,14 +99,14 @@ export const weatherSlice = createSlice({
         console.log(payload);
         state.locations[i].name = payload.city.name;
         state.locations[i].temperature = getTemp(payload);
-        state.locations[i].tHi = getHigh(getTemp(payload));
-        state.locations[i].tLo = getLow(getTemp(payload));
+        state.locations[i].tHi = getHigh(getTemp(payload))  + '°F';
+        state.locations[i].tLo = getLow(getTemp(payload))  + '°F';
         state.locations[i].pressure = getPres(payload);
-        state.locations[i].pHi = getHigh(getPres(payload));
-        state.locations[i].pLo = getLow(getPres(payload));
+        state.locations[i].pHi = getHigh(getPres(payload)) + "Pa";
+        state.locations[i].pLo = getLow(getPres(payload)) + "Pa";
         state.locations[i].humidity = getHum(payload);
-        state.locations[i].hHi = getHigh(getHum(payload));
-        state.locations[i].hLo = getLow(getHum(payload));
+        state.locations[i].hHi = getHigh(getHum(payload)) + "%";
+        state.locations[i].hLo = getLow(getHum(payload)) + "%";
         state.locations[i].status = payload.status;
         state.status = "success";
 
