@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FiveDayIndex from './5day-index';
 import { fetch5Day } from '../actions';
 
 const Header = () => {
-  const dispatch = useDispatch();
   const [city, setCity] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const dispatch = useDispatch();
+  const cities = useSelector((state) => state.posts.cities);
+  const handleSubmit = (event) => {
+    event.preventDefault();
     dispatch(fetch5Day(city));
+    setCity('');
   };
 
   return (
@@ -17,25 +18,24 @@ const Header = () => {
       <div className="jumbotron text-center">
         <div className="container">
           <h1 className="jumbotron-heading">Redux Weather</h1>
-          <form onSubmit={handleSubmit}>
+          <form className="form-inline" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="city">City</label>
               <input
                 type="text"
-                className="form-control"
-                id="city"
+                className="form-control mr-2"
+                placeholder="Enter a city"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
+                onChange={(event) => setCity(event.target.value)}
               />
             </div>
             <button type="submit" className="btn btn-primary">
-              Submit
+              Search
             </button>
           </form>
         </div>
       </div>
       <div className="container">
-        <FiveDayIndex />
+        <FiveDayIndex cities={cities} />
       </div>
     </div>
   );
