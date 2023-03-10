@@ -9,6 +9,7 @@ import promise from 'redux-promise';
 
 import Header from './components/header';
 import reducers from './reducers';
+import './index.css';
 
 const root = createRoot(document.getElementById('root'));
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
