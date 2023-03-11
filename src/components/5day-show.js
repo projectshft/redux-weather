@@ -26,21 +26,21 @@ const FiveDayShow = ({ city, data }) => {
       <td className="col-3">
         <Sparklines data={temperature} preserveAspectRatio="xMinYMin">
           <SparklinesLine color="green" />
-          <SparklinesReferenceLine type="mean" style={{ fill: 'green' }} />
+          <SparklinesReferenceLine type="mean" />
         </Sparklines>
         {_.round(_.mean(temperature))} °F
       </td>
       <td className="col-3">
         <Sparklines data={pressure} preserveAspectRatio="xMinYMin">
           <SparklinesLine color="red" />
-          <SparklinesReferenceLine type="mean" style={{ fill: 'red' }} />
+          <SparklinesReferenceLine type="mean" />
         </Sparklines>
         {_.round(_.mean(pressure))} hPa
       </td>
       <td className="col-3">
         <Sparklines data={humidity} preserveAspectRatio="xMinYMin">
-          <SparklinesLine color="orange" />
-          <SparklinesReferenceLine type="mean" style={{ fill: 'orange' }} />
+          <SparklinesLine color="teal" />
+          <SparklinesReferenceLine type="mean" />
         </Sparklines>
         {_.round(_.mean(humidity))}%
       </td>
