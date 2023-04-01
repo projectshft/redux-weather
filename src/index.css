@@ -22,3 +22,26 @@ hr {
   width: 60%;
   margin: 15px auto;
 }
+
+.table-body {
+  display: flex;
+  width: 60%;
+  margin: 15px auto;
+}
+
+tr {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  margin-top: 5px;
+}
+tbody {
+  margin-top: 20px;
+}
+
+.sparkline {
+  width: 100%;
+  margin: auto;
+}

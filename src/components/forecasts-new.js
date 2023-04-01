@@ -10,12 +10,11 @@ const ForecastsNew = () => {
   const handleCity = (e) => {
     e.preventDefault();
     setCity(e.target.value)
-    
   }
   const handleFormSubmit = (e) => {
     e.preventDefault()
     dispatch(fetchForecast(city))
-    console.log('City', city);
+    // console.log('City', city);
   }
 
   return (
