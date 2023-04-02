@@ -5,6 +5,7 @@ import { fetchForecast } from "../actions";
 // const API_KEY = 'ed82dafb0490d14952ef1d1117c72baf';
 
 const ForecastsNew = () => {
+  //hook used to grab city from the user input
   const [city, setCity] = useState('');
   const dispatch = useDispatch();
   const handleCity = (e) => {
@@ -14,7 +15,6 @@ const ForecastsNew = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     dispatch(fetchForecast(city))
-    // console.log('City', city);
   }
 
   return (

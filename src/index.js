@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { legacy_createStore as createStore, applyMiddleware} from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
