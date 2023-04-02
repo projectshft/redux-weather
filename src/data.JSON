@@ -1,0 +1,59 @@
+{
+  "cod": "200",
+  "message": 0,
+  "cnt": 40,
+  "list": [
+    {
+      "dt": 1680372000,
+      "main": {
+        "temp": 67.32,
+        "feels_like": 68.02,
+        "temp_min": 67.32,
+        "temp_max": 71.29,
+        "pressure": 1009,
+        "sea_level": 1009,
+        "grnd_level": 998,
+        "humidity": 91,
+        "temp_kf": -2.21
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10d"
+        }
+      ],
+      "clouds": {
+        "all": 100
+      },
+      "wind": {
+        "speed": 20.8,
+        "deg": 223,
+        "gust": 41.5
+      },
+      "visibility": 10000,
+      "pop": 0.32,
+      "rain": {
+        "3h": 0.25
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "dt_txt": "2023-04-01 18:00:00"
+    }
+  ],
+  "city": {
+    "id": 4487042,
+    "name": "Raleigh",
+    "coord": {
+      "lat": 35.7721,
+      "lon": -78.6386
+    },
+    "country": "US",
+    "population": 403892,
+    "timezone": -14400,
+    "sunrise": 1680346871,
+    "sunset": 1680392127
+  }
+}
