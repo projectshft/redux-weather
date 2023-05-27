@@ -1,17 +1,28 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Header from './components/header';
+import SearchBar from './components/search-bar';
+import ForecastList from './components/forecast-list';
+
+
+const App = () => {
+  return (
+    <div className="container">
+      This is the App component. Will we even need this? No I don't think we will.
+    </div>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Header>
+      <SearchBar />
+      <ForecastList />
+      
+      <App />
+    </Header>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
