@@ -8,7 +8,7 @@ const forecastReducer = function (state = CURRENT_STATE, action) {
   switch (action.type) {
     case FETCH_FORECAST:
       return {
-        cities: [action.payload.data, ...state.cities]
+        cities: [action.payload, ...state.cities]
       }
       
     default: return state;

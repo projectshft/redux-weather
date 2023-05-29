@@ -7,50 +7,50 @@ const ForecastIndex = () => {
   const forecasts = useSelector((state) => state.forecasts)
 
   const renderForecast = () => {
-    const average = array => Math.round(array.reduce((a, b) => a + b)/array.length);
-    if (!_.isEmpty(forecasts.cities)) {      
+    console.log(forecasts.cities)   
+
+    if (!_.isEmpty(forecasts.cities)) {   
+      console.log(forecasts.cities)   
       const queryResults = forecasts.cities.map((forecast, i) => {
-        let temps = forecast.list.map((data) => (
-          data.main.temp
-        ))
-        let pressures = forecast.list.map((data) => (
-          data.main.pressure
-        ))
-        let humidities = forecast.list.map((data) => (
-          data.main.humidity
-        )) 
+        console.log(forecast)
+        console.log(forecast)
+        let temps= forecast.main.temp
+        console.log(temps)
+        let pressures = forecast.main.pressure
+        console.log(forecast)
+        let humidities = forecast.main.humidity
 
         return (
           <tr index={i}>
             <td className="city">
-              {forecast.city.name}
+              {forecast.name}
             </td>
             <td className="data">
               <div className="sparkline">
-                <Sparklines data={temps} svgWidth={150} svgHeight={100}>
+                <Sparklines data={[temps]} svgWidth={150} svgHeight={100}>
                   <SparklinesLine color="#D4AC0D"/>
                   <SparklinesReferenceLine type="avg" />
                 </Sparklines>
               </div>
-              {average(temps)} (F)
+              {[temps]} (F)
             </td>
             <td className="data">
               <div className="sparkline">
-                  <Sparklines data={pressures} svgWidth={150} svgHeight={100}>
+                  <Sparklines data={[pressures]} svgWidth={150} svgHeight={100}>
                     <SparklinesLine color="#229954"/>
                     <SparklinesReferenceLine type="avg"/>
                   </Sparklines>
                 </div>
-              {average(pressures)} (hPa)
+              {[pressures]} (hPa)
             </td>
             <td className="data">
               <div className="sparkline">
-                <Sparklines data={humidities} svgWidth={150} svgHeight={100}>
+                <Sparklines data={[humidities]} svgWidth={150} svgHeight={100}>
                   <SparklinesLine color="#717D7E"/>
                   <SparklinesReferenceLine type="avg"/>
                 </Sparklines>
               </div>
-              {average(humidities)} (%)
+              {[humidities]} (%)
             </td>
           </tr>
         )
@@ -58,7 +58,7 @@ const ForecastIndex = () => {
 
       return (queryResults);
     }
-
+    console.log(forecasts.cities)
     return (
         <tr>
           <td>No Cities Entered</td>
