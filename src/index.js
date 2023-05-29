@@ -11,8 +11,6 @@ import SearchBar from './components/search-bar';
 import ForecastList from './components/forecast-list';
 import forecastReducer from './reducers/reducer-forecast';
 
-
-
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
@@ -21,7 +19,6 @@ ReactDOM.render(
       <Header>
         <SearchBar />
         <ForecastList />
-      
       </Header>
     </React.StrictMode>
   </Provider>,

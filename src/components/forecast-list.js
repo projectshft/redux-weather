@@ -1,14 +1,13 @@
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchForecast } from '../actions';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import _ from 'lodash';
 
 
 const ForecastList = () => {
+  // pulled state in to be able to render all forecast data
   const forecasts = useSelector((state) => state);
  
-
+  // function to render forecast data using Sparklines to show the 5 day forecast of temperature, pressure, and humidity. Includes reference line to show 5 day average.
   const renderForecasts = () => {
     if (!_.isEmpty(forecasts.entries)) {
       return forecasts.cityIds.map((id) => {
@@ -20,6 +19,8 @@ const ForecastList = () => {
                 <SparklinesLine color='orange'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
+
+              {/* function to display the 5 day average value. Is there an easier way to do this? Since ReferenceLine is also calculating average, can a value be pulled from that?  */}
               <div>{Math.round(forecasts.entries[id].temps.reduce((a, b) => a + b) / forecasts.entries[id].temps.length)} &deg;F</div>
             </td>
             <td>
@@ -40,9 +41,8 @@ const ForecastList = () => {
         )
       });
     } else {
-      return <tr><td>*Enter a city for forecast data*</td></tr>
+      return <tr><td>*Enter a city above for a forecast*</td></tr>
     }
-
   }
 
   return (
