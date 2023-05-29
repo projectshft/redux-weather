@@ -2,27 +2,28 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise';
+import { Provider } from 'react-redux';
+
 import Header from './components/header';
 import SearchBar from './components/search-bar';
 import ForecastList from './components/forecast-list';
+import forecastReducer from './reducers/reducer-forecast';
 
 
-const App = () => {
-  return (
-    <div className="container">
-      This is the App component. Will we even need this? No I don't think we will.
-    </div>
-  )
-}
+
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Header>
-      <SearchBar />
-      <ForecastList />
+  <Provider store={createStoreWithMiddleware(forecastReducer)}>
+    <React.StrictMode>
+      <Header>
+        <SearchBar />
+        <ForecastList />
       
-      <App />
-    </Header>
-  </React.StrictMode>,
+      </Header>
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );

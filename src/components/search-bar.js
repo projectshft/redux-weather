@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { fetchForecast } from "../actions";
 
 const postSchema = Yup.object().shape({
   city: Yup.string().required()
@@ -11,8 +13,13 @@ const SearchBar = () => {
     resolver: yupResolver(postSchema)
   });
 
-  const handleFormSubmit = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const handleFormSubmit = (query) => {
+    dispatch(
+      fetchForecast(query)
+    )
+    
   }
 
   return (
