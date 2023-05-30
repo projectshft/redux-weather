@@ -3,9 +3,9 @@ import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-spark
 import _ from 'lodash';
 
 const CityForecastsList = () => {
-  const forecasts = useSelector((state) => state);
+  const forecasts = useSelector((state) => state.forecasts);
 
-  console.log(forecasts);
+  // console.log(forecasts);
 
   const renderForecasts = () => {
     if (!_.isEmpty(forecasts.queryCityEntries)) {
@@ -18,18 +18,18 @@ const CityForecastsList = () => {
                 <SparklinesLine color='purple'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
-              <div>{Math.round(forecasts.queryCityEntries[id].temperature.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].temperature.length)} &deg;F</div>
+              <div>{Math.round(forecasts.queryCityEntries[id].temperature.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].temperature.length)} &deg; F</div>
             </td>
             <td>
               <Sparklines data={forecasts.queryCityEntries[id].pressure} svgwidth={150} svgheight={100}>
-                <SparklinesLine color='red'/>
+                <SparklinesLine color='orange'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
               <div>{Math.round(forecasts.queryCityEntries[id].pressure.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].pressure.length)} hPa</div>
             </td>
             <td>
               <Sparklines data={forecasts.queryCityEntries[id].humidity} svgwidth={150} svgheight={100}>
-                <SparklinesLine color='orange'/>
+                <SparklinesLine color='red'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
               <div>{Math.round(forecasts.queryCityEntries[id].humidity.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].humidity.length)} %</div>
@@ -50,14 +50,14 @@ const CityForecastsList = () => {
   }
 
   return (
-    <div>
+    <div className="table-body">
       <table className='table text-center align-middle'>
         <thead>
           <tr>
-            <th scope='col' className='col-md-3'>City</th>
-            <th scope='col' className='col-md-3'>Temperature(&deg;F)</th>
-            <th scope='col' className='col-md-3'>Pressure(hPa)</th>
-            <th scope='col' className='col-md-3'>Humidity(%)</th>
+            <th scope='col'>City</th>
+            <th scope='col'>Temperature(&deg; F)</th>
+            <th scope='col'>Pressure(hPa)</th>
+            <th scope='col'>Humidity(%)</th>
           </tr>
         </thead>
 
