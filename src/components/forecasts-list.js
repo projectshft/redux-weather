@@ -14,21 +14,21 @@ const CityForecastsList = () => {
           <tr key={id}>
             <td>{forecasts.queryCityEntries[id].city}</td>
             <td>
-              <Sparklines data={forecasts.queryCityEntries[id].temperature} width={150} height={100}>
+              <Sparklines data={forecasts.queryCityEntries[id].temperature} svgwidth={150} svgheight={100}>
                 <SparklinesLine color='purple'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
               <div>{Math.round(forecasts.queryCityEntries[id].temperature.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].temperature.length)} &deg;F</div>
             </td>
             <td>
-              <Sparklines data={forecasts.queryCityEntries[id].pressure} width={150} height={100}>
+              <Sparklines data={forecasts.queryCityEntries[id].pressure} svgwidth={150} svgheight={100}>
                 <SparklinesLine color='red'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
               <div>{Math.round(forecasts.queryCityEntries[id].pressure.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].pressure.length)} hPa</div>
             </td>
             <td>
-              <Sparklines data={forecasts.queryCityEntries[id].humidity} width={150} height={100}>
+              <Sparklines data={forecasts.queryCityEntries[id].humidity} svgwidth={150} svgheight={100}>
                 <SparklinesLine color='orange'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
