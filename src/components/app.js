@@ -1,12 +1,12 @@
 import React from "react";
 import ForecastCurrent from "./forecasts-current";
-import ForecastIndex from "./forecasts-index";
+import CityForecastsList from "./forecasts-list";
 
 const App = () => {
   return (
     <div>
       <ForecastCurrent />
-      <ForecastIndex />
+      <CityForecastsList />
     </div>
   )
 };
