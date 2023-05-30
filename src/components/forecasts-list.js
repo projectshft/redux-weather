@@ -5,32 +5,34 @@ import _ from 'lodash';
 const CityForecastsList = () => {
   const forecasts = useSelector((state) => state);
 
+  console.log(forecasts);
+
   const renderForecasts = () => {
-    if (!_.isEmpty(forecasts.city)) {
-      return forecasts.queryCityEntries.map((id) => {
+    if (!_.isEmpty(forecasts.queryCityEntries)) {
+      return forecasts.queryCityIds.map((id) => {
         return (
           <tr key={id}>
             <td>{forecasts.queryCityEntries[id].city}</td>
             <td>
-              <Sparklines data={forecasts.city[id].temps} width={150} height={100}>
+              <Sparklines data={forecasts.queryCityEntries[id].temperature} width={150} height={100}>
                 <SparklinesLine color='purple'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
-              <div>{Math.round(forecasts.city[id].temps.reduce((a, b) => a + b) / forecasts.city[id].temps.length)} &deg;F</div>
+              <div>{Math.round(forecasts.queryCityEntries[id].temperature.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].temperature.length)} &deg;F</div>
             </td>
             <td>
-              <Sparklines data={forecasts.city[id].pressure} width={150} height={100}>
+              <Sparklines data={forecasts.queryCityEntries[id].pressure} width={150} height={100}>
                 <SparklinesLine color='red'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
-              <div>{Math.round(forecasts.city[id].pressure.reduce((a, b) => a + b) / forecasts.city[id].pressure.length)} hPa</div>
+              <div>{Math.round(forecasts.queryCityEntries[id].pressure.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].pressure.length)} hPa</div>
             </td>
             <td>
-              <Sparklines data={forecasts.city[id].humidity} width={150} height={100}>
+              <Sparklines data={forecasts.queryCityEntries[id].humidity} width={150} height={100}>
                 <SparklinesLine color='orange'/>
                 <SparklinesReferenceLine type='mean'/>
               </Sparklines>
-              <div>{Math.round(forecasts.city[id].humidity.reduce((a, b) => a + b) / forecasts.city[id].humidity.length)} %</div>
+              <div>{Math.round(forecasts.queryCityEntries[id].humidity.reduce((a, b) => a + b) / forecasts.queryCityEntries[id].humidity.length)} %</div>
             </td>
           </tr>
         )
