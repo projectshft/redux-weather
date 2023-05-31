@@ -1,23 +1,32 @@
-import axios from "axios";
-export const FETCH_WEATHER = "FETCH_WEATHER";
-export const FETCH_AVERAGE = "FETCH_AVERAGE";
+import { FETCH_WEATHER} from "../actions/actions";
 
+const cityReducer = function (state = [], action) {
+  // eslint-disable-next-line default-case
+  switch(action.type) {
+    case FETCH_WEATHER:
+      let temperature = [];
+      let humidity = [];
+      let pressure = [];
+      let cityName = '';
+      action.payload.data.list.map((section, index) => {
+        temperature.push(section.main.temp)
+        humidity.pudh(section.main.humidity)
+        pressure.push(section.main.pressure)
+        cityName = action.payload.data.cityName  
+      });
 
-export function featherWeather (city) {
+      temperature = temperature.map((day) => Math.round(((day) - 273 * (9/5) + 32)))
+      humidity = humidity.map((day) => Math.round(((day))) )
+      pressure = pressure.map((day) => Math.round(((day))) )
 
-  const search = axios.get(`api.openweathermap.org/data/2.5/forecast?q=${city}&appid=40a22fcb01995614a7b68804376359eb`)
+      return [{
+        cityName, temperature, humidity, pressure
 
-  return {
-    type:FETCH_WEATHER,
-    payload: search
+      }, state]
+
+      default:
+      return state;
   };
-}
-
-export function featherAvg (math) {
-
-  return {
-    type:FETCH_AVERAGE,
-    payload: { math
-    }
-  }
 };
+
+export default cityReducer;

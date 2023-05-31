@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Header from '.components/header';
 import CitySearch from '.components/city-search';
 import CreateDisplay from '.components/weather-display';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
