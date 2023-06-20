@@ -1,6 +1,6 @@
 import { fetchWeather } from "../actions/actions";
 import { useState } from "react";
-import { useDispatch } from "react";
+import { useDispatch } from "react-redux";
 import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
