@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
-const apiKey = "9d09d0ac9e9eed9a59bbdcec2f73ef22"
+export const GET_CITY = 'GET_CITY';
 
-const ROOT_URL = `https:/api.openweathermap.org/data/2.5/forecast?q=London&appid=${apiKey}&units=imperial`
+const apiKey = '536b99823dd5364f3a29be3867644595';
 
-export const FETCH_CITY = "FETCH_CITY";
-
-export function fetchCity() {
-  const request = axios.get(`${ROOT_URL}`).then((call) => console.log(call.data.list))
+export function getCityWeather(value) {
+  const data = axios.get(
+    `https:/api.openweathermap.org/data/2.5/forecast?q=${value}&appid=${apiKey}&units=imperial`
+  );
 
   return {
-    type: FETCH_CITY,
-    payload: request
-  }
+    type: GET_CITY,
+    payload: data,
+  };
 }

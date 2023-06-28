@@ -1,23 +1,24 @@
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
-import Header from './components/header'
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+
+import promise from 'redux-promise';
 import './index.css';
 
-import { createStore } from 'redux'
-import { Provider } from 'react-redux';
-import CitySearch from './components/cities'
-import cityReducer from './reducers/reducer-cities'
+import Header from './components/header';
+import CitySearch from './components/city-search';
+import cityReducer from './reducers/reducer-cities';
 
-const store = createStore(cityReducer)
+const store = applyMiddleware(promise)(createStore);
 
-// then inside citysearch we can call store.dispatch
 ReactDOM.render(
-    <Provider store={store}>
+  <Provider store={store(cityReducer)}>
     <Header>
-    <CitySearch /> 
+      <CitySearch />
     </Header>
-    </Provider>,
+  </Provider>,
   document.getElementById('root')
 );
