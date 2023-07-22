@@ -1,6 +1,6 @@
 //This component will handle the table full of forecasts after you search a city
 
-function forecasts() {
+function Forecasts() {
     return (
         <div>
             <p>Forecasts Test</p>
@@ -8,4 +8,4 @@ function forecasts() {
     )
 }
 
-export default forecasts
+export default Forecasts
