@@ -8,11 +8,11 @@ import axios from 'axios'
 export const FETCH_FORECAST = 'FETCH_FORECAST'
 
 //this
-export function fetchForecast(location) {
+export function fetchForecast(city) {
     //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
 
     const request = axios.get(
-        `api.openweathermap.org/data/2.5/forecast?q=${location}&appid=0eb7282867c9f6a908734d94070fdac1`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=0eb7282867c9f6a908734d94070fdac1`
     )
 
     return {

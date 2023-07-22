@@ -24,6 +24,7 @@ const locationReducer = function (state = [], action) {
                 pressure.push(forecastDayData.main.pressure)
                 humidity.push(forecastDayData.main.humidity)
             }
+
             //Return the new location data that was searched and add below it
             //all the other location data that was searched previously
             return [
@@ -35,6 +36,8 @@ const locationReducer = function (state = [], action) {
                 },
                 ...state,
             ]
+        default:
+            return state // need this default state so it doesnt throw an error when the app loads and theres no data yet
     }
 }
 

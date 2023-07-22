@@ -6,23 +6,24 @@ import { fetchForecast } from '../actions/actions'
 
 const CitySearch = () => {
     const dispatch = useDispatch()
-    const [location, setLocation] = useState('') //This is the location that is typed into the text input
+    const [city, setCity] = useState('') //This is the location that is typed into the text input
 
     //Trigger the fetchForecast action when the search button is pressed
     const handleSearch = () => {
         //You can think of dispatching actions as "triggering an event" in the application.
-        dispatch(fetchForecast(location))
+        dispatch(fetchForecast(city))
     }
 
     return (
         <div>
             <input
-                class-name="forn-control"
+                class-name="form-control"
                 type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                // onChange={console.log('the input is changing')}
             />
-            <button type="button" onChange={handleSearch}>
+            <button type="button" onClick={handleSearch}>
                 Search
             </button>
         </div>

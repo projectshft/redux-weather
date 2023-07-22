@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import promise from 'redux-promise'
 import CitySearch from './components/CitySearch'
 import Forecasts from './components/Forecasts'
-import { reducers } from './reducers/reducers'
+import reducers from './reducers'
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
 
