@@ -16,9 +16,8 @@ const locationReducer = function (state = [], action) {
             const humidity = []
 
             //Loop through the data from the API and push the correct data to each array..
-            //because its a 3 hour forecast and I only need a 5 day daily forects I dont want to use .map
-            // Start on the 8th item of the array (24 hours from current time) and then increment by 24 hours.
-            for (var i = 7; i < action.payload.data.list.length; i += 8) {
+            // for (var i = 7; i < action.payload.data.list.length; i += 8) {
+            for (var i = 0; i < action.payload.data.list.length; i++) {
                 let forecastDayData = action.payload.data.list[i]
                 temp.push(forecastDayData.main.temp)
                 pressure.push(forecastDayData.main.pressure)

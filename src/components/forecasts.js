@@ -18,19 +18,19 @@ const Forecasts = () => {
                 <td>{cityForecast.locationName}</td>
                 <td>
                     <Sparklines data={cityForecast.temp}>
-                        <SparklinesLine />
+                        <SparklinesLine color="orange" />
                         <SparklinesReferenceLine type="avg" />
                     </Sparklines>
                 </td>
                 <td>
                     <Sparklines data={cityForecast.pressure}>
-                        <SparklinesLine />
+                        <SparklinesLine color="green" />
                         <SparklinesReferenceLine type="avg" />
                     </Sparklines>
                 </td>
                 <td>
                     <Sparklines data={cityForecast.humidity}>
-                        <SparklinesLine />
+                        <SparklinesLine color="black" />
                         <SparklinesReferenceLine type="avg" />
                     </Sparklines>
                 </td>
