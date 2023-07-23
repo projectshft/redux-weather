@@ -1,5 +1,4 @@
 //This component will handle the text input and the search button at the top of the screen
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchForecast } from '../actions/actions'
@@ -12,20 +11,29 @@ const CitySearch = () => {
     const handleSearch = () => {
         //You can think of dispatching actions as "triggering an event" in the application.
         dispatch(fetchForecast(city))
+        setCity('')
     }
 
     return (
-        <div>
+        <div className="input-group mb-3 ">
             <input
-                class-name="form-control"
+                className="form-control"
                 type="text"
+                placeholder="Get a five-day forecast in your favorite cities"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
-                // onChange={console.log('the input is changing')}
+                onChange={(e) => {
+                    setCity(e.target.value)
+                }}
             />
-            <button type="button" onClick={handleSearch}>
-                Search
-            </button>
+            <div className="input-group-append">
+                <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={handleSearch}
+                >
+                    Submit
+                </button>
+            </div>
         </div>
     )
 }

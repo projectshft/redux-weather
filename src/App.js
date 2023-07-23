@@ -11,10 +11,12 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
 
 function App() {
     return (
-        <Provider store={createStoreWithMiddleware(reducers)}>
-            <CitySearch />
-            <Forecasts />
-        </Provider>
+        <div className="main-container">
+            <Provider store={createStoreWithMiddleware(reducers)}>
+                <CitySearch />
+                <Forecasts />
+            </Provider>
+        </div>
     )
 }
 
