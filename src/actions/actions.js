@@ -7,15 +7,37 @@ import axios from 'axios'
 
 export const FETCH_FORECAST = 'FETCH_FORECAST'
 
-export function fetchForecast(city) {
-    //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-
-    const request = axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=0eb7282867c9f6a908734d94070fdac1&units=imperial`
-    )
-
-    return {
-        type: FETCH_FORECAST,
-        payload: request,
+export const fetchForecast = (city) => {
+    const API_KEY = process.env.REACT_APP_API_KEY
+    return async (dispatch) => {
+        await axios
+            .get(
+                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=imperial`
+            )
+            .then(function (response) {
+                // handle success
+                dispatch({ type: FETCH_FORECAST, payload: response })
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    alert(
+                        `Error Code: ${error.response.status}\nError Message: ${error.response.data.message}`
+                    )
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log('Request: ' + error.request)
+                    alert(
+                        'There was an error with the weather server. Please try again later'
+                    )
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message)
+                }
+                // console.log(error.config)
+            })
     }
 }

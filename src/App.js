@@ -2,17 +2,16 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { createStore, applyMiddleware } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
-import promise from 'redux-promise'
+// import promiseMiddleware from 'redux-promise'
 import CitySearch from './components/CitySearch'
 import Forecasts from './components/Forecasts'
-import reducers from './reducers'
-
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
+import rootReducer from './reducers/index'
+import thunk from 'redux-thunk'
 
 function App() {
     return (
         <div className="main-container">
-            <Provider store={createStoreWithMiddleware(reducers)}>
+            <Provider store={createStore(rootReducer, applyMiddleware(thunk))}>
                 <CitySearch />
                 <Forecasts />
             </Provider>

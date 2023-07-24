@@ -9,9 +9,12 @@ const CitySearch = () => {
 
     //Trigger the fetchForecast action when the search button is pressed
     const handleSearch = () => {
-        //You can think of dispatching actions as "triggering an event" in the application.
-        dispatch(fetchForecast(city))
-        setCity('')
+        if (!city) {
+            alert('Please enter a city')
+        } else {
+            dispatch(fetchForecast(city))
+            setCity('')
+        }
     }
 
     return (
@@ -27,7 +30,7 @@ const CitySearch = () => {
             />
             <div className="input-group-append">
                 <button
-                    type="button"
+                    type="text"
                     className="btn btn-secondary"
                     onClick={handleSearch}
                 >

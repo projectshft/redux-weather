@@ -10,8 +10,6 @@ import {
 const Forecasts = () => {
     const forecast = useSelector((state) => state.forecast)
 
-    console.log(forecast)
-
     const average = (array) =>
         Math.round(array.reduce((a, b) => a + b) / array.length)
 
