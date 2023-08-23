@@ -6,11 +6,15 @@ import ReactDOM from 'react-dom';
 // import promise from 'redux-promise';
 
 import Header from './containers/Header';
+import SearchBar from './components/SearchBar';
 // import reducers from "./reducers";
 
 // const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
-    <Header />,
+  <>
+    <Header />
+    <SearchBar />
+  </>,
   document.getElementById('root')
 );
