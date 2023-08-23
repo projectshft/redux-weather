@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 
 import Header from './containers/Header';
 import SearchBar from './components/SearchBar';
+import Main from './components/Main';
 // import reducers from "./reducers";
 
 // const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
@@ -15,6 +16,7 @@ ReactDOM.render(
   <>
     <Header />
     <SearchBar />
+    <Main />
   </>,
   document.getElementById('root')
 );
