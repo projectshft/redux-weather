@@ -9,7 +9,8 @@ function SearchBar() {
 
   const handleSubmit = (event, query) => {
     event.preventDefault();
-    dispatch(fetchCoordinates(query))
+    event.target.search.value = '';
+    dispatch(fetchCoordinates(query));
   };
   
   return (
