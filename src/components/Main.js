@@ -19,6 +19,15 @@ function Main() {
           </tr>
         </thead>
         <tbody>
+              {locations.order.map((location) => {
+                return (
+                  <tr key={location}>
+                    <td>
+                      {locations.entries[location].name}
+                    </td>
+                  </tr>
+                )
+              })}  
         </tbody>
       </Table>
     </Container>
