@@ -9,7 +9,7 @@ function Main() {
 
   return (
     <Container className="col-8 p-4">
-      <Table striped borderless hover>
+      <Table borderless hover>
         <thead>
           <tr className="border-top border-bottom">
             <th>City</th>
@@ -21,7 +21,7 @@ function Main() {
         <tbody>
               {locations.order.map((location) => {
                 return (
-                  <tr key={location}>
+                  <tr  className="border-bottom" key={location}>
                     <td>
                       {locations.entries[location].city.name}
                     </td>

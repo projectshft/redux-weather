@@ -15,11 +15,11 @@ function SearchBar() {
   
   return (
     <Container className="col-4 pt-4">
-      <Form onSubmit={(event) => handleSubmit(event, event.target.search.value)}>
-        <Form.Group className="mb-3" controlId="formSearch">
+      <Form className="d-flex justify-content-between" onSubmit={(event) => handleSubmit(event, event.target.search.value)}>
+        <Form.Group className="flex-grow-1 me-3 mb-3" controlId="formSearch">
           <Form.Control type="text" name="search" placeholder="Enter city here" />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="mb-3" variant="primary" type="submit">
           Submit
         </Button>
       </Form>
