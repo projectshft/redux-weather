@@ -23,7 +23,7 @@ function Main() {
                 return (
                   <tr key={location}>
                     <td>
-                      {locations.entries[location].name}
+                      {locations.entries[location].city.name}
                     </td>
                   </tr>
                 )

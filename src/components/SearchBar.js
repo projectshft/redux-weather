@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
-import { fetchCoordinates } from '../actions';
+import { fetchLocation } from '../actions';
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function SearchBar() {
   const handleSubmit = (event, query) => {
     event.preventDefault();
     event.target.search.value = '';
-    dispatch(fetchCoordinates(query));
+    dispatch(fetchLocation(query));
   };
   
   return (
