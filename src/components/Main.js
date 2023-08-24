@@ -6,8 +6,6 @@ import { useSelector } from 'react-redux';
 function Main() {
   const locations = useSelector((state) => state.locations);
 
-  // console.log(locations);
-
   return (
     <Container className="col-8 p-4">
       <Table borderless hover>
@@ -27,13 +25,13 @@ function Main() {
                       {locations.entries[location].city.name}
                     </td>
                     <td>
-                      <Chart id={location} type={'temp'}/>
+                      <Chart id={location} type={'temp'} color={'blue'} />
                     </td>
                     <td>
-                      <Chart id={location} type={'pressure'}/>
+                      <Chart id={location} type={'pressure'} color={'green'} />
                     </td>
                     <td>
-                      <Chart id={location} type={'humidity'}/>
+                      <Chart id={location} type={'humidity'} color={'orange'} />
                     </td>
                   </tr>
                 )
