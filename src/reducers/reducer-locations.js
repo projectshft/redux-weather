@@ -14,12 +14,19 @@ const DEFAULT_STATE = {
 const locationsReducer = function (state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_LOCATION:
-      const normalizedLocation = normalize(action.payload.data, locationSchema);
+      let normalizedLocation = null;
 
-      return {
-        entries: { ...normalizedLocation.entities.locations, ...state.entries },
-        order: _.union([normalizedLocation.result], [...state.order])
+      if (action.payload) {
+        normalizedLocation = normalize(action.payload.data, locationSchema);
+
+        return {
+          entries: { ...normalizedLocation.entities.locations, ...state.entries },
+          order: _.union([normalizedLocation.result], [...state.order])
+        }
+      } else {
+        alert('Sorry, there was a problem getting data for that city. Please try again.')
       }
+      break;
     default:
       return state;
   }
