@@ -25,8 +25,8 @@ const locationsReducer = function (state = DEFAULT_STATE, action) {
         }
       } else {
         alert('Sorry, there was a problem getting data for that city. Please try again.')
+        return state;
       }
-      break;
     default:
       return state;
   }
