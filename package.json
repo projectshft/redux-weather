@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
-    "eslint-config-wesbos": "^3.2.3",
     "lodash": "^4.17.21",
     "normalizr": "^3.6.2",
     "prop-types": "^15.8.1",
@@ -30,18 +29,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "wesbos"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "endOfLine": "auto",
-          "trailingComma": "none"
-        }
-      ]
-    }
+      "react-app"
+    ]
   },
   "browserslist": {
     "production": [
