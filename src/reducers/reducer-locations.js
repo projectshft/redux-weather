@@ -16,11 +16,9 @@ const locationsReducer = function (state = DEFAULT_STATE, action) {
     case FETCH_COORDINATES:
       const normalizedLocation = normalize(action.payload.data[0], locationSchema);
 
-      console.log(normalizedLocation);
-
       return {
-        entries: { ...state.entries, [action.payload.data[0].name]: normalizedLocation.entities.locations },
-        order: _.union([...state.order], [normalizedLocation.result])
+        entries: { ...normalizedLocation.entities.locations, ...state.entries },
+        order: _.union([normalizedLocation.result], [...state.order])
       }
     default:
       return state;
