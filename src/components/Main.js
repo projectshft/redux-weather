@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import Chart from './Chart';
 import { useSelector } from 'react-redux';
+import Chart from './Chart';
 
 function Main() {
   const locations = useSelector((state) => state.locations);
@@ -18,24 +18,23 @@ function Main() {
           </tr>
         </thead>
         <tbody>
-              {locations.order.map((location) => {
-                return (
-                  <tr className="border-bottom align-middle text-center" key={location}>
-                    <td>
-                      {locations.entries[location].city.name}
-                    </td>
-                    <td>
-                      <Chart id={location} type={'temp'} color={'blue'} />
-                    </td>
-                    <td>
-                      <Chart id={location} type={'pressure'} color={'green'} />
-                    </td>
-                    <td>
-                      <Chart id={location} type={'humidity'} color={'orange'} />
-                    </td>
-                  </tr>
-                )
-              })}  
+          {locations.order.map((location) => (
+            <tr
+              className="border-bottom align-middle text-center"
+              key={location}
+            >
+              <td>{locations.entries[location].city.name}</td>
+              <td>
+                <Chart id={location} type="temp" color="blue" />
+              </td>
+              <td>
+                <Chart id={location} type="pressure" color="green" />
+              </td>
+              <td>
+                <Chart id={location} type="humidity" color="orange" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </Container>

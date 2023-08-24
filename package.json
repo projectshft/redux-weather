@@ -8,7 +8,10 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+    "eslint-config-wesbos": "^3.2.3",
+    "lodash": "^4.17.21",
     "normalizr": "^3.6.2",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^17.0.2",
@@ -27,9 +30,18 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+      "wesbos"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "endOfLine": "auto",
+          "trailingComma": "none"
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
