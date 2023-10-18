@@ -3,25 +3,32 @@ import { useDispatch } from 'react-redux'
 import { addCity, setCurrentCity, fetchCoordinates, fetchForecast, addWeather, addErrorMessage } from './reducer/weatherSlice'
 import { useState } from 'react'
 import { CitiesList } from './cities-list'
+
 export function WeatherView() {
   const dispatch = useDispatch()
+
+  // using react state instead of redux to hold temporary state in handleFormChange function 
   const [cityName, setCityName] = useState(null)
   const handleFormChange = (event) => {
     setCityName(event.target.value);
   }
 
-  
+  // 2 API calls: one to get the coordinates of the city, and another to get the weather (using those coordinates)
   const getForecast = async () => { 
       dispatch(setCurrentCity(cityName));
-      try {const coordinatesResponse = await dispatch(fetchCoordinates());
+      try {
+        // First API call
+        const coordinatesResponse = await dispatch(fetchCoordinates());
        dispatch(addCity({name: coordinatesResponse.payload.name, lon: coordinatesResponse.payload.lon, lat: coordinatesResponse.payload.lat}));
        dispatch(setCurrentCity(coordinatesResponse.payload.name));
       
+        // Second API call
         const forecastResponse = await dispatch(fetchForecast());
         dispatch(addWeather({[coordinatesResponse.payload.name]: forecastResponse.payload}));
         dispatch(addErrorMessage(""))
       }
       catch {
+        // If either call fails, this error message will be added to state.error
           dispatch(addErrorMessage("No results found. Please check spelling and try again"))
       }
 
@@ -30,6 +37,7 @@ export function WeatherView() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     getForecast();
+    // Resetting value of the form input
     document.getElementById('input').value = '';
   }
   

@@ -1,16 +1,19 @@
 import { useSelector } from "react-redux";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
 export const CitiesList = () => {
-  const error = useSelector((state) => state.error)
-  const cities = useSelector((state) => state.cities)
-  const weather = useSelector((state) => state.weather)
+  const error = useSelector((state) => state.error);
+  const cities = useSelector((state) => state.cities);
+  const weather = useSelector((state) => state.weather);
 
+  // Check if error message indicates failed API call
   const handleError = () => {
     if(error === "No results found. Please check spelling and try again") {
-      return (<td colSpan = "4" className = "text-light bg-danger">{error}</td>)
+      return (<td colSpan = "4" className = "text-light bg-danger">{error}</td>);
     }
-    else {return (null)}
+    else {return (null);}
   }
+
+  // If there is data for the city's weather, return a table row populated with it
   const getWeather = (city) => {
     const currentCityWeather = weather.find((thisCity) => thisCity.hasOwnProperty(city))
   
@@ -26,7 +29,7 @@ export const CitiesList = () => {
       total += data[i];
       }
          const avg = Math.floor(total / data.length);
-        return avg
+        return avg;
        }
   return <tr key = {city}>
       <th scope = "row">{city}</th>
@@ -54,12 +57,13 @@ export const CitiesList = () => {
       </td>
       </tr>
   }
-  else {return <tr key = {Math.random()}></tr>}
+  else {return <tr key = {Math.random()}></tr>};
   }
 
   const citiesMap = cities.map(city =>  ( 
         getWeather(city.name)
-      ))
+      ));
+
   return (
   <div className = "container">
     <table className="table">
@@ -85,4 +89,4 @@ export const CitiesList = () => {
     </table>
     </div>
     )
-}
+};

@@ -3,14 +3,16 @@ import axios from 'axios'
 
 const apiKey = process.env.REACT_APP_API_KEY
 
+// defining initial state. This will be used in the Slice below
 const initialState = {
   currentCity: null,
   cities: [],
   weather: [],
   error: ''
 }
-  
-  export const fetchForecast = createAsyncThunk('forecast/fetchForecast', async (_, { getState }) => {
+
+  // API call using coordinates stored in state.cities, referenced from the city name stored in state.currentCity
+export const fetchForecast = createAsyncThunk('forecast/fetchForecast', async (_, { getState }) => {
     const state = getState();
     const currentCity = state.currentCity;
     const activeCity = state.cities.find((city) => city.name === currentCity);
@@ -19,14 +21,15 @@ const initialState = {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
     
     try {
-      const data = await axios.get(url)
-      return(data.data.list)
-
+      const response = await axios.get(url)
+      // return the array of weather items from the api response
+      return(response.data.list)
     }
     catch (err) {
       return err.message;
     }})
   
+    // API call to find the coordinates based on the city name that the user inputs. The city is stored in currentCity, but after the call, currentCity will be replaced with the city name that the API returns, because it will have correct capitalization and spelling.
 export const fetchCoordinates = createAsyncThunk('coordinates/fetchCoordinates', async (_, { getState }) => {
   const state = getState();
   const city = state.currentCity;
@@ -48,7 +51,6 @@ export const weatherSlice = createSlice({
   initialState,
   reducers: {
     addCity : (state, action) => {state.cities.push(action.payload)}, 
-    // setCoordinates: (state, action) => {state.coordinates = action.payload},
     setCurrentCity: (state, action) => {state.currentCity = action.payload},
     addWeather: (state, action) => {state.weather.push(action.payload)},
     addErrorMessage: (state, action) => {state.error = action.payload}
@@ -56,7 +58,6 @@ export const weatherSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
 export const { addCity, setCurrentCity, addWeather, addErrorMessage } = weatherSlice.actions
 
 export default weatherSlice.reducer
