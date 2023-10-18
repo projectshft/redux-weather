@@ -39,7 +39,7 @@ export const fetchCoordinates = createAsyncThunk('coordinates/fetchCoordinates',
     return ({name: name, lat: lat, lon: lon})
   }
   catch (err) {
-    console.log("Oopsie!");
+    console.log(err);
   }
 })
 

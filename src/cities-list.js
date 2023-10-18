@@ -7,9 +7,9 @@ export const CitiesList = () => {
 
   const handleError = () => {
     if(error === "No results found. Please check spelling and try again") {
-      return (<div className = "text-light bg-danger">{error}</div>)
+      return (<td colSpan = "4" className = "text-light bg-danger">{error}</td>)
     }
-    else {return (<div></div>)}
+    else {return (null)}
   }
   const getWeather = (city) => {
     const currentCityWeather = weather.find((thisCity) => thisCity.hasOwnProperty(city))
@@ -28,41 +28,61 @@ export const CitiesList = () => {
          const avg = Math.floor(total / data.length);
         return avg
        }
-  return <div className = "mt-4 container">
-      <h3>{city} Weather:</h3>
-      <div>5-day Average Temperature: {average(temperatureSparklineData)} °F
-      <Sparklines className = "col-md-3" data={temperatureSparklineData} limit={40} width={100} height={20} margin={5}>
+  return <tr key = {city}>
+      <th scope = "row">{city}</th>
+      <td>
+        <p>5-day Average Temperature: {average(temperatureSparklineData)} °F</p>
+      <Sparklines className = "col" data={temperatureSparklineData} width={100} height={20} margin={5}>
       <SparklinesLine />
     <SparklinesReferenceLine type="max" />
       </Sparklines>
-      
-      </div>
+      </td>
 
-    <div>5-day Average Humidity: {average(humiditySparklineData)}%
-      <Sparklines className = "col-md-3" data={humiditySparklineData} limit={40} width={100} height={20} margin={5}>
+    <td>
+      <p>5-day Average Humidity: {average(humiditySparklineData)}%</p>
+      <Sparklines className = "col" data={humiditySparklineData} width={100} height={20} margin={5}>
       <SparklinesLine />
     <SparklinesReferenceLine type="max" />
       </Sparklines>
+    </td>
+    <td>
+      <p>5-day Average Pressure: {average(pressureSparklineData)}" Hg</p>
+      <Sparklines className = "col" data={pressureSparklineData} width={100} height={20} margin={5}>
+      <SparklinesLine />
+    <SparklinesReferenceLine type="max" />
+      </Sparklines>
+      </td>
+      </tr>
+  }
+  else {return <tr key = {Math.random()}></tr>}
+  }
+
+  const citiesMap = cities.map(city =>  ( 
+        getWeather(city.name)
+      ))
+  return (
+  <div className = "container">
+    <table className="table">
+    <thead>
+      <tr>
+      <th scope="col">
+      City
+      </th>
+     <th scope="col">
+      Temperature
+     </th>
+     <th scope="col">
+      Humidity
+     </th>
+     <th scope="col">
+      Pressure
+     </th>
+     </tr>
+     </thead>
+      <tbody>{citiesMap}
+      <tr className = "py-2 mt-3 mb-3">{handleError()}</tr>
+      </tbody>
+    </table>
     </div>
-
-    <div>5-day Average Pressure: {average(pressureSparklineData)}" Hg
-      <Sparklines className = "col-md-3" data={pressureSparklineData} limit={40} width={100} height={20} margin={5}>
-      <SparklinesLine />
-    <SparklinesReferenceLine type="max" />
-      </Sparklines>
-      </div>
-      </div>
-  }
-  else {return <div></div>}
-  }
-
-  const citiesMap = cities.map(city =>  (<div key = {city + Math.random()}> 
-      <div>{getWeather(city.name)}</div>
-      <hr></hr>
-      
-       </div>))
-  return (<div>
-    <div>{citiesMap}</div>
-    <div>{handleError()}</div>
-    </div>)
+    )
 }

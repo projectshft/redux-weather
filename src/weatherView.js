@@ -30,19 +30,20 @@ export function WeatherView() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     getForecast();
+    document.getElementById('input').value = '';
   }
   
   return (
-    <div className = "container text-center">
-      <h3 className = "text-center col-md-6 offset-3">Redux Weather</h3>
+    <div className = "container">
+      <h3 className = "mt-3 text-center col-md-6 offset-3">Redux Weather</h3>
       <div className = "row justify-content-center">
      <form className = 'col-md-6 mt-5'onSubmit={handleFormSubmit}>
       <span className = 'input-group justify-content-center'>
-        <input  className = '' onChange = {handleFormChange} type = "text" placeholder = "City Name"></input>
+        <input  id = 'input' className = '' onChange = {handleFormChange} type = "text" placeholder = "City Name"></input>
        <button className='ms-3 py-1 btn btn-primary'>5-day Weather</button>
       </span>
-      <CitiesList/>
      </form>
+     <CitiesList/>
      </div>
     </div>
   )
