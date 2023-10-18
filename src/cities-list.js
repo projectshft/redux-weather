@@ -33,22 +33,22 @@ export const CitiesList = () => {
       <td>
         <p>5-day Average Temperature: {average(temperatureSparklineData)} °F</p>
       <Sparklines className = "col" data={temperatureSparklineData} width={100} height={20} margin={5}>
-      <SparklinesLine />
+      <SparklinesLine style = {{ stroke: "blue", fill: "#A7C7E7", strokeWidth: ".5"}} />
     <SparklinesReferenceLine type="max" />
       </Sparklines>
       </td>
 
     <td>
       <p>5-day Average Humidity: {average(humiditySparklineData)}%</p>
-      <Sparklines className = "col" data={humiditySparklineData} width={100} height={20} margin={5}>
-      <SparklinesLine />
+      <Sparklines className = "col" data={humiditySparklineData}  width={100} height={20} margin={5}>
+      <SparklinesLine style = {{ stroke: "green", fill: "#77DD77", strokeWidth: ".5"}} />
     <SparklinesReferenceLine type="max" />
       </Sparklines>
     </td>
     <td>
       <p>5-day Average Pressure: {average(pressureSparklineData)}" Hg</p>
       <Sparklines className = "col" data={pressureSparklineData} width={100} height={20} margin={5}>
-      <SparklinesLine />
+      <SparklinesLine style = {{ stroke: "gray", fill: "#CDCDCD", strokeWidth: ".5"}} />
     <SparklinesReferenceLine type="max" />
       </Sparklines>
       </td>
