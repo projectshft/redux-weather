@@ -7,18 +7,15 @@ export const weatherApi = createApi({
     getForecastData: builder.query({
       queryFn: async (city) => {
         const rootUrl = 'http://api.openweathermap.org/';
+        const API_KEY = import.meta.env.VITE_API_KEY;
 
         try {
           const cityData = await axios.get(
-            `${rootUrl}geo/1.0/direct?q=${city}&appid=${
-              import.meta.env.VITE_API_KEY
-            }`
+            `${rootUrl}geo/1.0/direct?q=${city}&appid=${API_KEY}`
           );
 
           const forecastData = await axios.get(
-            `${rootUrl}data/2.5/forecast?lat=${cityData.data[0].lat}&lon=${
-              cityData.data[0].lon
-            }&appid=${import.meta.env.VITE_API_KEY}`
+            `${rootUrl}data/2.5/forecast?lat=${cityData.data[0].lat}&lon=${cityData.data[0].lon}&appid=${API_KEY}`
           );
 
           return forecastData;
