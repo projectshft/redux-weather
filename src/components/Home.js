@@ -1,4 +1,11 @@
+import React from "react";
+import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
+
 const Home = (props) => {
+
+  const sampleData = [5, 10, 5, 20];
+
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -15,7 +22,7 @@ const Home = (props) => {
                   className="form-control"
                   placeholder="Search for a five-day forecast"
                 />
-                
+
               </div>
               <div className="col-md-3">
                 <button type="button" className="btn btn-primary search">
@@ -53,7 +60,33 @@ const Home = (props) => {
               </div>
             </div>
           </div>
-          <div className="fiveday row justify-content-center">
+          <div className="row">
+            <div className="col-md-3">
+              <Sparklines data={sampleData}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </div>
+            <div className="col-md-3">
+              <Sparklines data={sampleData}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </div>
+            <div className="col-md-3">
+              <Sparklines data={sampleData}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </div>
+            <div className="col-md-3">
+              <Sparklines data={sampleData}>
+                <SparklinesLine />
+                <SparklinesReferenceLine type="avg" />
+              </Sparklines>
+            </div>
+
+
 
           </div>
         </div>

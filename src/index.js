@@ -1,3 +1,6 @@
+// Create a weather app that renders a react sparkline (reference lines)
+// 
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
