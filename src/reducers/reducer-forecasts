@@ -1,0 +1,32 @@
+import { normalize, schema } from 'normalizr';
+import _ from 'lodash';
+import { FETCH_FIVE_DAY_FORECAST } from '../actions';
+
+const forecastsSchema = new schema.Entity('forecasts', undefined, {
+  idAttribute: (value) => value._id,
+});
+
+const DEFAULT_STATE = {
+  entries: {},
+  order: [],
+};
+
+// eslint-disable-next-line default-param-last
+const forecastReducer = function (state = DEFAULT_STATE, action) {
+  switch (action.type) {
+    case FETCH_FIVE_DAY_FORECAST:
+      // eslint-disable-next-line no-case-declarations
+      const normalizedForecastItems = normalize(action.payload.data, [
+        forecastsSchema,
+      ]);
+      console.log(normalizedForecastItems);
+      return {
+        entries: normalizedForecastItems.entities.forecasts,
+        order: normalizedForecastItems.result,
+      };
+    default:
+      return state;
+  }
+};
+
+export default forecastReducer;
