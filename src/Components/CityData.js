@@ -1,43 +1,52 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from "react-sparklines";
 
-const Home = (props) => {
 
-  const sampleData = [5, 10, 5, 20];
-
+const CityData = () => {
+  const searches = useSelector((state) => state.weather.searches)
 
   return (
     <div className="container-fluid">
+      {searches.map((search, index) => (
+        <div key={index} className="weather-list">
+          {renderCityData(search)}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const renderCityData = (search) => {
+  if (!search) {
+    return (
       <div className="row">
-        <div className="col-md-8 offset-md-2 text-center">
+        <div className="col-md text-center">
+          <h3>No Data Found</h3>
+        </div>
+      </div>
+    );
+  }
+
+  const city = search.city.name || '';
+  const temperature = search.temperature || [];
+  const pressure = search?.pressure || [];
+  const humidity = search?.humidity || [];
+  const avgTemp = search?.avgTemp || [];
+  const avgPressure = search?.avgPressure || [];
+  const avgHumidity = search?.avgHumidity || [];
+  return (
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-10 offset-md-1 text-center">
           <div className="page-header">
           </div>
 
-          <form className="search-form">
-            <div className="form-group row">
-              <div className="col-md-9">
-                <input
-                  type="text"
-                  id="search-query"
-                  className="form-control"
-                  placeholder="Search for a five-day forecast"
-                />
-
-              </div>
-              <div className="col-md-3">
-                <button type="button" className="btn btn-primary search">
-                  Search
-                </button>
-              </div>
-            </div>
-          </form>
-          <hr />
           <div className="container">
             <div className="row">
               <div className="col-md-3">
                 <h5>City</h5>
               </div>
-
               <div className="col-md-3">
                 <h5>Temperature (F)</h5>
               </div>
@@ -50,51 +59,42 @@ const Home = (props) => {
             </div>
           </div>
           <hr />
-
-
-
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-12">
-
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-md-3">
-              <Sparklines data={sampleData}>
-                <SparklinesLine />
-                <SparklinesReferenceLine type="avg" />
-              </Sparklines>
+              <h3>{city}</h3>
             </div>
             <div className="col-md-3">
-              <Sparklines data={sampleData}>
-                <SparklinesLine />
+              <Sparklines data={temperature}>
+                <SparklinesLine color="blue" />
                 <SparklinesReferenceLine type="avg" />
               </Sparklines>
+              <h6>{avgTemp}&deg;F</h6>
             </div>
             <div className="col-md-3">
-              <Sparklines data={sampleData}>
-                <SparklinesLine />
+              <Sparklines data={pressure}>
+                <SparklinesLine color="purple" />
                 <SparklinesReferenceLine type="avg" />
               </Sparklines>
+              <h6>{avgPressure}hPa</h6>
             </div>
             <div className="col-md-3">
-              <Sparklines data={sampleData}>
-                <SparklinesLine />
+              <Sparklines data={humidity}>
+                <SparklinesLine color="red" />
                 <SparklinesReferenceLine type="avg" />
               </Sparklines>
+              <h6>{avgHumidity}%</h6>
             </div>
-
-
-
           </div>
         </div>
       </div >
     </div >
+  );
+};
 
-
-  )
-}
-
-export default Home;
+export default CityData;
