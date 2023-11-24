@@ -1,13 +1,25 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Provider } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { store } from './store';
 import './index.css';
-import App from './App';
+import ForecastsIndex from './components/forecasts-index';
+import Header from './components/header';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" Component={ForecastsIndex} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
