@@ -1,3 +1,4 @@
+// header DOM component
 const header = (props) => (
   <div>
     <div className="jumbotron text-center">

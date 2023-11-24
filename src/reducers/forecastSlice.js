@@ -1,19 +1,24 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {
-  combineReducers,
-  createSlice,
-  createAsyncThunk,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// proprietary api key for api calls
 const apiKey = 'e762b32d14efd802e7f067526402633f';
 
+// initialState variable
 const initialState = {
   forecasts: [],
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
 };
 
+/**
+ * @param city
+ * @param apiKey
+ * @param thunkApi
+ * thunk variable to make api call with @city and @apiKey inputs
+ * returns a promise with data or error on failed call
+ */
 export const fetchFiveDayForecast = createAsyncThunk(
   'reducers/fetchFiveDayForecast',
   async (city, thunkApi) => {
@@ -31,6 +36,7 @@ export const fetchFiveDayForecast = createAsyncThunk(
   }
 );
 
+//  slice variable with builder function to add cases for processing returned Promise from api call. Fulfilled promise changes state with returned data from Promise
 const forecastSlice = createSlice({
   name: 'forecasts',
   initialState,

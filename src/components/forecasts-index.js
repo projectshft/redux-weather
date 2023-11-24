@@ -10,9 +10,15 @@ import {
 import { useState } from 'react';
 import { fetchFiveDayForecast } from '../reducers/forecastSlice';
 
+/**
+ * Forecast DOM component
+ * @returns {DOM element}
+ */
 const ForecastsIndex = () => {
+  // store variable declaration and variable to track state of store
   const store = useStore();
   const forecasts = useSelector((state) => state);
+  // mutable variables to hold forecast data properties
   let searchedCity = 'City Name';
   let averageTemp = 0;
   let averagePressure = 0;
@@ -21,6 +27,7 @@ const ForecastsIndex = () => {
   let pressureArray = [];
   let humidityArray = [];
 
+  // checks that returned api call data array is not empty then assigns variable values
   if (forecasts.forecasts.forecasts.length !== 0) {
     searchedCity = forecasts.forecasts.forecasts[0].city.name;
     tempsArray = forecasts.forecasts.forecasts[0].temp;
@@ -30,11 +37,18 @@ const ForecastsIndex = () => {
     averageHumidity = calculateAverage(humidityArray);
     averagePressure = calculateAverage(pressureArray);
   }
-  // placeholder for URL search
+  // variable for user input search and input string to component state
   const [searchInput, setSearch] = useState('');
-
+  // variable to check that searchInput variable exists - used to enable/disable submit button for appropriate condition of weather forecast search
   const searchFormValid = Boolean(searchInput);
 
+  /**
+   *
+   * calculates average value of array
+   * @param {array}
+   * @returns {average}
+   *
+   */
   function calculateAverage(array) {
     let average = 0;
     if (array.length !== 0) {
@@ -51,9 +65,10 @@ const ForecastsIndex = () => {
   };
 
   /**
-   *
+   * Function to render a Sparklines visual graph of input array plot points
+   * with median line for average of array
    * @param {Array} valuesArray
-   * @returns DOM component
+   * @returns {Sparklines element}
    */
   function renderForecastValues(valuesArray) {
     return (
