@@ -1,45 +1,53 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import {
   Sparklines,
   SparklinesLine,
   SparklinesReferenceLine,
 } from 'react-sparklines';
-import { useState, useEffect } from 'react';
-import _ from 'lodash';
-import { fetchFiveDayForecast } from '../actions';
+import { useState } from 'react';
+import { fetchFiveDayForecast } from '../reducers/forecastSlice';
 
 const ForecastsIndex = () => {
+  const store = useStore();
   const forecasts = useSelector((state) => state);
-  const dispatch = useDispatch();
+  let searchedCity = 'City Name';
+  let averageTemp = 0;
+  let averagePressure = 0;
+  let averageHumidity = 0;
+  let tempsArray = [];
+  let pressureArray = [];
+  let humidityArray = [];
 
-  useEffect(() => {
-    dispatch(fetchFiveDayForecast(searchInput));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchFiveDayForecast()]);
-
-  console.log(forecasts);
-  console.log('forecasts index is being executed');
-
-  // console.log(forecasts.data.list[0].main.temp);
-  // console.log(forecasts.data.list[0].main.pressure);
-  // console.log(forecasts.data.list[0].main.humidity);
-
+  if (forecasts.forecasts.forecasts.length !== 0) {
+    searchedCity = forecasts.forecasts.forecasts[0].city.name;
+    tempsArray = forecasts.forecasts.forecasts[0].temp;
+    pressureArray = forecasts.forecasts.forecasts[0].pressure;
+    humidityArray = forecasts.forecasts.forecasts[0].humidity;
+    averageTemp = calculateAverage(tempsArray);
+    averageHumidity = calculateAverage(humidityArray);
+    averagePressure = calculateAverage(pressureArray);
+  }
   // placeholder for URL search
   const [searchInput, setSearch] = useState('');
 
-  // array variables for forecast data
-  const tempsArray = [];
-  const pressureArray = [];
-  const humidityArray = [];
+  const searchFormValid = Boolean(searchInput);
+
+  function calculateAverage(array) {
+    let average = 0;
+    if (array.length !== 0) {
+      const sum = array.reduce((acc, value) =>
+        Math.floor(Math.round(acc + value))
+      );
+      average = Math.round(sum / array.length);
+    }
+    return average;
+  }
 
   const handleSearchOnClick = () => {
-    const fiveDayForecastData = fetchFiveDayForecast(searchInput);
-    console.log(fiveDayForecastData);
-    console.log(fiveDayForecastData.payload);
-    console.log(fiveDayForecastData.type);
+    store.dispatch(fetchFiveDayForecast(searchInput));
   };
 
   /**
@@ -48,40 +56,42 @@ const ForecastsIndex = () => {
    * @returns DOM component
    */
   function renderForecastValues(valuesArray) {
-    console.log(valuesArray);
-    if (!_.isEmpty(valuesArray)) {
-      return (
-        <Sparklines data={valuesArray}>
-          <SparklinesLine />
-          <SparklinesReferenceLine type="mean" />
-        </Sparklines>
-      );
-    }
-    return <div>No forecasts to show</div>;
+    return (
+      <Sparklines data={valuesArray}>
+        <SparklinesLine />
+        <SparklinesReferenceLine type="mean" />
+      </Sparklines>
+    );
   }
 
   return (
     <div className="forecasts-index">
       <header className="header">
-        <div className="forecast-displays row">
+        <div className="cityName">
+          <h1>
+            <span style={{ fontWeight: 'bold' }}>{searchedCity}</span> -{' '}
+            <span style={{ fontStyle: 'italic' }}>Five Day Forecast:</span>
+          </h1>
+        </div>
+        <div className="forecast-displays">
           <div id="temperature" className="col-md-4">
-            <h1>Temp</h1>
+            <h2>Temperatures (Average - {averageTemp}° F):</h2>
             <div>{renderForecastValues(tempsArray)}</div>
             <div id="temperature-chart" />
           </div>
           <div id="pressure" className="col-md-4">
-            <h1>Pressure</h1>
+            <h2>Pressure (Average - {averagePressure} hPa):</h2>
             <div>{renderForecastValues(pressureArray)}</div>
             <div id="pressure-chart" />
           </div>
           <div id="humidity" className="col-md-4">
-            <h1>Humidity</h1>
+            <h2>Humidity (Average - {averageHumidity}%):</h2>
             <div>{renderForecastValues(humidityArray)}</div>
             <div id="humidity-chart" />
           </div>
         </div>
         <form className="search-form">
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-4 m-2">
             <input
               type="text"
               id="search-query"
@@ -93,6 +103,7 @@ const ForecastsIndex = () => {
               type="button"
               className="btn btn-primary search"
               onClick={handleSearchOnClick}
+              disabled={!searchFormValid}
             >
               Search
             </button>
